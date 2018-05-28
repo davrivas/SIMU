@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/mecanico/main-template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="title">
+        Editar perfil
+    </ui:define>
+
+    <ui:define name="contenido1">
+        <h:form prependId="false">
+            <div class="row mt-2 mb-2">
+                <div class="col-md-2 col">
+                    <label for="nombre">Nombre</label>
+                </div>
+                <div class="col-md-2 col">
+                    <h:inputText value="#{sesionControlador.persona.nombre}" class="input-simu" id="nombre" a:name="nombre"  />
+                </div>
+            </div>
+            <div class="row mt-2 mb-2">
+                <div class="col-md-2 col">
+                    <label for="apellido">Apellido</label>
+                </div>
+                <div class="col-md-2 col">
+                    <h:inputText value="#{sesionControlador.persona.apellido}" class="input-simu" id="apellido" a:name="apellido"  />
+                </div>
+            </div>
+            <div class="row mt-2 mb-2">
+                <h:commandButton value="Editar perfil" class="btn-simu-naranja"/>
+            </div>
+        </h:form>
+    </ui:define>
+    <ui:define name="contenido2"></ui:define>
+
+</ui:composition>
+

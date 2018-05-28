@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/administrador/main-template.xhtml">
+
+    <h:head>
+        <link href="#{request.contextPath}/resources/css/calendario.css" rel="stylesheet"></link>
+        <title>Administrador</title>
+    </h:head>
+
+    <ui:define name="title" >
+        <h2>¡ Visualice las actualizaciones de el control respectivo a su inventario !</h2>        
+    </ui:define>
+
+
+    <ui:define name="contenido1">
+
+        <section class="row mt-4">
+
+
+            <div class="col-md-3 ">
+                <div class="circle-tile ">
+                    <a href="#">
+                        <div class="circle-tile-heading dark-red ">
+                            <i class="fa fa-users  fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content dark-red">
+                        <div class="circle-tile-description "> Usuarios</div>
+                        <div class="circle-tile-number ">265</div>
+                        <a class="circle-tile-footer" ></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 ">
+                <div class="circle-tile ">
+                    <a href="#">
+                        <div class="circle-tile-heading dark-blue ">
+                            <i class="fa fa-product-hunt  fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content dark-blue">
+                        <div class="circle-tile-description "> Productos</div>
+                        <div class="circle-tile-number  ">120</div>
+                        <a class="circle-tile-footer" href="#"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 ">
+                <div class="circle-tile ">
+                    <a href="#">
+                        <div class="circle-tile-heading dark-green">
+                            <i class="fa fa-eye  fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content dark-green">
+                        <div class="circle-tile-description "> visitas</div>
+                        <div class="circle-tile-number ">360</div>
+                        <a class="circle-tile-footer" href="#"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 ">
+                <div class="circle-tile ">
+                    <a href="#">
+                        <div class="circle-tile-heading dark-orange">
+                            <i class="fa fa-shopping-cart  fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content dark-orange">
+                        <div class="circle-tile-description "> Compras y Ventas</div>
+                        <div class="circle-tile-number ">265</div>
+                        <a class="circle-tile-footer" href="#"></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </ui:define>
+
+    <ui:define name="contenido2">
+        <!--carta 1-->
+        <section class="col-sm-12 col-md-4">
+            <div class="contenedor ">
+                <div class="carta">
+                    <div class="lado frente">
+                        <strong class="subtitulo">Estadisticas </strong>
+                    </div>
+                    <div class="lado p-4 atras">
+                        <p>Avances comerciales y mejoras en las transacciones en graficas estadisticas.</p>
+                        <button type="button" class="btn btn-outline-warning" onclick="estadis()">Mostrar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--carta 2-->
+
+        <section class="col-sm-12 col-md-4 ">
+            <div class="contenedor ">
+                <div class="carta">
+                    <div class="lado frente">
+                        <strong class="subtitulo">Reportes</strong>
+                    </div>
+                    <div class="lado p-4 atras ">
+                        <p class="p-3">Información de los productos en formato PDF y/o excel</p>
+                        <button class="btn btn-outline-warning" type="button" data-toggle="modal" data-target="#generar-reporte">Click aqui</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--carta 3-->
+
+        <section class="col-sm-12 col-md-4 ">
+            <div class="contenedor ">
+                <div class="carta">
+                    <div class="lado frente">
+                        <strong class="subtitulo">Transacciones</strong>
+
+
+                    </div>
+                    <div class="lado p-4 atras">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, maxime dolore culpa. Quidem repellendus.</p>
+                        <button type="button" class="btn btn-outline-warning" onclick="produ()">Mostrar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </ui:define>
+
+</ui:composition>
+

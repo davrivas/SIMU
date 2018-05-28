@@ -1,0 +1,354 @@
+
+
+/*SUPERIOR*/
+.arriba{
+    height: 50px;
+    font-family: oswald;
+    background-color: #000;
+    color: #fff;
+    border-bottom: 1px solid #2d2d2d;
+}
+
+.but{
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    border: 0px;
+}
+
+.favi{
+    width: 50px;
+    height: 50px;
+}
+
+.perfil{
+
+    list-style: none;
+    color: #fff;
+
+}
+.perfil:hover{
+    border-bottom: 2px solid orange;
+}
+
+/*MEDIO*/
+
+.medio1{
+    background-color: #000;
+    border-right:1px solid #2d2d2d;    
+
+}
+
+.medio2{
+    background-color: #1a1a1a;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+}
+/*carta de administrador*/
+
+.foto {
+    background-color: #1a1a1a;
+    margin-bottom: 30px;
+    margin-top: 60px;
+    font-size: 1em;
+    border-radius: .2rem;
+    color: #fff;
+
+
+}
+
+.foto-block{
+    font-size: 1em;
+    padding: 0.6em;
+
+}
+
+.foto-img-top {
+    width: 100%;
+    height: auto;
+}
+
+.foto-title {
+    font-size: 1.3em;
+    font-weight: 900;
+    line-height: 1.2857em;
+}
+
+/*MENU LATERAL*/
+
+ul li{
+    width: 100%;
+    height: 70px;
+    background-color: #000;	
+    border-bottom: 1px solid #1a1a1a;
+    cursor: pointer;
+    padding: 15px;
+}
+ul li a{
+    color: #fff;
+    text-decoration:none;
+}
+ul li:hover{
+    background-color: #1a1a1a;
+}
+
+/*TITULO*/
+
+.titu{
+
+    height: 80px;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 3px ;
+    color: #fff;
+    font-family: oswald;
+    box-shadow: 0px 0px 0px 1px #2d2d2d;
+
+}
+
+/*CARTAS DEL MEDIO*/
+
+.contenedor{
+    height: 400px;
+    width: 300px;
+    -webkit-perspective:700;
+
+
+
+
+}
+.carta{
+    width: 85%;  
+    height: 70%;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: 2s;
+    margin-top: 15px;
+
+
+}
+
+.carta:hover{
+    transform: rotateY(180deg);
+
+}
+
+.lado{
+    width:100%;
+    height: 100%;
+    backface-visibility: hidden;
+    position: absolute;
+    border-radius: 1%;
+
+}
+.frente{
+    background-color:#000; 
+    opacity: 0.8;
+
+
+}
+.atras{
+    background:#000;
+    transform: rotateY(180deg);
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+
+.subtitulo{
+
+    color: #fff;
+    font-size: 2em;
+
+}
+.botones{
+    cursor: pointer;
+}
+
+.botones:hover{
+    background-color: #e87817;
+
+}
+p{
+    color: #fff;
+
+
+}
+strong{
+    font-family: oswald;
+}
+.btn{
+    cursor: pointer;
+}
+
+
+/*CALENDARIO*/
+
+.table{
+    opacity: 0.6;
+}
+th{
+    width: 150px;
+    height: 100px;
+    font-size: 1.5em;
+    text-align: center;
+    background:#000;
+    color: #fff;
+    opacity: 0.7;
+
+}
+td{
+    padding: 20px;
+    background:#000;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0.7;
+    color: #fff;
+}
+td:hover{
+    background-color: #1a1a1a ;
+
+}
+
+
+/*FLECHA*/
+.flechas{
+    cursor: pointer;
+
+}
+
+.btn-simu-naranja {
+    padding: 10px !important;
+    border: 2px solid rgba(255,255,255,.4);
+    border-radius: 5px;
+    background-color: transparent;
+    color: #fff;
+    transition: .3s;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-simu-naranja:hover {
+    background-color: rgba(253, 164, 0, .8) !important;
+}
+
+.cerrar-modal:hover {
+    color: rgba(253, 164, 0, .8) !important;
+}
+
+.btn-simu-naranja:focus {
+    outline-color: orange !important;
+}
+
+/* Formularios */
+
+.select-simu {
+    transition: .3s;
+    background-color: #2b2929;
+    color: rgba(255, 255, 255, 0.5);
+    border: none;
+    padding: 5px;
+}
+
+.select-simu:focus {
+    background-color: #2b2929;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.select-simu option {
+    color: #fff;
+    background-color: #2b2929;
+}
+
+.input-simu {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #2b2929;
+    color: #fff;
+    border: none;
+    transition: .3s;
+    font-size: 12pt;
+    padding: 5px;
+}
+
+.input-simu:focus {
+    background-color: #504d4d;
+    color: #fff;
+}
+
+.input-simu::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input-simu-archivo {
+    cursor: pointer;
+}
+
+
+/*TARGETAS INDICADORES*/
+.circle-tile {
+    margin-bottom: 15px;
+    text-align: center;
+}
+.circle-tile-heading {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 100%;
+    color: #FFFFFF;
+    height: 80px;
+    margin: 0 auto -40px;
+    position: relative;
+    transition: all 0.3s ease-in-out 0s;
+    width: 80px;
+}
+
+
+.circle-tile-heading .fa {
+    line-height: 70px;
+}
+.circle-tile-content {
+    padding-top: 50px;
+}
+.circle-tile-number {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 5px 0 15px;
+}
+.circle-tile-description {
+    text-transform: uppercase;
+}
+.circle-tile-footer {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    display: block;
+    padding: 5px;
+    transition: all 0.3s ease-in-out 0s;
+}
+.circle-tile-footer:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+}
+
+
+.dark-blue {
+    background-color: #34495E;
+    color: #fff;
+}
+
+.dark-red{
+    background-color: #4c1e1a;
+    color: #fff;
+}
+
+.dark-green{
+    background-color: #233d08;
+    color: #fff;
+}
+
+.dark-orange{
+    background-color: #966c19;
+    color: #fff;
+}

@@ -1,0 +1,36 @@
+.pie-pagina {
+    width: 30;
+    background-color: #1a1a1a;
+    padding: 25px 0px;
+}
+
+.pie-pagina h2 {
+    margin-bottom: 25px !important;
+}
+
+.icon-red {
+    border-radius: 9px;
+    background-color: #2d2d2d;
+    font-size: 20px !important;
+    transition: .3s;
+    padding: 15px;
+    width: auto;
+}
+
+#facebook:hover {
+    background-color: #4267b2;
+}
+
+#twitter:hover {
+    background-color: #00aced;
+}
+
+#whatsapp:hover {
+    background-color: #189d0e;
+}
+
+@media (min-width: 768px) {
+    .icon-red {
+        padding: 5px;
+    }
+}

@@ -1,0 +1,25 @@
+.input-simu {
+    width: 200px;
+    font-size: 13px;
+}
+
+.cantidad-producto {
+    width: 30px;
+}
+
+p.nombre-producto, .precio-total {
+    font-weight: bold;
+}
+
+.botones-carrito {
+    transition: .3s;
+    cursor: pointer;
+}
+
+.botones-carrito:hover {
+    color: orange;
+}
+
+.footer-carrito p {
+    margin: 0 !important;
+}

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <meta charset="utf-8"/>
+        <title>Reparación</title>
+    </h:head>
+    <h:body>
+
+        <h1>Reparación</h1>
+
+        <p>#{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}</p>
+        <p>#{sesionControlador.rol.rol}</p>
+        <h:form>
+            <h:commandLink action="#{sesionControlador.cerrarSesion()}" value="Cerrar sesion" />
+        </h:form>
+
+        <h2>Consultar historial</h2>
+
+        <h:form id="historial" prependId="false">
+            <div>
+                <h:outputLabel for="placa" value="Número de Placa" />
+                <h:inputText id="placa" value="#{reparacionControlador.placa}" required="" />              
+            </div>
+            <div>
+                <h:commandButton value="Buscar" action="#{reparacionControlador.consultarHistorial()}" />
+            </div>
+        </h:form>
+
+        <h2><a href="agendar.xhtml">Agendar cita</a></h2>
+    </h:body>
+</html>
+

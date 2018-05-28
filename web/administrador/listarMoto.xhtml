@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/administrador/main-template.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="contenido1">
+        <section class="p-3 justify-content-around">
+            <div class="col-12 principal mt-3 p-3 mt-2">
+                <nav class="navbar navbar-dark">
+                    <h:form>
+                        <h:commandLink action="#{motoControlador.seleccionar()}" class="btn btn-outline-warning" value="Registrar">
+                            <i class="fa fa-plus"></i>
+                        </h:commandLink>
+                    </h:form>
+
+                    <form class="form-inline">
+                        <input class=" form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
+                        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fa fa-search"></i> Search </button>
+                    </form>4
+                </nav>
+            </div>
+        </section>
+    </ui:define>
+
+    <ui:define name="contenido2">
+
+        <!-- Modal Eliminar-->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <h:panelGroup id="contentModalEliminar" layout="block" class="modal-content">
+                    <div class="modal-header">
+
+                        <h3 class="modal-title"><strong>Seguro de eliminar la moto:</strong></h3>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Placa: #{motoControlador.motoSeleccionada.placa}</h4>
+
+                    </div>
+                    <div class="modal-footer">
+                        <h:form prependId="false">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <h:commandLink actionListener="#{motoControlador.eliminar()}"
+                                           class="btn btn-danger" value="Eliminar"/>
+                        </h:form>
+                    </div>
+                </h:panelGroup>
+
+            </div>
+        </div>
+
+        <!-- Modal Editar-->
+        <div id="modalEditar" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <h:panelGroup id="contentModalEditar" layout="block" class="modal-content">
+                    <h:form id="demo-form2" a:data-parsley-validate="true" class="form-horizontal form-label-left"
+                            prependId="false">
+                        <div class="modal-header">
+                            <h3 class="modal-title"><Strong>Editar Moto:</Strong></h3>
+                        </div>
+                        <div class="modal-body p-3">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Placa<span class="required"></span>
+                                </label>
+                                <div class="col-md-10 col-sm-6 col-xs-12 ml-4">
+                                    <h:inputText disabled="true" value="#{motoControlador.moto.placa}" class="form-control"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Cilindraje <span class="required"></span>
+                                </label>
+                                <div class="col-md-10 col-sm-6 col-xs-12 ml-4 ">
+                                    <h:inputText value="#{motoControlador.moto.cilindraje}" class="form-control"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Color <span class="required"></span>
+                                </label>
+                                <div class="col-md-10 col-sm-6 col-xs-12 ml-4">
+                                    <h:inputText value="#{motoControlador.moto.color}" class="form-control"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Modelo<span class="required"></span>
+                                </label>
+                                <div class="col-md-10 col-sm-6 col-xs-12 ml-4">
+                                    <h:inputText value="#{motoControlador.moto.modelo}" class="form-control"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Kilometraje
+                                </label>
+                                <div class="col-md-10 col-sm-6 col-xs-12 ml-4">
+                                    <h:inputText value="#{motoControlador.moto.kilometraje}" class="form-control"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Id_Producto <span class="required"></span>
+                                </label>
+                                <div class="col-md-10 col-sm-6 col-xs-12 ml-4">
+                                    <h:inputText disabled="true" value="#{motoControlador.moto.producto.idProducto}" class="form-control"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Id_Cliente <span class="required"></span>
+                                </label>
+                                <div class="col-md-10 col-sm-6 col-xs-12 ml-4">
+                                    <h:inputText disabled="true" value="#{motoControlador.moto.cliente.idCliente}" class="form-control"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <h:commandButton action="#{motoControlador.editar()}"
+                                             class="btn btn-outline-warning" value="Editar"></h:commandButton>
+                        </div>
+                    </h:form>
+                </h:panelGroup>
+
+            </div>
+        </div>
+
+
+        <h1 class="text-left mb-4 p-3"><i class="fa fa-th-list mr-2"></i>Lista de motos</h1>
+
+        <table class="table table-fixed p-5">
+            <caption>Lista de motos</caption>
+            <thead>
+                <tr>
+                    <th>Opciones</th>
+                    <th>placa</th>
+                    <th>cilindraje</th>
+                    <th>color</th>
+                    <th>modelo</th>
+                    <th>kilometraje</th>
+                    <th>id_Producto</th>
+                    <th>id_Cliente</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <c:forEach items="#{motoControlador.motos}" var="m">
+
+                    <tr>
+                        <td>
+                            <h:form>
+                                <h:commandLink actionListener="#{motoControlador.seleccionarMoto(m)}" class="btn btn-outline-danger" a:data-toggle="modal" a:data-target="#myModal">
+                                    <i class="fa fa-trash"></i>
+                                    <f:ajax render=":contentModalEliminar"/>
+                                </h:commandLink>
+
+                                <h:commandLink action="#{motoControlador.seleccionarMoto(m)}" class="btn btn-outline-dark" a:data-toggle="modal" a:data-target="#modalEditar">
+                                    <i class="fa fa-edit"></i>
+                                    <f:ajax render=":contentModalEditar"/>
+                                </h:commandLink>
+
+                            </h:form>
+                        </td>
+                        <td>#{m.placa}</td>
+                        <td>#{m.cilindraje}</td>
+                        <td>#{m.color}</td>
+                        <td>#{m.modelo}</td>
+                        <td>#{m.kilometraje}</td>
+                        <td>#{m.producto.idProducto}</td>
+                        <td>#{m.cliente.idCliente}</td>
+                    </tr>
+                </c:forEach>
+
+            </tbody>
+
+        </table>
+    </ui:define>
+
+</ui:composition>
+

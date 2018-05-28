@@ -1,0 +1,138 @@
+.titulo {
+    /* imagen */
+    /* background-image: url('../images/fotocamino.jpg');
+    background-size: 100%;
+    background-attachment: fixed; */
+    /* fin imagen */
+    height: 300px;
+}
+
+.video-simu {
+    width: 100%;
+    z-index: -100;
+    position: absolute;
+}
+
+.unete {
+    background-color: rgba(0,0,0,0.7);
+    font-weight: bold;
+    border-radius: 5px;
+    border: 2px solid rgba(255,255,255,.1);
+    padding: 25px !important;
+    position: relative;
+
+}
+
+#unete-titulo {
+    font-size: 30px;
+    text-align: center !important;
+}
+
+#simu-ofrece {
+    height: 100px;
+    background-color: #000;
+}
+
+.simu-ofrece {
+    background-size: 100%;
+    background-position: center center;
+    transition: 1s;
+}
+
+.simu-ofrece:hover {
+    background-size: 125%;
+}
+
+.simu-ofrece:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.descripcion {
+    background-color: rgba(0,0,0,.7);
+    padding: 25px !important;
+    height: 350px;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+}
+
+.descripcion h2, .descripcion p {
+    margin-bottom: 25px !important;
+}
+
+#ofrece2 {
+/*    background-image: url('../images/motos/bajaj-ejemplo.jpg'); */
+    background-image: url('../img/motos/bajaj-ejemplo.jpg'); 
+}
+
+#ofrece3 {
+    background-image: url('../img/cascos.jpg');
+}
+
+#ofrece4 {
+    background-image: url('../img/guantes.jpg');
+}
+
+#ofrece5 {
+    background-image: url('../img/mante.jpg');
+}
+
+#nosotros {
+    height: 100px;
+    background-color: #000;
+}
+
+#nosotros-div {
+    background-image: url('../img/moto-aventura2.jpg');
+}
+
+.moto-aventura {
+    width: 50%;
+    height: auto;
+}
+
+/* Volver arriba */
+
+#back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 9999;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .titulo,
+    /* .video-simu, */
+    .descripcion {
+        height: 500px;
+        font-size: 20px;
+    }
+
+    .moto-aventura {
+        width: 50%;
+        height: auto;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .moto-aventura {
+        width: 50%;
+        height: auto;
+    }
+}
+
+@media (min-width: 1200px) {
+    .titulo/* , .video-simu */ {
+        height: 700px;
+    }
+
+    .descripcion {
+        font-size: 20px;
+        height: 500px;
+    }
+
+    .moto-aventura {
+        width: auto;
+        height: auto;
+    }
+}

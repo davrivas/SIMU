@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Agendar cita</title>
+        <meta charset="utf8" />
+    </h:head>
+    <h:body>
+        <h1>Agendar cita</h1>
+
+        <h:form>
+            <div>
+                <h:outputLabel value="Placa"></h:outputLabel>
+                <h:inputText value="#{reparacionControlador.placa}" />
+            </div>
+            <div>
+                <h:outputLabel value="Tipo de servicio"></h:outputLabel>
+                <h:selectOneMenu value="#{reparacionControlador.tipoServicio}">
+                    <f:selectItems value="#{reparacionControlador.servicios}" var="ts" itemLabel="#{ts.servicio}"/>
+                </h:selectOneMenu>
+            </div>
+            <div>
+                <h:outputLabel value="Mecanico"></h:outputLabel>
+                <h:selectOneMenu value="#{reparacionControlador.tipoServicio}">
+                    <f:selectItem value="Seleccione un mecanico" />
+                    <f:selectItems value="#{reparacionControlador.mecanicos}" var="m" itemLabel="#{m.persona.nombre} #{m.persona.apellido}"/>
+                </h:selectOneMenu>
+            </div>
+            <div>
+                <h:outputLabel value="Fecha y hora"></h:outputLabel>
+                <h:inputText value="#{reparacionControlador.fechaHora}">  
+                    <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss"/>  
+                </h:inputText>
+            </div>
+            <h:inputHidden value="#{sesionControlador.persona.idPersona}" />
+            <div>
+                <h:commandButton value="Agendar Cita" />
+            </div>
+        </h:form>
+
+        <a href="reparacion.xhtml">Volver atrás</a>
+    </h:body>
+</html>
+

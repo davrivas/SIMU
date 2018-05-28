@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Historial de la moto</title>
+        <meta charset="utf8" />
+    </h:head>
+    <h:body>
+        <c:if test="#{reparacionControlador.historial.size() == 0}">
+            <p>No se ha encontrado historial de la moto con placa #{reparacionControlador.placa}</p>
+        </c:if>
+
+        <c:if test="#{reparacionControlador.historial.size() != 0}">
+            <h1>Historial de #{reparacionControlador.placa}</h1>
+            <h:dataTable value="#{reparacionControlador.historial}" var="h" border="2">
+                <h:column>
+                    <cc:facet name="header">ID</cc:facet>
+                    <h:outputText value="#{h.idAgenda}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <cc:facet name="header">Nombre mecánico</cc:facet>
+                    <h:outputText value="#{h.idMecanico.persona.nombre} #{h.idMecanico.persona.apellido}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <cc:facet name="header">Tipo de servicio</cc:facet>
+                    <h:outputText value="#{h.idReparacion.idServicio.servicio}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <cc:facet name="header">Descripción</cc:facet>
+                    <h:outputText value="#{h.idReparacion.descripción}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <cc:facet name="header">Calificación</cc:facet>
+                    <h:outputText value="#{h.idReparacion.calificacion}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <cc:facet name="header">Fecha</cc:facet>
+                    <h:outputText value="#{h.fecha}">
+                        <f:convertDateTime pattern="yyyy/MM/dd HH:mm" />
+                    </h:outputText>
+                </h:column>
+            </h:dataTable>
+        </c:if>
+        <a href="reparacion.xhtml">Volver atrás</a>
+    </h:body>
+</html>
+

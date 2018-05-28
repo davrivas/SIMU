@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template = "/WEB-INF/templates/administrador/main-template.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="contenido1">
+
+        <section class="p-3 justify-content-around">
+            <div class="col-12 principal mt-3 p-3 mt-2">
+                <nav class="navbar navbar-dark">
+                    <h:form>
+                        <h:commandLink action="#{accesorioControlador.seleccionar()}" class="btn btn-outline-warning" value="Registrar">
+                            <i class="fa fa-plus"></i>
+                        </h:commandLink>
+                    </h:form>
+
+                    <form class="form-inline">
+                        <input class=" form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
+                        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fa fa-search"></i> Search </button>
+                    </form>4
+                </nav>
+            </div>
+        </section>
+    </ui:define>
+
+    <ui:define name="contenido2">
+
+        <!-- Modal Eliminar-->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <h:panelGroup id="contentModalEliminar" layout="block" class="modal-content">
+                    <div class="modal-header">
+
+                        <h3 class="modal-title"><strong>Seguro de eliminar el accesorio:</strong></h3>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Accesorio: #{accesorioControlador.accesorioSeleccionado.idAccesorio}</h4>
+
+                    </div>
+                    <div class="modal-footer">
+                        <h:form prependId="false">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <h:commandLink actionListener="#{accesorioControlador.eliminar()}"
+                                           class="btn btn-danger" value="Eliminar"/>
+                        </h:form>
+                    </div>
+                </h:panelGroup>
+
+            </div>
+        </div>
+
+        <!-- Modal Editar-->
+        <div id="modalEditar" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <h:panelGroup id="contentModalEditar" layout="block" class="modal-content">
+                    <h:form id="demo-form2" a:data-parsley-validate="true" class="form-horizontal form-label-left"
+                            prependId="false">
+                        <div class="modal-header">
+                            <h3 class="modal-title"><Strong>Editar Accesorio:</Strong></h3>
+                        </div>
+                        <div class="modal-body p-3">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">identificación del accesorio<span class="required"></span>
+                                </label>
+                                <div class="col-md-10 col-sm-6 col-xs-12 ml-4">
+                                    <h:inputText disabled="true" value="#{accesorioControlador.accesorio.idAccesorio}" class="form-control"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Identificación del producto <span class="required"></span>
+                                </label>
+                                <div class="col-md-10 col-sm-6 col-xs-12 ml-4 ">
+                                    <h:inputText disabled="true" value="#{accesorioControlador.accesorio.producto}" class="form-control"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Identificación del Proveedor <span class="required"></span>
+                                </label>
+                                <div class="col-md-10 col-sm-6 col-xs-12 ml-4">
+                                    <h:inputText disabled="true" value="#{accesorioControlador.accesorio.proveedor}" class="form-control"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo<span class="required"></span>
+                                </label>
+                                <div class="col-md-10 col-sm-6 col-xs-12 ml-4">
+                                    <!--                                    hacer el converter de tipo de accesorio-->
+                                    <h:inputText value="#{accesorioControlador.accesorio.tipo}" class="form-control"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombre</label>
+                                <div class="col-md-10 col-sm-6 col-xs-12 ml-4">
+                                    <h:inputText value="#{accesorioControlador.accesorio.nombre}" class="form-control"></h:inputText>
+                                </div>
+                            </div>
+
+                            <div class="ln_solid"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <h:commandButton action="#{accesorioControlador.editar()}"
+                                             class="btn btn-outline-warning" value="Editar"></h:commandButton>
+                        </div>
+                    </h:form>
+                </h:panelGroup>
+
+            </div>
+        </div>
+
+
+        <h1 class="text-left mb-4 p-3"><i class="fa fa-th-list mr-2"></i>Lista de accesorios</h1>
+        <table class="table table-fixed p-5">
+            <caption>Lista de motos</caption>
+            <thead>
+                <tr>
+                    <th>Opciones</th>
+                    <th>Id_accesorio</th>
+                    <th>Id_producto</th>
+                    <th>Id_proveedor</th>
+                    <th>Tipo</th>
+                    <th>Nombre</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <c:forEach items="#{accesorioControlador.accesorios}" var="a">
+
+                    <tr>
+                        <td>
+                            <h:form>
+                                <h:commandLink action="${accesorioControlador.seleccionarAccesorio(a)}" class="btn btn-outline-danger" a:data-toggle="modal" a:data-target="#myModal">
+                                    <i class="fa fa-trash"></i>
+                                    <f:ajax render=":contentModalEliminar"/>
+                                </h:commandLink>
+
+                                <h:commandLink action="${accesorioControlador.seleccionarAccesorio(a)}" class="btn btn-outline-dark" a:data-toggle="modal" a:data-target="#modalEditar">
+                                    <i class="fa fa-edit"></i>
+                                    <f:ajax render=":contentModalEditar"/>
+                                </h:commandLink>
+                            </h:form>
+                        </td>
+                        <td>#{a.idAccesorio}</td>
+                        <td>#{a.producto.idProducto}</td>
+                        <td>#{a.proveedor.idProveedor}</td>
+                        <!--                        hacer converter-->
+                        <td>#{a.tipo}</td>
+                        <td>#{a.nombre}</td>
+                    </tr>
+                </c:forEach>
+
+            </tbody>
+
+        </table>
+
+    </ui:define>
+
+</ui:composition>
+

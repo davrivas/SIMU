@@ -1,0 +1,95 @@
+.barra-navegacion {
+    background-color: #000 !important;
+    font-family: "Oswald" !important;
+    font-size: 15px;
+    padding: 0 10px !important;
+}
+
+.barra-navegacion * {
+    color: #fff;
+}
+
+.items-nav, .dropdown-item {
+    border-bottom: 1.5px solid #000;
+    transition: .3s;
+}
+
+.items-nav-activo, .items-nav-activo:hover {
+    border-bottom: 1.5px solid #fff !important;
+}
+
+.items-nav:hover, .dropdown-item:hover {
+    border-bottom: 1.5px solid orange;
+}
+
+.logo-simu-negativo {
+    pointer-events: none;
+    cursor: initial;
+    margin-left: 10px;
+}
+
+.logo-simu-negativo img {
+    height: 20px;
+    width: auto;
+}
+
+.nav-barras {
+    color: #fff !important;
+}
+
+.dropdown-menu {
+    background-color: #000 !important;
+}
+
+.dropdown-menu a {
+    color: #fff !important;
+}
+.text-navright {
+    display: inline-block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+
+.linea-blanca {
+    /* display: initial; */
+    border: 1px solid #fff;
+    margin: 25px 0px;
+}
+
+.boton-navbar {
+    background-color: #000 !important;
+    color: #fff;
+    border: 0;
+    transition:  .5s;
+    cursor: pointer;
+    padding: 5px 5px 5px 0px;
+}
+
+.boton-carrito:hover {
+    color: orange;
+}
+
+@media (min-width: 992px) {
+    .nav-item, .dropdown-item {
+        padding: 10px !important;
+    }
+
+    .dropdown:hover>.dropdown-menu {
+        display: block;
+    }
+
+    .linea-blanca {
+        display: none;
+    }
+
+    .boton-navbar {
+        width: auto;
+    }
+
+    .text-navright {
+        display: none;
+    }
+}

@@ -1,0 +1,13 @@
+.contenido-modal {
+    border: 5px solid rgba(26, 26, 26, .75);
+    border-radius: 5px;
+    padding: 25px !important;
+    height: fit-content;
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.cerrar-modal {
+    color: #fff;
+    /* transition: .5s; */
+}
