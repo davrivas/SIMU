@@ -36,6 +36,7 @@ public class AccesorioControlador implements Serializable {
 
     @EJB
     private ProductoFacadeLocal pfl;
+    private List<Producto> productos;
 
     Accesorio accesorio = new Accesorio();
 
@@ -97,7 +98,7 @@ public class AccesorioControlador implements Serializable {
         return "registrarAccesorio.xhtml";
     }
 
-    public List<Producto> listarProducto() {
+    public List<Producto> getProductos() {
         return pfl.findAll();
     }
 

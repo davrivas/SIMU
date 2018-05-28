@@ -92,8 +92,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo<span class="required"></span>
                                 </label>
                                 <div class="col-md-10 col-sm-6 col-xs-12 ml-4">
-                                    <!--                                    hacer el converter de tipo de accesorio-->
-                                    <h:inputText value="#{accesorioControlador.accesorio.tipo}" class="form-control"></h:inputText>
+                                    <h:inputText value="#{accesorioControlador.accesorio.tipoAccesorio.tipoAccesorio}" class="form-control"></h:inputText>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -152,7 +151,7 @@
                         <td>#{a.producto.idProducto}</td>
                         <td>#{a.proveedor.idProveedor}</td>
                         <!--                        hacer converter-->
-                        <td>#{a.tipo}</td>
+                        <td>#{a.tipoAccesorio.tipoAccesorio}</td>
                         <td>#{a.nombre}</td>
                     </tr>
                 </c:forEach>

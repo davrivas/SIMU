@@ -25,15 +25,15 @@
                 <hr/>
                 <section class="row mb-5 mt-5">
 
-                    <div class="col-6">
-                        <h:outputLabel class="mr-3">Identificación accesorio</h:outputLabel>
-                        <h:inputText value="#{accesorioControlador.accesorio.idAccesorio}"></h:inputText>
-                    </div>
+                    <!--                    <div class="col-6">
+                                            <h:outputLabel class="mr-3">Identificación accesorio</h:outputLabel>
+                                            <h:inputText value="#{accesorioControlador.accesorio.idAccesorio}"></h:inputText>
+                                        </div>-->
                     <div class="col-6">
                         <h:outputLabel class="mr-3">Id producto</h:outputLabel>
                         <h:selectOneMenu value="#{accesorioControlador.accesorio.producto}" class="input-group">
                             <f:selectItem itemLabel="Seleccione"></f:selectItem>
-                            <f:selectItems value="#{accesorioControlador.listarProducto()}" var="p" itemLabel="#{p.idProducto}" class="form-control"></f:selectItems>
+                            <f:selectItems value="#{accesorioControlador.productos}" var="p" itemLabel="#{p.idProducto}" class="form-control"></f:selectItems>
                         </h:selectOneMenu>
                     </div>
                 </section>
@@ -48,7 +48,9 @@
                     <div class="col-4">
                         <h:outputLabel class="mr-3">Tipo</h:outputLabel>
                         <!--ocnverter-->
-                        <h:inputText value="#{accesorioControlador.accesorio.tipo}"></h:inputText>
+                        <h:selectOneMenu value="#{accesorioControlador.accesorio.tipoAccesorio}">
+                            <f:selectItems value="#{tipoAccesorioControlador.tiposAccesorios}" var="ta" itemLabel="#{ta.tipoAccesorio}"/>
+                        </h:selectOneMenu>
                     </div>
                     <div class="col-4">
                         <h:outputLabel class="mr-3">Nombre</h:outputLabel>
