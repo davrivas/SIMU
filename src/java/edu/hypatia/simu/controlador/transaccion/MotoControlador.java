@@ -14,6 +14,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import edu.hypatia.simu.modelo.dao.ClienteFacadeLocal;
+import edu.hypatia.simu.modelo.dao.EstadoMotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.MotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
 
@@ -33,6 +34,9 @@ public class MotoControlador implements Serializable {
 
     @EJB
     private ProductoFacadeLocal pfl;
+
+    @EJB
+    private EstadoMotoFacadeLocal emfl;
 
     private List<Moto> motos;
 
@@ -94,7 +98,7 @@ public class MotoControlador implements Serializable {
 
     /*REGISTRAR*/
     public String seleccionar() {
-        return "registrar.xhtml";
+        return "registrar.xhtml?faces-redirect=true";
     }
 
     public List<Producto> listarProducto() {
@@ -106,8 +110,9 @@ public class MotoControlador implements Serializable {
     }
 
     public String registrar() {
+        moto.setEstadoMoto(emfl.find(5)); // 5 es disponible
         mfl.create(moto);
-        return "listarMoto.xhtml";
+        return "listarMoto.xhtml?faces-redirect=true";
     }
 
 }

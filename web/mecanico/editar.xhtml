@@ -35,7 +35,7 @@
                 <div class="column ml-1">
                     <h:selectOneMenu value="#{reparacionControlador.reparacionModificada.moto}" class="select-simu" a:name="moto" id="moto" required="">
                         <f:selectItem itemLabel="Seleccione" itemValue=""/>
-                        <f:selectItems value="#{motoControlador.motos}" var="m" itemLabel="#{m.placa} (#{m.producto.marcaProducto.marcaProducto} #{m.producto.referencia}) de #{m.cliente.persona.nombre} #{m.cliente.persona.apellido}"/>
+                        <f:selectItems value="#{motoControlador.motos}" var="m" itemLabel="#{m.placa} de #{m.cliente.persona.nombre} #{m.cliente.persona.apellido}"/>
                     </h:selectOneMenu>
                 </div>
             </div>

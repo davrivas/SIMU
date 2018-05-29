@@ -38,7 +38,7 @@ public class AccesorioControlador implements Serializable {
     private ProductoFacadeLocal pfl;
     private List<Producto> productos;
 
-    Accesorio accesorio = new Accesorio();
+    private Accesorio accesorio = new Accesorio();
 
     private Accesorio accesorioSeleccionado;
 
@@ -90,12 +90,12 @@ public class AccesorioControlador implements Serializable {
         } catch (Exception e) {
         }
         accesorioSeleccionado = null;
-        return "listarMoto.xhtml?faces-redirect=true";
+        return "listarAccesorio.xhtml?faces-redirect=true";
     }
 
     /*REGISTRAR*/
     public String seleccionar() {
-        return "registrarAccesorio.xhtml";
+        return "registrarAccesorio.xhtml?faces-redirect=true";
     }
 
     public List<Producto> getProductos() {
@@ -107,7 +107,16 @@ public class AccesorioControlador implements Serializable {
     }
 
     public String registrar() {
+//        System.out.println("Nombre: " + accesorio.getNombre());
+//        accesorio.setProducto(pfl.find(2));
+        System.out.println("Producto: " + accesorio.getProducto());
+//        System.out.println("Proveedor:  + accesorio.getProveedor().getIdProveedor());
+//        System.out.println("Tipo accesorio: " + accesorio.getTipoAccesorio().getIdTipoAccesorio());
+
+        accesorio.setProducto(pfl.find(2));
+        accesorio.setProveedor(prfl.find(4));
+
         afl.create(accesorio);
-        return "listarAccesorio.xhtml";
+        return "listarAccesorio.xhtml?faces-redirect=true";
     }
 }

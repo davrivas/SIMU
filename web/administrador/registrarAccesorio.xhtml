@@ -27,7 +27,7 @@
 
                     <!--                    <div class="col-6">
                                             <h:outputLabel class="mr-3">Identificación accesorio</h:outputLabel>
-                                            <h:inputText value="#{accesorioControlador.accesorio.idAccesorio}"></h:inputText>
+                                            <h:inputText value=""></h:inputText>
                                         </div>-->
                     <div class="col-6">
                         <h:outputLabel class="mr-3">Id producto</h:outputLabel>
@@ -49,6 +49,7 @@
                         <h:outputLabel class="mr-3">Tipo</h:outputLabel>
                         <!--ocnverter-->
                         <h:selectOneMenu value="#{accesorioControlador.accesorio.tipoAccesorio}">
+                            <f:selectItem itemLabel="Seleccione"/>
                             <f:selectItems value="#{tipoAccesorioControlador.tiposAccesorios}" var="ta" itemLabel="#{ta.tipoAccesorio}"/>
                         </h:selectOneMenu>
                     </div>
