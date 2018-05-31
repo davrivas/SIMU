@@ -36,26 +36,35 @@
                         <h:outputLabel class="mr-3">Modelo</h:outputLabel>
                         <h:inputText value="#{motoControlador.moto.modelo}" class="form-control"></h:inputText>
                     </div>
+                    <div class="col-4">
+                        <h:outputLabel>Estado Moto</h:outputLabel>
+                        <h:selectOneMenu value="#{motoControlador.moto.estadoMoto}" class="form-control">
+                            <f:selectItem itemLabel="Seleccione"></f:selectItem>
+                            <f:selectItems value="#{motoControlador.listarEstadoMoto()}" var="em" itemLabel="#{em.nombreEstado}"></f:selectItems>
+                        </h:selectOneMenu>
+                    </div>
                 </section>
                 <section class="row mb-5 mt-5 justify-content-around">
+                    
                     <div class="col-4">
                         <h:outputLabel class="mr-3">Kilometraje</h:outputLabel>
                         <h:inputText value="#{motoControlador.moto.kilometraje}" class="form-control" ></h:inputText>
                     </div>
-                    <div class="col-4">
-                        <h:outputLabel>Id_cliente</h:outputLabel>
-                        <h:selectOneMenu value="#{motoControlador.moto.cliente}" class="input-group">
+                     <div class="col-4">
+                        <h:outputLabel>Producto</h:outputLabel>
+                        <h:selectOneMenu value="#{motoControlador.moto.producto}" class="form-control">
                             <f:selectItem itemLabel="Seleccione"></f:selectItem>
-                            <f:selectItems value="#{motoControlador.listarCliente()}" var="c" itemLabel="#{c.idCliente}" class="form-control"></f:selectItems>
+                            <f:selectItems value="#{motoControlador.listarProducto()}" var="p" itemLabel="#{p.marcaProducto.marcaProducto} #{p.referencia}"></f:selectItems>
                         </h:selectOneMenu>
                     </div>
                     <div class="col-4">
-                        <h:outputLabel>Id_producto</h:outputLabel>
-                        <h:selectOneMenu value="#{motoControlador.moto.producto}" class="input-group">
+                        <h:outputLabel>Cliente</h:outputLabel>
+                        <h:selectOneMenu value="#{motoControlador.moto.cliente}" class="form-control">
                             <f:selectItem itemLabel="Seleccione"></f:selectItem>
-                            <f:selectItems value="#{motoControlador.listarProducto()}" var="p" itemLabel="#{p.idProducto}" class="form-control"></f:selectItems>
+                            <f:selectItems value="#{motoControlador.listarCliente()}" var="c" itemLabel="#{c.persona.nombre} #{c.persona.apellido}"></f:selectItems>
                         </h:selectOneMenu>
                     </div>
+                   
                 </section>
                 <hr/>
 

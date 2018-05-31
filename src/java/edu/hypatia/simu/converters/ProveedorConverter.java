@@ -20,7 +20,7 @@ import edu.hypatia.simu.modelo.dao.ProveedorFacadeLocal;
 @FacesConverter(forClass = Proveedor.class)
 public class ProveedorConverter implements Converter<Proveedor> {
 
-    private ProveedorFacadeLocal pfl;
+    private  ProveedorFacadeLocal pfl;
 
     public ProveedorConverter() {
         pfl = CDI.current().select(ProveedorFacadeLocal.class).get();

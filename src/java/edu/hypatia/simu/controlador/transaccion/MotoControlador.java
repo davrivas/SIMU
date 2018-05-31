@@ -17,6 +17,7 @@ import edu.hypatia.simu.modelo.dao.ClienteFacadeLocal;
 import edu.hypatia.simu.modelo.dao.EstadoMotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.MotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.EstadoMoto;
 
 /**
  *
@@ -107,6 +108,10 @@ public class MotoControlador implements Serializable {
 
     public List<Cliente> listarCliente() {
         return cfl.findAll();
+    }
+    
+    public List<EstadoMoto> listarEstadoMoto() {
+        return emfl.findAll();
     }
 
     public String registrar() {

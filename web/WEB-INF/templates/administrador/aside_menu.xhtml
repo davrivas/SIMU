@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 
     <div class="col-md-2 medio1"> 
@@ -14,10 +15,10 @@
             <img class="card-img-top" src="https://cdn.pixabay.com/photo/2017/03/29/21/27/motorcycle-2186589__340.jpg"></img>
 
             <div class="card-block">
-                <h4 class="card-title mt-3 d-flex justify-content-center"><strong>Nicolas Murillo</strong></h4>
+                <h4 class="card-title mt-3 d-flex justify-content-center"><strong>#{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}</strong></h4>
 
                 <div class="meta d-flex justify-content-center">
-                    <h5 class="mb-3">Admnistrador</h5>
+                    <h5 class="mb-3">#{sesionControlador.persona.rol.rol}</h5>
                 </div>
 
             </div>
@@ -34,13 +35,14 @@
 
                     <ul class="nav">
 
-                        <li><a href="index.xhtml"><i class="fa fa-home fa-2x mr-2"></i> Inicio</a></li>
-                        <li><a href=""><i class="fa fa-edit fa-2x mr-2"></i> Editar perfil</a></li>
-                        <li><a href="listarMoto.xhtml"><i class="fa fa-motorcycle fa-2x mr-3"></i> Motos</a></li>
-                        <li><a href="listarAccesorio.xhtml"><i class="fa fa-bar-chart-o fa-2x mr-2"></i> Accesorios</a></li>
-                        <li><a href=""><i class="fa fa-user fa-2x mr-2"></i> Usuarios</a></li>
-                        <li><a href=""><i class="fa fa-table fa-2x mr-2"></i> Compras</a></li>
-                        <li><a href=""><i class="fa fa-sign-out fa-2x mb-5 mr-2"></i> Salir</a></li>
+                        <c:forEach items="#{sesionControlador.persona.rol.permisoList}" var="p">
+                            <li><a href="#{p.url}"><i class="#{p.icono} fa-2x mr-2"></i>#{p.permiso}</a></li>
+                        </c:forEach>
+                        <li>
+                            <h:form id="cerrar-sesion" prependId="false">
+                                <h:commandLink action="#{sesionControlador.cerrarSesion()}"><i class="fa fa-sign-out fa-2x mb-5 mr-2"></i>Salir</h:commandLink>
+                            </h:form>
+                        </li> <!--Aqui se destruye la sesión-->
 
                     </ul>
 

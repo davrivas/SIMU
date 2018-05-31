@@ -13,7 +13,7 @@
             <div class="col-12 principal mt-3 p-3 mt-2">
                 <nav class="navbar navbar-dark">
                     <h:form>
-                        <h:commandLink action="#{motoControlador.seleccionar()}" class="btn btn-outline-warning" value="Registrar">
+                        <h:commandLink action="#{motoControlador.seleccionar()}" class="btn btn-outline-warning" value="Registrar Moto">
                             <i class="fa fa-plus"></i>
                         </h:commandLink>
                     </h:form>
@@ -21,7 +21,7 @@
                     <form class="form-inline">
                         <input class=" form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
                         <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fa fa-search"></i> Search </button>
-                    </form>4
+                    </form>
                 </nav>
             </div>
         </section>
@@ -103,17 +103,27 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Id_Producto <span class="required"></span>
-                                </label>
+                                <h:outputLabel>Estado Moto</h:outputLabel>
                                 <div class="col-md-10 col-sm-6 col-xs-12 ml-4">
-                                    <h:inputText disabled="true" value="#{motoControlador.moto.producto.idProducto}" class="form-control"></h:inputText>
+                                <h:selectOneMenu value="#{motoControlador.moto.estadoMoto}" class="form-control">
+                                    <f:selectItem itemLabel="Seleccione"></f:selectItem>
+                                    <f:selectItems value="#{motoControlador.listarEstadoMoto()}" var="em" itemLabel="#{em.nombreEstado}"></f:selectItems>
+                                </h:selectOneMenu>
+                            
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Id_Cliente <span class="required"></span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Producto <span class="required"></span>
                                 </label>
                                 <div class="col-md-10 col-sm-6 col-xs-12 ml-4">
-                                    <h:inputText disabled="true" value="#{motoControlador.moto.cliente.idCliente}" class="form-control"></h:inputText>
+                                    <h:inputText disabled="true" value="#{motoControlador.moto.producto.marcaProducto.marcaProducto} #{motoControlador.moto.producto.referencia}" class="form-control"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Cliente <span class="required"></span>
+                                </label>
+                                <div class="col-md-10 col-sm-6 col-xs-12 ml-4">
+                                    <h:inputText disabled="true" value="#{motoControlador.moto.cliente.persona.nombre} #{motoControlador.moto.cliente.persona.apellido}" class="form-control"></h:inputText>
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
@@ -137,13 +147,15 @@
             <thead>
                 <tr>
                     <th>Opciones</th>
+                    <th>Moto</th>
                     <th>placa</th>
                     <th>cilindraje</th>
                     <th>color</th>
                     <th>modelo</th>
                     <th>kilometraje</th>
-                    <th>id_Producto</th>
-                    <th>id_Cliente</th>
+                    <th>estado de moto</th>
+                    <th>Producto</th>
+                    <th>Cliente</th>
                 </tr>
             </thead>
             <tbody>
@@ -165,13 +177,15 @@
 
                             </h:form>
                         </td>
+                        <td>#{m.idMoto}</td>
                         <td>#{m.placa}</td>
                         <td>#{m.cilindraje}</td>
                         <td>#{m.color}</td>
                         <td>#{m.modelo}</td>
                         <td>#{m.kilometraje}</td>
-                        <td>#{m.producto.idProducto}</td>
-                        <td>#{m.cliente.idCliente}</td>
+                        <td>#{m.estadoMoto.nombreEstado}</td>
+                        <td>#{m.producto.marcaProducto.marcaProducto} #{m.producto.referencia}</td>
+                        <td>#{m.cliente.persona.nombre} #{m.cliente.persona.apellido}</td>
                     </tr>
                 </c:forEach>
 
