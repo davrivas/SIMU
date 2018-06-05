@@ -9,7 +9,6 @@ import edu.hypatia.simu.modelo.dao.ReparacionFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Reparacion;
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -29,7 +28,6 @@ public class ReparacionControlador implements Serializable {
 //    private List<Reparacion> historial; Para el historial se puede hacer un request con la placa
     private Reparacion reparacionNueva = new Reparacion();
     private Reparacion reparacionSeleccionada = new Reparacion();
-    private Reparacion reparacionEliminada;
     private String placa;
 
     /**
@@ -56,14 +54,6 @@ public class ReparacionControlador implements Serializable {
 
     public void setReparacionSeleccionada(Reparacion reparacionSeleccionada) {
         this.reparacionSeleccionada = reparacionSeleccionada;
-    }
-
-    public Reparacion getReparacionEliminada() {
-        return reparacionEliminada;
-    }
-
-    public void setReparacionEliminada(Reparacion reparacionEliminada) {
-        this.reparacionEliminada = reparacionEliminada;
     }
 
     public String getPlaca() {
@@ -105,7 +95,7 @@ public class ReparacionControlador implements Serializable {
         }
         String rta = "";
         for (int i = 0; i < r.getCalificacion(); i++) {
-            rta += "<span class='fa fa-star' style='color:#f5f516;'></span>";
+            rta += "<span class='fa fa-star' style='color:orange;'></span>";
         }
 
         return rta;
