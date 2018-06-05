@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 /**
@@ -19,7 +19,7 @@ import javax.inject.Named;
  * @author davrivas
  */
 @Named(value = "reparacionControlador")
-@SessionScoped
+@ViewScoped
 public class ReparacionControlador implements Serializable {
 
     @EJB
@@ -27,8 +27,8 @@ public class ReparacionControlador implements Serializable {
 
     private List<Reparacion> reparaciones;
 //    private List<Reparacion> historial; Para el historial se puede hacer un request con la placa
-    private Reparacion reparacionNueva;
-    private Reparacion reparacionModificada;
+    private Reparacion reparacionNueva = new Reparacion();
+    private Reparacion reparacionSeleccionada = new Reparacion();
     private Reparacion reparacionEliminada;
     private String placa;
 
@@ -36,13 +36,6 @@ public class ReparacionControlador implements Serializable {
      * Creates a new instance of ReparacionControlador
      */
     public ReparacionControlador() {
-    }
-
-    @PostConstruct
-    public void init() {
-        reparacionNueva = new Reparacion();
-        reparacionEliminada = new Reparacion();
-        reparacionModificada = new Reparacion();
     }
 
     public List<Reparacion> getReparaciones() {
@@ -57,12 +50,12 @@ public class ReparacionControlador implements Serializable {
         this.reparacionNueva = reparacionNueva;
     }
 
-    public Reparacion getReparacionModificada() {
-        return reparacionModificada;
+    public Reparacion getReparacionSeleccionada() {
+        return reparacionSeleccionada;
     }
 
-    public void setReparacionModificada(Reparacion reparacionModificada) {
-        this.reparacionModificada = reparacionModificada;
+    public void setReparacionSeleccionada(Reparacion reparacionSeleccionada) {
+        this.reparacionSeleccionada = reparacionSeleccionada;
     }
 
     public Reparacion getReparacionEliminada() {
@@ -92,35 +85,27 @@ public class ReparacionControlador implements Serializable {
         return "index.xhtml?faces-redirect=true";
     }
 
-    public String preEditar(Reparacion r) {
-        reparacionModificada = r;
-        return "editar.xhtml?faces-redirect=true";
-    }
-
-    public String preEliminar(Reparacion r) {
-        reparacionEliminada = r;
-        return "eliminar.xhtml?faces-redirect=true";
+    public void seleccionarReparacion(Reparacion r) {
+        reparacionSeleccionada = r;
     }
 
     public String editar() {
-        rfl.edit(reparacionModificada);
-        reparacionNueva = new Reparacion();
+        rfl.edit(reparacionSeleccionada);
         return "index.xhtml?faces-redirect=true";
     }
 
     public String eliminar() {
-        rfl.remove(reparacionEliminada);
-        reparacionNueva = new Reparacion();
+        rfl.remove(reparacionSeleccionada);
         return "index.xhtml?faces-redirect=true";
     }
 
-    public String getCalificacionMant(Reparacion r) {
+    public String getCalificacionReparacion(Reparacion r) {
         if (r.getCalificacion() == null) {
             return "<em>Pendiente por calificar</em>";
         }
         String rta = "";
         for (int i = 0; i < r.getCalificacion(); i++) {
-            rta += "<span class='fa fa-star'></span>";
+            rta += "<span class='fa fa-star' style='color:#f5f516;'></span>";
         }
 
         return rta;
