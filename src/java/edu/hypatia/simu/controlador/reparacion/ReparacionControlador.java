@@ -5,12 +5,15 @@
  */
 package edu.hypatia.simu.controlador.reparacion;
 
+import edu.hypatia.simu.controlador.persona.SesionControlador;
 import edu.hypatia.simu.modelo.dao.ReparacionFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Moto;
 import edu.hypatia.simu.modelo.entidades.Reparacion;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -23,12 +26,13 @@ public class ReparacionControlador implements Serializable {
 
     @EJB
     private ReparacionFacadeLocal rfl;
-
+    @Inject
+    private SesionControlador sc;
     private List<Reparacion> reparaciones;
-//    private List<Reparacion> historial; Para el historial se puede hacer un request con la placa
+    private Moto historialMoto = new Moto();
     private Reparacion reparacionNueva = new Reparacion();
     private Reparacion reparacionSeleccionada = new Reparacion();
-    private String placa;
+    private Reparacion reparacionAgendada = new Reparacion();
 
     /**
      * Creates a new instance of ReparacionControlador
@@ -38,6 +42,14 @@ public class ReparacionControlador implements Serializable {
 
     public List<Reparacion> getReparaciones() {
         return rfl.findAll();
+    }
+
+    public Moto getHistorialMoto() {
+        return historialMoto;
+    }
+
+    public void setHistorialMoto(Moto historialMoto) {
+        this.historialMoto = historialMoto;
     }
 
     public Reparacion getReparacionNueva() {
@@ -56,17 +68,12 @@ public class ReparacionControlador implements Serializable {
         this.reparacionSeleccionada = reparacionSeleccionada;
     }
 
-    public String getPlaca() {
-        return placa;
+    public Reparacion getReparacionAgendada() {
+        return reparacionAgendada;
     }
 
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
-
-    public String consultarHistorial() {
-//       historial = rfl.consultarHistorial(placa);
-        return "historial?faces-redirect=true";
+    public void setReparacionAgendada(Reparacion reparacionAgendada) {
+        this.reparacionAgendada = reparacionAgendada;
     }
 
     public String insertar() {
@@ -99,5 +106,13 @@ public class ReparacionControlador implements Serializable {
         }
 
         return rta;
+    }
+
+    public void seleccionarMotoParaHistorial(Moto m) {
+        historialMoto = m;
+    }
+
+    public String agendarCita() {
+        return ""; // a la misma pagina
     }
 }

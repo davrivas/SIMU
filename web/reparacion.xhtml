@@ -3,9 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <meta charset="utf-8"/>
+        <title>Reparación - SIMU</title>
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
         <link rel="shortcut icon" href="#{request.contextPath}/resources/img/favicon.png"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.min.css"/>
@@ -51,12 +53,20 @@
 
                         <!--SERVICIO 2-->
                         <section class="col-sm-10 col-md-3 mt-3  hola2">
-                            <h5>Historial de tu motocicleta</h5>
+                            <h:form prependId="false">
+                                <h5>Historial de tu motocicleta</h5>
 
-                            <label class="mt-1" for="">Número de Placa</label>
+                                <label class="mt-1" for="">Seleccione la moto</label>
 
-                            <input id="placa" type="text" placeholder="Escribe tu placa" class="col-md-12 mt-1 input-simu" a:required=""/>
-                            <button class="btn-simu-naranja btn-block mt-3" type="button" data-toggle="modal" data-target="#historial" id="historial-placa">Buscar</button>
+                                <h:selectOneMenu value="#{reparacionControlador.historialMoto}" id="placa" class="col-md-12 mt-1 input-simu" a:required="">
+                                    <f:selectItem itemValue="" itemLabel="Seleccione su moto"/>
+                                    <f:selectItems value="#{sesionControlador.persona.cliente.motoList}" var="m" itemLabel="#{m.placa} #{m.cilindraje}cc"/>
+                                </h:selectOneMenu>
+                                <h:commandLink class="btn-simu-naranja btn-block mt-3" actionListener="#{reparacionControlador.seleccionarMotoParaHistorial(historialMoto)}" a:data-toggle="modal" a:data-target="#historial">
+                                    <f:ajax render=":contenidoModalHistorial"/>
+                                    Buscar
+                                </h:commandLink>
+                            </h:form>
 
                             <h5 class="mt-5">Agendar cita</h5>
 
@@ -72,29 +82,20 @@
                         <section class="col-sm-10 col-md-3 mt-3 hola3">
                             <h5>Valores Agregados</h5>
                             <p class="mt-4">En nuestro taller trabajamos para la satisfacción de nuestros clientes, implementando procesos que mejoren la experiencia del servicio</p>
-
-
                         </section>
-
                         <!--FIN SERVICIO 3-->
                     </div>
-
                 </div>
-
-
                 <!--FIN SERVICIOS-->
-
-
             </div>
             <!--FIN MEDIO-->
-
 
             <ui:include src="/WEB-INF/templates/cliente/footer.xhtml"/>
         </div>
 
-        <div class="modal fade" id="historial" tabindex="-1" role="dialog" aria-labelledby="hitorial" aria-hidden="true">
+        <div class="modal fade" id="historial" tabindex="-1" role="dialog" aria-labelledby="historial" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content contenido-modal">
+                <h:panelGroup id="contenidoModalHistorial" class="modal-content contenido-modal" layout="block">
                     <div class="modal-header">
                         <h3 class="modal-title" id="exampleModalLabel">Historial de tu motocicleta</h3>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -102,40 +103,42 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p><strong>Placa:</strong> <span id="placa-ingresada"></span></p>
+                        <p><strong>Placa:</strong> #{reparacionControlador.historialMoto.placa}</p>
 
-                        <table class="table table-responsive table-striped table-bordered">
-                            <thead class="thead-inverse">
-                                <tr>
-                                    <th>Concepto</th>
-                                    <th>Fecha</th>
-                                    <th>Próxima fecha</th>
-                                    <th>Notas</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Revisión de frenos</td>
-                                    <td>22-mar-2017</td>
-                                    <td>22-sept-2017</td>
-                                    <td>Cambio de pastillas</td>
-                                </tr>
-                                <tr>
-                                    <td>Revisión de electricidad</td>
-                                    <td>22-mar-2017</td>
-                                    <td>22-mar-2017</td>
-                                    <td>Verificación de luces</td>
-                                </tr>
-                                <tr>
-                                    <td>Cambio de aceite</td>
-                                    <td>22-sept-2017</td>
-                                    <td>22-dic-2017</td>
-                                    <td>Aceite extra</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <h:dataTable class="table table-responsive table-striped table-bordered"
+                                     value="#{reparacionControlador.historialMoto.reparacionList}" var="r">
+                            <h:column>
+                                <f:facet name="header">Fecha y hora</f:facet>
+                                <h:outputText value="#{r.fecha}">
+                                    <f:convertDateTime pattern="yyyy/MM/dd HH:mm" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Mecánico</f:facet>
+                                <h:outputText value="#{r.mecanico.persona.nombre} #{r.mecanico.persona.apellido}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Calificación</f:facet>
+                                <h:outputText value="#{reparacionControlador.getCalificacionReparacion(r)}" escape="false"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Descripción</f:facet>
+                                <h:panelGroup rendered="#{empty r.descripcion}">
+                                    <em>Pendiente por revisar</em>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{not empty r.descripcion}">
+                                    <h:outputText value="#{r.descripcion}"/>
+                                </h:panelGroup>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Tipo de servicio reparación</f:facet>
+                                <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
+                                    #{tsr.servicio}<br/>
+                                </ui:repeat>
+                            </h:column>
+                        </h:dataTable>
                     </div>
-                </div>
+                </h:panelGroup>
             </div>
         </div>
 
@@ -148,56 +151,59 @@
                             <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <div class="row mt-1 mb-3">
-                            <label for="placa-agenda" class="mr-3">Placa</label>
-                            <input id="placa-agenda" name="placa-agenda" type="text" class="input-simu"/>
-                        </div>
-                        <div class="row mt-1 mb-3">
-                            <label for="tipo-servicio" class="mr-3">Tipo de servicio</label>
-                            <select name="tipo-servicio" id="tipo-servicio" class="select-simu">
-                                <option value="seleccione">Seleccione</option>
-                                <option value="mant">Mantenimiento</option>
-                                <option value="rep">Reparación</option>
-                                <option value="mod">Modificación</option>
-                            </select>
-                        </div>
-                        <div class="row mt-1 mb-3">
-                            <label for="fecha" class="mr-3">Fecha</label>
-                            <input id="fecha-agenda" name="fecha-agenda" type="date" class="input-simu"/>
-                            <label for="fecha" class="ml-3 mr-3">Hora</label>
-                            <input id="hora-agenda" name="hora-agenda" type="time" class="input-simu"/>
-                        </div>
+                    <h:form prependId="false">
+                        <div class="modal-body">
+                            <div class="row mt-1 mb-3">
+                                <label for="moto-agenda" class="mr-3">Moto</label>
+                                <h:selectOneMenu value="#{reparacionControlador.historialMoto}" id="moto-agenda" class="col-md-12 mt-1 input-simu" a:required="">
+                                    <f:selectItem itemValue="" itemLabel="Seleccione su moto"/>
+                                    <f:selectItems value="#{sesionControlador.persona.cliente.motoList}" var="m" itemLabel="#{m.placa} #{m.cilindraje}cc"/>
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="row mt-1 mb-3">
+                                <label for="tipo-servicio" class="mr-3">Tipo de servicio</label>
+                                <h:selectOneMenu value="#{reparacionControlador.reparacionAgendada.tipoServicioReparacionList}" name="tipo-servicio" id="tipo-servicio" class="select-simu">
+                                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                    <f:selectItems value="#{serviciosControlador.servicios}" var="ts" itemLabel="#{ts.servicio}"/>
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="row mt-1 mb-3">
+                                <label for="fecha" class="mr-3">Fecha</label>
+                                <input id="fecha-agenda" name="fecha-agenda" type="date" class="input-simu"/>
+                                <label for="fecha" class="ml-3 mr-3">Hora</label>
+                                <input id="hora-agenda" name="hora-agenda" type="time" class="input-simu"/>
+                            </div>
 
 
 
-                        <table class="table table-responsive table-striped table-bordered">
-                            <thead class="thead-inverse">
-                                <tr>
-                                    <th>Nombre mecánico</th>
-                                    <th>Disponible</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Mose Schearer</td>
-                                    <td><span class="fa fa-check"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Ida Schepp</td>
-                                    <td><span class="fa fa-times"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Lory Stransky</td>
-                                    <td><span class="fa fa-check"></span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn-simu-naranja m-2" id="agendar-dos">Agendar</button>
-                        <button class="btn-simu-naranja m-2" data-dismiss="modal">Cancelar</button>
-                    </div>
+                            <table class="table table-responsive table-striped table-bordered">
+                                <thead class="thead-inverse">
+                                    <tr>
+                                        <th>Nombre mecánico</th>
+                                        <th>Disponible</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Mose Schearer</td>
+                                        <td><span class="fa fa-check"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ida Schepp</td>
+                                        <td><span class="fa fa-times"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lory Stransky</td>
+                                        <td><span class="fa fa-check"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn-simu-naranja m-2" id="agendar-dos">Agendar</button>
+                            <button class="btn-simu-naranja m-2" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </h:form>
                 </div>
             </div>
         </div>
