@@ -1,34 +1,212 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <meta charset="utf-8"/>
-        <title>Reparación</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+        <link rel="shortcut icon" href="#{request.contextPath}/resources/img/favicon.png"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/reparacion.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/modal.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/font-awesome.min.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/normalizar.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/nav-bar.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/footer.css"/>
     </h:head>
     <h:body>
+        <div class=" container-fluid">
+            <ui:include src="/WEB-INF/templates/cliente/navbar.xhtml"/>
 
-        <h1>Reparación</h1>
+            <!--MEDIO-->
 
-        <p>#{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}</p>
-        <p>#{sesionControlador.rol.rol}</p>
-        <h:form>
-            <h:commandLink action="#{sesionControlador.cerrarSesion()}" value="Cerrar sesion" />
-        </h:form>
+            <div class="row">
+                <div class="col-md-12 medio">
+                    <div class="mt-5"><p>&nbsp;</p></div>
+                    <!--FRASE-->
+                    <article class="mt-5 col-md-12  frace">
+                        <blockquote class="blockquote text-center">
+                            <p class="mt-3"><strong>“La amistad no pide nada a cambio, salvo un mantenimiento.”</strong></p>
+                            <footer class="blockquote-footer">Georges Brassens</footer>
+                        </blockquote>
+                    </article>
+                    <!--FIN FRASE-->
 
-        <h2>Consultar historial</h2>
+                    <!--SERVICIOS-->
+                    <div class="row justify-content-around  mb-5">
+                        <!--SERVICIO 1-->
+                        <section class="col-sm-10 col-md-3 mt-3 hola1">
+                            <h5>Recibe nuestro respaldo en servicios y repuestos</h5>
 
-        <h:form id="historial" prependId="false">
-            <div>
-                <h:outputLabel for="placa" value="Número de Placa" />
-                <h:inputText id="placa" value="#{reparacionControlador.placa}" required="" />              
+                            <li class="list-inline-item mt-4">* Revisiones Periodicas</li>
+                            <li class="list-inline-item">* Mantenimientos generales</li>
+                            <li class="list-inline-item">* Cambio de Partes</li>
+                            <li class="list-inline-item">* Latoneria y Pintura</li>
+                            <li class="list-inline-item">* Reparaciones al motor</li>
+                        </section>
+                        <!--FIN SERVICIO 1-->
+
+                        <!--SERVICIO 2-->
+                        <section class="col-sm-10 col-md-3 mt-3  hola2">
+                            <h5>Historial de tu motocicleta</h5>
+
+                            <label class="mt-1" for="">Número de Placa</label>
+
+                            <input id="placa" type="text" placeholder="Escribe tu placa" class="col-md-12 mt-1 input-simu" a:required=""/>
+                            <button class="btn-simu-naranja btn-block mt-3" type="button" data-toggle="modal" data-target="#historial" id="historial-placa">Buscar</button>
+
+                            <h5 class="mt-5">Agendar cita</h5>
+
+                            <li class="list-inline-item mt-1">Puedes agendar una cita en nuestro taller segun lo disponga nuestros mecánicos</li>
+
+                            <button class="btn-simu-naranja btn-block mt-3" id="agendar"
+                                    type="button" data-toggle="modal" data-target="#agendar-cita">Agendar cita</button>
+                        </section>
+                        <!--FIN SERVICIO 2-->
+
+                        <!--SERVICIO 3-->
+
+                        <section class="col-sm-10 col-md-3 mt-3 hola3">
+                            <h5>Valores Agregados</h5>
+                            <p class="mt-4">En nuestro taller trabajamos para la satisfacción de nuestros clientes, implementando procesos que mejoren la experiencia del servicio</p>
+
+
+                        </section>
+
+                        <!--FIN SERVICIO 3-->
+                    </div>
+
+                </div>
+
+
+                <!--FIN SERVICIOS-->
+
+
             </div>
-            <div>
-                <h:commandButton value="Buscar" action="#{reparacionControlador.consultarHistorial()}" />
-            </div>
-        </h:form>
+            <!--FIN MEDIO-->
 
-        <h2><a href="agendar.xhtml">Agendar cita</a></h2>
+
+            <ui:include src="/WEB-INF/templates/cliente/footer.xhtml"/>
+        </div>
+
+        <div class="modal fade" id="historial" tabindex="-1" role="dialog" aria-labelledby="hitorial" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content contenido-modal">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel">Historial de tu motocicleta</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Placa:</strong> <span id="placa-ingresada"></span></p>
+
+                        <table class="table table-responsive table-striped table-bordered">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Concepto</th>
+                                    <th>Fecha</th>
+                                    <th>Próxima fecha</th>
+                                    <th>Notas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Revisión de frenos</td>
+                                    <td>22-mar-2017</td>
+                                    <td>22-sept-2017</td>
+                                    <td>Cambio de pastillas</td>
+                                </tr>
+                                <tr>
+                                    <td>Revisión de electricidad</td>
+                                    <td>22-mar-2017</td>
+                                    <td>22-mar-2017</td>
+                                    <td>Verificación de luces</td>
+                                </tr>
+                                <tr>
+                                    <td>Cambio de aceite</td>
+                                    <td>22-sept-2017</td>
+                                    <td>22-dic-2017</td>
+                                    <td>Aceite extra</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="agendar-cita" tabindex="-1" role="dialog" aria-labelledby="agenda" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content contenido-modal">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel">Agendar cita</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mt-1 mb-3">
+                            <label for="placa-agenda" class="mr-3">Placa</label>
+                            <input id="placa-agenda" name="placa-agenda" type="text" class="input-simu"/>
+                        </div>
+                        <div class="row mt-1 mb-3">
+                            <label for="tipo-servicio" class="mr-3">Tipo de servicio</label>
+                            <select name="tipo-servicio" id="tipo-servicio" class="select-simu">
+                                <option value="seleccione">Seleccione</option>
+                                <option value="mant">Mantenimiento</option>
+                                <option value="rep">Reparación</option>
+                                <option value="mod">Modificación</option>
+                            </select>
+                        </div>
+                        <div class="row mt-1 mb-3">
+                            <label for="fecha" class="mr-3">Fecha</label>
+                            <input id="fecha-agenda" name="fecha-agenda" type="date" class="input-simu"/>
+                            <label for="fecha" class="ml-3 mr-3">Hora</label>
+                            <input id="hora-agenda" name="hora-agenda" type="time" class="input-simu"/>
+                        </div>
+
+
+
+                        <table class="table table-responsive table-striped table-bordered">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Nombre mecánico</th>
+                                    <th>Disponible</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mose Schearer</td>
+                                    <td><span class="fa fa-check"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Ida Schepp</td>
+                                    <td><span class="fa fa-times"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Lory Stransky</td>
+                                    <td><span class="fa fa-check"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-simu-naranja m-2" id="agendar-dos">Agendar</button>
+                        <button class="btn-simu-naranja m-2" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="#{request.contextPath}/resources/js/jquery-3.2.1.slim.min (2).js"></script>
+        <script src="#{request.contextPath}/resources/js/popper.min (2).js"></script>
+        <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <!--<script src="#{request.contextPath}/resources/js/reparacion.js"></script>-->
     </h:body>
 </html>
 

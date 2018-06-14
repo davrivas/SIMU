@@ -21,7 +21,7 @@
         </button>
 
         <h:form>
-            <h:dataTable value="#{reparacionControlador.reparaciones}" var="r" class="table table-striped table-responsive">
+            <h:dataTable value="#{sesionControlador.persona.mecanico.reparacionList}" var="r" class="table table-striped table-responsive">
                 <h:column>
                     <f:facet name="header">Fecha y hora</f:facet>
                     <h:outputText value="#{r.fecha}">
@@ -35,10 +35,6 @@
                 <h:column>
                     <f:facet name="header">Nombre del cliente</f:facet>
                     <h:outputText value="#{r.moto.cliente.persona.nombre} #{r.moto.cliente.persona.apellido}" />
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Nombre del mecanico</f:facet>
-                    <h:outputText value="#{r.mecanico.persona.nombre} #{r.mecanico.persona.apellido}" />
                 </h:column>
                 <h:column>
                     <f:facet name="header">Calificación</f:facet>

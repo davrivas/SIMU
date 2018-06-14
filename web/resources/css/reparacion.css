@@ -1,0 +1,144 @@
+
+.menu{
+	height: 50px;
+	background-color: #000;
+
+}
+.medio{
+	background-image: url(../images/mante.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  
+}
+
+ul li a{
+	color: #fff;
+	/* font-family: oswald; */
+}
+
+ul li a:hover{
+	color: #fff;
+	border-bottom:1px solid #f2a409;
+
+}
+.navbar-toggler{
+	color: #fff;
+}
+
+img{
+color: #fff;
+}
+
+.opaco{
+	width: 100%;
+	height: 400px;
+	background-color: rgba(0,0,0,.7);
+
+}
+.frace{
+
+height: 100px;
+background-color: rgba(0,0,0,.7);
+border-radius: 10%;
+}
+p{
+	color: #fff;
+}
+
+.hola1{
+
+padding: 15px;
+background-color: rgba(0,0,0,.9);
+/* font-family: oswald; */
+font-size: 1.2em;
+color: #fff;
+	
+}
+.hola2{
+
+padding: 15px;
+background-color: rgba(0,0,0,.9);
+/* font-family: oswald; */
+font-size: 1.2em;
+color: #fff;
+	
+}
+.hola3{
+
+padding: 15px;
+background-color: rgba(0,0,0,.9);
+/* font-family: oswald; */
+font-size: 1.2em;
+color: #fff;
+	
+}
+
+.btn{
+
+cursor: pointer;
+}
+.pie-pagina{
+	width: 101.6%;
+	background-color: #1a1a1a;
+}
+
+
+
+h2{
+	color: #fff;
+}
+
+a{
+	color: #fff;
+}
+.fa-facebook{
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	background-color: #2d2c2c;
+}
+.fa-facebook:hover{
+	color: #fff;
+	background-color: #3b5998;
+	text-decoration: none;
+	
+}
+.fa-twitter{
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	background-color: #2d2c2c;
+}
+.fa-twitter:hover{
+	color: #fff;
+	background-color: #55acee;
+	text-decoration: none;
+}
+
+.fa-whatsapp{
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	background-color: #2d2c2c;
+}
+.fa-whatsapp:hover{
+	color: #fff;
+	background-color:#4dc247 ;
+	text-decoration: none;
+}
+
+@media only screen and (max-width: 760px){
+
+	.hola1{
+		display: none !important ;
+	}
+	.hola3{
+		display: none !important ;
+	}
+	.opaco{
+		height: 400px;
+	}
+
+	
+}
+
