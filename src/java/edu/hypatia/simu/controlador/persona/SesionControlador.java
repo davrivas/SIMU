@@ -79,41 +79,31 @@ public class SesionControlador implements Serializable {
     }
 
     public String iniciarSesion() {
-        String pagina = "";
-
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
+        String cp = ec.getRequestContextPath();
 
-        if (email != null && contrasena != null && !contrasena.trim().equals("")) {
+        try {
             persona = pfl.findByEmailContrasena(email, contrasena);
+            System.out.println(persona);
 
-            if (persona != null) {
-                switch (persona.getRol().getIdRol()) { // Evalúo el rol seleccionado
-                    case 1:
-                        pagina = "reparacion.xhtml?faces-redirect=true";
-//                        pagina = "index.xhtml?faces-redirect=true";
-                        break;
-                    case 2:
-                        pagina = "mecanico/index.xhtml?faces-redirect=true"; // me redirige a la pagina del mecánico
-                        break;
-                    case 3:
-                        pagina = "administrador/index.xhtml?faces-redirect=true"; // me redirige a la pagina del cliente
-                        break;
-                }
-            } else {
-                // Es recomendable quitar este tipo de mensajes y mostrar unos mas atractivos (alerta)
-                fc.addMessage(null, new FacesMessage(
-                        FacesMessage.SEVERITY_INFO, "Datos incorrectos",
-                        "Email y/o contrasena no son validos."));
+            switch (persona.getRol().getIdRol()) { // Evalúo el rol seleccionado
+                case 1:
+                    return "/reparacion.xhtml?faces-redirect=true";
+//                    return cp + "?faces-redirect=true";// me redirige a la pagina del cliente
+                case 2:
+                    return "/mecanico/index.xhtml?faces-redirect=true"; // me redirige a la pagina del mecánico
+                case 3:
+                    return "/administrador/index.xhtml?faces-redirect=true"; // me redirige a la pagina del administrador
             }
-        } else {
+        } catch (NullPointerException e) {
             // Es recomendable quitar este tipo de mensajes y mostrar unos mas atractivos (alerta)
             fc.addMessage(null, new FacesMessage(
-                    FacesMessage.SEVERITY_INFO, "Campos vacios",
-                    "Todos los campos deben ser diligenciados"));
+                    FacesMessage.SEVERITY_INFO, "Datos incorrectos",
+                    "Email y/o contrasena no son validos."));
         }
 
-        return pagina;
+        return "";
     }
 
     public void validarSesion() throws IOException {

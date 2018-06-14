@@ -162,7 +162,7 @@
                             </div>
                             <div class="row mt-1 mb-3">
                                 <label for="tipo-servicio" class="mr-3">Tipo de servicio</label>
-                                <h:selectOneMenu value="#{reparacionControlador.reparacionAgendada.tipoServicioReparacionList}" name="tipo-servicio" id="tipo-servicio" class="select-simu">
+                                <h:selectOneMenu value="#{reparacionControlador.reparacionAgendada.tipoServicioReparacionList}" a:name="tipo-servicio" id="tipo-servicio" class="select-simu">
                                     <f:selectItem itemLabel="Seleccione" itemValue=""/>
                                     <f:selectItems value="#{serviciosControlador.servicios}" var="ts" itemLabel="#{ts.servicio}"/>
                                 </h:selectOneMenu>

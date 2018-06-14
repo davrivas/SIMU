@@ -21,11 +21,15 @@
         </button>
 
         <h:form>
-            <h:dataTable value="#{sesionControlador.persona.mecanico.reparacionList}" var="r" class="table table-striped table-responsive">
+            <!--<h:dataTable value="#{sesionControlador.persona.mecanico.reparacionList}" var="r" class="table table-striped table-responsive">-->
+            <h:dataTable value="#{reparacionControlador.reparaciones}" var="r" class="table table-striped table-responsive">
                 <h:column>
                     <f:facet name="header">Fecha y hora</f:facet>
                     <h:outputText value="#{r.fecha}">
-                        <f:convertDateTime pattern="yyyy/MM/dd HH:mm" />
+                        <f:convertDateTime pattern="yyyy/MM/dd " />
+                    </h:outputText>
+                    <h:outputText value="#{r.hora}">
+                        <f:convertDateTime pattern="HH:mm" />
                     </h:outputText>
                 </h:column>
                 <h:column>
@@ -87,12 +91,19 @@
                                     <h:outputLabel for="fecha-insertar" value="Fecha de agendamiento" style="color:#fff;"/>
                                 </div>
                                 <div class="column ml-1">
-                                    <h:inputText value="#{reparacionControlador.reparacionNueva.fecha}" class="input-simu" id="fecha-insertar" a:name="fecha-insertar" a:required="">
-                                        <f:convertDateTime  pattern="yyyy-MM-dd HH:mm"/>
+                                    <h:inputText value="#{reparacionControlador.reparacionNueva.fecha}" a:type="date" class="input-simu" id="fecha-insertar" a:name="fecha-insertar" a:required="">
+                                        <f:convertDateTime pattern="yyyy-MM-dd"/>
                                     </h:inputText>
-                <!--                    <h:inputText value="#{reparacionControlador.reparacionNueva.fecha}" a:type="datetime-local" class="input-simu" id="fecha-insertar" a:name="fecha-insertar" required="">
-                                        <f:convertDateTime  pattern="yyyy-MM-dd HH:mm"/>
-                                    </h:inputText>-->
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="column mr-1">
+                                    <h:outputLabel for="hora-insertar" value="Hora de agendamiento" style="color:#fff;"/>
+                                </div>
+                                <div class="column ml-1">
+                                    <h:inputText value="#{reparacionControlador.reparacionNueva.hora}" a:type="time" class="input-simu" id="hora-insertar" a:name="hora-insertar" a:required="">
+                                        <f:convertDateTime pattern="HH:mm"/>
+                                    </h:inputText>
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -176,12 +187,19 @@
                                     <h:outputLabel for="fecha-editar" value="Fecha de agendamiento" style="color:#fff;"/>
                                 </div>
                                 <div class="column ml-1">
-                                    <h:inputText value="#{reparacionControlador.reparacionSeleccionada.fecha}" class="input-simu" id="fecha-editar" a:name="fecha-editar" a:required="">
-                                        <f:convertDateTime  pattern="yyyy-MM-dd HH:mm"/>
+                                    <h:inputText value="#{reparacionControlador.reparacionSeleccionada.fecha}" a:type="date" class="input-simu" id="fecha-editar" a:name="fecha-editar" a:required="">
+                                        <f:convertDateTime pattern="yyyy-MM-dd"/>
                                     </h:inputText>
-                <!--                    <h:inputText value="#{reparacionControlador.reparacionSeleccionada.fecha}" a:type="datetime-local" class="input-simu" id="fecha-editar" a:name="fecha-editar" required="">
-                                        <f:convertDateTime  pattern="yyyy-MM-dd HH:mm"/>
-                                    </h:inputText>-->
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="column mr-1">
+                                    <h:outputLabel for="hora-editar" value="Hora de agendamiento" style="color:#fff;"/>
+                                </div>
+                                <div class="column ml-1">
+                                    <h:inputText value="#{reparacionControlador.reparacionSeleccionada.hora}" a:type="time" class="input-simu" id="hora-editar" a:name="hora-editar" a:required="">
+                                        <f:convertDateTime  pattern="HH:mm"/>
+                                    </h:inputText>
                                 </div>
                             </div>
                             <div class="row mt-2">

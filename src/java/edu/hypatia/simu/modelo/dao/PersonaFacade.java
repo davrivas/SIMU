@@ -34,11 +34,11 @@ public class PersonaFacade extends AbstractFacade<Persona> implements PersonaFac
     @Override
     public Persona findByEmailContrasena(String email, String contrasena) {
         try {
-            TypedQuery tq = getEntityManager().createQuery("SELECT p FROM Persona p WHERE p.email = :email AND p.contrasena = :contrasena", Persona.class);
+            TypedQuery<Persona> tq = getEntityManager().createQuery("SELECT p FROM Persona p WHERE p.email = :email AND p.contrasena = :contrasena", Persona.class);
             tq.setParameter("email", email);
             tq.setParameter("contrasena", contrasena);
-            return (Persona) tq.getSingleResult();
-        } catch (NoResultException nre) {
+            return tq.getSingleResult();
+        } catch (NoResultException e) {
             return null;
         }
     }

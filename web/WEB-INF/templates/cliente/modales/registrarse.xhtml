@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <div class="modal fade" id="registrarse" tabindex="-1" role="dialog" aria-labelledby="registrate" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content contenido-modal">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Regístrate</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
+                    </button>
+                </div>
+
+                <form action="">
+                    <div class="modal-body">
+                        <div class="row col-12 mt-2 mb-2">
+                            <div class="col ml-1 mr-1">
+                                <div class="col"><label for="">Nombres</label></div>
+                                <div class="col"> <input type="text" class="input-simu " placeholder="Escribe tu nombre" required="" /></div>
+                            </div>
+                            <div class="col ml-1 mr-1">
+                                <div class="col"><label for="">Apellidos</label></div>
+                                <div class="col"><input type="text" class="input-simu " placeholder="Escribe tus apellidos" required="" /></div>
+                            </div>
+                        </div>
+
+
+                        <div class="row col-12 mt-2 mb-2">
+                            <div class="col ml-1 mr-1">
+                                <div class="col"><label for="Tipodocumento">Tipo de documento</label></div>
+                                <div class="col">
+                                    <select class="select-simu" id="Tipo" placeholder="Seleccionar" required="">
+                                        <option >Seleccionar</option>
+                                        <option>Cedula de ciudadanía</option>
+                                        <option>Pasaporte</option>
+                                        <option>Extranjería</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col ml-1 mr-1">
+                                <div class="col"><label for="">Numero de documento</label></div>
+                                <div class="col"><input type="text" class="input-simu " name="num doc " placeholder="Escribe tu numero de documento" required="" /></div>
+                            </div>
+                        </div>
+
+                        <div class="row col-12 mt-2 mb-2">
+                            <div class="col ml-1 mr-1">
+                                <div class="col"><label for="">Correo electrónico</label></div>
+                                <div class="col"><input type="email" class="input-simu " name="correo" placeholder="Escribe tu correo" required="" /></div>
+                            </div>
+                            <div class="col ml-1 mr-1">
+                                <div class="col"> <label for="">Confirma correo </label></div>
+                                <div class="col"><input type="email" class="input-simu " name="confirma correo" placeholder="Confirma tu correo" required="" /></div>
+                            </div>
+                        </div>
+
+                        <div class="row col-12 mt-2 mb-2">
+                            <div class="col ml-1 mr-1">
+                                <div class="col"><label for="">Contraseña</label></div>
+                                <div class="col"><input type="password" class="input-simu " name="contraseña" placeholder="Escribe tu contraseña" required =""/></div>
+                            </div>
+                            <div class="col ml-1 mr-1">
+                                <div class="col"><label for="">Confirma contraseña</label></div>
+                                <div class="col"><input type="password" class="input-simu " name="confirma contraseña" placeholder="Confirma tu contraseña" required="" /></div>
+                            </div>
+                        </div>
+
+                        <div class="row col-12">
+                            <div class="col-6 ml-1">
+                                <div class="col"><label for="">Teléfono</label></div>
+                                <div class="col"> <input type="text" class="input-simu " name="telefono" placeholder="Escribe tu teléfono" required="" /></div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn-simu-naranja" type="submit" value="Registrarse"/>
+                        <input type="reset" class="btn-simu-naranja" value="Limpiar campos" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</ui:composition>
+

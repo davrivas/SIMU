@@ -54,18 +54,31 @@
                         <span class="text-left fa fa-shopping-cart"></span><span class="text-navright">&nbsp;Carrito de compra</span>
                     </button>
                 </li>
-                <!--                <c:if test="/*#sesionControlador."-->
-                <li class="items-nav nav-item d-flex justify-content-lg-center align-items-center">
-                    <button class="boton-navbar nav-item" type="button" data-toggle="modal" data-target="#registrarse">
-                        <span class="fa fa-user-plus"></span><span class="text-navright">&nbsp;Registrate</span>
-                    </button>
-                </li>
-                <li class="items-nav nav-item d-flex justify-content-lg-center align-items-center">
-                    <button class="boton-navbar nav-item" type="button" data-toggle="modal" data-target="#inicia-sesion">
-                        <span class="fa fa-sign-in"></span><span class="text-navright">&nbsp;Iniciar sesión</span>
-                    </button>
-                </li>
-                <!--else-->
+                <h:panelGroup rendered="#{empty sesionControlador.persona}">
+                    <li class="items-nav nav-item d-flex justify-content-lg-center align-items-center">
+                        <button class="boton-navbar nav-item" type="button" data-toggle="modal" data-target="#registrarse">
+                            <span class="fa fa-user-plus"></span><span class="text-navright">&nbsp;Registrate</span>
+                        </button>
+                    </li>
+                    <li class="items-nav nav-item d-flex justify-content-lg-center align-items-center">
+                        <button class="boton-navbar nav-item" type="button" data-toggle="modal" data-target="#inicia-sesion">
+                            <span class="fa fa-sign-in"></span><span class="text-navright">&nbsp;Iniciar sesión</span>
+                        </button>
+                    </li>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{not empty sesionControlador.persona}">
+                    <h:form prependId="false">
+                        <li class="items-nav nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="fa fa-user-circle"></span><span class="text-navright">&nbsp;#{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
+                                <a class="dropdown-item" href="editar-perfil.xhtml">Editar perfil</a>
+                                <h:commandLink class="dropdown-item" actionListener="#{sesionControlador.cerrarSesion()}">Cerrar sesión</h:commandLink>
+                            </div>
+                        </li>
+                    </h:form>
+                </h:panelGroup>
             </ul>
         </div>
     </nav>
