@@ -5,16 +5,21 @@
  */
 package edu.hypatia.simu.controlador.reparacion;
 
+import edu.hypatia.simu.controlador.mail.Mail;
 import edu.hypatia.simu.controlador.persona.SesionControlador;
 import edu.hypatia.simu.modelo.dao.ReparacionFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Moto;
 import edu.hypatia.simu.modelo.entidades.Reparacion;
+import edu.hypatia.simu.modelo.entidades.TipoServicioReparacion;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.mail.internet.MailDateFormat;
 
 /**
  *
@@ -108,11 +113,52 @@ public class ReparacionControlador implements Serializable {
         return rta;
     }
 
-    public void seleccionarMotoParaHistorial(Moto m) {
+    public void mostrarHistorial(Moto m) {
         historialMoto = m;
+        System.out.println(historialMoto.getColor());
+        System.out.println(historialMoto.getPlaca());
+        System.out.println(historialMoto.getCilindraje());
     }
 
     public String agendarCita() {
-        return ""; // a la misma pagina
+        rfl.create(reparacionAgendada);
+
+        // Enviar mail
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy/MM/dd");
+        String fecha = formatoFecha.format(reparacionAgendada.getFecha());
+        DateFormat formatoHora = new SimpleDateFormat("HH:mm");
+        String hora = formatoHora.format(reparacionAgendada.getHora());
+        String nombreCliente = sc.getPersona().getNombre() + " " + sc.getPersona().getApellido();
+        String placaMoto = reparacionAgendada.getMoto().getPlaca();
+        String nombreMecanico = reparacionAgendada.getMecanico().getPersona().getNombre() + " " + reparacionAgendada.getMecanico().getPersona().getApellido();
+        String tiposDeServicio = " ";
+        for (TipoServicioReparacion s : reparacionAgendada.getTipoServicioReparacionList()) {
+            tiposDeServicio += "<li>" + s.getServicio() + "</li>";
+        }
+
+        // Para el cliente
+        String destinatario = sc.getPersona().getEmail();
+        String asunto = "[SIMU] Reparación programada";
+        String cuerpoHTML = "<h1>Hola " + nombreCliente + "</h1>"
+                + "Has programado una reparacion para tu moto con placa " + placaMoto + "<br>"
+                + "Para el día " + fecha + " a las " + hora + "<br>"
+                + "Los tipos de servicio son<br>"
+                + tiposDeServicio;
+        Mail.sendMail(destinatario, asunto, cuerpoHTML);
+
+        // Para el mecánico
+        destinatario = reparacionAgendada.getMecanico().getPersona().getEmail();
+        asunto = "[SIMU] Reparación programada";
+        cuerpoHTML = "<h1>Hola " + nombreMecanico + "</h1>"
+                + "El cliente " + nombreCliente + " ha programado una reparacion "
+                + "para la moto con placa " + placaMoto
+                + "Para el día " + fecha + " a las " + hora + "<br>"
+                + "Los tipos de servicio son<br>"
+                + tiposDeServicio;
+        Mail.sendMail(destinatario, asunto, cuerpoHTML);
+
+        reparacionAgendada = new Reparacion();
+
+        return "";
     }
 }

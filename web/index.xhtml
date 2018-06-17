@@ -35,25 +35,36 @@
 
                 <section class="unete d-flex flex-column align-self-end align-self-md-center mr-md-4 col-md-5 col-lg-4 col-xl-3 col m-sm-2">
                     <div class="row d-flex justify-content-center">
-                        <h1 id="unete-titulo">Únete a una nueva aventura</h1>
+                        <h1 id="unete-titulo">
+                            <h:panelGroup rendered="#{empty sesionControlador.persona}">
+                                Únete a una nueva aventura
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{not empty sesionControlador.persona}">
+                                Hola #{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}
+                            </h:panelGroup>
+                        </h1>
                     </div>
                     <div class="botones row d-flex justify-content-center">
-                        <button class="btn btn-simu-naranja m-1" type="button" data-toggle="modal" data-target="#registrarse"><span class="fa fa-user-plus"></span> Regístrate</button>
-                        <button class="btn btn-simu-naranja m-1" type="button" data-toggle="modal" data-target="#inicia-sesion"><span class="fa fa-sign-in"></span> Inicia sesión</button>
+                        <h:panelGroup rendered="#{empty sesionControlador.persona}">
+                            <button class="btn btn-simu-naranja m-1" type="button" data-toggle="modal" data-target="#registrarse">
+                                <span class="fa fa-user-plus"></span> Regístrate
+                            </button>
+                            <button class="btn btn-simu-naranja m-1" type="button" data-toggle="modal" data-target="#inicia-sesion">
+                                <span class="fa fa-sign-in"></span> Inicia sesión
+                            </button>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{not empty sesionControlador.persona}">
+                            <!--o button-->
+                            <a href="editar-perfil.xhtml" class="btn btn-simu-naranja mt-1" type="button">
+                                <span class="fa fa-user-circle"></span> Editar perfil
+                            </a>
+                            <h:form prependId="false">
+                                <h:commandLink actionListener="#{sesionControlador.cerrarSesion()}" class="btn btn-simu-naranja m-1" type="button">
+                                    <span class="fa fa-sign-out-alt"></span> Cerrar sesión
+                                </h:commandLink>
+                            </h:form>
+                        </h:panelGroup>
                     </div>
-                    <!--                    <h:form id="form-login" prependId="false">
-                                            <div>
-                                                <h:outputLabel for="email" value="Email" />
-                                                <h:inputText a:placeholder="Escribe tu email" id="email" a:name="email" required="" value="#{sesionControlador.email}" class="input-simu login-input" />
-                                            </div>
-                                            <div>
-                                                <h:outputLabel for="contrasena" value="Contraseña" />
-                                                <h:inputSecret a:placeholder="Escribe tu contraseña" id="contrasena" a:name="contrasena" required="" value="#{sesionControlador.contrasena}" class="input-simu login-input" />
-                                            </div>
-                                            <div>
-                                                <h:commandButton action="#{sesionControlador.iniciarSesion()}" value="Iniciar sesión" class="btn-simu-naranja"  />
-                                            </div>
-                                        </h:form>-->
                 </section>
             </header>
 

@@ -89,8 +89,8 @@ public class SesionControlador implements Serializable {
 
             switch (persona.getRol().getIdRol()) { // Evalúo el rol seleccionado
                 case 1:
-                    return "/reparacion.xhtml?faces-redirect=true";
-//                    return cp + "?faces-redirect=true";// me redirige a la pagina del cliente
+//                    return "/reparacion.xhtml?faces-redirect=true";
+                    return ""; // me redirige a la pagina en la que haya iniciado sesión
                 case 2:
                     return "/mecanico/index.xhtml?faces-redirect=true"; // me redirige a la pagina del mecánico
                 case 3:
