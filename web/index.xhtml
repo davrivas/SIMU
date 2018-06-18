@@ -55,12 +55,12 @@
                         </h:panelGroup>
                         <h:panelGroup rendered="#{not empty sesionControlador.persona}">
                             <!--o button-->
-                            <a href="editar-perfil.xhtml" class="btn btn-simu-naranja mt-1" type="button">
+                            <a href="editar-perfil.xhtml" class="btn btn-simu-naranja mt-1">
                                 <span class="fa fa-user-circle"></span> Editar perfil
                             </a>
                             <h:form prependId="false">
-                                <h:commandLink actionListener="#{sesionControlador.cerrarSesion()}" class="btn btn-simu-naranja m-1" type="button">
-                                    <span class="fa fa-sign-out-alt"></span> Cerrar sesión
+                                <h:commandLink actionListener="#{sesionControlador.cerrarSesion()}" class="btn btn-simu-naranja m-1">
+                                    <span class="fa fa-sign-out"></span> Cerrar sesión
                                 </h:commandLink>
                             </h:form>
                         </h:panelGroup>

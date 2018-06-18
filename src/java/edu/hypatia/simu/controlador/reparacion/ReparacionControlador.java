@@ -6,7 +6,7 @@
 package edu.hypatia.simu.controlador.reparacion;
 
 import edu.hypatia.simu.controlador.mail.Mail;
-import edu.hypatia.simu.controlador.persona.SesionControlador;
+import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
 import edu.hypatia.simu.modelo.dao.ReparacionFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Moto;
 import edu.hypatia.simu.modelo.entidades.Reparacion;
@@ -131,19 +131,20 @@ public class ReparacionControlador implements Serializable {
         String nombreCliente = sc.getPersona().getNombre() + " " + sc.getPersona().getApellido();
         String placaMoto = reparacionAgendada.getMoto().getPlaca();
         String nombreMecanico = reparacionAgendada.getMecanico().getPersona().getNombre() + " " + reparacionAgendada.getMecanico().getPersona().getApellido();
-        String tiposDeServicio = " ";
+        String tiposDeServicio = "Los tipos de servicio son<br>";
         for (TipoServicioReparacion s : reparacionAgendada.getTipoServicioReparacionList()) {
             tiposDeServicio += "<li>" + s.getServicio() + "</li>";
         }
+        String cuerpoHTML;
 
         // Para el cliente
         String destinatario = sc.getPersona().getEmail();
         String asunto = "[SIMU] Reparación programada";
-        String cuerpoHTML = "<h1>Hola " + nombreCliente + "</h1>"
+        cuerpoHTML = "<h1>Hola " + nombreCliente + "</h1>"
                 + "Has programado una reparacion para tu moto con placa " + placaMoto + "<br>"
                 + "Para el día " + fecha + " a las " + hora + "<br>"
-                + "Los tipos de servicio son<br>"
-                + tiposDeServicio;
+                + "<br>" + tiposDeServicio + "<br>"
+                + "Te atenderá " + nombreMecanico;
         Mail.sendMail(destinatario, asunto, cuerpoHTML);
 
         // Para el mecánico
@@ -151,10 +152,9 @@ public class ReparacionControlador implements Serializable {
         asunto = "[SIMU] Reparación programada";
         cuerpoHTML = "<h1>Hola " + nombreMecanico + "</h1>"
                 + "El cliente " + nombreCliente + " ha programado una reparacion "
-                + "para la moto con placa " + placaMoto
+                + "para la moto con placa " + placaMoto + "<br>"
                 + "Para el día " + fecha + " a las " + hora + "<br>"
-                + "Los tipos de servicio son<br>"
-                + tiposDeServicio;
+                + "<br>" + tiposDeServicio;
         Mail.sendMail(destinatario, asunto, cuerpoHTML);
 
         reparacionAgendada = new Reparacion();

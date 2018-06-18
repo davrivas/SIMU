@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hypatia.simu.controlador.persona;
+package edu.hypatia.simu.controlador.persona.sesion;
 
 import edu.hypatia.simu.modelo.dao.PersonaFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Persona;
@@ -20,7 +20,7 @@ import javax.faces.context.FacesContext;
 
 /**
  *
- * @author EQUIPO PC
+ * @author Hypatia
  */
 @Named(value = "sesionControlador")
 @SessionScoped
@@ -42,8 +42,7 @@ public class SesionControlador implements Serializable {
 
     @PostConstruct
     public void init() {
-        idioma = FacesContext.getCurrentInstance()
-                .getApplication().getDefaultLocale();
+        idioma = FacesContext.getCurrentInstance().getApplication().getDefaultLocale();
     }
 
     public Persona getPersona() {
