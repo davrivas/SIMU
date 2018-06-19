@@ -21,45 +21,6 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald" rel="stylesheet" />
     </h:head>
     <h:body>
-        <!-- Iniciar sesión -->
-
-        <!--        <div class="modal fade" id="inicia-sesion" tabindex="-1" role="dialog" aria-labelledby="iniciarSesion" aria-hidden="true">
-                    <div class="modal fade inicia-sesion" tabindex="-1" role="dialog" aria-labelledby="iniciarSesion" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <h:panelGroup class="modal-content contenido-modal">
-                                <div class="modal-header">
-                                    <h3 class="modal-title" id="exampleModalLabel">Inicia sesión</h3>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
-                                    </button>
-                                </div>
-        
-                                <div class="modal-body">
-                                    <h:form id="form-login" prependId="false">
-                                        <div class="container">
-                                            <section class="row">
-                                                <article class="col">
-                                                    <div class="form-group d-flex flex-column">
-                                                        <h:outputLabel for="email" value="Email" />
-                                                        <h:inputText a:placeholder="Escribe tu email" id="email" required="" a:name="email" value="#{sesionControlador.email}" class="input-simu login-input" />
-                                                    </div>
-                                                    <div class="form-group d-flex flex-column">
-                                                        <h:outputLabel for="contrasena" value="Contraseña" />
-                                                        <h:inputSecret a:placeholder="Escribe tu contraseña" required="" a:name="contrasena" value="#{sesionControlador.contrasena}" class="input-simu login-input" />
-                                                    </div>
-                                                </article>
-                                            </section>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <h:commandButton action="#{sesionControlador.iniciarSesion()}" value="Iniciar sesión" class="btn-simu-naranja"  />
-                                        </div>
-                                    </h:form>
-                                </div>
-                            </h:panelGroup>
-                        </div>
-                    </div>
-                </div>-->
-
         <div class="contenedor container-fluid">
             <ui:include src="/WEB-INF/templates/cliente/navbar.xhtml"/>
 
@@ -265,93 +226,10 @@
 
 
         <!-- Registrarse -->
-        <div class="modal fade" id="registrarse" tabindex="-1" role="dialog" aria-labelledby="registrate" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content contenido-modal">
-                    <div class="modal-header">
-                        <h3 class="modal-title" id="exampleModalLabel">Regístrate</h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
-                        </button>
-                    </div>
-
-                    <form action="">
-                        <div class="modal-body">
-                            <div class="row col-12 mt-2 mb-2">
-                                <div class="col ml-1 mr-1">
-                                    <div class="col"><label for="">Nombres</label></div>
-                                    <div class="col"> <input type="text" class="input-simu " placeholder="Escribe tu nombre" required="" /></div>            
-                                </div>
-                                <div class="col ml-1 mr-1">
-                                    <div class="col"><label for="">Apellidos</label></div>
-                                    <div class="col"><input type="text" class="input-simu " placeholder="Escribe tus apellidos" required="" /></div>
-                                </div>
-                            </div>
-
-
-                            <div class="row col-12 mt-2 mb-2">
-                                <div class="col ml-1 mr-1">
-                                    <div class="col"><label for="Tipodocumento">Tipo de documento</label></div>
-                                    <div class="col">
-                                        <select class="select-simu" id="Tipo" placeholder="Seleccionar" required="">
-                                            <option >Seleccionar</option>
-                                            <option>Cedula de ciudadanía</option>
-                                            <option>Pasaporte</option>
-                                            <option>Extranjería</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col ml-1 mr-1">
-                                    <div class="col"><label for="">Numero de documento</label></div>
-                                    <div class="col"><input type="text" class="input-simu " name="num doc " placeholder="Escribe tu numero de documento" required="" /></div>
-                                </div>
-                            </div>
-
-                            <div class="row col-12 mt-2 mb-2">
-                                <div class="col ml-1 mr-1">
-                                    <div class="col"><label for="">Correo electrónico</label></div>
-                                    <div class="col"><input type="email" class="input-simu " name="correo" placeholder="Escribe tu correo" required="" /></div>
-                                </div>
-                                <div class="col ml-1 mr-1">
-                                    <div class="col"> <label for="">Confirma correo </label></div>
-                                    <div class="col"><input type="email" class="input-simu " name="confirma correo" placeholder="Confirma tu correo" required="" /></div>
-                                </div>
-                            </div>
-
-                            <div class="row col-12 mt-2 mb-2">
-                                <div class="col ml-1 mr-1">
-                                    <div class="col"><label for="">Contraseña</label></div>
-                                    <div class="col"><input type="password" class="input-simu " name="contraseña" placeholder="Escribe tu contraseña" required =""/></div>
-                                </div>
-                                <div class="col ml-1 mr-1">
-                                    <div class="col"><label for="">Confirma contraseña</label></div>
-                                    <div class="col"><input type="password" class="input-simu " name="confirma contraseña" placeholder="Confirma tu contraseña" required="" /></div>
-                                </div>
-                            </div>
-
-                            <div class="row col-12">
-                                <div class="col-6 ml-1">
-                                    <div class="col"><label for="">Teléfono</label></div>
-                                    <div class="col"> <input type="text" class="input-simu " name="telefono" placeholder="Escribe tu teléfono" required="" /></div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input class="btn-simu-naranja" type="submit" value="Registrarse" onclick="iniciar()" />
-                            <input type="reset" class="btn-simu-naranja" value="Limpiar campos" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <ui:include src="/WEB-INF/templates/cliente/modales/registrarse.xhtml"/>
 
         <!-- Fin modales -->
-
-        <script src="resources/js/jquery-3.2.1.slim.min (2).js"></script>
-        <script src="resources/js/popper.min (2).js"></script>
-        <script src="resources/js/bootstrap.min (2).js"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <ui:include src="/WEB-INF/templates/scripts.xhtml"/>
     </h:body>
 </html>
 
