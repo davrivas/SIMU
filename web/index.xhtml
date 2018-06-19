@@ -58,11 +58,9 @@
                             <a href="editar-perfil.xhtml" class="btn btn-simu-naranja mt-1">
                                 <span class="fa fa-user-circle"></span> Editar perfil
                             </a>
-                            <h:form prependId="false">
-                                <h:commandLink actionListener="#{sesionControlador.cerrarSesion()}" class="btn btn-simu-naranja m-1">
-                                    <span class="fa fa-sign-out"></span> Cerrar sesión
-                                </h:commandLink>
-                            </h:form>
+                            <button class="btn btn-simu-naranja m-1" type="button" data-toggle="modal" data-target="#cerrar-sesion">
+                                <span class="fa fa-sign-out"></span> Cerrar sesión
+                            </button>
                         </h:panelGroup>
                     </div>
                 </section>
@@ -233,11 +231,9 @@
             </div>
         </div>
 
-        <!-- Iniciar sesión -->
         <ui:include src="/WEB-INF/templates/iniciarsesion.xhtml"/>
-
-        <!-- Registrarse -->
         <ui:include src="/WEB-INF/templates/cliente/modales/registrarse.xhtml" />
+        <ui:include src="/WEB-INF/templates/cerrarsesion.xhtml"/>
 
         <!-- Fin modales -->
 
