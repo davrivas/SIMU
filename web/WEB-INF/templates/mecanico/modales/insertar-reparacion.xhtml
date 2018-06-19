@@ -7,7 +7,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <div class="modal fade" id="modalInsertar" tabindex="-1" role="dialog" aria-labelledby="modalInsertarTitulo" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div id="modalInsertarContenido" class="modal-content " layout="block">
+            <div id="modalInsertarContenido" class="modal-content">
                 <h:form id="form-insertar-reparacion" prependId="false">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalInsertarTitulo">Insertar nueva reparación</h5>
@@ -21,12 +21,19 @@
                                 <h:outputLabel for="fecha" value="Fecha de agendamiento"/>
                             </div>
                             <div class="column ml-1">
-                                <h:inputText value="#{reparacionControlador.reparacionNueva.fecha}" class="input-simu" id="fecha" a:name="fecha" required="">
-                                    <f:convertDateTime  pattern="yyyy-MM-dd HH:mm"/>
+                                <h:inputText value="#{reparacionControlador.reparacionNueva.fecha}" class="input-simu" id="fecha" a:name="fecha" a:required="">
+                                    <f:convertDateTime  pattern="yyyy-MM-dd"/>
                                 </h:inputText>
-            <!--                    <h:inputText value="#{reparacionControlador.reparacionNueva.fecha}" a:type="datetime-local" class="input-simu" id="fecha" a:name="fecha" required="">
-                                    <f:convertDateTime  pattern="yyyy-MM-dd HH:mm"/>
-                                </h:inputText>-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column mr-1">
+                                <h:outputLabel for="hora" value="Hora de agendamiento"/>
+                            </div>
+                            <div class="column ml-1">
+                                <h:inputText value="#{reparacionControlador.reparacionNueva.hora}" class="input-simu" id="hora" a:name="hora" a:required="">
+                                    <f:convertDateTime  pattern="HH:mm"/>
+                                </h:inputText>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -87,12 +94,9 @@
                         <h:commandLink id="insertar" a:name="insertar" action="#{reparacionControlador.insertar()}" class="btn-simu-naranja mr-2" a:type="submit" styleClass="btn-simu-naranja">
                             Insertar <span class="fa fa-plus"></span>
                         </h:commandLink>
-                        <a class="btn-simu-naranja ml-2" href="index.xhtml" id="cancelar" a:name="cancelar">
-                            Cancelar
-                        </a>
+                        <button type="button" class="btn-simu-naranja" data-dismiss="modal">Cancelar</button>
                     </div>
                 </h:form>
-                </h:panelGroup>
             </div>
         </div>
     </div>
