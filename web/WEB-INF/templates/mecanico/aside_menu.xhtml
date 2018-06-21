@@ -11,9 +11,7 @@
         <article class="card mt-5  foto">
             <img class="img-fluid" src="#{request.contextPath}/resources/img/mante-pequeno.jpg"/>
             <div class="card-block">
-                <h4 class="card-title mt-3 d-flex justify-content-center"
-                    style="color:#fff;"><strong>#{sesionControlador.persona.nombre} #
-                        {sesionControlador.persona.apellido}</strong></h4>
+                <h4 class="card-title mt-3 d-flex justify-content-center" style="color:#fff;"><strong>#{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}</strong></h4>
                 <div class="meta d-flex justify-content-center">
                     <h5 class="mb-3">Mecánico</h5>
                 </div>
@@ -22,12 +20,11 @@
                 <nav class=" menu col-md-12">
                     <ul class="nav">
                         <c:forEach items="#{sesionControlador.persona.rol.permisoList}" var="p">
-                            <li><a href="#{p.url}"><i class="#{p.icono} fa-2x mr-2"></i>#
-                                    {p.permiso}</a></li>
+                            <li><a href="#{p.url}"><i class="#{p.icono} fa-2x mr-2"></i>#{p.permiso}</a></li>
                         </c:forEach>
                         <li>
                             <h:form id="cerrar-sesion" prependId="false">
-                                <h:commandLink a:data-toggle="modal" a:data-target="#cerrarSesion">
+                                <h:commandLink a:data-toggle="modal" a:data-target="#cerrar-sesion">
                                     <span class="fa fa-sign-out fa-2x mb-5 mr-2"></span>Salir
                                 </h:commandLink>
                             </h:form>
@@ -38,6 +35,4 @@
         </article>
         <!---->
     </div>
-
-    <ui:include src="/WEB-INF/templates/cerrarsesion.xhtml"/>
 </ui:composition>

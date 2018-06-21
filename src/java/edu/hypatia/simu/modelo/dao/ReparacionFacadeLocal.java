@@ -5,6 +5,7 @@
  */
 package edu.hypatia.simu.modelo.dao;
 
+import edu.hypatia.simu.modelo.entidades.Mecanico;
 import edu.hypatia.simu.modelo.entidades.Reparacion;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,5 +30,9 @@ public interface ReparacionFacadeLocal {
     List<Reparacion> findRange(int[] range);
 
     int count();
+    
+    List<Reparacion> reparacionesSinRevisar(Mecanico mecanico);
+    
+    List<Reparacion> reparacionesRevisadas(Mecanico mecanico);
     
 }

@@ -1,0 +1,28 @@
+.encabezado {
+    background-image: url(../img/motos/moto-fondo.jpg);
+}
+.foto {
+	background-color: #1a1a1a;
+	margin-bottom: 30px;
+	margin-top: 60px;
+    font-size: 1em;
+    border-radius: .2rem;
+    color: #fff;
+}
+
+.foto-block{
+    font-size: 1em;
+    padding: 0.6em;
+   
+}
+
+.foto-img-top {
+    width: 100%;
+    height: auto;
+}
+
+.foto-title {
+    font-size: 1.3em;
+    font-weight: 900;
+    line-height: 1.2857em;
+}
