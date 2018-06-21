@@ -17,8 +17,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -36,6 +38,12 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Permiso.findByPermiso", query = "SELECT p FROM Permiso p WHERE p.permiso = :permiso")
     , @NamedQuery(name = "Permiso.findByIcono", query = "SELECT p FROM Permiso p WHERE p.icono = :icono")})
 public class Permiso implements Serializable {
+
+    @OneToMany(mappedBy = "permisoPadre")
+    private List<Permiso> permisoList;
+    @JoinColumn(name = "permiso_padre", referencedColumnName = "id_permiso")
+    @ManyToOne
+    private Permiso permisoPadre;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -135,6 +143,23 @@ public class Permiso implements Serializable {
     @Override
     public String toString() {
         return "edu.hypatia.simu.modelo.entidades.Permiso[ idPermiso=" + idPermiso + " ]";
+    }
+
+    @XmlTransient
+    public List<Permiso> getPermisoList() {
+        return permisoList;
+    }
+
+    public void setPermisoList(List<Permiso> permisoList) {
+        this.permisoList = permisoList;
+    }
+
+    public Permiso getPermisoPadre() {
+        return permisoPadre;
+    }
+
+    public void setPermisoPadre(Permiso permisoPadre) {
+        this.permisoPadre = permisoPadre;
     }
     
 }

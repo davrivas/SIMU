@@ -5,10 +5,14 @@
  */
 package edu.hypatia.simu.modelo.dao;
 
+import edu.hypatia.simu.modelo.entidades.Mecanico;
 import edu.hypatia.simu.modelo.entidades.Reparacion;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -28,5 +32,17 @@ public class ReparacionFacade extends AbstractFacade<Reparacion> implements Repa
     public ReparacionFacade() {
         super(Reparacion.class);
     }
-    
+
+    @Override
+    public List<Reparacion> reparacionesDelMecanico(Mecanico mecanico) {
+        try {
+            TypedQuery<Reparacion> q = getEntityManager().createQuery("SELECT r FROM Reparacion r WHERE r.mecanico = :mecanico", Reparacion.class);
+            q.setParameter("mecanico", mecanico);
+
+            return q.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
 }

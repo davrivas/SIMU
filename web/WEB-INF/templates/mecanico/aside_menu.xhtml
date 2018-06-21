@@ -1,52 +1,36 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-
-
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <div class="col-md-2 medio1">
-
-        <!--carta de administrador-->
-
         <article class="card mt-5  foto">
-
-            <img class="img-fluid" src="#{request.contextPath}/resources/img/mante-pequeno.jpg" />
-
+            <img class="img-fluid" src="#{request.contextPath}/resources/img/mante-pequeno.jpg"/>
             <div class="card-block">
-                <h4 class="card-title mt-3 d-flex justify-content-center"><strong>#{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}</strong></h4>
-
+                <h4 class="card-title mt-3 d-flex justify-content-center" style="color:#fff;"><strong>#{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}</strong></h4>
                 <div class="meta d-flex justify-content-center">
-                    <h5 class="mb-3">#{sesionControlador.persona.rol.rol}</h5>
+                    <h5 class="mb-3">Mecánico</h5>
                 </div>
-
             </div>
             <div class="row mt-5">
-
                 <nav class=" menu col-md-12">
-
                     <ul class="nav">
                         <c:forEach items="#{sesionControlador.persona.rol.permisoList}" var="p">
                             <li><a href="#{p.url}"><i class="#{p.icono} fa-2x mr-2"></i>#{p.permiso}</a></li>
                         </c:forEach>
                         <li>
                             <h:form id="cerrar-sesion" prependId="false">
-                                <h:commandLink action="#{sesionControlador.cerrarSesion()}"><i class="fa fa-sign-out fa-2x mb-5 mr-2"></i>Salir</h:commandLink>
+                                <h:commandLink a:data-toggle="modal" a:data-target="#cerrar-sesion">
+                                    <span class="fa fa-sign-out fa-2x mb-5 mr-2"></span>Salir
+                                </h:commandLink>
                             </h:form>
-                        </li> <!--Aqui se destruye la sesión-->
-
+                        </li>
                     </ul>
-
                 </nav>
-
             </div>
         </article>
-        <!---->
-
     </div>
-
-
-
 </ui:composition>
-

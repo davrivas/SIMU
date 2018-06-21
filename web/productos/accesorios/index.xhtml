@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <title>Accesorios</title>
+        <link rel="shortcut icon" href="#{request.contextPath}/resources/img/favicon.png"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/sweetalert2.min.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/normalizar.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/modal.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/nav-bar.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/footer.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/productos.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/accesorios.css"/>
+        <link rel="stylesheet" href="resources/css/font-awesome.min.css" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet"/> 
+        <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+        <div class="contenedor container-fluid">
+            <ui:include src="/WEB-INF/templates/cliente/navbar.xhtml"/>
+
+            <header class="principal container-fluid d-flex justify-content-md-end justify-content-center">
+                <section class="titulo-prod d-flex flex-column justify-content-center align-self-end m-md-4 col-md-5 col-lg-4 col-xl-3 col m-sm-2">
+                    <h1>Accesorios</h1>
+                </section>
+            </header>
+
+            <div class="division"></div>
+
+            <main class="productos row d-flex justify-content-md-around justify-content-center">
+
+                <!-- filtros collapse mobile -->
+
+                <!-- FILTROS -->
+                <aside class="comp-prod col-12 col-md-6 col-lg-4 mt-4 mb-4 ">  
+                    <!-- TITULO FILTROS -->
+
+                    <h1 class="text-center">Filtros</h1>
+                    <hr class="linea-prod mt-2 mb-2"/>
+
+
+                        <form action="" class="filtro ">
+
+                            <!-- 1 -->
+
+                            <div class="row mt-4 text-center">
+                                <article class="col-md-6">
+                                    <label for=""><strong>Tipo</strong></label>
+                                </article>
+                                <article class="col-md-6">
+                                    <select name="" id="" class="select-simu">
+                                        <option>Cualquiera</option>
+                                        <option>Cascos</option>
+                                        <option>Maleteros</option>
+                                        <option>Sliders</option>
+                                        <option>Guantes</option>
+                                    </select>
+                                </article>
+                            </div>
+
+                            <!-- 2 -->
+                            
+                            <div class="row mt-4 text-center">
+                                <div class="col-12">
+                                    <p><strong>Rango de Precio</strong></p>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <article class="col-md-6">
+                                    <label for=""><strong>Precio minimo</strong></label>
+                                    <select name="" id="" class="select-simu">
+                                        <option>0</option>
+                                        <option>$500.000</option>
+                                        <option>$1'000.000</option>
+                                        <option>$3'000.000</option>
+                                        <option>$5'000.000</option>
+                                        <option>$10'000.000</option>
+                                        <option>$20'000.000</option>
+                                    </select>
+                                </article>
+                                <article class="col-md-6">
+                                    <label for=""><strong>Precio maximo</strong></label>
+                                    <select name="" id="" class="select-simu">
+                                        <option>0</option>
+                                        <option>$1'000.000</option>
+                                        <option>$3'000.000</option>
+                                        <option>$5'000.000</option>
+                                        <option>$10'000.000</option>
+                                        <option>$20'000.000</option>
+                                        <option>+ $20'000.000</option>
+                                    </select>
+                                </article>
+                            </div>
+                        </form>
+                        <!-- FIN TITULO FILTROS -->
+                </aside>
+
+                <!-- hacer producto foto toda en mobile -->
+
+                <section class="col-md-6 mt-4 mb-5 resultados">
+
+                    <!-- 1 -->
+
+
+                    <h1 class="text-center">Resultados</h1>
+
+                    <hr class="linea-prod mt-2 mb-2"/>
+                    
+                        <div class="row foto1">
+
+                            <div class="col-sm-10 col-md-6">
+
+                                <article class="card mt-5  foto">
+
+                                    <img class="card-img-top" src="#{request.contextPath}/resources/img/accesorios/b.png"/>
+
+                                    <div class="card-block">
+                                        <h4 class="card-title mt-3 d-flex justify-content-center"><strong>Baul maletero</strong></h4>
+
+                                        <div class="meta d-flex justify-content-center">
+                                            <h5 class="mb-3"> $ 300.000 <i class="fa fa-shopping-cart" aria-hidden="true" onclick="agregar()"></i></h5>
+                                        </div>
+                                    </div>
+                                </article>
+
+                            </div>
+                            <div class="col-sm-10 col-md-6 ">
+                                <article class="card mt-5  foto">
+                                    <img class="card-img-top" src="#{request.contextPath}/resources/img/accesorios/i.png"/>
+
+                                    <div class="card-block">
+                                        <h4 class="card-title mt-3 d-flex justify-content-center"><strong>Impermeable</strong></h4>
+
+                                        <div class="meta d-flex justify-content-center">
+                                            <h5 class="mb-3"> $ 38.000<i class="fa fa-shopping-cart" aria-hidden="true" onclick="agregar()"></i></h5>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+
+                        <!-- 2 -->
+
+                        <div class="row foto2">
+                            <div class="col-sm-10 col-md-6">
+                                <article class="card mt-5  foto">
+
+                                    <img class="card-img-top" src="#{request.contextPath}/resources/img/accesorios/m.jpg"/>
+
+                                    <div class="card-block">
+                                        <h4 class="card-title mt-3 d-flex justify-content-center"><strong>Mascara antipolucion</strong></h4>
+
+                                        <div class="meta d-flex justify-content-center">
+                                            <h5 class="mb-3"> $ 12'000.000 <i class="fa fa-shopping-cart" aria-hidden="true" onclick="agregar()"></i></h5>
+                                        </div>
+                                    </div>
+                                </article>
+
+                            </div>
+                            <div class="col-sm-10 col-md-6 ">
+
+                                <article class="card mt-5  foto">
+
+                                    <img class="card-img-top" src="#{request.contextPath}/resources/images/accesorios/cp.png"/>
+
+                                    <div class="card-block">
+                                        <h4 class="card-title mt-3 d-flex justify-content-center"><strong>Casco protector</strong></h4>
+
+                                        <div class="meta d-flex justify-content-center">
+                                            <h5 class="mb-3"> $ 450.000<i class="fa fa-shopping-cart" aria-hidden="true" onclick="agregar()"></i></h5>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                </section>
+            </main>
+
+            <ui:include src="/WEB-INF/templates/cliente/footer.xhtml"/>
+        </div>
+
+        <ui:include src="/WEB-INF/templates/iniciarsesion.xhtml"/>
+        <ui:include src="/WEB-INF/templates/cliente/modales/registrarse.xhtml" />
+        <ui:include src="/WEB-INF/templates/cerrarsesion.xhtml"/>
+
+       <script src="#{request.contextPath}/resources/js/jquery-3.2.1.slim.min (2).js"></script>
+        <script src="#{request.contextPath}/resources/js/popper.min (2).js"></script>
+        <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/sweetalert2.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/productos.js"></script>
+    </h:body>
+</html>
+

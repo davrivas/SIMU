@@ -35,6 +35,11 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "FotoProducto.findByIdFoto", query = "SELECT f FROM FotoProducto f WHERE f.idFoto = :idFoto")})
 public class FotoProducto implements Serializable {
 
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "alt_foto")
+    private String altFoto;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -111,6 +116,14 @@ public class FotoProducto implements Serializable {
     @Override
     public String toString() {
         return "edu.hypatia.simu.modelo.entidades.FotoProducto[ idFoto=" + idFoto + " ]";
+    }
+
+    public String getAltFoto() {
+        return altFoto;
+    }
+
+    public void setAltFoto(String altFoto) {
+        this.altFoto = altFoto;
     }
     
 }

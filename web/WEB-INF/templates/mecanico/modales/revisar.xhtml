@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <div class="modal fade" id="modalRevisar" tabindex="-1" role="dialog" aria-labelledby="modalRevisarTitulo" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <h:panelGroup id="modalRevisarContenido" class="modal-content contenido-modal" layout="block">
+                <h:form id="form-edit-reparacion" prependId="false">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="modalRevisarTitulo" style="color:#fff;">Revisar reparación</h3>
+                        <button type="button" class="cerrar-modal close" data-dismiss="modal" aria-label="Close">
+                            <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h3 style="text-align:left;color:#fff;">Datos</h3>
+
+                        <div style="color: #fff;">
+                            Fecha 
+                            <h:outputText value="#{reparacionControlador.reparacionSeleccionada.fecha}">
+                                <f:convertDateTime pattern="yyyy/MM/dd " />
+                            </h:outputText>
+                            <h:outputText value="#{reparacionControlador.reparacionSeleccionada.hora}">
+                                <f:convertDateTime pattern="HH:mm" />
+                            </h:outputText>
+                            <br/>
+                            Placa de la moto #{reparacionControlador.reparacionSeleccionada.moto.placa}<br/>
+                            Nombre del cliente #{reparacionControlador.reparacionSeleccionada.moto.cliente.persona.nombre} #{reparacionControlador.reparacionSeleccionada.moto.cliente.persona.apellido}<br/>
+                            Tipo(s) de servicio reparación<br/>
+                            <ui:repeat value="#{reparacionControlador.reparacionSeleccionada.tipoServicioReparacionList}" var="tsr">
+                                <li style="color: #fff;">#{tsr.servicio}</li>
+                            </ui:repeat>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="column mr-1">
+                                <h:outputLabel for="descripcion" value="Descripcion" style="color:#fff;"/>
+                            </div>
+                            <div class="column ml-1">
+                                <h:inputTextarea value="#{reparacionControlador.reparacionSeleccionada.descripcion}" class="input-simu" id="descripcion"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <h:commandButton id="revisar" a:name="editar" a:type="submit" value="Revisar" action="#{reparacionControlador.revisarReparacion()}" class="btn-simu-naranja mr-2"/>
+                        <button type="button" class="btn-simu-naranja" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </h:form>
+            </h:panelGroup>
+        </div>
+    </div>
+</ui:composition>

@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <title>Motos usadas</title>
+        <link rel="shortcut icon" href="#{request.contextPath}/resources/img/favicon.png"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/sweetalert2.min.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/normalizar.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/modal.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/nav-bar.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/footer.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/productos.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/motos.css"/>
+        <link rel="stylesheet" href="resources/css/font-awesome.min.css" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet"/> 
+        <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+        <div class="contenedor container-fluid">
+            <ui:include src="/WEB-INF/templates/cliente/navbar.xhtml"/>
+
+            <header class="principal container-fluid d-flex justify-content-md-end justify-content-center">
+                <section class="titulo-prod d-flex flex-column justify-content-center align-self-end m-md-4 col-md-5 col-lg-4 col-xl-3 col m-sm-2">
+                    <h1>Motos usadas</h1>
+                </section>
+            </header>
+
+            <div class="division">
+
+            </div>
+
+            <main class="productos row d-flex justify-content-md-around justify-content-center">
+
+                <!-- filtros collapse mobile -->
+
+                <!-- FILTROS -->
+                <aside class="comp-prod col-12 col-md-6 col-lg-4 mt-4 mb-4 ">  
+                    <!-- TITULO FILTROS -->
+
+                    <h1 class="text-center">Filtros</h1>
+                    <hr class="linea-prod mt-2 mb-2"/>
+
+
+                    <form action="" class="filtro ">
+
+                        <!-- 1 -->
+
+                        <div class="row mt-4 text-center">
+                            <article class="col-md-6">
+                                <label for=""><strong>Marca</strong></label>
+                            </article>
+                            <article class="col-md-6">
+                                <select name="" id="" class="select-simu">
+                                    <option>Cualquiera</option>
+                                    <option>Honda</option>
+                                    <option>Yamaha</option>
+                                    <option>Bajaj</option>
+                                </select>
+                            </article>
+
+                        </div>
+
+                        <!-- 2 -->
+
+                        <div class="row mt-4 text-center">
+                            <div class="col-12">
+                                <p><strong>Rango de Precio</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="row text-center">
+
+                            <article class="col-md-6">
+                                <label for=""><strong>Precio minimo</strong></label>
+                                <select name="" id="" class="select-simu">
+                                    <option>0</option>
+                                    <option>$500.000</option>
+                                    <option>$1'000.000</option>
+                                    <option>$3'000.000</option>
+                                    <option>$5'000.000</option>
+                                    <option>$10'000.000</option>
+                                    <option>$20'000.000</option>
+                                </select>
+                            </article>
+                            <article class="col-md-6">
+                                <label for=""><strong>Precio maximo</strong></label>
+                                <select name="" id="" class="select-simu">
+                                    <option>0</option>
+                                    <option>$1'000.000</option>
+                                    <option>$3'000.000</option>
+                                    <option>$5'000.000</option>
+                                    <option>$10'000.000</option>
+                                    <option>$20'000.000</option>
+                                    <option>+ $20'000.000</option>
+                                </select>
+                            </article>
+                        </div>
+
+                        <!-- 3 -->
+
+                        <div class="row mt-4 text-center">
+
+                            <article class="col-md-6">
+                                <label for=""><strong>Modelo</strong></label>
+                            </article>
+                            <article class="col-md-6">
+
+                                <select name="" id="" class="select-simu">
+                                    <option> Cualquiera </option>
+                                    <option>2010</option>
+                                    <option>2011</option>
+                                    <option>2012</option>
+                                    <option>2013</option>
+                                    <option>2014</option>
+                                    <option>2015</option>
+                                    <option>2016</option>
+                                    <option>2017</option>
+
+                                </select>
+
+                            </article>
+
+                        </div>
+
+                        <!-- 4 -->
+
+                        <div class="row  mt-4 text-center">
+                            <article class="col-md-6">
+                                <label for=""><strong>Color</strong></label>
+                            </article>
+                            <article class="col-md-6">
+                                <select name="" id="" class="select-simu">
+                                    <option>Cualquiera</option>
+                                    <option>Rojo</option>
+                                    <option>Azul</option>
+                                    <option>Amarillo</option>
+                                    <option>Negro</option>
+                                    <option>Blanco</option>
+                                    <option>Gris</option>
+                                    <option>Café</option>
+                                </select>
+                            </article>
+                        </div>
+
+                        <!-- 5 -->
+
+                        <div class="row mt-4">
+
+                            <article class="col-md-6 ">
+                                <button class="btn btn-simu-naranja btn-block m-2">Aplicar</button>
+                            </article>
+                            <article class="col-md-6">
+                                <input type="reset" class="btn btn-simu-naranja btn-block m-2" value="Limpiar"></input>
+                            </article>
+                        </div>
+                    </form>                   
+                    <!-- FIN TITULO FILTROS -->
+                </aside>
+
+                <!-- hacer producto foto toda en mobile -->
+
+                <section class="col-md-6 mt-4 mb-5 resultados">
+
+                    <!-- 1 -->
+
+
+                    <h1 class="text-center">Resultados</h1>
+
+                    <hr class="linea-prod mt-2 mb-2"/>
+
+                    <div class="row foto1">
+
+                        <div class="col-sm-10 col-md-6">
+
+                            <article class="card mt-5  foto">
+
+                                <img class="card-img-top" src="#{request.contextPath}/resources/img/motos/yamaha-ejemplo.jpg"/>
+
+                                <div class="card-block">
+                                    <h4 class="card-title mt-3 d-flex justify-content-center"><strong>Honda Goldwing</strong></h4>
+
+                                    <div class="meta d-flex justify-content-center">
+                                        <h5 class="mb-3"> $ 30.500.000 <i class="fa fa-shopping-cart" aria-hidden="true" onclick="agregar()"></i></h5>
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+                        </div>
+                        <div class="col-sm-10 col-md-6 ">
+
+                            <article class="card mt-5  foto">
+
+                                <img class="card-img-top" src="#{request.contextPath}/resources/img/motos/Royal.jpg"/>
+
+                                <div class="card-block">
+                                    <h4 class="card-title mt-3 d-flex justify-content-center"><strong>Yamaha R1M</strong></h4>
+
+                                    <div class="meta d-flex justify-content-center">
+                                        <h5 class="mb-3"> $ 45.000.000<i class="fa fa-shopping-cart" aria-hidden="true" onclick="agregar()"></i></h5>
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+                        </div>
+
+                    </div>
+
+                    <!-- 2 -->
+
+                    <div class="row foto2">
+
+                        <div class="col-sm-10 col-md-6">
+
+                            <article class="card mt-5  foto">
+
+                                <img class="card-img-top" src="#{request.contextPath}/resources/img/motos/motorcycle-2472358_1920.jpg"/>
+
+                                <div class="card-block">
+                                    <h4 class="card-title mt-3 d-flex justify-content-center"><strong>BMW R 1200</strong></h4>
+
+                                    <div class="meta d-flex justify-content-center">
+                                        <h5 class="mb-3"> $ 58.000.000 <i class="fa fa-shopping-cart" aria-hidden="true" onclick="agregar()"></i></h5>
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+                        </div>
+                        <div class="col-sm-10 col-md-6 ">
+
+                            <article class="card mt-5  foto">
+
+                                <img class="card-img-top" src="#{request.contextPath}/resources/img/motos/bajaj-ejemplo.jpg"/>
+
+                                <div class="card-block">
+                                    <h4 class="card-title mt-3 d-flex justify-content-center"><strong>Royal Enfield Battle green</strong></h4>
+
+                                    <div class="meta d-flex justify-content-center">
+                                        <h5 class="mb-3"> $ 10.000.000<i class="fa fa-shopping-cart" aria-hidden="true" onclick="agregar()"></i></h5>
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+                </section>
+
+            </main>
+
+            <ui:include src="/WEB-INF/templates/cliente/footer.xhtml"/>
+        </div>
+
+        <ui:include src="/WEB-INF/templates/iniciarsesion.xhtml"/>
+        <ui:include src="/WEB-INF/templates/cliente/modales/registrarse.xhtml" />
+        <ui:include src="/WEB-INF/templates/cerrarsesion.xhtml"/>
+
+        <script src="#{request.contextPath}/resources/js/jquery-3.2.1.slim.min (2).js"></script>
+        <script src="#{request.contextPath}/resources/js/popper.min (2).js"></script>
+        <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/sweetalert2.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/productos.js"></script>
+    </h:body>
+</html>
+

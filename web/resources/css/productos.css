@@ -1,0 +1,124 @@
+body{
+    background-color: #fff;
+}
+.principal { 
+    background-image: url(../img/motos/moto-fondo.jpg); 
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 600px;
+    background-color: #000;
+
+}
+
+.titulo-prod {
+    background-color: rgba(0,0,0,0.7);
+    font-weight: bold;
+    border-radius: 5px;
+    border: 2px solid rgba(255,255,255,.1);
+    padding: 25px !important;
+    text-align: center;
+}
+.division{
+    width: 100%;
+    height: 40px;
+    background-color:#000;
+}
+.productos{
+    width: 100%;
+    background-color: #000;
+    /* font-family: oswald; */
+
+}
+
+.comp-prod{
+    width: 100%;
+    /* height: 600px; */
+    background-color: #1a1a1a;
+    padding: 25px;
+}
+
+.resultados{
+    width: 100%;
+    /* height: 1050px; */
+    background-color: #1a1a1a;
+    padding: 25px;
+}
+
+.linea-prod {
+    width: 100%;
+    border: 1px solid rgba(255,255,255,.3);
+}
+
+select{
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+
+/*IMAGENES DE MOTOS*/
+.foto {
+    background-color: #fff;
+    margin-bottom: 30px;
+    margin-top: 60px;
+    font-size: 1em;
+    border-radius: .2rem;
+    color: #fff;
+    opacity: 0.6;
+}
+
+.foto-block{
+    font-size: 1em;
+    padding: 0.6em;
+
+}
+
+.foto-img-top {
+    width: 100%;
+    height: auto;
+}
+
+.foto-title {
+    font-size: 1.3em;
+    font-weight: 900;
+    line-height: 1.2857em;
+}
+.foto:hover{
+    opacity: 1;
+    transition: .3s
+}
+.fa-shopping-cart:hover{
+    cursor: pointer;
+    color: orange;
+
+}
+.filtros{
+    width: 100%;
+    height: 900px;
+    background-color: red;
+}
+
+
+/* En producto */
+
+@media only screen and (max-width: 760px){
+
+    .productos{
+        height: 1000px;
+    }
+    .resultados{
+        height: 950px;
+    }
+    .comp-prod{
+        height: 800px;
+    }
+    .foto2{
+        display: none !important;
+    }
+    .pie-pagina{
+        display: none !important;
+    }
+    select{
+        margin-top: 10px;
+    }
+}

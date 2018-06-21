@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <div class="modal fade" id="inicia-sesion" tabindex="-1" role="dialog" aria-labelledby="iniciarSesion" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content contenido-modal">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Inicia sesión</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <h:form prependId="false" id="form-login">
+                    <div class="modal-body">
+                        <div class="container">
+                            <section class="row">
+                                <article class="col">
+                                    <div class="form-group d-flex flex-column">
+                                        <h:outputLabel for="email" value="Email" />
+                                        <h:inputText a:placeholder="Escribe tu email" id="email" a:required="" a:type="email" a:name="email" value="#{sesionControlador.email}" class="input-simu login-input" />
+                                    </div>
+                                    <div class="form-group d-flex flex-column">
+                                        <h:outputLabel for="contrasena" value="Contraseña" />
+                                        <h:inputSecret a:placeholder="Escribe tu contraseña" id="contrasena" a:required="" a:name="contrasena" value="#{sesionControlador.contrasena}" class="input-simu login-input" />
+                                    </div>
+                                </article>
+                            </section>
+                        </div>
+                        <div class="modal-footer">
+                            <h:commandButton action="#{sesionControlador.iniciarSesion()}" a:type="submit" value="Iniciar sesión" class="btn-simu-naranja" id="btn-iniciar-sesion"/>
+                            <button type="button" class="btn-simu-naranja" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </div>
+</ui:composition>
+

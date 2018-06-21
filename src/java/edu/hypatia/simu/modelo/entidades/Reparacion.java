@@ -49,8 +49,11 @@ public class Reparacion implements Serializable {
     private Integer idReparacion;
     @Basic(optional = false)
     @Column(name = "fecha")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date fecha;
+    @Column(name = "hora")
+    @Temporal(TemporalType.TIME)
+    private Date hora;
     @Column(name = "descripcion")
     private String descripcion;
     @Column(name = "calificacion")
@@ -93,6 +96,14 @@ public class Reparacion implements Serializable {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public Date getHora() {
+        return hora;
+    }
+
+    public void setHora(Date hora) {
+        this.hora = hora;
     }
 
     public String getDescripcion() {
@@ -160,5 +171,5 @@ public class Reparacion implements Serializable {
     public String toString() {
         return "edu.hypatia.simu.modelo.entidades.Reparacion[ idReparacion=" + idReparacion + " ]";
     }
-    
+
 }
