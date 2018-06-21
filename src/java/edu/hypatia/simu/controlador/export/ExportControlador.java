@@ -53,7 +53,7 @@ public class ExportControlador implements Serializable {
 
 
     
-    public void export() throws Exception{
+    public void motosPDF() throws Exception{
         
         Connection conexion;
         Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -62,9 +62,8 @@ public class ExportControlador implements Serializable {
         try {
             FacesContext fc = FacesContext.getCurrentInstance();
             ExternalContext ec = fc.getExternalContext();
-            File jasper = new File(ec.getRealPath("/WEB-INF/classes/reportes/motos.jasper"));
+            File jasper = new File(ec.getRealPath("/WEB-INF/classes/reportes/moto.jasper"));
             Map<String, Object> params = new HashMap<>();
-            params.put("logo", ec.getRealPath("/resources/img/logo-simu-negativo.jpg"));
             JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), params, conexion);
             HttpServletResponse hsr = (HttpServletResponse) ec.getResponse();
             hsr.addHeader("Content-disposition", "attachment; filename=reporte.pdf");
