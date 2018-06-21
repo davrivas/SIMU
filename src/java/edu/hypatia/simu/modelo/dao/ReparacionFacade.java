@@ -34,20 +34,15 @@ public class ReparacionFacade extends AbstractFacade<Reparacion> implements Repa
     }
 
     @Override
-    public List<Reparacion> reparacionesSinRevisar(Mecanico mecanico) {
+    public List<Reparacion> reparacionesDelMecanico(Mecanico mecanico) {
         try {
-            TypedQuery<Reparacion> q = getEntityManager().createQuery("SELECT r FROM Reparacion r WHERE r.mecanico = :mecanico AND r.descripcion = :noDesc", Reparacion.class);
+            TypedQuery<Reparacion> q = getEntityManager().createQuery("SELECT r FROM Reparacion r WHERE r.mecanico = :mecanico", Reparacion.class);
             q.setParameter("mecanico", mecanico);
-            q.setParameter("noDesc", null);
+
             return q.getResultList();
         } catch (NoResultException e) {
             return null;
         }
     }
 
-    @Override
-    public List<Reparacion> reparacionesRevisadas(Mecanico mecanico) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

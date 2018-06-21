@@ -31,8 +31,6 @@ public interface ReparacionFacadeLocal {
 
     int count();
     
-    List<Reparacion> reparacionesSinRevisar(Mecanico mecanico);
-    
-    List<Reparacion> reparacionesRevisadas(Mecanico mecanico);
+    List<Reparacion> reparacionesDelMecanico(Mecanico mecanico);
     
 }

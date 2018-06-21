@@ -55,7 +55,7 @@ public class Mail {
         try {
             message.setFrom(new InternetAddress(props.getProperty(KEY_SMTP_FROM)));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
-            message.setSubject(asunto);
+            message.setSubject("[SIMU] " + asunto);
 
             Multipart parts = new MimeMultipart();
             BodyPart bodyMail = new MimeBodyPart();
@@ -85,7 +85,7 @@ public class Mail {
         try {
             message.setFrom(new InternetAddress(props.getProperty(KEY_SMTP_FROM)));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
-            message.setSubject(asunto);
+            message.setSubject("[SIMU] " + asunto);
 
             Multipart parts = new MimeMultipart();
             BodyPart bodyMail = new MimeBodyPart();
@@ -115,12 +115,14 @@ public class Mail {
 
     public static String plantillaSIMU(String html) {
         String rh = "<div style=\"display: flex; flex-direction: row; width: 100%;\">";
-        rh += "<div style=\"padding: 10px; width: 100px\">";
+        rh += "<div style=\"padding: 10px; width: 100px;\">";
         rh += "<img src=\"https://drive.google.com/uc?export=view&id=1UcoicrRxhPHwkEBaMeXpT1kBtAjpR4rm\" alt=\"Logo de SIMU\" width=\"80\" height=\"auto\">";
         rh += "</div>";
         rh += "<div style=\"padding: 10px;\">";
         rh += html; // Es el cuerpo que se inserta
         rh += "</div>";
+        rh += "<p style=\"margin-top: 25px;\"><strong>Atentamente</strong></p>";
+        rh += "Equipo de SIMU";
         rh += "</div>";
 
         return rh;

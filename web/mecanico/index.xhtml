@@ -15,218 +15,84 @@
     </ui:define>
 
     <ui:define name="contenido1">
+        <h2>Reparaciones a revisar</h2>
 
+        <h:dataTable value="#{reparacionControlador.reparacionesSinRevisar}" var="r" class="table table-striped table-responsive">
+            <h:column>
+                <f:facet name="header">Fecha y hora</f:facet>
+                <h:outputText value="#{r.fecha}">
+                    <f:convertDateTime pattern="yyyy/MM/dd " />
+                </h:outputText>
+                <h:outputText value="#{r.hora}">
+                    <f:convertDateTime pattern="HH:mm" />
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Placa de la moto</f:facet>
+                <h:outputText value="#{r.moto.placa}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nombre del cliente</f:facet>
+                <h:outputText value="#{r.moto.cliente.persona.nombre} #{r.moto.cliente.persona.apellido}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo(s) de servicio reparación</f:facet>
+                <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
+                    #{tsr.servicio}<br/>
+                </ui:repeat>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Acciones</f:facet>
+                <h:commandLink actionListener="#{reparacionControlador.seleccionarReparacion(r)}" class="btn btn-simu-naranja" a:data-toggle="modal" a:data-target="#modalRevisar">
+                    <f:ajax render=":modalRevisarContenido"/>
+                    <span class="fa fa-pencil"></span>
+                </h:commandLink>
+            </h:column>
+        </h:dataTable>
 
-        <button class="btn btn-simu-naranja mt-2 mb-2" data-toggle="modal" data-target="#modalInsertar">
-            Insertar reparación <span class="fa fa-plus"></span>
-        </button>
+        <h2>Reparaciones revisadas</h2>
 
-        <h:form>
-            <!--<h:dataTable value="#{sesionControlador.persona.mecanico.reparacionList}"
-var="r" class="table table-striped table-responsive">-->
-            <h:dataTable value="#{reparacionControlador.reparaciones}" var="r" class="table
-                         table-striped table-responsive">
-                <h:column>
-                    <f:facet name="header">Fecha y hora</f:facet>
-                    <h:outputText value="#{r.fecha}">
-                        <f:convertDateTime pattern="yyyy/MM/dd " />
-                    </h:outputText>
-                    <h:outputText value="#{r.hora}">
-                        <f:convertDateTime pattern="HH:mm" />
-                    </h:outputText>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Placa de la moto</f:facet>
-                    <h:outputText value="#{r.moto.placa}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Nombre del cliente</f:facet>
-                    <h:outputText value="#{r.moto.cliente.persona.nombre} #{r.moto.cliente.persona.apellido}" />
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Calificación</f:facet>
-                    <h:outputText value="#{reparacionControlador.getCalificacionReparacion(r)}"
-                                  escape="false"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Descripción</f:facet>
-                    <h:panelGroup rendered="#{empty r.descripcion}">
-                        <em>Pendiente por revisar</em>
-                    </h:panelGroup>
-                    <h:panelGroup rendered="#{not empty r.descripcion}">
-                        <h:outputText value="#{r.descripcion}"/>
-                    </h:panelGroup>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Tipo de servicio reparación</f:facet>
-                    <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
-                        #{tsr.servicio}<br/>
-                    </ui:repeat>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Acciones</f:facet>
-                    <h:commandLink actionListener="#{reparacionControlador.seleccionarReparacion(r)}" class="btn btn-simu-naranja" a:data-toggle="modal" a:data-target="#modalEditar">
-                        <f:ajax render=":modalEditarContenido"/>
-                        <span class="fa fa-pencil"></span>
-                    </h:commandLink>
-                    <h:commandLink actionListener="#{reparacionControlador.seleccionarReparacion(r)}" class="btn btn-simu-naranja" a:data-toggle="modal" a:data-target="#modalEliminar">
-                        <f:ajax render=":modalEliminarContenido"/>
-                        <span class="fa fa-trash"></span>
-                    </h:commandLink>
-                </h:column>
-            </h:dataTable>
-        </h:form>
+        <h:dataTable value="#{reparacionControlador.reparacionesRevisadas}" var="r" class="table table-striped table-responsive">
+            <h:column>
+                <f:facet name="header">Fecha y hora</f:facet>
+                <h:outputText value="#{r.fecha}">
+                    <f:convertDateTime pattern="yyyy/MM/dd " />
+                </h:outputText>
+                <h:outputText value="#{r.hora}">
+                    <f:convertDateTime pattern="HH:mm" />
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Placa de la moto</f:facet>
+                <h:outputText value="#{r.moto.placa}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nombre del cliente</f:facet>
+                <h:outputText value="#{r.moto.cliente.persona.nombre} #{r.moto.cliente.persona.apellido}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo(s) de servicio reparación</f:facet>
+                <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
+                    #{tsr.servicio}<br/>
+                </ui:repeat>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Descripción</f:facet>
+                <h:panelGroup rendered="#{empty r.descripcion}">
+                    <em>Pendiente por revisar</em>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{not empty r.descripcion}">
+                    <h:outputText value="#{r.descripcion}"/>
+                </h:panelGroup>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Calificación</f:facet>
+                <h:outputText value="#{reparacionControlador.getCalificacionReparacion(r)}" escape="false"/>
+            </h:column>
+        </h:dataTable>
     </ui:define>
 
     <ui:define name="contenido2">
-        <ui:include src="/WEB-INF/templates/mecanico/modales/insertar-reparacion.xhtml"/>
-
-        <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarTitulo" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <h:panelGroup id="modalEditarContenido" class="modal-content contenido-modal"
-                              layout="block">
-                    <h:form id="form-edit-reparacion" prependId="false">
-                        <div class="modal-header">
-                            <h3 class="modal-title" id="modalEditarTitulo" style="color:#fff;">Editar reparación</h3>
-                            <button type="button" class="cerrar-modal close" data-dismiss="modal" aria-label="Close">
-                                <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="column mr-1">
-                                    <h:outputLabel for="fecha-editar" value="Fecha de
-                                                   agendamiento" style="color:#fff;"/>
-                                </div>
-                                <div class="column ml-1">
-                                    <h:inputText value="#{reparacionControlador.reparacionSeleccionada.fecha}" a:type="date" class="input-simu"
-                                                 id="fecha-editar" a:name="fecha-editar" a:required="">
-                                        <f:convertDateTime pattern="yyyy-MM-dd"/>
-                                    </h:inputText>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="column mr-1">
-                                    <h:outputLabel for="hora-editar" value="Hora de agendamiento" style="color:#fff;"/>
-                                </div>
-                                <div class="column ml-1">
-                                    <h:inputText value="#{reparacionControlador.reparacionSeleccionada.hora}" a:type="time" class="input-simu" id="hora-editar" a:name="hora-editar" a:required="">
-                                        <f:convertDateTime  pattern="HH:mm"/>
-                                    </h:inputText>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="column mr-1">
-                                    <h:outputLabel for="moto-editar" value="Moto"
-                                                   style="color:#fff;"/>
-                                </div>
-                                <div class="column ml-1">
-                                    <h:selectOneMenu value="#{reparacionControlador.reparacionSeleccionada.moto}" class="select-simu" a:name="moto-editar"
-                                                     id="moto-editar" a:required="">
-                                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
-                                        <f:selectItems value="#{motoControlador.motos}"
-                                                       var="moto" itemLabel="#{moto.placa} de #{moto.cliente.persona.nombre} #{moto.cliente.persona.apellido}"/>
-                                    </h:selectOneMenu>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="column mr-1">
-                                    <h:outputLabel for="mecanico-editar" value="Mecánico"
-                                                   style="color:#fff;"/>
-                                </div>
-                                <div class="column ml-1">
-                                    <h:selectOneMenu value="#{reparacionControlador.reparacionSeleccionada.mecanico}" class="select-simu" a:name="mecanico-editar" id="mecanico-editar" a:required="">
-                                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
-                                        <f:selectItems value="#{mecanicoControlador.mecanicos}"
-                                                       var="m" itemLabel="#{m.persona.nombre} #{m.persona.apellido}"/>
-                                    </h:selectOneMenu>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="column mr-1">
-                                    <h:outputLabel for="descripcion-editar" value="Descripcion"
-                                                   style="color:#fff;"/>
-                                </div>
-                                <div class="column ml-1">
-                                    <h:inputTextarea value="#{reparacionControlador.reparacionSeleccionada.descripcion}" class="input-simu"
-                                                     a:name="descripcion-editar" id="descripcion-editar"/>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="column mr-1">
-                                    <h:outputLabel for="calificacion-editar"
-                                                   value="Calificación" style="color:#fff;"/>
-                                </div>
-                                <div class="column ml-1">
-                                    <h:selectOneMenu value="#{reparacionControlador.reparacionSeleccionada.calificacion}" class="input-simu" a:name="calificacion-editar" id="calificacion-editar">
-                                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
-                                        <f:selectItem itemLabel="1" itemValue="1"/>
-                                        <f:selectItem itemLabel="2" itemValue="2"/>
-                                        <f:selectItem itemLabel="3" itemValue="3"/>
-                                        <f:selectItem itemLabel="4" itemValue="4"/>
-                                        <f:selectItem itemLabel="5" itemValue="5"/>
-                                    </h:selectOneMenu>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="column mr-1">
-                                    <h:outputLabel for="servicio-editar" value="Tipo de
-                                                   servicio" style="color:#fff;"/>
-                                </div>
-                                <div class="column ml-1">
-                                    <h:selectManyCheckbox  value="#{reparacionControlador.reparacionSeleccionada.tipoServicioReparacionList}" class="input-simu"
-                                                           a:name="servicio-editar" id="servicio-editar">
-                                        <f:selectItems value="#{serviciosControlador.servicios}"
-                                                       var="s" itemLabel="#{s.servicio}"/>
-                                    </h:selectManyCheckbox>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <h:commandButton id="editar" a:name="editar" a:type="submit"
-                                             value="Editar" action="#{reparacionControlador.editar()}" class="btn-simu-naranja mr-2"/>
-                            <button type="button" class="btn-simu-naranja" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </h:form>
-                </h:panelGroup>
-            </div>
-        </div>
-
-        <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarTitulo" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <h:panelGroup id="modalEliminarContenido" class="modal-content contenido-modal" layout="block">
-                    <h:form id="form-delete-reparacion" prependId="false">
-                        <div class="modal-header">
-                            <h3 class="modal-title" id="modalEliminarTitulo"
-                                style="color:#fff;">¿Desea eliminar esta reparación?</h3>
-                            <button type="button" class="cerrar-modal close" data-dismiss="modal" aria-label="Close">
-                                <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
-                            </button>
-                        </div>
-                        <div class="modal-body" style="color:#fff !important; text-align: left">
-                            <p><b>Placa de la moto:</b>  #{reparacionControlador.reparacionSeleccionada.moto.placa}</p>
-                            <p><b>Nombre del cliente:</b> #{reparacionControlador.reparacionSeleccionada.moto.cliente.persona.nombre} #{reparacionControlador.reparacionSeleccionada.moto.cliente.persona.apellido}</p>
-                            <p><b>Nombre del mecanico:</b> #{reparacionControlador.reparacionSeleccionada.mecanico.persona.nombre} #{reparacionControlador.reparacionSeleccionada.mecanico.persona.apellido}</p>
-                            <h:panelGroup rendered="#{not empty reparacionControlador.reparacionSeleccionada.calificacion}">
-                                <p><b>Calificación: </b> <h:outputText value="#{reparacionControlador.getCalificacionReparacion(reparacionControlador.reparacionSeleccionada)}" escape="false"/></p>
-                            </h:panelGroup>
-                            <h:panelGroup rendered="#{not empty reparacionControlador.reparacionSeleccionada.descripcion}">
-                                <p><b>Descripción:</b> #{reparacionControlador.reparacionSeleccionada.descripcion}</p>
-                            </h:panelGroup>
-
-                            <b>Tipos de servicios:</b><br/>
-                            <c:forEach items="#{reparacionControlador.reparacionSeleccionada.tipoServicioReparacionList}" var="s">
-                                <li>#{s.servicio}</li>
-                            </c:forEach>
-                            <br/>
-                        </div>
-                        <div class="modal-footer">
-                            <h:commandButton id="eliminar" a:name="eliminar" a:type="submit" value="Eliminar" action="#{reparacionControlador.eliminar()}" class="btn-simu-naranja mr-2" styleClass="btn-simu-naranja"/>
-                            <button type="button" class="btn-simu-naranja" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </h:form>
-                </h:panelGroup>
-            </div>
-        </div>
+        <ui:include src="/WEB-INF/templates/mecanico/modales/revisar.xhtml"/>
     </ui:define>
 </ui:composition>
