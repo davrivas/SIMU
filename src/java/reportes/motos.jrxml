@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f61fa4f0-9c9e-4414-b39f-dbc480e2db8d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="date" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT * FROM tbl_motos]]>
+	</queryString>
+	<field name="id_moto" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="placa" class="java.lang.String">
+		<fieldDescription><![CDATA[placa moto]]></fieldDescription>
+	</field>
+	<field name="cilindraje" class="java.lang.String">
+		<fieldDescription><![CDATA[cilindraje moto]]></fieldDescription>
+	</field>
+	<field name="color" class="java.lang.String">
+		<fieldDescription><![CDATA[color moto]]></fieldDescription>
+	</field>
+	<field name="modelo" class="java.lang.String">
+		<fieldDescription><![CDATA[modelo moto]]></fieldDescription>
+	</field>
+	<field name="kilometraje" class="java.lang.String">
+		<fieldDescription><![CDATA[kilometraje moto]]></fieldDescription>
+	</field>
+	<field name="estado_moto" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="producto" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cliente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="107" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-19" y="0" width="613" height="107" backcolor="#000000" uuid="ae72ccfe-15b8-4cce-92b1-6bd87aa22410"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="189" y="0" width="335" height="59" forecolor="#FFFFFF" uuid="becec869-f997-4ecc-9d1b-303d985c7384"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="40" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Listado de Motos]]></text>
+			</staticText>
+			<line>
+				<reportElement x="238" y="59" width="234" height="1" forecolor="#FFFFFF" uuid="6de3bd56-cf4a-4ed9-9c49-fe61a9603a1f"/>
+			</line>
+			<textField>
+				<reportElement x="372" y="60" width="100" height="20" forecolor="#FFFFFF" uuid="94c36ebe-a64b-476f-9106-0c212ffdfa21"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{date}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="539" y="11" width="77" height="10" uuid="26e0bd8d-ef40-48c4-a3e6-24c00f6938d8"/>
+			</rectangle>
+			<image>
+				<reportElement x="0" y="11" width="170" height="86" uuid="8dcb7b50-8a9f-4314-825a-3488fe6e944b"/>
+				<imageExpression><![CDATA["C:\\Users\\NICOLAS.FAMILIA_MUHU-PC\\Desktop\\SENA\\simu\\web\\resources\\img\\logo-simu-negativo.jpg"]]></imageExpression>
+			</image>
+			<rectangle radius="10">
+				<reportElement x="556" y="39" width="60" height="10" uuid="7d8cb9c3-6258-4ecf-9fd5-1c716ab88712"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="584" y="97" width="32" height="10" uuid="6536bbb9-3bad-4e1e-a554-489906626b78"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="572" y="69" width="44" height="11" uuid="6f963561-f5de-4819-b4ba-474f653adb56"/>
+			</rectangle>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="20" y="0" width="552" height="20" forecolor="#FFFFFF" backcolor="#000000" uuid="de016084-2519-4826-b60a-3df50ae1e88d"/>
+			</frame>
+			<staticText>
+				<reportElement x="32" y="0" width="67" height="20" forecolor="#FFFFFF" uuid="f799bd69-cdd3-4a92-877a-7b6729ddc757"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID_MOTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="0" width="71" height="20" forecolor="#FFFFFF" uuid="12348742-40bb-4d79-95f2-5301bb31fa46"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[     PLACA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="0" width="78" height="20" forecolor="#FFFFFF" uuid="2c5ace0f-eb28-4189-be03-433cd84f6a1a"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CILINDRAJE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="0" width="71" height="20" forecolor="#FFFFFF" uuid="0ca44ef8-2bd9-43ac-ac5c-77082039e520"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COLOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="329" y="0" width="70" height="20" forecolor="#FFFFFF" uuid="faf97bce-5df4-4e4b-8ce8-84771941fe0a"/>
+				<textElement textAlignment="Justified">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MODELO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="399" y="0" width="96" height="20" forecolor="#FFFFFF" uuid="145c1734-1363-4cea-aa03-6f347eed5167"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KILOMETRAJE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="495" y="0" width="77" height="20" forecolor="#FFFFFF" uuid="9ad003d6-8162-4857-b882-5e02f980fb37"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUCTO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="20" y="0" width="552" height="30" backcolor="#CCCCCC" uuid="2aed878a-a73c-435f-a01c-6e56a2be2b6c">
+					<printWhenExpression><![CDATA[$V{REPORT_COUNT}%2==0]]></printWhenExpression>
+				</reportElement>
+			</frame>
+			<textField>
+				<reportElement x="32" y="10" width="67" height="20" uuid="5c487e65-0b56-4970-b499-eaf102326661"/>
+				<textFieldExpression><![CDATA[$F{id_moto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="10" width="71" height="20" uuid="3f206c4a-41bf-4eae-b2d3-bb5d656947d8"/>
+				<textFieldExpression><![CDATA[$F{placa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="10" width="68" height="20" uuid="33fd397b-a92a-4035-ae16-145efce9d918"/>
+				<textFieldExpression><![CDATA[$F{cilindraje}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="258" y="10" width="71" height="20" uuid="de9daa1d-0de5-4a7c-9665-380bb831821c"/>
+				<textFieldExpression><![CDATA[$F{color}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="10" width="70" height="20" uuid="a34a58bd-c4b6-4bb3-955a-cc7d917e1a0e"/>
+				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="399" y="10" width="96" height="20" uuid="7948b0aa-e56d-409b-a4dd-a921ee7af598"/>
+				<textFieldExpression><![CDATA[$F{kilometraje}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="495" y="10" width="61" height="20" uuid="fb282e29-8936-4953-b8b7-d715267e4b78"/>
+				<textFieldExpression><![CDATA[$F{producto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

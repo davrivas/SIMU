@@ -16,6 +16,10 @@
                         <h:commandLink action="#{motoControlador.seleccionar()}" class="btn btn-outline-warning" value="Registrar Moto">
                             <i class="fa fa-plus"></i>
                         </h:commandLink>
+                        
+                        <h:commandLink action="#{exportControlador.export()}" class="btn btn-outline-info ml-3" value="PDF">
+                            <i class="fa fa-file-pdf-o"></i>
+                        </h:commandLink>
                     </h:form>
 
                     <form class="form-inline">
@@ -184,7 +188,7 @@
                         <td>#{m.modelo}</td>
                         <td>#{m.kilometraje}</td>
                         <td>#{m.estadoMoto.nombreEstado}</td>
-                        <td>#{m.producto.marcaProducto.marcaProducto} #{m.producto.referencia}</td>
+                        <td>#{m.producto.marcaProducto.marcaProducto}  #{p.referencia}</td>
                         <td>#{m.cliente.persona.nombre} #{m.cliente.persona.apellido}</td>
                     </tr>
                 </c:forEach>
