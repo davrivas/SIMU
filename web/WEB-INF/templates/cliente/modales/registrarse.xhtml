@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
     <div class="modal fade" id="registrarse" tabindex="-1" role="dialog" aria-labelledby="registrate" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content contenido-modal">
@@ -13,73 +15,109 @@
                     </button>
                 </div>
 
-                <form action="">
+                <h:form prependId="false">
                     <div class="modal-body">
-                        <div class="row col-12 mt-2 mb-2">
-                            <div class="col ml-1 mr-1">
+                        <div class="row mt-2 mb-2 justify-content-around">
+                            <div class="col-5 ml-1 mr-1">
                                 <div class="col"><label for="">Nombres</label></div>
-                                <div class="col"> <input type="text" class="input-simu " placeholder="Escribe tu nombre" required="" /></div>
+                                <div class="col">
+                                    <h:inputText value="#{clienteControlador.persona.nombre}" a:placeholder="Escribe tus nombres" class="col-12 form-control" required="true"></h:inputText>     
+                                </div>            
                             </div>
-                            <div class="col ml-1 mr-1">
+                            <div class="col-5 ml-1 mr-1">
                                 <div class="col"><label for="">Apellidos</label></div>
-                                <div class="col"><input type="text" class="input-simu " placeholder="Escribe tus apellidos" required="" /></div>
+                                <div class="col">
+                                    <h:inputText value="#{clienteControlador.persona.apellido}" a:placeholder="Escribe tus apellidos" class="col-12 form-control" required="true"></h:inputText>     
+                                </div> 
                             </div>
                         </div>
 
 
-                        <div class="row col-12 mt-2 mb-2">
-                            <div class="col ml-1 mr-1">
+                        <div class="row  mt-2 mb-2 justify-content-around">
+                            <div class="col-5 ml-1 mr-1">
                                 <div class="col"><label for="Tipodocumento">Tipo de documento</label></div>
                                 <div class="col">
-                                    <select class="select-simu" id="Tipo" placeholder="Seleccionar" required="">
-                                        <option >Seleccionar</option>
-                                        <option>Cedula de ciudadanía</option>
-                                        <option>Pasaporte</option>
-                                        <option>Extranjería</option>
-                                    </select>
+                                    <h:selectOneMenu value="#{clienteControlador.cliente.tipoDocumento}" class="col-12 custom-select" required="true">
+                                        <f:selectItem itemLabel="Seleccione"></f:selectItem>
+                                        <f:selectItems value="#{clienteControlador.listarTipoDocumento()}" var="td" itemLabel="#{td.tipoDocumento}"></f:selectItems>
+                                    </h:selectOneMenu>
                                 </div>
                             </div>
-                            <div class="col ml-1 mr-1">
+                            <div class="col-5 ml-1 mr-1">
                                 <div class="col"><label for="">Numero de documento</label></div>
-                                <div class="col"><input type="text" class="input-simu " name="num doc " placeholder="Escribe tu numero de documento" required="" /></div>
+                                <div class="col">
+                                    <h:inputText value="#{clienteControlador.cliente.numeroDocumento}" a:placeholder="Escribe tus documento" class="col-12 form-control" required="true"></h:inputText>     
+                                </div>
                             </div>
                         </div>
 
-                        <div class="row col-12 mt-2 mb-2">
-                            <div class="col ml-1 mr-1">
+                        <div class="row  mt-2 mb-2 justify-content-around">
+                            <div class="col-5 ml-1 mr-1">
                                 <div class="col"><label for="">Correo electrónico</label></div>
-                                <div class="col"><input type="email" class="input-simu " name="correo" placeholder="Escribe tu correo" required="" /></div>
+                                <div class="col">
+                                    <h:inputText value="#{clienteControlador.persona.email}" a:placeholder="Escribe tu correo electronico" class="col-12 form-control" required="true"></h:inputText>     
+                                </div>
                             </div>
-                            <div class="col ml-1 mr-1">
-                                <div class="col"> <label for="">Confirma correo </label></div>
-                                <div class="col"><input type="email" class="input-simu " name="confirma correo" placeholder="Confirma tu correo" required="" /></div>
-                            </div>
-                        </div>
-
-                        <div class="row col-12 mt-2 mb-2">
-                            <div class="col ml-1 mr-1">
-                                <div class="col"><label for="">Contraseña</label></div>
-                                <div class="col"><input type="password" class="input-simu " name="contraseña" placeholder="Escribe tu contraseña" required =""/></div>
-                            </div>
-                            <div class="col ml-1 mr-1">
-                                <div class="col"><label for="">Confirma contraseña</label></div>
-                                <div class="col"><input type="password" class="input-simu " name="confirma contraseña" placeholder="Confirma tu contraseña" required="" /></div>
-                            </div>
-                        </div>
-
-                        <div class="row col-12">
-                            <div class="col-6 ml-1">
+                            <div class="col-5 ml-1">
                                 <div class="col"><label for="">Teléfono</label></div>
-                                <div class="col"> <input type="text" class="input-simu " name="telefono" placeholder="Escribe tu teléfono" required="" /></div>
+                                <div class="col">
+                                    <h:inputText value="#{clienteControlador.persona.telefono}" a:placeholder="Escribe tu telefono" class="col-12 form-control" required="true"></h:inputText>     
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row mt-2 mb-2 justify-content-around">
+                            <div class="col-5 ml-1 mr-1 ">
+                                <div class="col"><label for="">Contraseña</label></div>
+                                <div class="col">
+                                    <h:inputSecret value="#{clienteControlador.persona.contrasena}" a:placeholder="Escribe tu contraseña" class="col-12 form-control" required="true"></h:inputSecret>     
+                                </div>
+                            </div>
+                            <div class="col-5 ml-1 mr-1">
+                                <div class="col"><label for="">Confirmar contraseña</label></div>
+                                <div class="col">
+                                    <h:inputSecret value="#{clienteControlador.persona.contrasena}" a:placeholder="Confirma tu contraseña" class="col-12 form-control" required="true"></h:inputSecret>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2 mb-2 justify-content-around">
+                            <div class="col-5 ml-1 mr-1">
+                                <div class="col"><label for="">Departamento</label></div>
+                                <div class="col">
+                                    <h:selectOneMenu value="#{clienteControlador.departamento}" class="col-12 custom-select">
+                                        <f:selectItem itemLabel="Seleccione"></f:selectItem>
+                                        <f:selectItems value="#{clienteControlador.listarDepartamento()}" var="d" itemLabel="#{d.departamento}"></f:selectItems>
+                                    </h:selectOneMenu>
+
+                                </div>
+                            </div>
+                            <div class="col-5 ml-1 mr-1">
+                                <div class="col"><label for="">Ciudad</label></div>
+                                <div class="col">
+                                    <h:selectOneMenu value="#{clienteControlador.cliente.ciudad}" class="col-12 custom-select">
+                                        <f:selectItem itemLabel="Seleccione"></f:selectItem>
+                                        <f:selectItems value="#{clienteControlador.departamento.ciudadList}" var="c" itemLabel="#{c.ciudad}"></f:selectItems>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                            <div class="col-5 ml-1 mr-1">
+                                <div class="col"><label for="">Dirección</label></div>
+                                <div class="col">
+                                    <h:inputText value="#{clienteControlador.cliente.direccion}" a:placeholder="Escribe tu telefono" class="col-12 form-control" required=""></h:inputText>     
+                                </div>
                             </div>
 
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input class="btn-simu-naranja" type="submit" value="Registrarse"/>
+                        <h:commandLink action="#{clienteControlador.registrarCliente()}" value="Registrarse" class="btn-simu-naranja"/>
                         <input type="reset" class="btn-simu-naranja" value="Limpiar campos" />
                     </div>
-                </form>
+                </h:form>
             </div>
         </div>
     </div>
