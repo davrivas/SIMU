@@ -120,9 +120,9 @@ public class Mail {
         rh += "</div>";
         rh += "<div style=\"padding: 10px;\">";
         rh += html; // Es el cuerpo que se inserta
+        rh += "<p style=\"margin-top: 25px;\"><strong>Atentamente</strong>";
+        rh += "Equipo de SIMU</p>";
         rh += "</div>";
-        rh += "<p style=\"margin-top: 25px;\"><strong>Atentamente</strong></p>";
-        rh += "Equipo de SIMU";
         rh += "</div>";
 
         return rh;
