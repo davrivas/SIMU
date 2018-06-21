@@ -74,6 +74,7 @@ public class ExportControlador implements Serializable {
             os.close();
             fc.responseComplete();
         } catch (IOException | JRException e) {
+            e.printStackTrace();
         }
     
     }
