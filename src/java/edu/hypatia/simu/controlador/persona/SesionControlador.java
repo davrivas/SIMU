@@ -156,4 +156,12 @@ public class SesionControlador implements Serializable {
     public void changeLanguage(String lang) {
         idioma = new Locale(lang);
     }
+    
+    public String editar() {
+        try {
+            pfl.edit(persona);
+        } catch (Exception e) {
+        }   
+        return "index.xhtml?faces-redirect=true";
+    }
 }

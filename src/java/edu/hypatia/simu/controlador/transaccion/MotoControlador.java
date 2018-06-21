@@ -92,13 +92,12 @@ public class MotoControlador implements Serializable {
             mfl.edit(motoSeleccionada);
             motos = null;
         } catch (Exception e) {
-        }
-        motoSeleccionada = null;
+        }   
         return "listarMoto.xhtml?faces-redirect=true";
     }
 
     /*REGISTRAR*/
-    public String seleccionar() {
+    public String seleccionar() {       
         return "registrar.xhtml?faces-redirect=true";
     }
 
@@ -115,8 +114,8 @@ public class MotoControlador implements Serializable {
     }
 
     public String registrar() {
-        moto.setEstadoMoto(emfl.find(5)); // 5 es disponible
         mfl.create(moto);
+        motoSeleccionada = null;
         return "listarMoto.xhtml?faces-redirect=true";
     }
 
