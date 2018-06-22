@@ -92,7 +92,6 @@ public class ReparacionClienteControlador implements Serializable {
 
         // Para el mecánico
         destinatario = reparacionAgendada.getMecanico().getPersona().getEmail();
-        asunto = "Reparación programada";
         cuerpoHTML = "<h1>Hola " + nombreMecanico + "</h1>"
                 + "El cliente " + nombreCliente + " ha programado una reparacion "
                 + "para la moto con placa " + placaMoto + "<br>"

@@ -45,11 +45,13 @@
                 <f:facet name="header">Acciones</f:facet>
                 <h:commandLink actionListener="#{reparacionControlador.seleccionarReparacion(r)}" class="btn btn-simu-naranja" a:data-toggle="modal" a:data-target="#modalRevisar">
                     <f:ajax render=":modalRevisarContenido"/>
-                    <span class="fa fa-pencil"></span>
+                    <span class="fa fa-check"></span>
                 </h:commandLink>
             </h:column>
         </h:dataTable>
+    </ui:define>
 
+    <ui:define name="contenido2">
         <h2>Reparaciones revisadas</h2>
 
         <h:dataTable value="#{reparacionControlador.reparacionesRevisadas}" var="r" class="table table-striped table-responsive">
@@ -90,9 +92,7 @@
                 <h:outputText value="#{reparacionControlador.getCalificacionReparacion(r)}" escape="false"/>
             </h:column>
         </h:dataTable>
-    </ui:define>
-
-    <ui:define name="contenido2">
+        
         <ui:include src="/WEB-INF/templates/mecanico/modales/revisar.xhtml"/>
     </ui:define>
 </ui:composition>

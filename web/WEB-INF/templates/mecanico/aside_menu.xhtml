@@ -22,11 +22,9 @@
                             <li><a href="#{p.url}"><i class="#{p.icono} fa-2x mr-2"></i>#{p.permiso}</a></li>
                         </c:forEach>
                         <li>
-                            <h:form id="cerrar-sesion" prependId="false">
-                                <h:commandLink a:data-toggle="modal" a:data-target="#cerrar-sesion">
-                                    <span class="fa fa-sign-out fa-2x mb-5 mr-2"></span>Salir
-                                </h:commandLink>
-                            </h:form>
+                            <a data-toggle="modal" data-target="#cerrar-sesion">
+                                <span class="fa fa-sign-out fa-2x mb-5 mr-2"></span>Salir
+                            </a>
                         </li>
                     </ul>
                 </nav>

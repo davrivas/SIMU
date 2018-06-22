@@ -8,10 +8,8 @@ package edu.hypatia.simu.controlador.reparacion;
 import edu.hypatia.simu.controlador.mail.Mail;
 import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
 import edu.hypatia.simu.modelo.dao.ReparacionFacadeLocal;
-import edu.hypatia.simu.modelo.entidades.Mecanico;
 import edu.hypatia.simu.modelo.entidades.Reparacion;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -40,28 +38,12 @@ public class ReparacionControlador implements Serializable {
     public ReparacionControlador() {
     }
 
-    public List<Reparacion> getReparacionesSinRevisar() {
-        reparacionesSinRevisar = new ArrayList<>();
-        
-        for (Reparacion r : rfl.reparacionesDelMecanico(sc.getPersona().getMecanico())) {
-            if (r.getDescripcion() == null) {
-                reparacionesSinRevisar.add(r);
-            }
-        }
-        
-        return reparacionesSinRevisar;
+    public List<Reparacion> getReparacionesSinRevisar() {        
+        return rfl.reparacionesSinRevisar(sc.getPersona().getMecanico());
     }
 
     public List<Reparacion> getReparacionesRevisadas() {
-        reparacionesRevisadas = new ArrayList<>();
-        
-        for (Reparacion r : rfl.reparacionesDelMecanico(sc.getPersona().getMecanico())) {
-            if (r.getDescripcion() != null) {
-                reparacionesRevisadas.add(r);
-            }
-        }
-        
-        return reparacionesRevisadas;
+        return rfl.reparacionesRevisadas(sc.getPersona().getMecanico());
     }
 
     public Reparacion getReparacionSeleccionada() {
@@ -77,6 +59,7 @@ public class ReparacionControlador implements Serializable {
     }
 
     public String revisarReparacion() {
+        System.out.println(reparacionSeleccionada.getDescripcion());
         rfl.edit(reparacionSeleccionada);
         
         String nombreCliente = reparacionSeleccionada.getMoto().getCliente().getPersona().getNombre() + " " + reparacionSeleccionada.getMoto().getCliente().getPersona().getApellido();
