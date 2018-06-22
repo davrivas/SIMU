@@ -3,30 +3,32 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <footer id="contacto" class="pie-pagina row contenedor container-fluid mt-0 d-flex justify-content-between">
-        <div class="col-6">
+    <footer class="pie-pagina row contenedor container-fluid mt-0 d-flex justify-content-between">
+        <div id="contacto" class="col-6">
             <div class="col-12"><strong>Dirección:</strong> Carrera 80 No. 42 C 62, Bogotá D.C.</div>
             <div class="col-12"><strong>Teléfono:</strong> 3456545</div>
             <div class="col-12"><strong>Celular:</strong> 3204900056</div>
         </div>
 
         <div class="row col-4">
-            <div class="col-4">
-                <a href="https://www.facebook.com/motoaventurajr" target="_blank" id="facebook" class="icon-red d-flex justify-content-center align-items-center fa fa-facebook ml-1 mr-1"></a>
-            </div>
-            <div class="col-4">
-                <a href="https://twitter.com/JDMOTOSTORE" target="_blank" id="twitter" class="icon-red d-flex justify-content-center align-items-center fa fa-twitter ml-1 mr-1"></a>
-            </div>
-            <div class="col-4">
-                <a href="tel:+573204900056" target="_blank" id="whatsapp" class="icon-red d-flex justify-content-center align-items-center fa fa-whatsapp ml-1 mr-1"></a>
-            </div>
+            <ul class="row">
+                <li class="icon-red d-flex justify-content-center align-items-center" id="facebook"><a href="https://www.facebook.com/motoaventurajr" target="_blank" class="fa fa-facebook ml-1 mr-1"></a></li>
+                <li class="icon-red d-flex justify-content-center align-items-center" id="twitter"><a href="https://twitter.com/JDMOTOSTORE" target="_blank" class="fa fa-twitter ml-1 mr-1"></a></li>
+                <li class="icon-red d-flex justify-content-center align-items-center" id="whatsapp"><a href="tel:+573204900056" target="_blank" class="fa fa-whatsapp ml-1 mr-1"></a></li>
+            </ul>
         </div>
 
         <div class="col-2">
-            <select class="select-simu" name="idioma" id="idioma">
-                <option value="espanol">Español</option>
-                <option value="english">English</option>
-            </select> 
+            Idioma
+            
+            <h:form class="row" prependId="false">
+                <h:commandLink action="#{sesionControlador.changeLanguage('es')}" class="mr-2">
+                    <img src="#{request.contextPath}/resources/img/espanol.png" alt="Español" width="50px" height="auto"/>
+                </h:commandLink>
+                <h:commandLink action="#{sesionControlador.changeLanguage('en')}">
+                    <img src="#{request.contextPath}/resources/img/english.jpg" alt="English" width="50px" height="auto"/>
+                </h:commandLink>
+            </h:form>
         </div>              
     </footer>
 </ui:composition>
