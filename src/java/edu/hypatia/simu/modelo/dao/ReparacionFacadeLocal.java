@@ -5,6 +5,7 @@
  */
 package edu.hypatia.simu.modelo.dao;
 
+import edu.hypatia.simu.modelo.entidades.Cliente;
 import edu.hypatia.simu.modelo.entidades.Mecanico;
 import edu.hypatia.simu.modelo.entidades.Reparacion;
 import java.util.List;
@@ -35,4 +36,7 @@ public interface ReparacionFacadeLocal {
     
     List<Reparacion> reparacionesRevisadas(Mecanico mecanico);
     
+    List<Reparacion> reparacionesSinCalificar(Cliente cliente);
+    
+    List<Reparacion> reparacionesCalificadas(Cliente cliente);
 }

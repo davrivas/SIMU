@@ -15,84 +15,91 @@
     </ui:define>
 
     <ui:define name="contenido1">
-        <h2>Reparaciones a revisar</h2>
+        <h2 class="mt-2">Reparaciones a revisar</h2>
+        
+        <h:panelGroup rendered="#{empty reparacionControlador.reparacionesSinRevisar}">
+            <p class="text-center"><i>No hay reparaciones a revisar</i></p>
+        </h:panelGroup>
 
-        <h:dataTable value="#{reparacionControlador.reparacionesSinRevisar}" var="r" class="table table-striped table-responsive">
-            <h:column>
-                <f:facet name="header">Fecha y hora</f:facet>
-                <h:outputText value="#{r.fecha}">
-                    <f:convertDateTime pattern="yyyy/MM/dd " />
-                </h:outputText>
-                <h:outputText value="#{r.hora}">
-                    <f:convertDateTime pattern="HH:mm" />
-                </h:outputText>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Placa de la moto</f:facet>
-                <h:outputText value="#{r.moto.placa}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nombre del cliente</f:facet>
-                <h:outputText value="#{r.moto.cliente.persona.nombre} #{r.moto.cliente.persona.apellido}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo(s) de servicio reparación</f:facet>
-                <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
-                    #{tsr.servicio}<br/>
-                </ui:repeat>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Acciones</f:facet>
-                <h:commandLink actionListener="#{reparacionControlador.seleccionarReparacion(r)}" class="btn btn-simu-naranja" a:data-toggle="modal" a:data-target="#modalRevisar">
-                    <f:ajax render=":modalRevisarContenido"/>
-                    <span class="fa fa-check"></span>
-                </h:commandLink>
-            </h:column>
-        </h:dataTable>
+        <h:panelGroup rendered="#{not empty reparacionControlador.reparacionesSinRevisar}">
+            <h:dataTable value="#{reparacionControlador.reparacionesSinRevisar}" var="r" class="table table-striped table-responsive">
+                <h:column>
+                    <f:facet name="header">Fecha y hora</f:facet>
+                    <h:outputText value="#{r.fecha}">
+                        <f:convertDateTime pattern="yyyy/MM/dd " />
+                    </h:outputText>
+                    <h:outputText value="#{r.hora}">
+                        <f:convertDateTime pattern="HH:mm" />
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Placa de la moto</f:facet>
+                    <h:outputText value="#{r.moto.placa}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nombre del cliente</f:facet>
+                    <h:outputText value="#{r.moto.cliente.persona.nombre} #{r.moto.cliente.persona.apellido}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Tipo(s) de servicio reparación</f:facet>
+                    <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
+                        #{tsr.servicio}<br/>
+                    </ui:repeat>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Acciones</f:facet>
+                    <h:commandLink actionListener="#{reparacionControlador.seleccionarReparacion(r)}" class="btn btn-simu-naranja" a:data-toggle="modal" a:data-target="#modalRevisar">
+                        <f:ajax render=":modalRevisarContenido"/>
+                        <span class="fa fa-check"></span>
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+            <ui:include src="/WEB-INF/templates/mecanico/modales/revisar.xhtml"/>
+        </h:panelGroup>
     </ui:define>
 
     <ui:define name="contenido2">
-        <h2>Reparaciones revisadas</h2>
+        <h:panelGroup rendered="#{not empty reparacionControlador.reparacionesRevisadas}">
+            <h2>Reparaciones revisadas</h2>
 
-        <h:dataTable value="#{reparacionControlador.reparacionesRevisadas}" var="r" class="table table-striped table-responsive">
-            <h:column>
-                <f:facet name="header">Fecha y hora</f:facet>
-                <h:outputText value="#{r.fecha}">
-                    <f:convertDateTime pattern="yyyy/MM/dd " />
-                </h:outputText>
-                <h:outputText value="#{r.hora}">
-                    <f:convertDateTime pattern="HH:mm" />
-                </h:outputText>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Placa de la moto</f:facet>
-                <h:outputText value="#{r.moto.placa}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nombre del cliente</f:facet>
-                <h:outputText value="#{r.moto.cliente.persona.nombre} #{r.moto.cliente.persona.apellido}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo(s) de servicio reparación</f:facet>
-                <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
-                    #{tsr.servicio}<br/>
-                </ui:repeat>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Descripción</f:facet>
-                <h:panelGroup rendered="#{empty r.descripcion}">
-                    <em>Pendiente por revisar</em>
-                </h:panelGroup>
-                <h:panelGroup rendered="#{not empty r.descripcion}">
-                    <h:outputText value="#{r.descripcion}"/>
-                </h:panelGroup>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Calificación</f:facet>
-                <h:outputText value="#{reparacionControlador.getCalificacionReparacion(r)}" escape="false"/>
-            </h:column>
-        </h:dataTable>
-        
-        <ui:include src="/WEB-INF/templates/mecanico/modales/revisar.xhtml"/>
+            <h:dataTable value="#{reparacionControlador.reparacionesRevisadas}" var="r" class="table table-striped table-responsive">
+                <h:column>
+                    <f:facet name="header">Fecha y hora</f:facet>
+                    <h:outputText value="#{r.fecha}">
+                        <f:convertDateTime pattern="yyyy/MM/dd " />
+                    </h:outputText>
+                    <h:outputText value="#{r.hora}">
+                        <f:convertDateTime pattern="HH:mm" />
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Placa de la moto</f:facet>
+                    <h:outputText value="#{r.moto.placa}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nombre del cliente</f:facet>
+                    <h:outputText value="#{r.moto.cliente.persona.nombre} #{r.moto.cliente.persona.apellido}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Tipo(s) de servicio reparación</f:facet>
+                    <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
+                        #{tsr.servicio}<br/>
+                    </ui:repeat>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Descripción</f:facet>
+                    <h:panelGroup rendered="#{empty r.descripcion}">
+                        <em>Pendiente por revisar</em>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{not empty r.descripcion}">
+                        <h:outputText value="#{r.descripcion}"/>
+                    </h:panelGroup>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Calificación</f:facet>
+                    <h:outputText value="#{reparacionControlador.getCalificacionReparacion(r)}" escape="false"/>
+                </h:column>
+            </h:dataTable>
+        </h:panelGroup>
     </ui:define>
 </ui:composition>
