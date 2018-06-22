@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <div class="modal fade" id="sincal" tabindex="-1" role="dialog" aria-labelledby="agenda" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content contenido-modal">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Reparaciones sin calificar</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h:panelGroup rendered="#{not empty reparacionClienteControlador.reparacionesSinCalificar}">
+                        <h:form prependId="false">
+                            <ui:repeat value="#{reparacionClienteControlador.motoSeleccionada.reparacionList}" var="r">
+                                <b>Fecha y hora: </b>
+                                <h:outputText value="#{r.fecha}">
+                                    <f:convertDateTime pattern="yyyy/MM/dd "/>
+                                </h:outputText>
+                                <h:outputText value="#{r.hora}">
+                                    <f:convertDateTime pattern="HH:mm"/>
+                                </h:outputText>
+                                <br/>
+                                <b>Mecánico: </b>#{r.mecanico.persona.nombre} #{r.mecanico.persona.apellido}<br/>
+                                <b>Calificación: </b><h:outputText value="#{reparacionControlador.getCalificacionReparacion(r)}" escape="false"/><br/>
+                                <b>Tipo de servicio reparación:</b><br/>
+                                <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
+                                    - #{tsr.servicio}<br/>
+                                </ui:repeat>
+                                <br/>
+                                <b>Descripción:</b> #{r.descripcion}<br/><br/>
+                                
+                                <h:commandLink actionListener="#{reparacionClienteControlador.seleccionarReparacion(r)}" a:data-toggle="modal" a:data-target="#calificar-modal">
+                                    <f:ajax render=":modalCalificarContenido"/>
+                                    <span class="fa fa-star"></span> Calificar
+                                </h:commandLink>
+                            </ui:repeat>
+                        </h:form>
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{empty reparacionClienteControlador.reparacionesSinCalificar}">
+                        <p class="text-center"><i>No hay reparaciones sin calificar</i></p>
+                    </h:panelGroup>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-simu-naranja m-2" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ui:composition>
+

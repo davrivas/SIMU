@@ -33,7 +33,8 @@ public class ReparacionClienteControlador implements Serializable {
     private ReparacionFacadeLocal rfl;
     @Inject
     private SesionControlador sc;
-    private Moto historialMoto = new Moto();
+    private Moto motoSeleccionada = new Moto();
+    private Reparacion reparacionSeleccionada = new Reparacion();
     private List<Reparacion> reparacionesSinCalificar;
     private List<Reparacion> reparacionesCalificadas;
     private Reparacion reparacionAgendada = new Reparacion();
@@ -54,12 +55,20 @@ public class ReparacionClienteControlador implements Serializable {
         return rfl.reparacionesCalificadas(sc.getPersona().getCliente());
     }
 
-    public Moto getHistorialMoto() {
-        return historialMoto;
+    public Moto getMotoSeleccionada() {
+        return motoSeleccionada;
     }
 
-    public void setHistorialMoto(Moto historialMoto) {
-        this.historialMoto = historialMoto;
+    public void setMotoSeleccionada(Moto motoSeleccionada) {
+        this.motoSeleccionada = motoSeleccionada;
+    }
+
+    public Reparacion getReparacionSeleccionada() {
+        return reparacionSeleccionada;
+    }
+
+    public void setReparacionSeleccionada(Reparacion reparacionSeleccionada) {
+        this.reparacionSeleccionada = reparacionSeleccionada;
     }
 
     public Reparacion getReparacionAgendada() {
@@ -73,9 +82,13 @@ public class ReparacionClienteControlador implements Serializable {
     public String getHoyString() {
         return hoyString;
     }
+
+    public void seleccionarMoto(Moto m) {
+        motoSeleccionada = m;
+    }
     
-    public void mostrarHistorial(Moto m) {
-        historialMoto = m;
+    public void seleccionarReparacion(Reparacion r) {
+        reparacionSeleccionada = r;
     }
 
     public String agendarCita() {
@@ -83,10 +96,10 @@ public class ReparacionClienteControlador implements Serializable {
         String fecha = formatoFecha.format(reparacionAgendada.getFecha());
         DateFormat formatoHora = new SimpleDateFormat("HH:mm");
         String hora = formatoHora.format(reparacionAgendada.getHora());
-        
+
         List<TipoServicioReparacion> servicios = reparacionAgendada.getTipoServicioReparacionList();
-        
-        if (servicios != null || !servicios.isEmpty()) {
+
+        if (servicios != null) {
             rfl.create(reparacionAgendada);
 
             // Enviar mail
@@ -120,6 +133,28 @@ public class ReparacionClienteControlador implements Serializable {
 
             reparacionAgendada = new Reparacion();
         }
+
+        return "";
+    }
+
+    public String calificar() {
+        rfl.edit(reparacionSeleccionada);
+
+        // Enviar mail
+        String nombreCliente = sc.getPersona().getNombre() + " " + sc.getPersona().getApellido();
+        String nombreMecanico = reparacionAgendada.getMecanico().getPersona().getNombre() + " " + reparacionAgendada.getMecanico().getPersona().getApellido();
+        int calif = reparacionAgendada.getCalificacion();
+
+        // Para el cliente
+        String asunto = "Reparación calificada";
+        String destinatario = reparacionAgendada.getMecanico().getPersona().getEmail();
+        String cuerpoHTML = "<h1>Hola " + nombreMecanico + "</h1>"
+                + "El cliente " + nombreCliente + " ha calificado una reparación con " + calif
+                + " de 5.";
+        Mail.sendMail(destinatario, asunto, cuerpoHTML);
+
+        reparacionSeleccionada = new Reparacion();
+
         return "";
     }
 }

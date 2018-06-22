@@ -15,46 +15,38 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p><strong>Placa:</strong> #{reparacionClienteControlador.historialMoto.placa}</p>
+                    <p><strong>Placa:</strong> #{reparacionClienteControlador.motoSeleccionada.placa}</p>
 
-                    <h:panelGroup rendered="#{not empty reparacionClienteControlador.historialMoto.reparacionList}">
-                        <h:dataTable class="table table-striped table-responsive" value="#{reparacionClienteControlador.historialMoto.reparacionList}" var="r">
-                            <h:column>
-                                <f:facet name="header">Fecha y hora</f:facet>
-                                <h:outputText value="#{r.fecha}">
-                                    <f:convertDateTime pattern="yyyy/MM/dd "/>
-                                </h:outputText>
-                                <h:outputText value="#{r.hora}">
-                                    <f:convertDateTime pattern="HH:mm"/>
-                                </h:outputText>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Mecánico</f:facet>
-                                <h:outputText value="#{r.mecanico.persona.nombre} #{r.mecanico.persona.apellido}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Calificación</f:facet>
-                                <h:outputText value="#{reparacionControlador.getCalificacionReparacion(r)}" escape="false"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Descripción</f:facet>
-                                <h:panelGroup rendered="#{empty r.descripcion}">
-                                    <em>Pendiente por revisar</em>
-                                </h:panelGroup>
-                                <h:panelGroup rendered="#{not empty r.descripcion}">
-                                    <h:outputText value="#{r.descripcion}"/>
-                                </h:panelGroup>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Tipo de servicio reparación</f:facet>
-                                <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
-                                    #{tsr.servicio}<br/>
-                                </ui:repeat>
-                            </h:column>
-                        </h:dataTable>
+                    <h:panelGroup rendered="#{not empty reparacionClienteControlador.motoSeleccionada.reparacionList}">
+                        <ui:repeat value="#{reparacionClienteControlador.motoSeleccionada.reparacionList}" var="r">
+                            <b>Fecha y hora: </b>
+                            <h:outputText value="#{r.fecha}">
+                                <f:convertDateTime pattern="yyyy/MM/dd "/>
+                            </h:outputText>
+                            <h:outputText value="#{r.hora}">
+                                <f:convertDateTime pattern="HH:mm"/>
+                            </h:outputText>
+                            <br/>
+                            <b>Mecánico: </b>#{r.mecanico.persona.nombre} #{r.mecanico.persona.apellido}<br/>
+                            <b>Calificación: </b><h:outputText value="#{reparacionControlador.getCalificacionReparacion(r)}" escape="false"/><br/>
+                            <b>Descripción: </b>
+                            <h:panelGroup rendered="#{empty r.descripcion}">
+                                <em>Pendiente por revisar</em>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{not empty r.descripcion}">
+                                <h:outputText value="#{r.descripcion}"/>
+                            </h:panelGroup>
+                            <br/>
+                            <b>Tipo de servicio reparación:</b><br/>
+                            <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
+                                - #{tsr.servicio}<br/>
+                            </ui:repeat>
+
+                            <hr style="width:100%; border: 1px solid #fff" class="mt-2 mb-2"/>
+                        </ui:repeat>
                     </h:panelGroup>
 
-                    <h:panelGroup rendered="#{empty reparacionClienteControlador.historialMoto.reparacionList}">
+                    <h:panelGroup rendered="#{empty reparacionClienteControlador.motoSeleccionada.reparacionList}">
                         <p class="text-center"><i>No hay reparaciones para esta moto</i></p>
                     </h:panelGroup>
                 </div>

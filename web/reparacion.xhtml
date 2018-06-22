@@ -87,11 +87,11 @@
                                     <div class="col d-flex justify-content-start">
                                         <h2>Mis motos</h2>
                                     </div>
-                                    <div class="col d-flex justify-content-end">
-                                        <button class="btn-simu-naranja" type="button" data-toggle="modal" data-target="#agregar-moto">
-                                            <span class="fa fa-plus"></span> Agregar Moto
-                                        </button>
-                                    </div>
+                                    <!--                                    <div class="col d-flex justify-content-end">
+                                                                            <button class="btn-simu-naranja" type="button" data-toggle="modal" data-target="#agregar-moto">
+                                                                                <span class="fa fa-plus"></span> Agregar Moto
+                                                                            </button>
+                                                                        </div>-->
                                 </div>
 
                                 <h:dataTable value="#{sesionControlador.persona.cliente.motoList}" class="table table-striped table-responsive" var="m">
@@ -121,7 +121,7 @@
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">Revisar historial</f:facet>
-                                        <h:commandLink class="btn-simu-naranja btn-block mt-3 d-flex justify-content-center align-items-center" actionListener="#{reparacionClienteControlador.mostrarHistorial(m)}" a:data-toggle="modal" a:data-target="#historial">
+                                        <h:commandLink class="btn-simu-naranja btn-block mt-3 d-flex justify-content-center align-items-center" actionListener="#{reparacionClienteControlador.seleccionarMoto(m)}" a:data-toggle="modal" a:data-target="#historial">
                                             <f:ajax render=":contenidoModalHistorial"/>
                                             <span class="fa fa-history"></span>
                                         </h:commandLink>
@@ -130,22 +130,16 @@
                             </div>
 
                             <div class="col-12 col-lg-4" style="padding: 20px;">
-                                <h2>Agendar cita</h2>
-
                                 <button class="btn-simu-naranja btn-block mt-3 mb-3" id="agendar" type="button" data-toggle="modal" data-target="#agendar-cita">
                                     Agendar cita
                                 </button>
 
-                                <h2>Reparaciones por calificar (#{reparacionClienteControlador.reparacionesSinCalificar.size()})</h2>
-
                                 <button class="btn-simu-naranja btn-block mt-3 mb-3" type="button" data-toggle="modal" data-target="#sincal">
-                                    Revisar
+                                    Reparaciones por calificar (#{reparacionClienteControlador.reparacionesSinCalificar.size()})
                                 </button>
 
-                                <h2>Reparaciones calificadas (#{reparacionClienteControlador.reparacionesCalificadas.size()})</h2>
-
                                 <button class="btn-simu-naranja btn-block mt-3 mb-3" type="button" data-toggle="modal" data-target="#concal">
-                                    Revisar
+                                    Reparaciones calificadas (#{reparacionClienteControlador.reparacionesCalificadas.size()})
                                 </button>
                             </div>
                         </div>
@@ -156,11 +150,19 @@
             <ui:include src="/WEB-INF/templates/cliente/footer.xhtml"/>
         </div>
 
-        <ui:include src="/WEB-INF/templates/iniciarsesion.xhtml"/>
-        <ui:include src="/WEB-INF/templates/cerrarsesion.xhtml"/>
-        <ui:include src="/WEB-INF/templates/cliente/modales/registrarse.xhtml" />
-        <ui:include src="/WEB-INF/templates/cliente/modales/agendar.xhtml"/>
-        <ui:include src="/WEB-INF/templates/cliente/modales/historial.xhtml"/>
+        <h:panelGroup rendered="#{empty sesionControlador.persona}">
+            <ui:include src="/WEB-INF/templates/iniciarsesion.xhtml"/>
+            <ui:include src="/WEB-INF/templates/cerrarsesion.xhtml"/>
+            <ui:include src="/WEB-INF/templates/cliente/modales/registrarse.xhtml" />
+        </h:panelGroup>
+
+        <h:panelGroup rendered="#{not empty sesionControlador.persona}">
+            <ui:include src="/WEB-INF/templates/cliente/modales/agendar.xhtml"/>
+            <ui:include src="/WEB-INF/templates/cliente/modales/historial.xhtml"/>
+            <ui:include src="/WEB-INF/templates/cliente/modales/sincal.xhtml"/>
+            <ui:include src="/WEB-INF/templates/cliente/modales/concal.xhtml"/>
+            <ui:include src="/WEB-INF/templates/cliente/modales/calificar.xhtml"/>
+        </h:panelGroup>
 
         <ui:include src="/WEB-INF/templates/scripts.xhtml"/>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

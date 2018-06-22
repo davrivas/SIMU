@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <div class="modal fade" id="calificar-modal" tabindex="-1" role="dialog" aria-labelledby="modalCalificarTitulo" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <h:panelGroup id="modalCalificarContenido" class="modal-content contenido-modal" layout="block">
+                <h:form prependId="false">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="modalCalificarTitulo" style="color:#fff;">Revisar reparación</h3>
+                        <button type="button" class="cerrar-modal close" data-dismiss="modal" aria-label="Close">
+                            <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h3 style="text-align:left;color:#fff;">Datos</h3>
+
+                        <div style="color: #fff; text-align: left;">
+                            <b>Fecha: </b> 
+                            <h:outputText value="#{reparacionClienteControlador.reparacionSeleccionada.fecha}">
+                                <f:convertDateTime pattern="yyyy/MM/dd " />
+                            </h:outputText>
+                            <h:outputText value="#{reparacionClienteControlador.reparacionSeleccionada.hora}">
+                                <f:convertDateTime pattern="HH:mm" />
+                            </h:outputText>
+                            <br/>
+                            <b>Placa de la moto:</b> #{reparacionClienteControlador.reparacionSeleccionada.moto.placa}<br/>
+                            <b>Nombre del cliente:</b> #{reparacionClienteControlador.reparacionSeleccionada.moto.cliente.persona.nombre} #{reparacionControlador.reparacionSeleccionada.moto.cliente.persona.apellido}<br/>
+                            <b>Tipo(s) de servicio reparación:</b><br/>
+                            <ui:repeat value="#{reparacionControlador.reparacionSeleccionada.tipoServicioReparacionList}" var="tsr">
+                                <li style="color: #fff;">#{tsr.servicio}</li>
+                            </ui:repeat>
+                            <b>Descripción:</b> #{reparacionControlador.reparacionSeleccionada.descripcion}
+                        </div>
+                        <div class="row mt-2">
+                            <div class="mr-2">
+                                <h:outputLabel  for="calificacion" value="Calificación" style="color:#fff;"/>
+                            </div>
+                            <div class="ml-2">
+                                <h:selectOneRadio id="calificacion" a:name="calificacion" value="#{reparacionControlador.reparacionSeleccionada.calificacion}" a:required="">
+                                    <f:selectItem itemValue="1" itemLabel="1"/>
+                                    <f:selectItem itemValue="2" itemLabel="2"/>
+                                    <f:selectItem itemValue="3" itemLabel="3"/>
+                                    <f:selectItem itemValue="4" itemLabel="4"/>
+                                    <f:selectItem itemValue="5" itemLabel="5"/>
+                                </h:selectOneRadio>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <h:commandButton id="calificar" a:name="calificar" a:type="submit" value="Calificar" action="#{reparacionClienteControlador.calificar()}" class="btn-simu-naranja mr-2"/>
+                        <button type="button" class="btn-simu-naranja" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </h:form>
+            </h:panelGroup>
+        </div>
+    </div>
+</ui:composition>
