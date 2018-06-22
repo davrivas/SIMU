@@ -15,9 +15,11 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import edu.hypatia.simu.modelo.dao.ClienteFacadeLocal;
 import edu.hypatia.simu.modelo.dao.EstadoMotoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.MarcaProductoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.MotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.EstadoMoto;
+import edu.hypatia.simu.modelo.entidades.MarcaProducto;
 
 /**
  *
@@ -26,6 +28,9 @@ import edu.hypatia.simu.modelo.entidades.EstadoMoto;
 @Named(value = "motoControlador")
 @SessionScoped
 public class MotoControlador implements Serializable {
+
+     @EJB
+     private MarcaProductoFacadeLocal mpl;
 
     @EJB
     private MotoFacadeLocal mfl;
@@ -44,6 +49,32 @@ public class MotoControlador implements Serializable {
     private Moto motoSeleccionada;
 
     private Moto moto = new Moto();
+    
+    private Producto producto = new Producto();
+    
+     private MarcaProducto marcaProducto = new MarcaProducto();
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public MarcaProducto getMarcaProducto() {
+        return marcaProducto;
+    }
+
+    public void setMarcaProducto(MarcaProducto marcaProducto) {
+        this.marcaProducto = marcaProducto;
+    }
+
+ 
+
+  
+
+   
 
     public MotoControlador() {
     }
@@ -101,6 +132,11 @@ public class MotoControlador implements Serializable {
         return "registrar.xhtml?faces-redirect=true";
     }
 
+    public List<MarcaProducto> listarMarcaMoto(){
+    return mpl.listarMarcaMoto();
+    }
+    
+    
     public List<Producto> listarProducto() {
         return pfl.findAll();
     }
@@ -118,5 +154,14 @@ public class MotoControlador implements Serializable {
         motoSeleccionada = null;
         return "listarMoto.xhtml?faces-redirect=true";
     }
-
+    
+    public void registrarMotoOfrecida(){
+     producto.setMarcaProducto(marcaProducto);
+     pfl.create(producto);
+    moto.setEstadoMoto(emfl.find(2));
+    moto.setProducto(producto);
+    mfl.create(moto);
+    }
+    
 }
+    
