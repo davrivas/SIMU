@@ -70,8 +70,7 @@ public class ReparacionControlador implements Serializable {
         String asunto = "Reparación revisada";
         String cuerpoHTML = "<h1>Hola " + nombreCliente + "</h1>"
                 + "El mecánico " + nombreMecanico + " ha revisado la reparacion para tu moto con placa " + placaMoto + "<br>"
-                + "Este fue el comentario"
-                + "<q>" + reparacionSeleccionada.getDescripcion() +"</q>";
+                + "Este fue el comentario: <q>" + reparacionSeleccionada.getDescripcion() +"</q>";
         Mail.sendMail(destinatario, asunto, cuerpoHTML);
         
         reparacionSeleccionada = new Reparacion();

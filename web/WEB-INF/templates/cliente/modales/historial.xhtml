@@ -28,7 +28,7 @@
                             </h:outputText>
                             <br/>
                             <b>Mecánico: </b>#{r.mecanico.persona.nombre} #{r.mecanico.persona.apellido}<br/>
-                            <b>Calificación: </b><h:outputText value="#{reparacionControlador.getCalificacionReparacion(r)}" escape="false"/><br/>
+                            <b>Calificación: </b><h:outputText value="#{reparacionClienteControlador.getCalificacionReparacion(r)}" escape="false"/><br/>
                             <b>Descripción: </b>
                             <h:panelGroup rendered="#{empty r.descripcion}">
                                 <em>Pendiente por revisar</em>

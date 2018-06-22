@@ -15,7 +15,9 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -87,19 +89,35 @@ public class ReparacionClienteControlador implements Serializable {
         motoSeleccionada = m;
     }
     
+    public String getCalificacionReparacion(Reparacion r) {
+        if (r.getCalificacion() == null) {
+            return "<em>No has calificado la reparación</em>";
+        }
+        String rta = "";
+        for (int i = 0; i < r.getCalificacion(); i++) {
+            rta += "<span class='fa fa-star' style='color:orange;'></span>";
+        }
+
+        return rta;
+    }
+    
     public void seleccionarReparacion(Reparacion r) {
         reparacionSeleccionada = r;
     }
 
-    public String agendarCita() {
+    public String agendarCita() throws ParseException {
         DateFormat formatoFecha = new SimpleDateFormat("yyyy/MM/dd");
         String fecha = formatoFecha.format(reparacionAgendada.getFecha());
-        DateFormat formatoHora = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
         String hora = formatoHora.format(reparacionAgendada.getHora());
+        Date horaMinima = formatoHora.parse("07:00");
+        Date horaMaxima = formatoHora.parse("19:00");
+        Calendar ayer = Calendar.getInstance();
+        ayer.add(Calendar.DAY_OF_YEAR, -1);
 
         List<TipoServicioReparacion> servicios = reparacionAgendada.getTipoServicioReparacionList();
 
-        if (servicios != null) {
+//        if (servicios != null && reparacionAgendada.getFecha().after(ayer.getTime()) && (reparacionAgendada.getHora().after(horaMinima) && reparacionAgendada.getHora().before(horaMaxima))) {
             rfl.create(reparacionAgendada);
 
             // Enviar mail
@@ -132,7 +150,7 @@ public class ReparacionClienteControlador implements Serializable {
             Mail.sendMail(destinatario, asunto, cuerpoHTML);
 
             reparacionAgendada = new Reparacion();
-        }
+//        }
 
         return "";
     }
@@ -142,15 +160,13 @@ public class ReparacionClienteControlador implements Serializable {
 
         // Enviar mail
         String nombreCliente = sc.getPersona().getNombre() + " " + sc.getPersona().getApellido();
-        String nombreMecanico = reparacionAgendada.getMecanico().getPersona().getNombre() + " " + reparacionAgendada.getMecanico().getPersona().getApellido();
-        int calif = reparacionAgendada.getCalificacion();
+        String nombreMecanico = reparacionSeleccionada.getMecanico().getPersona().getNombre() + " " + reparacionSeleccionada.getMecanico().getPersona().getApellido();
+        int calif = reparacionSeleccionada.getCalificacion();
 
-        // Para el cliente
         String asunto = "Reparación calificada";
-        String destinatario = reparacionAgendada.getMecanico().getPersona().getEmail();
+        String destinatario = reparacionSeleccionada.getMecanico().getPersona().getEmail();
         String cuerpoHTML = "<h1>Hola " + nombreMecanico + "</h1>"
-                + "El cliente " + nombreCliente + " ha calificado una reparación con " + calif
-                + " de 5.";
+                + "El cliente " + nombreCliente + " ha calificado una reparación con " + calif + " de 5.";
         Mail.sendMail(destinatario, asunto, cuerpoHTML);
 
         reparacionSeleccionada = new Reparacion();

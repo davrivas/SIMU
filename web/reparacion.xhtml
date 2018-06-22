@@ -152,11 +152,11 @@
 
         <h:panelGroup rendered="#{empty sesionControlador.persona}">
             <ui:include src="/WEB-INF/templates/iniciarsesion.xhtml"/>
-            <ui:include src="/WEB-INF/templates/cerrarsesion.xhtml"/>
             <ui:include src="/WEB-INF/templates/cliente/modales/registrarse.xhtml" />
         </h:panelGroup>
 
         <h:panelGroup rendered="#{not empty sesionControlador.persona}">
+            <ui:include src="/WEB-INF/templates/cerrarsesion.xhtml"/>
             <ui:include src="/WEB-INF/templates/cliente/modales/agendar.xhtml"/>
             <ui:include src="/WEB-INF/templates/cliente/modales/historial.xhtml"/>
             <ui:include src="/WEB-INF/templates/cliente/modales/sincal.xhtml"/>

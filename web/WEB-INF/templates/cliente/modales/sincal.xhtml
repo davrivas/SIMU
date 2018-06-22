@@ -17,7 +17,7 @@
                 <div class="modal-body">
                     <h:panelGroup rendered="#{not empty reparacionClienteControlador.reparacionesSinCalificar}">
                         <h:form prependId="false">
-                            <ui:repeat value="#{reparacionClienteControlador.motoSeleccionada.reparacionList}" var="r">
+                            <ui:repeat value="#{reparacionClienteControlador.reparacionesSinCalificar}" var="r">
                                 <b>Fecha y hora: </b>
                                 <h:outputText value="#{r.fecha}">
                                     <f:convertDateTime pattern="yyyy/MM/dd "/>
@@ -26,19 +26,20 @@
                                     <f:convertDateTime pattern="HH:mm"/>
                                 </h:outputText>
                                 <br/>
+                                <b>Placa de la moto:</b> #{r.moto.placa}<br/>
                                 <b>Mecánico: </b>#{r.mecanico.persona.nombre} #{r.mecanico.persona.apellido}<br/>
-                                <b>Calificación: </b><h:outputText value="#{reparacionControlador.getCalificacionReparacion(r)}" escape="false"/><br/>
                                 <b>Tipo de servicio reparación:</b><br/>
                                 <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
                                     - #{tsr.servicio}<br/>
                                 </ui:repeat>
-                                <br/>
                                 <b>Descripción:</b> #{r.descripcion}<br/><br/>
                                 
-                                <h:commandLink actionListener="#{reparacionClienteControlador.seleccionarReparacion(r)}" a:data-toggle="modal" a:data-target="#calificar-modal">
+                                <h:commandLink actionListener="#{reparacionClienteControlador.seleccionarReparacion(r)}" a:data-toggle="modal" a:data-target="#calificar-modal" class="btn-simu-naranja">
                                     <f:ajax render=":modalCalificarContenido"/>
                                     <span class="fa fa-star"></span> Calificar
                                 </h:commandLink>
+                                
+                                <hr style="width:100%; border: 1px solid #fff" class="mt-4 mb-2"/>
                             </ui:repeat>
                         </h:form>
                     </h:panelGroup>

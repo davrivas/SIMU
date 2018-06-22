@@ -8,7 +8,7 @@
     <div class="modal fade" id="calificar-modal" tabindex="-1" role="dialog" aria-labelledby="modalCalificarTitulo" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <h:panelGroup id="modalCalificarContenido" class="modal-content contenido-modal" layout="block">
-                <h:form prependId="false">
+                <h:form id="form-calificar" prependId="false">
                     <div class="modal-header">
                         <h3 class="modal-title" id="modalCalificarTitulo" style="color:#fff;">Revisar reparación</h3>
                         <button type="button" class="cerrar-modal close" data-dismiss="modal" aria-label="Close">
@@ -19,33 +19,33 @@
                         <h3 style="text-align:left;color:#fff;">Datos</h3>
 
                         <div style="color: #fff; text-align: left;">
-                            <b>Fecha: </b> 
-                            <h:outputText value="#{reparacionClienteControlador.reparacionSeleccionada.fecha}">
-                                <f:convertDateTime pattern="yyyy/MM/dd " />
-                            </h:outputText>
-                            <h:outputText value="#{reparacionClienteControlador.reparacionSeleccionada.hora}">
-                                <f:convertDateTime pattern="HH:mm" />
-                            </h:outputText>
-                            <br/>
-                            <b>Placa de la moto:</b> #{reparacionClienteControlador.reparacionSeleccionada.moto.placa}<br/>
-                            <b>Nombre del cliente:</b> #{reparacionClienteControlador.reparacionSeleccionada.moto.cliente.persona.nombre} #{reparacionControlador.reparacionSeleccionada.moto.cliente.persona.apellido}<br/>
-                            <b>Tipo(s) de servicio reparación:</b><br/>
-                            <ui:repeat value="#{reparacionControlador.reparacionSeleccionada.tipoServicioReparacionList}" var="tsr">
-                                <li style="color: #fff;">#{tsr.servicio}</li>
-                            </ui:repeat>
-                            <b>Descripción:</b> #{reparacionControlador.reparacionSeleccionada.descripcion}
+                            <b>Fecha y hora: </b>
+                                <h:outputText value="#{reparacionControlador.reparacionSeleccionada.fecha}">
+                                    <f:convertDateTime pattern="yyyy/MM/dd "/>
+                                </h:outputText>
+                                <h:outputText value="#{reparacionControlador.reparacionSeleccionada.hora}">
+                                    <f:convertDateTime pattern="HH:mm"/>
+                                </h:outputText>
+                                <br/>
+                                <b>Placa de la moto:</b> #{reparacionControlador.reparacionSeleccionada.moto.placa}<br/>
+                                <b>Mecánico: </b>#{reparacionControlador.reparacionSeleccionada.mecanico.persona.nombre} #{reparacionControlador.reparacionSeleccionada.mecanico.persona.apellido}<br/>
+                                <b>Tipo de servicio reparación:</b><br/>
+                                <ui:repeat value="#{reparacionControlador.reparacionSeleccionada.tipoServicioReparacionList}" var="tsr">
+                                    - #{tsr.servicio}<br/>
+                                </ui:repeat>
+                                <b>Descripción:</b> #{reparacionControlador.reparacionSeleccionada.descripcion}
                         </div>
                         <div class="row mt-2">
                             <div class="mr-2">
-                                <h:outputLabel  for="calificacion" value="Calificación" style="color:#fff;"/>
+                                <h:outputLabel  id="calificacion-label" a:name="calificacion-label" for="calificacion" value="Calificación" style="color:#fff;"/>
                             </div>
                             <div class="ml-2">
                                 <h:selectOneRadio id="calificacion" a:name="calificacion" value="#{reparacionControlador.reparacionSeleccionada.calificacion}" a:required="">
-                                    <f:selectItem itemValue="1" itemLabel="1"/>
-                                    <f:selectItem itemValue="2" itemLabel="2"/>
-                                    <f:selectItem itemValue="3" itemLabel="3"/>
-                                    <f:selectItem itemValue="4" itemLabel="4"/>
-                                    <f:selectItem itemValue="5" itemLabel="5"/>
+                                    <f:selectItem value="1" itemLabel="1"/>
+                                    <f:selectItem value="2" itemLabel="2" class="ml-1"/>
+                                    <f:selectItem value="3" itemLabel="3" class="ml-1"/>
+                                    <f:selectItem value="4" itemLabel="4" class="ml-1"/>
+                                    <f:selectItem value="5" itemLabel="5" class="ml-1"/>
                                 </h:selectOneRadio>
                             </div>
                         </div>
