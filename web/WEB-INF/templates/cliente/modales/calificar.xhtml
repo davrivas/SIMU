@@ -16,7 +16,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <h3 style="text-align:left;color:#fff;">Datos</h3>
+                        <h3 style="text-align: left; color: #fff;">Datos</h3>
 
                         <div style="color: #fff; text-align: left;">
                             <b>Fecha y hora: </b>
@@ -37,15 +37,15 @@
                         </div>
                         <div class="row mt-2">
                             <div class="mr-2">
-                                <h:outputLabel  id="calificacion-label" a:name="calificacion-label" for="calificacion" value="Calificación" style="color:#fff;"/>
+                                <h:outputLabel for="calificacion" value="Calificación" style="color:#fff;"/>
                             </div>
                             <div class="ml-2">
-                                <h:selectOneRadio id="calificacion" a:name="calificacion" value="#{reparacionControlador.reparacionSeleccionada.calificacion}" a:required="">
-                                    <f:selectItem value="1" itemLabel="1"/>
-                                    <f:selectItem value="2" itemLabel="2" class="ml-1"/>
-                                    <f:selectItem value="3" itemLabel="3" class="ml-1"/>
-                                    <f:selectItem value="4" itemLabel="4" class="ml-1"/>
-                                    <f:selectItem value="5" itemLabel="5" class="ml-1"/>
+                                <h:selectOneRadio value="#{reparacionControlador.reparacionSeleccionada.calificacion}" id="calificacion" a:name="calificacion" a:required="">
+                                    <f:selectItem itemValue="1" itemLabel="1" class="ml-1 mr-2"/>
+                                    <f:selectItem itemValue="2" itemLabel="2" class="ml-1 mr-2"/>
+                                    <f:selectItem itemValue="3" itemLabel="3" class="ml-1 mr-2"/>
+                                    <f:selectItem itemValue="4" itemLabel="4" class="ml-1 mr-2"/>
+                                    <f:selectItem itemValue="5" itemLabel="5" class="ml-1 mr-2"/>
                                 </h:selectOneRadio>
                             </div>
                         </div>

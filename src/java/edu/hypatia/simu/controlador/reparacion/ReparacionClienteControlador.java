@@ -156,18 +156,21 @@ public class ReparacionClienteControlador implements Serializable {
     }
 
     public String calificar() {
-        rfl.edit(reparacionSeleccionada);
+//        rfl.edit(reparacionSeleccionada);
+        
+        System.out.println("Calificacion " + reparacionSeleccionada.getCalificacion());
 
         // Enviar mail
-        String nombreCliente = sc.getPersona().getNombre() + " " + sc.getPersona().getApellido();
+//        String nombreCliente = sc.getPersona().getNombre() + " " + sc.getPersona().getApellido();
         String nombreMecanico = reparacionSeleccionada.getMecanico().getPersona().getNombre() + " " + reparacionSeleccionada.getMecanico().getPersona().getApellido();
-        int calif = reparacionSeleccionada.getCalificacion();
-
-        String asunto = "Reparación calificada";
-        String destinatario = reparacionSeleccionada.getMecanico().getPersona().getEmail();
-        String cuerpoHTML = "<h1>Hola " + nombreMecanico + "</h1>"
-                + "El cliente " + nombreCliente + " ha calificado una reparación con " + calif + " de 5.";
-        Mail.sendMail(destinatario, asunto, cuerpoHTML);
+//        int calif = reparacionSeleccionada.getCalificacion();
+System.out.println("mec " + nombreMecanico);
+//
+//        String asunto = "Reparación calificada";
+//        String destinatario = reparacionSeleccionada.getMecanico().getPersona().getEmail();
+//        String cuerpoHTML = "<h1>Hola " + nombreMecanico + "</h1>"
+//                + "El cliente " + nombreCliente + " ha calificado una reparación con " + calif + " de 5.";
+//        Mail.sendMail(destinatario, asunto, cuerpoHTML);
 
         reparacionSeleccionada = new Reparacion();
 
