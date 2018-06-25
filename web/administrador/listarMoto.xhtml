@@ -7,21 +7,29 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-
+    
+    
     <ui:define name="contenido1">
+        <h:form>
+            
+            <ui:include src="/WEB-INF/templates/administrador/modal/registrarMoto.xhtml"></ui:include>
+
+        </h:form>
+
         <section class="p-3 justify-content-around">
             <div class="col-12 principal mt-3 p-3 mt-2">
                 <nav class="navbar navbar-dark">
-                    <h:form>
-                        <h:commandLink action="#{motoControlador.seleccionar()}" class="btn btn-outline-warning" value="Registrar Moto">
+                    <h:form prependId="false">
+                        <h:commandLink class="btn btn-outline-danger" a:data-toggle="modal" a:data-target="#myModal2" value="Registrar">
                             <i class="fa fa-plus"></i>
+                            <f:ajax render=":contentModalRegistrar"/>
                         </h:commandLink>
-                        
+
+
                         <h:commandLink action="#{exportControlador.motosPDF()}" class="btn btn-outline-info ml-3" value="PDF">
                             <i class="fa fa-file-pdf-o"></i>
                         </h:commandLink>
                     </h:form>
-
                     <form class="form-inline">
                         <input class=" form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
                         <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fa fa-search"></i> Search </button>
@@ -29,6 +37,7 @@
                 </nav>
             </div>
         </section>
+
     </ui:define>
 
     <ui:define name="contenido2">
@@ -38,7 +47,7 @@
             <div class="modal-dialog">
 
                 <!-- Modal content-->
-                <h:panelGroup id="contentModalEliminar" layout="block" class="modal-content">
+                <h:panelGroup id="contentModalEliminar" layout="block" class="modal-content contenido-modal">
                     <div class="modal-header">
 
                         <h3 class="modal-title"><strong>Seguro de eliminar la moto:</strong></h3>
@@ -51,7 +60,7 @@
                         <h:form prependId="false">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                             <h:commandLink actionListener="#{motoControlador.eliminar()}"
-                                           class="btn btn-danger" value="Eliminar"/>
+                                           class="btn btn-outline-danger ml-2" value="Eliminar"/>
                         </h:form>
                     </div>
                 </h:panelGroup>
@@ -64,7 +73,7 @@
             <div class="modal-dialog">
 
                 <!-- Modal content-->
-                <h:panelGroup id="contentModalEditar" layout="block" class="modal-content">
+                <h:panelGroup id="contentModalEditar" layout="block" class="modal-content contenido-modal">
                     <h:form id="demo-form2" a:data-parsley-validate="true" class="form-horizontal form-label-left"
                             prependId="false">
                         <div class="modal-header">
@@ -109,11 +118,11 @@
                             <div class="form-group">
                                 <h:outputLabel>Estado Moto</h:outputLabel>
                                 <div class="col-md-10 col-sm-6 col-xs-12 ml-4">
-                                <h:selectOneMenu value="#{motoControlador.moto.estadoMoto}" class="form-control">
-                                    <f:selectItem itemLabel="Seleccione"></f:selectItem>
-                                    <f:selectItems value="#{motoControlador.listarEstadoMoto()}" var="em" itemLabel="#{em.nombreEstado}"></f:selectItems>
-                                </h:selectOneMenu>
-                            
+                                    <h:selectOneMenu value="#{motoControlador.moto.estadoMoto}" class="form-control">
+                                        <f:selectItem itemLabel="Seleccione"></f:selectItem>
+                                        <f:selectItems value="#{motoControlador.listarEstadoMoto()}" var="em" itemLabel="#{em.nombreEstado}"></f:selectItems>
+                                    </h:selectOneMenu>
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -135,7 +144,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                             <h:commandButton action="#{motoControlador.editar()}"
-                                             class="btn btn-outline-warning" value="Editar"></h:commandButton>
+                                             class="btn-simu-naranja ml-2" value="Editar"></h:commandButton>
                         </div>
                     </h:form>
                 </h:panelGroup>
@@ -150,16 +159,15 @@
             <caption>Lista de motos</caption>
             <thead>
                 <tr>
-                    <th>Opciones</th>
-                    <th>Moto</th>
-                    <th>placa</th>
-                    <th>cilindraje</th>
-                    <th>color</th>
-                    <th>modelo</th>
-                    <th>kilometraje</th>
-                    <th>estado de moto</th>
-                    <th>Producto</th>
-                    <th>Cliente</th>
+                    <th><strong>OPCIONES</strong></th>
+                    <th><strong>PLACA</strong></th>
+                    <th><strong>CILINDRAJE</strong></th>
+                    <th><strong>COLOR</strong></th>
+                    <th><strong>MODELO</strong></th>
+                    <th><strong>KILOMETRAJE</strong></th>
+                    <th><strong>ESTADO</strong></th>
+                    <th><strong>MARCA</strong></th>
+                    <th><strong>PRECIO</strong></th>
                 </tr>
             </thead>
             <tbody>
@@ -169,33 +177,34 @@
                     <tr>
                         <td>
                             <h:form>
-                                <h:commandLink actionListener="#{motoControlador.seleccionarMoto(m)}" class="btn btn-outline-danger" a:data-toggle="modal" a:data-target="#myModal">
+                                <h:commandLink actionListener="#{motoControlador.seleccionarMoto(m)}" class="btn btn-outline-danger mr-1" a:data-toggle="modal" a:data-target="#myModal">
                                     <i class="fa fa-trash"></i>
                                     <f:ajax render=":contentModalEliminar"/>
                                 </h:commandLink>
 
-                                <h:commandLink action="#{motoControlador.seleccionarMoto(m)}" class="btn btn-outline-dark" a:data-toggle="modal" a:data-target="#modalEditar">
+                                <h:commandLink action="#{motoControlador.seleccionarMoto(m)}" class="btn-simu-naranja" a:data-toggle="modal" a:data-target="#modalEditar">
                                     <i class="fa fa-edit"></i>
                                     <f:ajax render=":contentModalEditar"/>
                                 </h:commandLink>
 
                             </h:form>
                         </td>
-                        <td>#{m.idMoto}</td>
                         <td>#{m.placa}</td>
                         <td>#{m.cilindraje}</td>
                         <td>#{m.color}</td>
                         <td>#{m.modelo}</td>
                         <td>#{m.kilometraje}</td>
                         <td>#{m.estadoMoto.nombreEstado}</td>
-                        <td>#{m.producto.marcaProducto.marcaProducto}  #{p.referencia}</td>
-                        <td>#{m.cliente.persona.nombre} #{m.cliente.persona.apellido}</td>
+                        <td>#{m.producto.marcaProducto.marcaProducto}  #{m.producto.referencia}</td>
+                        <td>#{m.producto.precio}</td>
                     </tr>
                 </c:forEach>
 
             </tbody>
 
         </table>
+        
+        
     </ui:define>
 
 </ui:composition>

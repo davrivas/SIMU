@@ -5,11 +5,13 @@
  */
 package edu.hypatia.simu.controlador.persona;
 
+import edu.hypatia.simu.modelo.dao.CiudadFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ClienteFacadeLocal;
 import edu.hypatia.simu.modelo.dao.DepartamentoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.PersonaFacadeLocal;
 import edu.hypatia.simu.modelo.dao.RolFacadeLocal;
 import edu.hypatia.simu.modelo.dao.TipoDocumentoFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Ciudad;
 import edu.hypatia.simu.modelo.entidades.Cliente;
 import edu.hypatia.simu.modelo.entidades.Departamento;
 import edu.hypatia.simu.modelo.entidades.Persona;
@@ -40,14 +42,27 @@ public class ClienteControlador implements Serializable {
     private TipoDocumentoFacadeLocal tdfl;
     
     @EJB
+    private CiudadFacadeLocal ciudadfl;
+
+
+    @EJB
     private DepartamentoFacadeLocal dfl;
 
     @EJB
     private RolFacadeLocal rfl;
+    
+    private Cliente clienteSeleccionado;
+    private List<Cliente> clientes;
 
     private Persona persona = new Persona();
     private Cliente cliente = new Cliente();
     private Departamento departamento = new Departamento();
+    
+    /*LISTAR*/
+
+    public List<Cliente> getClientes() {
+        return cfl.findAll();
+    }
 
     public Cliente getCliente() {
         return cliente;
@@ -72,6 +87,10 @@ public class ClienteControlador implements Serializable {
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
     }
+
+    public Cliente getClienteSeleccionado() {
+        return clienteSeleccionado;
+    }
     
     
 
@@ -81,10 +100,47 @@ public class ClienteControlador implements Serializable {
     public List<TipoDocumento> listarTipoDocumento() {
         return tdfl.findAll();
     }
-    
-     public List<Departamento> listarDepartamento() {
+
+    public List<Departamento> listarDepartamento() {
         return dfl.findAll();
     }
+    
+    public List<Ciudad> listarCiudad() {
+        return ciudadfl.findAll();
+    }
+    
+    /*ELIMINAR*/
+    public void seleccionarCliente(Cliente c) {
+        System.out.println("Id:" + c.getIdCliente());
+        cliente= c;       
+        clienteSeleccionado = c;
+    }
+    
+     public String eliminar() {
+        try {
+            System.out.println("Vamos a eliminar el cliente");
+            System.out.println("Id:" + clienteSeleccionado.getIdCliente());
+            cfl.remove(clienteSeleccionado);
+            clientes = null;
+        } catch (Exception e) {
+        }
+        clienteSeleccionado = null;
+        return "listarClientes.xhtml?faces-redirect=true";
+    }
+     
+    /*ACTUALIZAR*/
+    public String editar() {
+        try {
+            System.out.println("Vamos a editar el cliente:");
+            System.out.println("Id:" + clienteSeleccionado.getIdCliente());
+            cfl.edit(clienteSeleccionado);
+            clientes = null;
+        } catch (Exception e) {
+        }
+        return "listarClientes.xhtml?faces-redirect=true";
+    }
+     
+    /*REGISTRAR*/
 
     public String registrarCliente() {
 
@@ -94,7 +150,6 @@ public class ClienteControlador implements Serializable {
         persona.setRol(rol);
         pfl.create(persona);
         cliente.setPersona(persona);
-        
 
         // se llena adicional de cliente
         cfl.create(cliente);
