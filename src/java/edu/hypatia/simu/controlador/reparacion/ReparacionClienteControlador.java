@@ -7,6 +7,8 @@ package edu.hypatia.simu.controlador.reparacion;
 
 import edu.hypatia.simu.controlador.mail.Mail;
 import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
+import edu.hypatia.simu.modelo.dao.EstadoMotoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.MotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ReparacionFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Moto;
 import edu.hypatia.simu.modelo.entidades.Reparacion;
@@ -33,13 +35,23 @@ public class ReparacionClienteControlador implements Serializable {
 
     @EJB
     private ReparacionFacadeLocal rfl;
+    @EJB
+    private MotoFacadeLocal mfl;
+    @EJB
+    private EstadoMotoFacadeLocal efl;
+    
     @Inject
     private SesionControlador sc;
+    
     private Moto motoSeleccionada = new Moto();
+    private Moto motoNueva = new Moto();
+    private List<Moto> motosEnReparacion;
+    
     private Reparacion reparacionSeleccionada = new Reparacion();
     private List<Reparacion> reparacionesSinCalificar;
     private List<Reparacion> reparacionesCalificadas;
     private Reparacion reparacionAgendada = new Reparacion();
+    
     private final DateFormat hoyFormato = new SimpleDateFormat("yyyy-MM-dd");
     private String hoyString = hoyFormato.format(new Date());
 
@@ -63,6 +75,18 @@ public class ReparacionClienteControlador implements Serializable {
 
     public void setMotoSeleccionada(Moto motoSeleccionada) {
         this.motoSeleccionada = motoSeleccionada;
+    }
+
+    public Moto getMotoNueva() {
+        return motoNueva;
+    }
+
+    public void setMotoNueva(Moto motoNueva) {
+        this.motoNueva = motoNueva;
+    }
+
+    public List<Moto> getMotosEnReparacion() {
+        return mfl.motosEnReparacion(sc.getPersona().getCliente());
     }
 
     public Reparacion getReparacionSeleccionada() {
@@ -173,6 +197,13 @@ public class ReparacionClienteControlador implements Serializable {
         rfl.edit(reparacionSeleccionada);
         reparacionSeleccionada = new Reparacion();
 
+        return "";
+    }
+    
+    public String motoNueva() {
+        motoNueva.setCliente(sc.getPersona().getCliente());
+        motoNueva.setEstadoMoto(efl.find(1));
+        mfl.create(motoNueva);
         return "";
     }
 }
