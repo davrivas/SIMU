@@ -15,6 +15,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.sql.DriverManager;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.ejb.EJB;
@@ -33,25 +34,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 @Named(value = "exportControlador")
 @SessionScoped
 public class ExportControlador implements Serializable {
-    
-    @EJB
-    private MotoFacadeLocal mfl;
-    
-    private Moto moto = new Moto();
-
  
-    public ExportControlador() {
-    }
-
-    public Moto getMoto() {
-        return moto;
-    }
-
-    public void setMoto(Moto moto) {
-        this.moto = moto;
-    }
-
-
     
     public void motosPDF() throws Exception{
         
@@ -64,6 +47,7 @@ public class ExportControlador implements Serializable {
             ExternalContext ec = fc.getExternalContext();
             File jasper = new File(ec.getRealPath("/WEB-INF/classes/reportes/moto.jasper"));
             Map<String, Object> params = new HashMap<>();
+           
             JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), params, conexion);
             HttpServletResponse hsr = (HttpServletResponse) ec.getResponse();
             hsr.addHeader("Content-disposition", "attachment; filename=Reporte de Motos.pdf");
@@ -72,7 +56,7 @@ public class ExportControlador implements Serializable {
             os.flush();
             os.close();
             fc.responseComplete();
-        } catch (IOException | JRException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     

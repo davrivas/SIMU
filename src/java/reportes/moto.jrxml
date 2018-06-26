@@ -2,11 +2,10 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1dec3db6-3077-4682-a05e-4aeccf1764a1">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="48"/>
 	<parameter name="date" class="java.util.Date"/>
 	<queryString>
-		<![CDATA[SELECT * FROM tbl_motos;
-]]>
+		<![CDATA[SELECT * FROM tbl_motos;]]>
 	</queryString>
 	<field name="id_moto" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -43,8 +42,8 @@
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="127" height="79" backcolor="#000000" uuid="32aafcb8-a810-4a2f-8a95-fedbd8c1f1a4"/>
 				<image>
-					<reportElement x="0" y="12" width="127" height="67" uuid="58c1681f-6129-46d9-a2c2-7b0b1e5734a1"/>
-					<imageExpression><![CDATA["C:\\Users\\NICOLAS.FAMILIA_MUHU-PC\\Desktop\\NICOLAS\\FASE 4B\\simu\\web\\resources\\img\\logo-simu-negativo.jpg"]]></imageExpression>
+					<reportElement x="0" y="0" width="127" height="79" uuid="2057d994-d585-40f2-9d0b-aabb9d3ea3d0"/>
+					<imageExpression><![CDATA["C:\\Users\\APRENDIZ\\Desktop\\simu\\web\\resources\\img\\logo-simu-negativo.jpg"]]></imageExpression>
 				</image>
 			</frame>
 			<frame>
