@@ -56,58 +56,8 @@ p{
     font-size: 1em !important;
 }
 
-.btn{
-
-    cursor: pointer;
-}
-.pie-pagina{
-    width: 101.6%;
-    background-color: #1a1a1a;
-}
-
-
-
-h2{
-    color: #fff;
-}
-
-a{
-    color: #fff;
-}
-.fa-facebook{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: #2d2c2c;
-}
-.fa-facebook:hover{
-    color: #fff;
-    background-color: #3b5998;
-    text-decoration: none;
-
-}
-.fa-twitter{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: #2d2c2c;
-}
-.fa-twitter:hover{
-    color: #fff;
-    background-color: #55acee;
-    text-decoration: none;
-}
-
-.fa-whatsapp{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: #2d2c2c;
-}
-.fa-whatsapp:hover{
-    color: #fff;
-    background-color:#4dc247 ;
-    text-decoration: none;
+.tab-pane {
+    padding: 20px !important;
 }
 
 @media only screen and (max-width: 760px){
