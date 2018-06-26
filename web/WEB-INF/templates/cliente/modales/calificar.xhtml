@@ -20,27 +20,27 @@
 
                         <div style="color: #fff; text-align: left;">
                             <b>Fecha y hora: </b>
-                                <h:outputText value="#{reparacionControlador.reparacionSeleccionada.fecha}">
+                                <h:outputText value="#{reparacionClienteControlador.reparacionSeleccionada.fecha}">
                                     <f:convertDateTime pattern="yyyy/MM/dd "/>
                                 </h:outputText>
-                                <h:outputText value="#{reparacionControlador.reparacionSeleccionada.hora}">
+                                <h:outputText value="#{reparacionClienteControlador.reparacionSeleccionada.hora}">
                                     <f:convertDateTime pattern="HH:mm"/>
                                 </h:outputText>
                                 <br/>
-                                <b>Placa de la moto:</b> #{reparacionControlador.reparacionSeleccionada.moto.placa}<br/>
-                                <b>Mecánico: </b>#{reparacionControlador.reparacionSeleccionada.mecanico.persona.nombre} #{reparacionControlador.reparacionSeleccionada.mecanico.persona.apellido}<br/>
+                                <b>Placa de la moto:</b> #{reparacionClienteControlador.reparacionSeleccionada.moto.placa}<br/>
+                                <b>Mecánico: </b>#{reparacionClienteControlador.reparacionSeleccionada.mecanico.persona.nombre} #{reparacionControlador.reparacionSeleccionada.mecanico.persona.apellido}<br/>
                                 <b>Tipo de servicio reparación:</b><br/>
-                                <ui:repeat value="#{reparacionControlador.reparacionSeleccionada.tipoServicioReparacionList}" var="tsr">
+                                <ui:repeat value="#{reparacionClienteControlador.reparacionSeleccionada.tipoServicioReparacionList}" var="tsr">
                                     - #{tsr.servicio}<br/>
                                 </ui:repeat>
-                                <b>Descripción:</b> #{reparacionControlador.reparacionSeleccionada.descripcion}
+                                <b>Descripción:</b> #{reparacionClienteControlador.reparacionSeleccionada.descripcion}
                         </div>
                         <div class="row mt-2">
                             <div class="mr-2">
                                 <h:outputLabel for="calificacion" value="Calificación" style="color:#fff;"/>
                             </div>
                             <div class="ml-2">
-                                <h:selectOneRadio value="#{reparacionControlador.reparacionSeleccionada.calificacion}" id="calificacion" a:name="calificacion" a:required="">
+                                <h:selectOneRadio value="#{reparacionClienteControlador.reparacionSeleccionada.calificacion}" id="calificacion" a:name="calificacion" a:required="">
                                     <f:selectItem itemValue="1" itemLabel="1" class="ml-1 mr-2"/>
                                     <f:selectItem itemValue="2" itemLabel="2" class="ml-1 mr-2"/>
                                     <f:selectItem itemValue="3" itemLabel="3" class="ml-1 mr-2"/>

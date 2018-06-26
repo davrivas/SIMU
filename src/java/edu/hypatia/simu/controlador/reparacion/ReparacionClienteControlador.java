@@ -103,6 +103,8 @@ public class ReparacionClienteControlador implements Serializable {
     
     public void seleccionarReparacion(Reparacion r) {
         reparacionSeleccionada = r;
+        System.out.println("id " + reparacionSeleccionada.getIdReparacion());
+        System.out.println("id " + reparacionSeleccionada.getMoto().getPlaca());
     }
 
     public String agendarCita() throws ParseException {
@@ -156,22 +158,19 @@ public class ReparacionClienteControlador implements Serializable {
     }
 
     public String calificar() {
-//        rfl.edit(reparacionSeleccionada);
-        
-        System.out.println("Calificacion " + reparacionSeleccionada.getCalificacion());
-
         // Enviar mail
-//        String nombreCliente = sc.getPersona().getNombre() + " " + sc.getPersona().getApellido();
+        String nombreCliente = sc.getPersona().getNombre() + " " + sc.getPersona().getApellido();
         String nombreMecanico = reparacionSeleccionada.getMecanico().getPersona().getNombre() + " " + reparacionSeleccionada.getMecanico().getPersona().getApellido();
-//        int calif = reparacionSeleccionada.getCalificacion();
-System.out.println("mec " + nombreMecanico);
-//
-//        String asunto = "Reparación calificada";
-//        String destinatario = reparacionSeleccionada.getMecanico().getPersona().getEmail();
-//        String cuerpoHTML = "<h1>Hola " + nombreMecanico + "</h1>"
-//                + "El cliente " + nombreCliente + " ha calificado una reparación con " + calif + " de 5.";
-//        Mail.sendMail(destinatario, asunto, cuerpoHTML);
 
+        String asunto = "Reparación calificada";
+        String destinatario = reparacionSeleccionada.getMecanico().getPersona().getEmail();
+        String cuerpoHTML = "<h1>Hola " + nombreMecanico + "</h1>"
+                + "El cliente " + nombreCliente + " ha calificado una reparación "
+                + "con " + reparacionSeleccionada.getCalificacion() + " de 5.<br>"
+                + "Los datos de la reparacion son:";
+        Mail.sendMail(destinatario, asunto, cuerpoHTML);
+
+        rfl.edit(reparacionSeleccionada);
         reparacionSeleccionada = new Reparacion();
 
         return "";
