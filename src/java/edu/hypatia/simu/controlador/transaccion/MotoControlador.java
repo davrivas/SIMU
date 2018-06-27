@@ -5,6 +5,7 @@
  */
 package edu.hypatia.simu.controlador.transaccion;
 
+import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
 import edu.hypatia.simu.modelo.entidades.Cliente;
 import edu.hypatia.simu.modelo.entidades.Moto;
 import edu.hypatia.simu.modelo.entidades.Producto;
@@ -20,6 +21,7 @@ import edu.hypatia.simu.modelo.dao.MotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.EstadoMoto;
 import edu.hypatia.simu.modelo.entidades.MarcaProducto;
+import javax.inject.Inject;
 
 /**
  *
@@ -28,6 +30,9 @@ import edu.hypatia.simu.modelo.entidades.MarcaProducto;
 @Named(value = "motoControlador")
 @SessionScoped
 public class MotoControlador implements Serializable {
+    
+    @Inject
+    private SesionControlador sc;
 
      @EJB
      private MarcaProductoFacadeLocal mpl;
@@ -131,11 +136,11 @@ public class MotoControlador implements Serializable {
     public String seleccionar() {       
         return "registrar.xhtml?faces-redirect=true";
     }
-
-    public List<MarcaProducto> listarMarcaMoto(){
+  
+   
+    public List<MarcaProducto> listarMarcaProducto(){
     return mpl.listarMarcaMoto();
-    }
-    
+    } 
     
     public List<Producto> listarProducto() {
         return pfl.findAll();
@@ -156,12 +161,18 @@ public class MotoControlador implements Serializable {
     }
     
     public void registrarMotoOfrecida(){
-     producto.setMarcaProducto(marcaProducto);
-     pfl.create(producto);
-    moto.setEstadoMoto(emfl.find(2));
-    moto.setProducto(producto);
-    mfl.create(moto);
-    }
+        producto.setMarcaProducto(marcaProducto);
+        pfl.create(producto);
+        moto.setProducto(producto);
+        moto.setEstadoMoto(emfl.find(2));
+        moto.setCliente(sc.getPersona().getCliente());
+        mfl.create(moto);
+        
+
+
+}
+    
+
     
 }
     
