@@ -31,6 +31,12 @@ import javax.inject.Inject;
 @SessionScoped
 public class MotoControlador implements Serializable {
 
+    @Inject
+    private SesionControlador sc;
+
+    @EJB
+    private MarcaProductoFacadeLocal mpl;
+
     @EJB
     private MotoFacadeLocal mfl;
 
@@ -46,30 +52,19 @@ public class MotoControlador implements Serializable {
     @EJB
     private EstadoMotoFacadeLocal emfl;
 
-    @Inject
-    private SesionControlador sc;
-
     private List<Moto> motos;
 
     private Moto motoSeleccionada;
 
     private Moto moto = new Moto();
+
     private Producto producto = new Producto();
+
     private MarcaProducto marcaProducto = new MarcaProducto();
 
+//    private Producto producto = new Producto();
+//    private MarcaProducto marcaProducto = new MarcaProducto();
     public MotoControlador() {
-    }
-
-    public List<Moto> getMotos() {
-        return mfl.findAll();
-    }
-
-    public Moto getMoto() {
-        return moto;
-    }
-
-    public void setMoto(Moto moto) {
-        this.moto = moto;
     }
 
     public Producto getProducto() {
@@ -86,6 +81,18 @@ public class MotoControlador implements Serializable {
 
     public void setMarcaProducto(MarcaProducto marcaProducto) {
         this.marcaProducto = marcaProducto;
+    }
+
+    public List<Moto> getMotos() {
+        return mfl.findAll();
+    }
+
+    public Moto getMoto() {
+        return moto;
+    }
+
+    public void setMoto(Moto moto) {
+        this.moto = moto;
     }
 
     public Moto getMotoSeleccionada() {
@@ -124,26 +131,42 @@ public class MotoControlador implements Serializable {
         return "listarMoto.xhtml?faces-redirect=true";
     }
 
-    /*REGISTRAR*/
-    public List<EstadoMoto> listarEstadoMoto() {
-        return emfl.findAll();
-    }
-
     public List<MarcaProducto> listarMarcaProducto() {
         return marcaProductofl.findAll();
     }
 
+    public List<Producto> listarProducto() {
+        return productofl.findAll();
+    }
+
+    public List<Cliente> listarCliente() {
+        return clf.findAll();
+    }
+
+    public List<EstadoMoto> listarEstadoMoto() {
+        return emfl.findAll();
+    }
+
     public String registrar() {
 
-            productofl.create(producto);
+        productofl.create(producto);
 
-            moto.setEstadoMoto(emfl.find(5));
-            moto.setProducto(producto);
-            moto.setCliente(sc.getPersona().getCliente());
-            mfl.create(moto);
-       
+        moto.setEstadoMoto(emfl.find(5));
+        moto.setProducto(producto);
+        moto.setCliente(sc.getPersona().getCliente());
+        mfl.create(moto);
 
         return "listarMoto.xhtml?faces-redirect=true";
+    }
+
+    public void registrarMotoOfrecida() {
+        producto.setMarcaProducto(marcaProducto);
+        productofl.create(producto);
+        moto.setProducto(producto);
+        moto.setEstadoMoto(emfl.find(2));
+        moto.setCliente(sc.getPersona().getCliente());
+        mfl.create(moto);
+
     }
 
 }
