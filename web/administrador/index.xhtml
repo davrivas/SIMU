@@ -116,6 +116,7 @@
         </section>
         <h:form>
              <ui:include src="/WEB-INF/templates/administrador/modal/registrarAdministrador.xhtml"></ui:include>
+             <ui:include src="/WEB-INF/templates/administrador/modal/registrarMecanico.xhtml"></ui:include>
         </h:form>
 
         <!--carta 3-->
@@ -137,7 +138,8 @@
                                     </h:commandLink>
                                 </div>
                                 <div>
-                                    <h:commandLink class="btn-simu-naranja btn-block mt-2 " value="Mecanico">
+                                    <h:commandLink class="btn-simu-naranja btn-block mt-2 " value="Mecanico" a:data-toggle="modal" a:data-target="#myModal5">
+                                        <f:ajax rendered=":contentModalRegistrarMecanico"></f:ajax>
                                     </h:commandLink>
                                 </div>
                         </h:form>

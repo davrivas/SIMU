@@ -31,14 +31,5 @@ public class MarcaProductoFacade extends AbstractFacade<MarcaProducto> implement
         super(MarcaProducto.class);
     }
 
-    @Override
-    public MarcaProducto findByTipoAccesorio() {
-        try {
-            TypedQuery<MarcaProducto> tq = getEntityManager().createQuery("SELECT a FROM Accesorio a WHERE a.tipoAccesorio = 2", MarcaProducto.class);
-            return tq.getSingleResult();
-        } catch (Exception e) {
-            return null;
-        }
-    }
 
 }

@@ -40,26 +40,24 @@ public class ClienteControlador implements Serializable {
 
     @EJB
     private TipoDocumentoFacadeLocal tdfl;
-    
+
     @EJB
     private CiudadFacadeLocal ciudadfl;
-
 
     @EJB
     private DepartamentoFacadeLocal dfl;
 
     @EJB
     private RolFacadeLocal rfl;
-    
+
     private Cliente clienteSeleccionado;
     private List<Cliente> clientes;
 
     private Persona persona = new Persona();
     private Cliente cliente = new Cliente();
     private Departamento departamento = new Departamento();
-    
-    /*LISTAR*/
 
+    /*LISTAR*/
     public List<Cliente> getClientes() {
         return cfl.findAll();
     }
@@ -91,8 +89,6 @@ public class ClienteControlador implements Serializable {
     public Cliente getClienteSeleccionado() {
         return clienteSeleccionado;
     }
-    
-    
 
     public ClienteControlador() {
     }
@@ -104,19 +100,19 @@ public class ClienteControlador implements Serializable {
     public List<Departamento> listarDepartamento() {
         return dfl.findAll();
     }
-    
+
     public List<Ciudad> listarCiudad() {
         return ciudadfl.findAll();
     }
-    
+
     /*ELIMINAR*/
     public void seleccionarCliente(Cliente c) {
         System.out.println("Id:" + c.getIdCliente());
-        cliente= c;       
+        cliente = c;
         clienteSeleccionado = c;
     }
-    
-     public String eliminar() {
+
+    public String eliminar() {
         try {
             System.out.println("Vamos a eliminar el cliente");
             System.out.println("Id:" + clienteSeleccionado.getIdCliente());
@@ -127,7 +123,7 @@ public class ClienteControlador implements Serializable {
         clienteSeleccionado = null;
         return "listarClientes.xhtml?faces-redirect=true";
     }
-     
+
     /*ACTUALIZAR*/
     public String editar() {
         try {
@@ -139,9 +135,8 @@ public class ClienteControlador implements Serializable {
         }
         return "listarClientes.xhtml?faces-redirect=true";
     }
-     
-    /*REGISTRAR*/
 
+    /*REGISTRAR*/
     public String registrarCliente() {
 
         Date fecha = new Date();
@@ -149,9 +144,8 @@ public class ClienteControlador implements Serializable {
         persona.setFechaRegistro(fecha);
         persona.setRol(rol);
         pfl.create(persona);
-        cliente.setPersona(persona);
 
-        // se llena adicional de cliente
+        cliente.setIdCliente(getPersona().getIdPersona());
         cfl.create(cliente);
 
         return "index.xhtml?faces-redirect=true";

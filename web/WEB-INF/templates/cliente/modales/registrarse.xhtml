@@ -5,7 +5,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+
     <div class="modal fade" id="registrarse" tabindex="-1" role="dialog" aria-labelledby="registrate" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content contenido-modal">
@@ -75,23 +75,19 @@
                                     <h:inputSecret value="#{clienteControlador.persona.contrasena}" a:placeholder="Escribe tu contraseña" class="col-12 form-control" required="true"></h:inputSecret>     
                                 </div>
                             </div>
-                            <div class="col-5 ml-1 mr-1">
+<!--                            <div class="col-5 ml-1 mr-1">
                                 <div class="col"><label for="">Confirmar contraseña</label></div>
                                 <div class="col">
                                     <h:inputSecret value="#{clienteControlador.persona.contrasena}" a:placeholder="Confirma tu contraseña" class="col-12 form-control" required="true"></h:inputSecret>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
 
                         <div class="row mt-2 mb-2 justify-content-around">
                             <div class="col-5 ml-1 mr-1">
-                                <div class="col"><label for="">Departamento</label></div>
+                                <div class="col"><label for="">Dirección</label></div>
                                 <div class="col">
-                                    <h:selectOneMenu value="#{clienteControlador.departamento}" class="col-12 custom-select">
-                                        <f:selectItem itemLabel="Seleccione"></f:selectItem>
-                                        <f:selectItems value="#{clienteControlador.listarDepartamento()}" var="d" itemLabel="#{d.departamento}"></f:selectItems>
-                                    </h:selectOneMenu>
-
+                                    <h:inputText value="#{clienteControlador.cliente.direccion}" a:placeholder="Escribe tu telefono" class="col-12 form-control" required=""></h:inputText>     
                                 </div>
                             </div>
                             <div class="col-5 ml-1 mr-1">
@@ -99,20 +95,12 @@
                                 <div class="col">
                                     <h:selectOneMenu value="#{clienteControlador.cliente.ciudad}" class="col-12 custom-select">
                                         <f:selectItem itemLabel="Seleccione"></f:selectItem>
-                                        <f:selectItems value="#{clienteControlador.departamento.ciudadList}" var="c" itemLabel="#{c.ciudad}"></f:selectItems>
+                                        <f:selectItems value="#{clienteControlador.listarCiudad()}" var="c" itemLabel="#{c.ciudad}"></f:selectItems>
                                     </h:selectOneMenu>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-2 mb-2">
-                            <div class="col-5 ml-1 mr-1">
-                                <div class="col"><label for="">Dirección</label></div>
-                                <div class="col">
-                                    <h:inputText value="#{clienteControlador.cliente.direccion}" a:placeholder="Escribe tu telefono" class="col-12 form-control" required=""></h:inputText>     
-                                </div>
-                            </div>
 
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <h:commandLink action="#{clienteControlador.registrarCliente()}" value="Registrarse" class="btn-simu-naranja"/>

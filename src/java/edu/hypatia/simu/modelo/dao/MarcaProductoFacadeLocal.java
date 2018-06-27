@@ -31,6 +31,5 @@ public interface MarcaProductoFacadeLocal {
 
     int count();
     
-    MarcaProducto findByTipoAccesorio();   
     
 }

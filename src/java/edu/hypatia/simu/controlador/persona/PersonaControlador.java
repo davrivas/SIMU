@@ -7,8 +7,10 @@ package edu.hypatia.simu.controlador.persona;
 
 import edu.hypatia.simu.controlador.mail.Mail;
 import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
+import edu.hypatia.simu.modelo.dao.MecanicoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.PersonaFacadeLocal;
 import edu.hypatia.simu.modelo.dao.RolFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Mecanico;
 import edu.hypatia.simu.modelo.entidades.Persona;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -33,9 +35,9 @@ public class PersonaControlador implements Serializable {
 
     @EJB
     private RolFacadeLocal rfl;
-
+    
     private Persona persona = new Persona();
-
+    
     public Persona getPersona() {
         return persona;
     }
@@ -55,9 +57,26 @@ public class PersonaControlador implements Serializable {
         persona.setContrasena("administrador");
         persona.setFechaRegistro(fecha);
         pfl.create(persona);
-        Mail.sendMail("simucolombia@gmail.com", "Administrador registrado", sc.getPersona().getNombre() + "ha registrado un nuevo administrador");
+        Mail.sendMail(persona.getEmail(), "Administrador registrado", sc.getPersona().getNombre() + 
+                       "<h1>Registro de Administrador</h1>" + 
+                       "<h3>Hola " + persona.getNombre() + " " + persona.getApellido() + "</h3>" +
+                       "Usted ha sido registrado como un administrador de SIMU." + 
+                       "<hr>" +
+                       "<p><strong>Su correo electronico es : " + persona.getEmail() + "</strong></p>" +
+                       "<p><strong>Su contraseña es: " + persona.getContrasena() + ", ingresa y actualiza tu contraseña.</strong></p>");
 
         persona = null;
+        return "index.xhtml?faces-redirect=true";
+    }
+    
+    public String registrarMecanico() {
+
+        Date fecha = new Date();
+        persona.setContrasena("mecanico");
+        persona.setFechaRegistro(fecha);
+        persona.setRol(rfl.find(2));
+        pfl.create(persona);
+       
         return "index.xhtml?faces-redirect=true";
     }
 

@@ -7,6 +7,33 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="contenido1">
+        
+        <section class="p-3 justify-content-around">
+            <div class="col-12 principal mt-3 p-3 mt-2">
+                <nav class="navbar navbar-dark">
+                    <h:form prependId="false">
+                        <h:commandLink class="btn btn-outline-danger" value="Registrar">
+                            <i class="fa fa-plus"></i>
+                           
+                        </h:commandLink>
+
+
+                        <h:commandLink action="#{exportControlador.clientesPDF()}" class="btn btn-outline-info ml-3" value="PDF">
+                            <i class="fa fa-file-pdf-o"></i>
+                        </h:commandLink>
+                    </h:form>
+                    <form class="form-inline">
+                        <input class=" form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
+                        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fa fa-search"></i> Search </button>
+                    </form>
+                </nav>
+            </div>
+        </section>
+
+        
+    </ui:define>
 
     <ui:define name="contenido2">
 

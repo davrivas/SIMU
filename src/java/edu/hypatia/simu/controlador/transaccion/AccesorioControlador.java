@@ -140,7 +140,7 @@ public class AccesorioControlador implements Serializable {
     }
     
     public List<MarcaProducto> listarMarcaAccesorio() {
-        return (List<MarcaProducto>) mpfl.findByTipoAccesorio();
+        return mpfl.findAll();
     }
     
     public String registrar() {

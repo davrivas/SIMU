@@ -24,6 +24,10 @@
                             <i class="fa fa-plus"></i>
                             <f:ajax render=":contentModalRegistrarAccesorio"/>
                         </h:commandLink>
+                        
+                        <h:commandLink action="#{exportControlador.accesoriosPDF()}" class="btn btn-outline-info ml-3" value="PDF">
+                            <i class="fa fa-file-pdf-o"></i>
+                        </h:commandLink>
                     </h:form>
 
                     <form class="form-inline">
