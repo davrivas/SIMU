@@ -69,8 +69,6 @@ public class Mail {
                     props.getProperty(KEY_SMTP_FROM),
                     props.getProperty(KEY_SMTP_PASSWORD));
             transport.sendMessage(message, message.getAllRecipients());
-
-            System.out.println("El mensaje a " + destinatario + " fue enviado.");
         } catch (MessagingException me) {
             me.printStackTrace();
         }
@@ -106,8 +104,6 @@ public class Mail {
                     props.getProperty(KEY_SMTP_FROM),
                     props.getProperty(KEY_SMTP_PASSWORD));
             transport.sendMessage(message, message.getAllRecipients());
-
-            System.out.println("El mensaje a " + destinatario + " fue enviado.");
         } catch (MessagingException me) {
             me.printStackTrace();
         }
@@ -120,7 +116,7 @@ public class Mail {
         rh += "</div>";
         rh += "<div style=\"padding: 10px;\">";
         rh += html; // Es el cuerpo que se inserta
-        rh += "<p style=\"margin-top: 25px;\"><strong>Atentamente</strong>";
+        rh += "<p style=\"margin-top: 25px;\"><strong>Atentamente</strong><br>";
         rh += "Equipo de SIMU</p>";
         rh += "</div>";
         rh += "</div>";

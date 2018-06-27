@@ -8,7 +8,7 @@
     background-image: url('../img/mante.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
-
+    background-attachment: fixed;
 }
 
 ul li a{
@@ -45,86 +45,19 @@ p{
     color: #fff;
 }
 
-.hola1{
-
+.hola {
     padding: 15px;
     background-color: rgba(0,0,0,.9);
-    /* font-family: oswald; */
     font-size: 1.2em;
     color: #fff;
-
-}
-.hola2{
-
-    padding: 15px;
-    background-color: rgba(0,0,0,.9);
-    /* font-family: oswald; */
-    font-size: 1.2em;
-    color: #fff;
-
-}
-.hola3{
-
-    padding: 15px;
-    background-color: rgba(0,0,0,.9);
-    /* font-family: oswald; */
-    font-size: 1.2em;
-    color: #fff;
-
 }
 
-.btn{
-
-    cursor: pointer;
-}
-.pie-pagina{
-    width: 101.6%;
-    background-color: #1a1a1a;
+.hola4 {
+    font-size: 1em !important;
 }
 
-
-
-h2{
-    color: #fff;
-}
-
-a{
-    color: #fff;
-}
-.fa-facebook{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: #2d2c2c;
-}
-.fa-facebook:hover{
-    color: #fff;
-    background-color: #3b5998;
-    text-decoration: none;
-
-}
-.fa-twitter{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: #2d2c2c;
-}
-.fa-twitter:hover{
-    color: #fff;
-    background-color: #55acee;
-    text-decoration: none;
-}
-
-.fa-whatsapp{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: #2d2c2c;
-}
-.fa-whatsapp:hover{
-    color: #fff;
-    background-color:#4dc247 ;
-    text-decoration: none;
+.tab-pane {
+    padding: 20px !important;
 }
 
 @media only screen and (max-width: 760px){

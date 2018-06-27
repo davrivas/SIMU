@@ -8,7 +8,7 @@
     <div class="modal fade" id="modalRevisar" tabindex="-1" role="dialog" aria-labelledby="modalRevisarTitulo" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <h:panelGroup id="modalRevisarContenido" class="modal-content contenido-modal" layout="block">
-                <h:form id="form-edit-reparacion" prependId="false">
+                <h:form prependId="false">
                     <div class="modal-header">
                         <h3 class="modal-title" id="modalRevisarTitulo" style="color:#fff;">Revisar reparación</h3>
                         <button type="button" class="cerrar-modal close" data-dismiss="modal" aria-label="Close">
@@ -18,8 +18,8 @@
                     <div class="modal-body">
                         <h3 style="text-align:left;color:#fff;">Datos</h3>
 
-                        <div style="color: #fff;">
-                            Fecha 
+                        <div style="color: #fff; text-align: left;">
+                            <b>Fecha: </b> 
                             <h:outputText value="#{reparacionControlador.reparacionSeleccionada.fecha}">
                                 <f:convertDateTime pattern="yyyy/MM/dd " />
                             </h:outputText>
@@ -27,24 +27,24 @@
                                 <f:convertDateTime pattern="HH:mm" />
                             </h:outputText>
                             <br/>
-                            Placa de la moto #{reparacionControlador.reparacionSeleccionada.moto.placa}<br/>
-                            Nombre del cliente #{reparacionControlador.reparacionSeleccionada.moto.cliente.persona.nombre} #{reparacionControlador.reparacionSeleccionada.moto.cliente.persona.apellido}<br/>
-                            Tipo(s) de servicio reparación<br/>
+                            <b>Placa de la moto:</b> #{reparacionControlador.reparacionSeleccionada.moto.placa}<br/>
+                            <b>Nombre del cliente:</b> #{reparacionControlador.reparacionSeleccionada.moto.cliente.persona.nombre} #{reparacionControlador.reparacionSeleccionada.moto.cliente.persona.apellido}<br/>
+                            <b>Tipo(s) de servicio reparación:</b><br/>
                             <ui:repeat value="#{reparacionControlador.reparacionSeleccionada.tipoServicioReparacionList}" var="tsr">
                                 <li style="color: #fff;">#{tsr.servicio}</li>
                             </ui:repeat>
                         </div>
                         <div class="row mt-2">
-                            <div class="column mr-1">
-                                <h:outputLabel for="descripcion" value="Descripcion" style="color:#fff;"/>
+                            <div class="mr-2">
+                                <h:outputLabel  for="descripcion" value="Descripcion" style="color:#fff;"/>
                             </div>
-                            <div class="column ml-1">
-                                <h:inputTextarea value="#{reparacionControlador.reparacionSeleccionada.descripcion}" class="input-simu" id="descripcion"/>
+                            <div class="ml-2">
+                                <h:inputTextarea value="#{reparacionControlador.reparacionSeleccionada.descripcion}" class="input-simu" a:required=""/>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <h:commandButton id="revisar" a:name="editar" a:type="submit" value="Revisar" action="#{reparacionControlador.revisarReparacion()}" class="btn-simu-naranja mr-2"/>
+                        <h:commandButton id="revisar" a:name="revisar" a:type="submit" value="Revisar" action="#{reparacionControlador.revisarReparacion()}" class="btn-simu-naranja mr-2"/>
                         <button type="button" class="btn-simu-naranja" data-dismiss="modal">Cancelar</button>
                     </div>
                 </h:form>
