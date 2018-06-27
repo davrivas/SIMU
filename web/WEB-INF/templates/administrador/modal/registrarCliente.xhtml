@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <div id="myModal6" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <h:panelGroup id="contentModalRegistrarCliente" layout="block" class="modal-content contenido-modal">
+                <div class="modal-header">
+
+                    <h1 class="modal-title"><strong>Registrar Cliente</strong></h1>
+                </div>
+                <div class="modal-body">
+
+                    <p class="text-center ml-3 mb-3">Registre la información del usuario</p>
+
+                    <!--Fila 1-->
+                    <section class="row mb-5 mt-5 justify-content-around">
+                        <div class="col-6">
+                            <h:outputLabel class="mr-3">Nombre</h:outputLabel>
+                            <h:inputText value="#{clienteControlador.persona.nombre}" a:placeholder="Escribe tus nombres" class="col-12 form-control" required="true"></h:inputText>     
+                        </div>
+                        <div class="col-6">
+                            <h:outputLabel class="mr-3">Apellido</h:outputLabel>
+                            <h:inputText value="#{clienteControlador.persona.apellido}" a:placeholder="Escribe tus apellidos" class="col-12 form-control" required="true"></h:inputText>     
+                        </div>
+                    </section>
+
+                    <!--Fila 2-->
+                    <section class="row mb-5 mt-5 justify-content-around">
+                        <div class="col-6">
+                            <h:outputLabel class="mr-3">Tipo documento</h:outputLabel>
+                            <h:selectOneMenu value="#{clienteControlador.cliente.tipoDocumento}" class="col-12 custom-select" required="true">
+                                <f:selectItem itemLabel="Seleccione"></f:selectItem>
+                                <f:selectItems value="#{clienteControlador.listarTipoDocumento()}" var="td" itemLabel="#{td.tipoDocumento}"></f:selectItems>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="col-6">
+                            <h:outputLabel class="mr-3">Documento</h:outputLabel>
+                            <h:inputText value="#{clienteControlador.cliente.numeroDocumento}" a:placeholder="Escribe tus documento" class="col-12 form-control" required="true"></h:inputText>      
+                        </div>
+                    </section>
+
+                    <!--Fila 3-->
+                    <section class="row mb-5 mt-5 justify-content-around">
+                        <div class="col-6">
+                            <h:outputLabel class="mr-3">Correo Electronico</h:outputLabel>
+                            <h:inputText value="#{clienteControlador.persona.email}" a:placeholder="Escribe tu correo electronico" class="col-12 form-control" required="true"></h:inputText>     
+                        </div>
+                        <div class="col-6">
+                            <h:outputLabel class="mr-3">Telefono</h:outputLabel>
+                            <h:inputText value="#{clienteControlador.persona.telefono}" a:placeholder="Escribe tu telefono" class="col-12 form-control" required="true"></h:inputText>     
+                        </div>
+                    </section>
+
+                    <!--Fila 4-->
+                    <section class="row mb-5 mt-5 justify-content-around">
+                        <div class="col-6">
+                            <h:outputLabel class="mr-3">Contraseña</h:outputLabel>
+                            <h:inputSecret value="#{clienteControlador.persona.contrasena}" a:placeholder="Escribe tu contraseña" class="col-12 form-control" required="true"></h:inputSecret>     
+                        </div>
+
+                    </section>
+                    <!--Fila 5-->
+                    <section class="row mb-5 mt-5 justify-content-around">
+                        <div class="col-6">
+                            <h:outputLabel class="mr-3">Direccion</h:outputLabel>
+                            <h:inputText value="#{clienteControlador.cliente.direccion}" a:placeholder="Escribe tu telefono" class="col-12 form-control" required=""></h:inputText>     
+                        </div>
+                        <div class="col-6">
+                            <h:outputLabel class="mr-3">Ciudad</h:outputLabel>
+                            <h:selectOneMenu value="#{clienteControlador.cliente.ciudad}" class="col-12 custom-select">
+                                <f:selectItem itemLabel="Seleccione"></f:selectItem>
+                                <f:selectItems value="#{clienteControlador.listarCiudad()}" var="c" itemLabel="#{c.ciudad}"></f:selectItems>
+                            </h:selectOneMenu>
+                        </div>
+                    </section>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <h:form prependId="false">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <h:commandButton action="#{clienteControlador.registrarCliente()}" value="Registrar" class="btn-simu-naranja"></h:commandButton>
+                    </h:form>
+                </div>
+            </h:panelGroup>
+
+        </div>
+    </div>
+
+</ui:composition>
+

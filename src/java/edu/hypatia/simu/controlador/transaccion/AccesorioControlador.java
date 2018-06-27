@@ -36,6 +36,10 @@ public class AccesorioControlador implements Serializable {
     private AccesorioFacadeLocal afl;
     
     @EJB
+    private ProveedorFacadeLocal proveedorfl;
+    
+    
+    @EJB
     private ProveedorFacadeLocal prfl;
     
     @EJB
@@ -123,10 +127,7 @@ public class AccesorioControlador implements Serializable {
     }
 
     /*REGISTRAR*/
-    public String seleccionar() {
-        return "registrarAccesorio.xhtml?faces-redirect=true";
-    }
-    
+   
     public List<Producto> getProductos() {
         return pfl.findAll();
     }
@@ -147,8 +148,12 @@ public class AccesorioControlador implements Serializable {
         
         pfl.create(producto);
 
+        accesorio.setProveedor(proveedorfl.find(4));
         accesorio.setProducto(producto);
         afl.create(accesorio);
+        
+        accesorio = null;
+        producto = null;
         
         return "listarAccesorio.xhtml?faces-redirect=true";
     }

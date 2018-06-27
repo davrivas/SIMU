@@ -7,16 +7,19 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+
     <ui:define name="contenido1">
-        
+        <h:form>   
+            <ui:include src="/WEB-INF/templates/administrador/modal/registrarCliente.xhtml"></ui:include>
+        </h:form>
+
         <section class="p-3 justify-content-around">
             <div class="col-12 principal mt-3 p-3 mt-2">
                 <nav class="navbar navbar-dark">
                     <h:form prependId="false">
-                        <h:commandLink class="btn btn-outline-danger" value="Registrar">
+                        <h:commandLink class="btn btn-outline-danger" value="Registrar" a:data-toggle="modal" a:data-target="#myModal6">
                             <i class="fa fa-plus"></i>
-                           
+                            <f:ajax render=":contentModalRegistrarCliente"/>
                         </h:commandLink>
 
 
@@ -32,7 +35,7 @@
             </div>
         </section>
 
-        
+
     </ui:define>
 
     <ui:define name="contenido2">
@@ -122,12 +125,12 @@
                                 </div>
                             </section>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                    <h:commandButton action="#{clienteControlador.editar()}"
-                                                     class="btn-simu-naranja ml-2" value="Editar"></h:commandButton>
-                                </div>
-                        
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <h:commandButton action="#{clienteControlador.editar()}"
+                                                 class="btn-simu-naranja ml-2" value="Editar"></h:commandButton>
+                            </div>
+
                         </div>
                     </h:form>
                 </h:panelGroup>
