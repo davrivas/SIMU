@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>Accesorios</title>
+    </h:head>
+    <h:body>
+        <ui:include src="/WEB-INF/templates/head.xhtml"/>
+        <ui:include src="/WEB-INF/templates/scripts.xhtml"/>
+
+
+
+        <header>
+            <div class="container-fluid">
+                <section class="row" text-center="">
+                    <article class="col-md-12 ">
+
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            </ol>
+                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner item ">
+                                    <div class="carousel-item active caption" align="center">
+                                        <img class="d-block w-50 " src="" alt="First slide"></img>
+                                        <h1>Cascos</h1>
+                                        <p5> Te protegen del viento y la lluvia </p5>
+                                    </div>
+                                    <div class="carousel-item caption" align="center">
+                                        <img class="d-block w-50" src="" alt="Second slide"></img>
+                                        <h1>Maleteros</h1>
+                                        <p2>Guarda lo que necesites en el</p2>
+                                    </div>
+                                    <div class="carousel-item caption" align="center">
+                                        <img class="d-block w-50" src="" alt="Third slide"></img>
+                                        <h1>Guantes</h1>
+                                        <p1>Protegen tus manos </p1>
+                                    </div>
+                                    <div class="carousel-item caption" align="center">
+                                        <img class="d-block w-50" src="" alt="Third slide"></img>
+                                        <h1>Sliders</h1>
+                                        <p1>Te ayudan a cuidar tu moto en caso de accidente</p1>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <hr></hr>
+
+
+
+
+
+            </div>
+        </header>
+        <div class="container">
+            <section class="row">
+                <article class="col-md-4">
+                    <h1 class="text-center"> Filtros</h1>
+
+                    <div class="form-group ">
+                        <label for="">Tipo</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option selected="">Seleccionar</option>
+                            <option>Casco</option>
+                            <option>Maletero</option>
+                            <option>Slider</option>
+                            <option>Guante</option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="" >Marca</label>
+
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option selected="">Seleccionar</option>
+                            <option>Fox</option>
+                            <option>Yamaha</option>
+                            <option>Kawasaki</option>
+                            <option>Honda</option>
+                        </select>
+
+                    </div>
+
+                    <h2 class="text-center">Rango de precio</h2>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Precio Mínimo</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>1.000.000</option>
+                            <option>2.000.000</option>
+                            <option>5.000.000</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Precio Máximo</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>2.000.000</option>
+                            <option>5.000.000</option>
+                            <option>10.000.000</option>
+                            <option>15.000.000</option>
+                            <option>+20.000.000</option>
+                        </select>
+                    </div>
+
+
+
+
+
+
+                </article>
+
+                <article class="col-md-8">
+                    <h1 class="text-center"> Resultados </h1>
+
+
+                    <section class="row">
+                        <div class="col-md-6">
+                            <div class="card" style="width: 15rem; ">
+                                <img class="card-img-top" src="" alt="Card image cap"></img>
+                                <div class="card-body">
+                                    <h5 class="card-title mt-2 d-flex justify-content-center">Slider</h5>
+                                    <p class="card-text text-center">300.000</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 ">
+                            <div class="card" style="width: 15rem; ">
+                                <img class="card-img-top" src="" alt="Card image cap"></img>
+                                <div class="card-body">
+                                    <h5 class="card-title mt-2 d-flex justify-content-center">Guantes</h5>
+                                    <p class="card-text text-center">$ 500.000.</p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </section>
+                    <section class="row">
+                        <div class="col-md-6">
+                            <div class="card" style="width: 15rem;">
+                                <img class="card-img-top" src="" alt="Card image cap"></img>
+                                <div class="card-body">
+                                    <h5 class="card-title mt-2 d-flex justify-content-center">Slider</h5>
+                                    <p class="card-text text-center">300.000</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 ">
+                            <div class="card" style="width: 15rem; ">
+                                <img class="card-img-top" src="" alt="Card image cap"></img>
+                                <div class="card-body">
+                                    <h5 class="card-title mt-2 d-flex justify-content-center">Casco</h5>
+                                    <p class="card-text text-center">$ 500.000.</p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </section>
+
+
+                </article>
+            </section>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </h:body>
+</html>
+
