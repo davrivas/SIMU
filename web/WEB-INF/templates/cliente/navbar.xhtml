@@ -7,7 +7,7 @@
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <nav class="barra-navegacion navbar navbar-expand-lg fixed-top d-flex align-items-center">
         <a class="logo-simu-negativo navbar-brand" href="#">
-            <img src="#{request.contextPath}/resources/img/logo-simu-negativo.png" alt="Logo SIMU" href="index.html" />
+            <img src="#{request.contextPath}/resources/img/logo-simu-negativo.jpg" alt="Logo SIMU" href="index.html" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="nav-barras fa fa-bars"></span>
@@ -65,7 +65,6 @@
                     </li>
                 </h:panelGroup>
                 <h:panelGroup rendered="#{not empty sesionControlador.persona}">
-                    <!--<h:form prependId="false">-->
                     <li class="items-nav nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="#{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}">
                             <span class="fa fa-user-circle"></span><span class="text-navright">&nbsp;#{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}</span>
@@ -77,7 +76,6 @@
                             </a>
                         </div>
                     </li>
-                    <!--</h:form>-->
                 </h:panelGroup>
             </ul>
         </div>

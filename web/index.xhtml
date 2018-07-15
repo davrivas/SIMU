@@ -230,10 +230,16 @@
                 </div>
             </div>
         </div>
+        <!-- Fin carrito de compra -->
 
-        <ui:include src="/WEB-INF/templates/iniciarsesion.xhtml"/>
-        <ui:include src="/WEB-INF/templates/cliente/modales/registrarse.xhtml" />
-        <ui:include src="/WEB-INF/templates/cerrarsesion.xhtml"/>
+        <h:panelGroup rendered="#{empty sesionControlador.persona}">
+            <ui:include src="/WEB-INF/templates/iniciarsesion.xhtml"/>
+            <ui:include src="/WEB-INF/templates/cliente/modales/registrarse.xhtml"/>
+        </h:panelGroup>
+        
+        <h:panelGroup rendered="#{not empty sesionControlador.persona}">
+            <ui:include src="/WEB-INF/templates/cerrarsesion.xhtml"/>
+        </h:panelGroup>
 
         <ui:include src="/WEB-INF/templates/scripts.xhtml"/>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

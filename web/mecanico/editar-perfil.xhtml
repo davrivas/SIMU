@@ -11,7 +11,7 @@
     </ui:define>
 
     <ui:define name="contenido1">
-        <h:form prependId="false">
+<!--        <h:form prependId="false">
             <div class="row mt-2 mb-2">
                 <div class="col-md-2 col">
                     <label for="nombre">Nombre</label>
@@ -31,9 +31,58 @@
             <div class="row mt-2 mb-2">
                 <h:commandButton value="Editar perfil" class="btn-simu-naranja"/>
             </div>
-        </h:form>
+        </h:form>-->
     </ui:define>
-    <ui:define name="contenido2"></ui:define>
-
+    <ui:define name="contenido2">
+        <div class="col-md-12 jumbotron">
+            <div class="container">
+                <h:form>
+                    <section class="row">
+                        <div class="col-6 form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-6">Nombre<span class="required"></span>
+                            </label>
+                            <div class="col-md-12">
+                                <h:inputText value="#{sesionControlador.persona.nombre}" class="input-simu"></h:inputText>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="row">
+                        <div class="col-6 form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-6">Apellido<span class="required"></span>
+                            </label>
+                            <div class="col-md-12">
+                                <h:inputText value="#{sesionControlador.persona.apellido}" class="input-simu"></h:inputText>
+                            </div>
+                        </div>
+                        <div class="col-6 form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-6">Correo<span class="required"></span>
+                            </label>
+                            <div class="col-md-12">
+                                <h:inputText value="#{sesionControlador.persona.email}" class="input-simu"></h:inputText>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="row">
+                        <div class="col-6 form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-6">Contraseña<span class="required"></span>
+                            </label>
+                            <div class="col-md-12">
+                                <h:inputSecret value="#{sesionControlador.persona.contrasena}" class="input-simu"/>
+                            </div>
+                        </div>
+                        <div class="col-6 form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-6">Telefono<span class="required"></span>
+                            </label>
+                            <div class="col-md-12">
+                                <h:inputText value="#{sesionControlador.persona.telefono}" class="input-simu"></h:inputText>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <h:commandLink action="#{sesionControlador.editar()}" class="btn-simu-naranja btn-block mt-4" value="Actualizar datos"></h:commandLink>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
 </ui:composition>
 

@@ -5,12 +5,13 @@
  */
 package edu.hypatia.simu.modelo.dao;
 
-import edu.hypatia.simu.modelo.entidades.Accesorio;
 import edu.hypatia.simu.modelo.entidades.MarcaProducto;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 
 /**
  *
@@ -30,6 +31,14 @@ public class MarcaProductoFacade extends AbstractFacade<MarcaProducto> implement
     public MarcaProductoFacade() {
         super(MarcaProducto.class);
     }
-
-
-}
+    
+    @Override
+    public List<MarcaProducto> listarMarcaMoto(){
+        try {
+            Query q = getEntityManager().createNativeQuery("SELECT * FROM tbl_marcas_producto WHERE tipo_producto=1", MarcaProducto.class);
+            return q.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
+        }
+    }

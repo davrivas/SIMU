@@ -30,6 +30,6 @@ public interface MarcaProductoFacadeLocal {
     List<MarcaProducto> findRange(int[] range);
 
     int count();
-    
-    
+
+    List<MarcaProducto> listarMarcaMoto();
 }
