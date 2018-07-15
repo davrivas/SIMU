@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hypatia.simu.modelo.dao;
+package edu.hypatia.simu.modelo.dao.jpa;
 
-import edu.hypatia.simu.modelo.entidades.TipoServicioReparacion;
+import edu.hypatia.simu.modelo.dao.TipoDocumentoFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.TipoDocumento;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +16,7 @@ import javax.persistence.PersistenceContext;
  * @author davrivas
  */
 @Stateless
-public class TipoServicioReparacionFacade extends AbstractFacade<TipoServicioReparacion> implements TipoServicioReparacionFacadeLocal {
+public class TipoDocumentoFacade extends AbstractFacade<TipoDocumento> implements TipoDocumentoFacadeLocal {
 
     @PersistenceContext(unitName = "simuPU")
     private EntityManager em;
@@ -25,8 +26,8 @@ public class TipoServicioReparacionFacade extends AbstractFacade<TipoServicioRep
         return em;
     }
 
-    public TipoServicioReparacionFacade() {
-        super(TipoServicioReparacion.class);
+    public TipoDocumentoFacade() {
+        super(TipoDocumento.class);
     }
     
 }

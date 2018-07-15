@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hypatia.simu.modelo.dao;
+package edu.hypatia.simu.modelo.dao.jpa;
 
-import edu.hypatia.simu.modelo.entidades.Mecanico;
+import edu.hypatia.simu.modelo.dao.DetalleTransaccionFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.DetalleTransaccion;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +16,7 @@ import javax.persistence.PersistenceContext;
  * @author davrivas
  */
 @Stateless
-public class MecanicoFacade extends AbstractFacade<Mecanico> implements MecanicoFacadeLocal {
+public class DetalleTransaccionFacade extends AbstractFacade<DetalleTransaccion> implements DetalleTransaccionFacadeLocal {
 
     @PersistenceContext(unitName = "simuPU")
     private EntityManager em;
@@ -25,8 +26,8 @@ public class MecanicoFacade extends AbstractFacade<Mecanico> implements Mecanico
         return em;
     }
 
-    public MecanicoFacade() {
-        super(Mecanico.class);
+    public DetalleTransaccionFacade() {
+        super(DetalleTransaccion.class);
     }
     
 }

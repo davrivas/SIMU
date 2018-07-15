@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hypatia.simu.modelo.dao;
+package edu.hypatia.simu.modelo.dao.jpa;
 
-import edu.hypatia.simu.modelo.entidades.Transaccion;
+import edu.hypatia.simu.modelo.dao.FotoProductoFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.FotoProducto;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +16,7 @@ import javax.persistence.PersistenceContext;
  * @author davrivas
  */
 @Stateless
-public class TransaccionFacade extends AbstractFacade<Transaccion> implements TransaccionFacadeLocal {
+public class FotoProductoFacade extends AbstractFacade<FotoProducto> implements FotoProductoFacadeLocal {
 
     @PersistenceContext(unitName = "simuPU")
     private EntityManager em;
@@ -25,8 +26,8 @@ public class TransaccionFacade extends AbstractFacade<Transaccion> implements Tr
         return em;
     }
 
-    public TransaccionFacade() {
-        super(Transaccion.class);
+    public FotoProductoFacade() {
+        super(FotoProducto.class);
     }
     
 }

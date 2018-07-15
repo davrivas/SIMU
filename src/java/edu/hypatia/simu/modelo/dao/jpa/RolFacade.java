@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hypatia.simu.modelo.dao;
+package edu.hypatia.simu.modelo.dao.jpa;
 
-import edu.hypatia.simu.modelo.entidades.TipoAccesorio;
+import edu.hypatia.simu.modelo.dao.RolFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Rol;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +16,7 @@ import javax.persistence.PersistenceContext;
  * @author davrivas
  */
 @Stateless
-public class TipoAccesorioFacade extends AbstractFacade<TipoAccesorio> implements TipoAccesorioFacadeLocal {
+public class RolFacade extends AbstractFacade<Rol> implements RolFacadeLocal {
 
     @PersistenceContext(unitName = "simuPU")
     private EntityManager em;
@@ -25,8 +26,8 @@ public class TipoAccesorioFacade extends AbstractFacade<TipoAccesorio> implement
         return em;
     }
 
-    public TipoAccesorioFacade() {
-        super(TipoAccesorio.class);
+    public RolFacade() {
+        super(Rol.class);
     }
     
 }

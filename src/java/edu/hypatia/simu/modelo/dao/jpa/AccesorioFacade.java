@@ -3,19 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hypatia.simu.modelo.dao;
+package edu.hypatia.simu.modelo.dao.jpa;
 
-import edu.hypatia.simu.modelo.entidades.Oferta;
+import edu.hypatia.simu.modelo.dao.AccesorioFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Accesorio;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
  * @author davrivas
  */
 @Stateless
-public class OfertaFacade extends AbstractFacade<Oferta> implements OfertaFacadeLocal {
+public class AccesorioFacade extends AbstractFacade<Accesorio> implements AccesorioFacadeLocal {
 
     @PersistenceContext(unitName = "simuPU")
     private EntityManager em;
@@ -25,8 +27,8 @@ public class OfertaFacade extends AbstractFacade<Oferta> implements OfertaFacade
         return em;
     }
 
-    public OfertaFacade() {
-        super(Oferta.class);
+    public AccesorioFacade() {
+        super(Accesorio.class);
     }
-    
+
 }

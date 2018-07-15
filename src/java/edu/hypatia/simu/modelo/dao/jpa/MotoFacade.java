@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hypatia.simu.modelo.dao;
+package edu.hypatia.simu.modelo.dao.jpa;
 
-import edu.hypatia.simu.modelo.entidades.Persona;
+import edu.hypatia.simu.modelo.dao.MotoFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Cliente;
+import edu.hypatia.simu.modelo.entidades.Moto;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -17,7 +20,7 @@ import javax.persistence.TypedQuery;
  * @author davrivas
  */
 @Stateless
-public class PersonaFacade extends AbstractFacade<Persona> implements PersonaFacadeLocal {
+public class MotoFacade extends AbstractFacade<Moto> implements MotoFacadeLocal {
 
     @PersistenceContext(unitName = "simuPU")
     private EntityManager em;
@@ -27,20 +30,19 @@ public class PersonaFacade extends AbstractFacade<Persona> implements PersonaFac
         return em;
     }
 
-    public PersonaFacade() {
-        super(Persona.class);
+    public MotoFacade() {
+        super(Moto.class);
     }
 
     @Override
-    public Persona findByEmailContrasena(String email, String contrasena) {
+    public List<Moto> motosEnReparacion(Cliente cliente) {
         try {
-            TypedQuery<Persona> tq = getEntityManager().createQuery("SELECT p FROM Persona p WHERE p.email = :email AND p.contrasena = :contrasena", Persona.class);
-            tq.setParameter("email", email);
-            tq.setParameter("contrasena", contrasena);
-            return tq.getSingleResult();
+            TypedQuery<Moto> q = getEntityManager().createQuery("SELECT m FROM Moto m INNER JOIN m.estadoMoto e WHERE e.idEstadoMoto = 1 AND m.cliente = :cliente", Moto.class);
+            q.setParameter("cliente", cliente);
+            return q.getResultList();
         } catch (NoResultException e) {
             return null;
         }
     }
-
+    
 }
