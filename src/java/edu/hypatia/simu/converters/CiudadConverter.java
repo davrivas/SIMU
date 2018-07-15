@@ -5,8 +5,9 @@
  */
 package edu.hypatia.simu.converters;
 
-import edu.hypatia.simu.modelo.dao.MarcaProductoFacadeLocal;
-import edu.hypatia.simu.modelo.entidades.MarcaProducto;
+import edu.hypatia.simu.modelo.dao.CiudadFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Ciudad;
+import javax.ejb.EJB;
 import javax.enterprise.inject.spi.CDI;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -17,30 +18,32 @@ import javax.faces.convert.FacesConverter;
  *
  * @author NICOLAS
  */
-@FacesConverter(forClass = MarcaProducto.class)
-public class MarcaProductoConverter implements Converter<MarcaProducto>{
+@FacesConverter(forClass = Ciudad.class)
+public class CiudadConverter implements Converter<Ciudad> {
 
-    private MarcaProductoFacadeLocal mpfl;
+    @EJB
+    private CiudadFacadeLocal cfl;
 
-    public MarcaProductoConverter() {
-        mpfl = CDI.current().select(MarcaProductoFacadeLocal.class).get();
+    public CiudadConverter() {
+        cfl = CDI.current().select(CiudadFacadeLocal.class).get();
     }
 
     @Override
-    public MarcaProducto getAsObject(FacesContext context, UIComponent component, String value) {
+    public Ciudad getAsObject(FacesContext context, UIComponent component, String value) {
         try {
             Integer id = Integer.valueOf(value);
-            return mpfl.find(id);
+            return cfl.find(id);
         } catch (NumberFormatException numberFormatException) {
             return null;
         }
     }
 
     @Override
-    public String getAsString(FacesContext arg0, UIComponent arg1, MarcaProducto obj) {
-        if(obj != null){
-            return obj.getIdMarcaProducto().toString();
+    public String getAsString(FacesContext arg0, UIComponent arg1, Ciudad obj) {
+        if (obj != null) {
+            return obj.getIdCiudad().toString();
         }
         return "";
     }
+
 }

@@ -5,6 +5,7 @@
  */
 package edu.hypatia.simu.modelo.dao;
 
+import edu.hypatia.simu.modelo.entidades.Accesorio;
 import edu.hypatia.simu.modelo.entidades.MarcaProducto;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,6 +30,6 @@ public interface MarcaProductoFacadeLocal {
     List<MarcaProducto> findRange(int[] range);
 
     int count();
-    
+
     List<MarcaProducto> listarMarcaMoto();
 }

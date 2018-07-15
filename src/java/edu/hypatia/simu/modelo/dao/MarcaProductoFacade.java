@@ -42,5 +42,3 @@ public class MarcaProductoFacade extends AbstractFacade<MarcaProducto> implement
         }
         }
     }
-    
-

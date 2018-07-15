@@ -9,6 +9,7 @@ import edu.hypatia.simu.modelo.entidades.Accesorio;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -28,5 +29,5 @@ public class AccesorioFacade extends AbstractFacade<Accesorio> implements Acceso
     public AccesorioFacade() {
         super(Accesorio.class);
     }
-    
+
 }

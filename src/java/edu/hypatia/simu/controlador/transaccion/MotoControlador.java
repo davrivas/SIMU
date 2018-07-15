@@ -6,7 +6,6 @@
 package edu.hypatia.simu.controlador.transaccion;
 
 import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
-import edu.hypatia.simu.modelo.entidades.Cliente;
 import edu.hypatia.simu.modelo.entidades.Moto;
 import edu.hypatia.simu.modelo.entidades.Producto;
 import java.io.Serializable;
@@ -19,6 +18,7 @@ import edu.hypatia.simu.modelo.dao.EstadoMotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.MarcaProductoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.MotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Cliente;
 import edu.hypatia.simu.modelo.entidades.EstadoMoto;
 import edu.hypatia.simu.modelo.entidades.MarcaProducto;
 import javax.inject.Inject;
@@ -30,21 +30,24 @@ import javax.inject.Inject;
 @Named(value = "motoControlador")
 @SessionScoped
 public class MotoControlador implements Serializable {
-    
+
     @Inject
     private SesionControlador sc;
 
-     @EJB
-     private MarcaProductoFacadeLocal mpl;
+    @EJB
+    private MarcaProductoFacadeLocal mpl;
 
     @EJB
     private MotoFacadeLocal mfl;
 
     @EJB
-    private ClienteFacadeLocal cfl;
+    private ClienteFacadeLocal clf;
 
     @EJB
-    private ProductoFacadeLocal pfl;
+    private ProductoFacadeLocal productofl;
+
+    @EJB
+    private MarcaProductoFacadeLocal marcaProductofl;
 
     @EJB
     private EstadoMotoFacadeLocal emfl;
@@ -54,10 +57,12 @@ public class MotoControlador implements Serializable {
     private Moto motoSeleccionada;
 
     private Moto moto = new Moto();
-    
     private Producto producto = new Producto();
-    
-     private MarcaProducto marcaProducto = new MarcaProducto();
+
+    private MarcaProducto marcaProducto = new MarcaProducto();
+
+    public MotoControlador() {
+    }
 
     public Producto getProducto() {
         return producto;
@@ -73,15 +78,6 @@ public class MotoControlador implements Serializable {
 
     public void setMarcaProducto(MarcaProducto marcaProducto) {
         this.marcaProducto = marcaProducto;
-    }
-
- 
-
-  
-
-   
-
-    public MotoControlador() {
     }
 
     public List<Moto> getMotos() {
@@ -128,51 +124,50 @@ public class MotoControlador implements Serializable {
             mfl.edit(motoSeleccionada);
             motos = null;
         } catch (Exception e) {
-        }   
+        }
         return "listarMoto.xhtml?faces-redirect=true";
     }
 
     /*REGISTRAR*/
-    public String seleccionar() {       
+    public String seleccionar() {
         return "registrar.xhtml?faces-redirect=true";
     }
-  
-   
-    public List<MarcaProducto> listarMarcaProducto(){
-    return mpl.listarMarcaMoto();
-    } 
-    
+
     public List<Producto> listarProducto() {
-        return pfl.findAll();
+        return productofl.findAll();
     }
 
     public List<Cliente> listarCliente() {
-        return cfl.findAll();
+        return clf.findAll();
     }
-    
+
     public List<EstadoMoto> listarEstadoMoto() {
         return emfl.findAll();
     }
 
+    public List<MarcaProducto> listarMarcaProducto() {
+        return marcaProductofl.findAll();
+    }
+
     public String registrar() {
+
+        productofl.create(producto);
+
+        moto.setEstadoMoto(emfl.find(5));
+        moto.setProducto(producto);
+        moto.setCliente(sc.getPersona().getCliente());
         mfl.create(moto);
-        motoSeleccionada = null;
+
         return "listarMoto.xhtml?faces-redirect=true";
     }
-    
-    public void registrarMotoOfrecida(){
+
+    public void registrarMotoOfrecida() {
         producto.setMarcaProducto(marcaProducto);
-        pfl.create(producto);
+        productofl.create(producto);
         moto.setProducto(producto);
         moto.setEstadoMoto(emfl.find(2));
         moto.setCliente(sc.getPersona().getCliente());
         mfl.create(moto);
-        
-
+    }
 
 }
-    
-
-    
-}
-    

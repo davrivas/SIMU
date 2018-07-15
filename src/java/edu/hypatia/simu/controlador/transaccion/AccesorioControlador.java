@@ -14,8 +14,12 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import edu.hypatia.simu.modelo.dao.AccesorioFacadeLocal;
+import edu.hypatia.simu.modelo.dao.MarcaProductoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ProveedorFacadeLocal;
+import edu.hypatia.simu.modelo.dao.TipoAccesorioFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.MarcaProducto;
+import edu.hypatia.simu.modelo.entidades.TipoAccesorio;
 
 /**
  *
@@ -24,40 +28,69 @@ import edu.hypatia.simu.modelo.dao.ProveedorFacadeLocal;
 @Named(value = "accesorioControlador")
 @SessionScoped
 public class AccesorioControlador implements Serializable {
-
+    
     public AccesorioControlador() {
     }
-
+    
     @EJB
     private AccesorioFacadeLocal afl;
-
+    
+    @EJB
+    private ProveedorFacadeLocal proveedorfl;
+    
+    
     @EJB
     private ProveedorFacadeLocal prfl;
-
+    
     @EJB
     private ProductoFacadeLocal pfl;
+    
+    @EJB
+    private MarcaProductoFacadeLocal mpfl;
+    
+    @EJB
+    private TipoAccesorioFacadeLocal tafl;
+    
     private List<Producto> productos;
-
+    
     private Accesorio accesorio = new Accesorio();
-
+    private Producto producto = new Producto();
+    private MarcaProducto MarcaProducto = new MarcaProducto();
+    
     private Accesorio accesorioSeleccionado;
-
+    
     private List<Accesorio> accesorios;
-
+    
     public List<Accesorio> getAccesorios() {
         return afl.findAll();
     }
-
+    
     public Accesorio getAccesorio() {
         return accesorio;
     }
-
+    
     public void setAccesorio(Accesorio accesorio) {
         this.accesorio = accesorio;
     }
-
+    
     public Accesorio getAccesorioSeleccionado() {
         return accesorioSeleccionado;
+    }
+    
+    public Producto getProducto() {
+        return producto;
+    }
+    
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+    
+    public MarcaProducto getMarcaProducto() {
+        return MarcaProducto;
+    }
+    
+    public void setMarcaProducto(MarcaProducto MarcaProducto) {
+        this.MarcaProducto = MarcaProducto;
     }
 
     /*ELIMINAR*/
@@ -65,9 +98,9 @@ public class AccesorioControlador implements Serializable {
         System.out.println("Id:" + a.getIdAccesorio());
         accesorio = a;
         accesorioSeleccionado = a;
-
+        
     }
-
+    
     public String eliminar() {
         try {
             System.out.println("Vamos a eliminar la moto");
@@ -94,29 +127,34 @@ public class AccesorioControlador implements Serializable {
     }
 
     /*REGISTRAR*/
-    public String seleccionar() {
-        return "registrarAccesorio.xhtml?faces-redirect=true";
-    }
-
+   
     public List<Producto> getProductos() {
         return pfl.findAll();
     }
-
+    
     public List<Proveedor> listarProveedor() {
         return prfl.findAll();
     }
-
+    
+    public List<TipoAccesorio> listarTipoAccesorio() {
+        return tafl.findAll();
+    }
+    
+    public List<MarcaProducto> listarMarcaAccesorio() {
+        return mpfl.findAll();
+    }
+    
     public String registrar() {
-//        System.out.println("Nombre: " + accesorio.getNombre());
-//        accesorio.setProducto(pfl.find(2));
-        System.out.println("Producto: " + accesorio.getProducto());
-//        System.out.println("Proveedor:  + accesorio.getProveedor().getIdProveedor());
-//        System.out.println("Tipo accesorio: " + accesorio.getTipoAccesorio().getIdTipoAccesorio());
+        
+        pfl.create(producto);
 
-        accesorio.setProducto(pfl.find(2));
-        accesorio.setProveedor(prfl.find(4));
-
+        accesorio.setProveedor(proveedorfl.find(4));
+        accesorio.setProducto(producto);
         afl.create(accesorio);
+        
+        accesorio = null;
+        producto = null;
+        
         return "listarAccesorio.xhtml?faces-redirect=true";
     }
 }

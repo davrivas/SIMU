@@ -9,13 +9,24 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="contenido1">
+        
+        <h:form>
+            
+            <ui:include src="/WEB-INF/templates/administrador/modal/registrarAccesorio.xhtml"></ui:include>
+
+        </h:form>
 
         <section class="p-3 justify-content-around">
             <div class="col-12 principal mt-3 p-3 mt-2">
                 <nav class="navbar navbar-dark">
                     <h:form>
-                        <h:commandLink action="#{accesorioControlador.seleccionar()}" class="btn btn-outline-warning" value="Registrar">
+                        <h:commandLink class="btn btn-outline-danger" a:data-toggle="modal" a:data-target="#myModal3" value="Registrar">
                             <i class="fa fa-plus"></i>
+                            <f:ajax render=":contentModalRegistrarAccesorio"/>
+                        </h:commandLink>
+                        
+                        <h:commandLink action="#{exportControlador.accesoriosPDF()}" class="btn btn-outline-info ml-3" value="PDF">
+                            <i class="fa fa-file-pdf-o"></i>
                         </h:commandLink>
                     </h:form>
 
@@ -121,17 +132,19 @@
 
 
         <h1 class="text-left mb-4 p-3"><i class="fa fa-th-list mr-2"></i>Lista de accesorios</h1>
-        
+
         <table class="table table-fixed p-5">
             <caption>Lista de motos</caption>
             <thead>
                 <tr>
-                    <th>Opciones</th>
-                    <th>Id_accesorio</th>
-                    <th>Nombre</th>
-                    <th>Producto</th>
-                    <th>Proveedor</th>
-                    <th>Tipo_accesorio</th>
+                    <th><strong>OPCIONES</strong></th>
+                    <th><strong>ACCESORIO</strong></th>
+                    <th><strong>NOMBRE</strong></th>                   
+                    <th><strong>MARCA</strong></th>
+                    <th><strong>REFERENCIA</strong></th>
+                    <th><strong>TIPO ACCESORIO</strong></th>
+                    <th><strong>PROVEEDOR</strong></th>
+                    <th><strong>PRECIO</strong></th>
 
                 </tr>
             </thead>
@@ -156,8 +169,10 @@
                         <td>#{a.idAccesorio}</td>
                         <td>#{a.nombre}</td>
                         <td>#{a.producto.marcaProducto.marcaProducto}</td>
-                        <td>#{a.proveedor.nombreCompania}</td>
+                        <td>#{a.producto.referencia}</td>
                         <td>#{a.tipoAccesorio.tipoAccesorio}</td>
+                        <td>#{a.proveedor.nombreCompania}</td>
+                        <td>#{a.producto.precio}</td>
                     </tr>
                 </c:forEach>
 

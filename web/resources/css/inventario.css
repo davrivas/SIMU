@@ -84,10 +84,6 @@ figure.snip0078.hover.red img {
   border: 10px solid #c0392b;
 }
 
-/*MODAL*/
-.modal-body{
-    color: #000;
-}
 
 /*SUPERIOR*/
 .arriba{
@@ -118,23 +114,6 @@ figure.snip0078.hover.red img {
 }
 .perfil:hover{
     border-bottom: 2px solid orange;
-}
-
-/*MEDIO*/
-
-h3{
-    color: #000;
-}
-
-h4{
-    color: #000;
-}
-
-.registrar{
-    width: 1030px;
-    height: 700px;
-    background-color: rgba(0,0,0,.5);
-    border: 1px solid #2d2d2d;
 }
 
 hr{

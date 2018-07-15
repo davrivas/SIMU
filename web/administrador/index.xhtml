@@ -3,10 +3,11 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/WEB-INF/templates/administrador/main-template.xhtml">
+                template="/WEB-INF/templates/administrador/main-template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <h:head>
-        <link href="#{request.contextPath}/resources/css/calendario.css" rel="stylesheet"></link>
         <title>Administrador</title>
     </h:head>
 
@@ -73,7 +74,7 @@
                         </div>
                     </a>
                     <div class="circle-tile-content dark-orange">
-                        <div class="circle-tile-description "> Compras y Ventas</div>
+                        <div class="circle-tile-description ">Transacciones</div>
                         <div class="circle-tile-number ">265</div>
                         <a class="circle-tile-footer" href="#"></a>
                     </div>
@@ -92,7 +93,7 @@
                     </div>
                     <div class="lado p-4 atras">
                         <p>Avances comerciales y mejoras en las transacciones en graficas estadisticas.</p>
-                        <button type="button" class="btn btn-outline-warning" onclick="estadis()">Mostrar</button>
+
                     </div>
                 </div>
             </div>
@@ -113,6 +114,10 @@
                 </div>
             </div>
         </section>
+        <h:form>
+             <ui:include src="/WEB-INF/templates/administrador/modal/registrarAdministrador.xhtml"></ui:include>
+             <ui:include src="/WEB-INF/templates/administrador/modal/registrarMecanico.xhtml"></ui:include>
+        </h:form>
 
         <!--carta 3-->
 
@@ -120,13 +125,24 @@
             <div class="contenedor ">
                 <div class="carta">
                     <div class="lado frente">
-                        <strong class="subtitulo">Transacciones</strong>
+                        <strong class="subtitulo">Registro Personal</strong>
 
 
                     </div>
                     <div class="lado p-4 atras">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, maxime dolore culpa. Quidem repellendus.</p>
-                        <button type="button" class="btn btn-outline-warning" onclick="produ()">Mostrar</button>
+                        <p>Registra el personal correspondiente a las funcionalidades de SIMU.</p>
+                        <h:form prependId="false">   
+                                <div>
+                                    <h:commandLink class="btn-simu-naranja btn-block" value="Administrador" a:data-toggle="modal" a:data-target="#myModal4">
+                                        <f:ajax rendered=":contentModalRegistrarAdministrador"></f:ajax>
+                                    </h:commandLink>
+                                </div>
+                                <div>
+                                    <h:commandLink class="btn-simu-naranja btn-block mt-2 " value="Mecanico" a:data-toggle="modal" a:data-target="#myModal5">
+                                        <f:ajax rendered=":contentModalRegistrarMecanico"></f:ajax>
+                                    </h:commandLink>
+                                </div>
+                        </h:form>
                     </div>
                 </div>
             </div>
@@ -134,6 +150,8 @@
 
 
     </ui:define>
+
+
 
 </ui:composition>
 
