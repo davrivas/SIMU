@@ -3,11 +3,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
     <h:head>
-
         <meta charset="utf-8" />
-        <title>SIMU</title>
+        <title><ui:insert name="title">SIMU</ui:insert> - SIMU</title>
         <link rel="shortcut icon" href="#{request.contextPath}/resources/img/favicon.png" />
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
         <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet"/>
@@ -19,11 +17,14 @@
         <!--Styles-->
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/normalizar.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/modal.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/index.css" />
         <link href="#{request.contextPath}/resources/css/nav-bar.css" rel="stylesheet"/>
         <link href="#{request.contextPath}/resources/css/footer.css" rel="stylesheet"/>
-        <link href="#{request.contextPath}/resources/css/inventario.css" rel="stylesheet"/>
-        <link href="#{request.contextPath}/resources/css/index.css" rel="stylesheet"/>
-        <link href="#{request.contextPath}/resources/css/mostrar-opc.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/carrito.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/login.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/reparacion.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/accesorios.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/motos.css" />
     </h:head>
 </ui:composition>
 
