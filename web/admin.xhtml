@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/administrador/main-template.xhtml">
+
+    <h:head>
+        <title>Administrador</title>
+    </h:head>
+
+    <ui:define name="title" >
+        <h2>¡ Visualice las actualizaciones de el control respectivo a su inventario !</h2>        
+    </ui:define>
+
+
+    <ui:define name="contenido1">
+        <div class="container">
+
+            <div class="col-8 col-md-12 mt-3">
+
+                <div class="row mb-5 justify-content-center">
+
+                    <table class="table-condensed ">
+                        <thead>
+                            <tr>
+                                <th colspan="7">
+                                   CALENDARIO 2018
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Domingo</th>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miercoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                                <th>Sabado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="muted">29</td>
+                                <td class="muted">30</td>
+                                <td class="muted">31</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                                <td>15</td>
+                                <td>16</td>
+                                <td>17</td>
+                                <td>18</td>
+                            </tr>
+                            <tr>
+                                <td>19</td>
+                                <td>20</td>
+                                <td>21</td>
+                                <td>22</td>
+                                <td>23</td>
+                                <td>24</td>
+                                <td>25</td>
+                            </tr>
+                            <tr>
+                                <td>26</td>
+                                <td>27</td>
+                                <td>28</td>
+                                <td>29</td>
+                                <td class="muted">1</td>
+                                <td class="muted">2</td>
+                                <td class="muted">3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <section class="row mt-4">
+
+
+            <div class="col-md-3 ">
+                <div class="circle-tile ">
+                    <a href="#">
+                        <div class="circle-tile-heading dark-red ">
+                            <i class="fa fa-users  fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content dark-red">
+                        <div class="circle-tile-description "> Usuarios</div>
+                        <div class="circle-tile-number ">265</div>
+                        <a class="circle-tile-footer" ></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 ">
+                <div class="circle-tile ">
+                    <a href="#">
+                        <div class="circle-tile-heading dark-blue ">
+                            <i class="fa fa-product-hunt  fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content dark-blue">
+                        <div class="circle-tile-description "> Productos</div>
+                        <div class="circle-tile-number  ">120</div>
+                        <a class="circle-tile-footer" href="#"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 ">
+                <div class="circle-tile ">
+                    <a href="#">
+                        <div class="circle-tile-heading dark-green">
+                            <i class="fa fa-users  fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content dark-green">
+                        <div class="circle-tile-description "> Usuarios</div>
+                        <div class="circle-tile-number ">265</div>
+                        <a class="circle-tile-footer" href="#"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 ">
+                <div class="circle-tile ">
+                    <a href="#">
+                        <div class="circle-tile-heading dark-orange">
+                            <i class="fa fa-users  fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content dark-orange">
+                        <div class="circle-tile-description "> Usuarios</div>
+                        <div class="circle-tile-number ">265</div>
+                        <a class="circle-tile-footer" href="#"></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </ui:define>
+
+    <ui:define name="contenido2">
+        <!--carta 1-->
+        <section class="col-sm-12 col-md-4">
+            <div class="contenedor ">
+                <div class="carta">
+                    <div class="lado frente">
+                        <strong class="subtitulo">Estadisticas </strong>
+                    </div>
+                    <div class="lado p-4 atras">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus placeat non nemo quas.</p>
+                        <button type="button" class="btn-simu-naranja" onclick="estadis()">Mostrar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--carta 2-->
+
+        <section class="col-sm-12 col-md-4 ">
+            <div class="contenedor ">
+                <div class="carta">
+                    <div class="lado frente">
+                        <strong class="subtitulo">Reportes</strong>
+                    </div>
+                    <div class="lado p-4 atras ">
+                        <p class="p-3">avances comerciales que has tenido en formato PDF y/o excel</p>
+                        <button class="btn-simu-naranja" type="button" data-toggle="modal" data-target="#generar-reporte">Click aqui</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--carta 3-->
+
+        <section class="col-sm-12 col-md-4 ">
+            <div class="contenedor ">
+                <div class="carta">
+                    <div class="lado frente">
+                        <strong class="subtitulo">Productos</strong>
+
+
+                    </div>
+                    <div class="lado p-4 atras">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, maxime dolore culpa. Quidem repellendus.</p>
+                        <button type="button" class="btn-simu-naranja" onclick="produ()">Mostrar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </ui:define>
+
+</ui:composition>
+
