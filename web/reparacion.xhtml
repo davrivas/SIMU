@@ -75,165 +75,74 @@
                                 </div>
                             </div>
                         </div>
-
-                        <nav>
-                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <ul class="nav nav-tabs" id="nav-reparacion-simu" role="tablist">
+                            <li class="nav-item">
                                 <a class="nav-item nav-link active" id="nav-motos-tab" data-toggle="tab" href="#nav-motos" role="tab" aria-controls="nav-motos" aria-selected="true">
                                     Mis motos (#{sesionControlador.persona.cliente.motoList.size()})
                                 </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-item nav-link" id="nav-reparaciones-sincal-tab" data-toggle="tab" href="#nav-reparaciones-sincal" role="tab" aria-controls="nav-reparaciones-sincal" aria-selected="false">
                                     Reparaciones por calificar (#{reparacionClienteControlador.reparacionesSinCalificar.size()})
                                 </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-item nav-link" id="nav-reparaciones-concal-tab" data-toggle="tab" href="#nav-reparaciones-concal" role="tab" aria-controls="nav-reparaciones-concal" aria-selected="false">
                                     Reparaciones calificadas (#{reparacionClienteControlador.reparacionesCalificadas.size()})
                                 </a>
-                            </div>
-                        </nav>
-                        <div class="tab-content" id="nav-tabContent">
+                            </li>
+                        </ul>
+                        <div class="tab-content col-12" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-motos" role="tabpanel" aria-labelledby="nav-motos-tab">
                                 <div class="row mb-2">
                                     <div class="col d-flex justify-content-start">
                                         <h2>Mis motos</h2>
                                     </div>
-                                    <!--                                        <div class="col d-flex justify-content-end">
-                                                                                <button class="btn-simu-naranja" type="button" data-toggle="modal" data-target="#agregar-moto">
-                                                                                    <span class="fa fa-plus"></span> Agregar Moto
-                                                                                </button>
-                                                                            </div>-->
+                                    <!--                                    <div class="col d-flex justify-content-end">
+                                                                            <button class="btn-simu-naranja" type="button" data-toggle="modal" data-target="#agregar-moto">
+                                                                                <span class="fa fa-plus"></span> Agregar Moto
+                                                                            </button>
+                                                                        </div>-->
                                 </div>
-
-                                <h:panelGroup rendered="#{not empty sesionControlador.persona.cliente.motoList}">
-                                    <h:dataTable value="#{sesionControlador.persona.cliente.motoList}" class="table table-striped table-responsive" var="m">
-                                        <h:column>
-                                            <f:facet name="header">Marca y referencia</f:facet>
-                                            <h:outputText value="#{m.producto.marcaProducto.marcaProducto} #{m.producto.referencia}"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Placa</f:facet>
-                                            <h:outputText value="#{m.placa}"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Cilindraje</f:facet>
-                                            <h:outputText value="#{m.cilindraje} cc"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Color</f:facet>
-                                            <h:outputText value="#{m.color}"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Modelo</f:facet>
-                                            <h:outputText value="#{m.modelo}"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Kilometraje</f:facet>
-                                            <h:outputText value="#{m.kilometraje} km"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Revisar historial</f:facet>
-                                            <h:commandLink class="btn-simu-naranja btn-block mt-3 d-flex justify-content-center align-items-center" actionListener="#{reparacionClienteControlador.seleccionarMoto(m)}" a:data-toggle="modal" a:data-target="#historial">
-                                                <f:ajax render=":contenidoModalHistorial"/>
-                                                <span class="fa fa-history"></span>
-                                            </h:commandLink>
-                                        </h:column>
-                                    </h:dataTable>
-                                </h:panelGroup>
-
-                                <h:panelGroup rendered="#{empty sesionControlador.persona.cliente.motoList}">
-                                    <div class="row mt-5">
-                                        <p class="text-center"><i>No tienes motos. Agrega una</i></p>
-                                    </div>
-                                </h:panelGroup>
+                                <h:dataTable value="#{sesionControlador.persona.cliente.motoList}" class="table table-striped table-responsive" var="m">
+                                    <h:column>
+                                        <f:facet name="header">Marca y referencia</f:facet>
+                                        <h:outputText value="#{m.producto.marcaProducto.marcaProducto} #{m.producto.referencia}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Placa</f:facet>
+                                        <h:outputText value="#{m.placa}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Cilindraje</f:facet>
+                                        <h:outputText value="#{m.cilindraje} cc"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Color</f:facet>
+                                        <h:outputText value="#{m.color}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Modelo</f:facet>
+                                        <h:outputText value="#{m.modelo}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Kilometraje</f:facet>
+                                        <h:outputText value="#{m.kilometraje} km"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Revisar historial</f:facet>
+                                        <h:commandLink class="btn-simu-naranja btn-block mt-3 d-flex justify-content-center align-items-center" actionListener="#{reparacionClienteControlador.seleccionarMoto(m)}" a:data-toggle="modal" a:data-target="#historial">
+                                            <f:ajax render=":contenidoModalHistorial"/>
+                                            <span class="fa fa-history"></span>
+                                        </h:commandLink>
+                                    </h:column>
+                                </h:dataTable>
                             </div>
                             <div class="tab-pane fade" id="nav-reparaciones-sincal" role="tabpanel" aria-labelledby="nav-reparaciones-sincal-tab">
-                                <h:panelGroup rendered="#{not empty reparacionClienteControlador.reparacionesSinCalificar}">
-                                    <h:form prependId="false">
-                                        <h:dataTable value="#{reparacionClienteControlador.reparacionesSinCalificar}" var="r" class="table table-striped table-responsive">
-                                            <h:column>
-                                                <f:facet name="header">Fecha y hora</f:facet>
-                                                <h:outputText value="#{r.fecha}">
-                                                    <f:convertDateTime pattern="yyyy/MM/dd "/>
-                                                </h:outputText>
-                                                <h:outputText value="#{r.hora}">
-                                                    <f:convertDateTime pattern="HH:mm"/>
-                                                </h:outputText>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">Placa de la moto</f:facet>
-                                                <h:outputText value="#{r.moto.placa}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">Nombre del mecánico</f:facet>
-                                                <h:outputText value="#{r.mecanico.persona.nombre} #{r.mecanico.persona.apellido}" />
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">Tipo(s) de servicio reparación</f:facet>
-                                                <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
-                                                    #{tsr.servicio}<br/>
-                                                </ui:repeat>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">Descripción</f:facet>
-                                                <h:outputText value="#{r.descripcion}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">Calificar</f:facet>
-                                                <h:commandLink actionListener="#{reparacionClienteControlador.seleccionarReparacion(r)}" a:data-toggle="modal" a:data-target="#calificar-modal" class="btn-simu-naranja">
-                                                    <f:ajax render=":modalCalificarContenido"/>
-                                                    <span class="fa fa-star"></span>
-                                                </h:commandLink>
-                                            </h:column>
-                                        </h:dataTable>
-                                    </h:form>
-                                </h:panelGroup>
-
-                                <h:panelGroup rendered="#{empty reparacionClienteControlador.reparacionesSinCalificar}">
-                                    <div class="row mt-5">
-                                        <p class="text-center"><i>No hay reparaciones sin calificar</i></p>
-                                    </div>
-                                </h:panelGroup>
+                                <div>2</div>
                             </div>
                             <div class="tab-pane fade" id="nav-reparaciones-concal" role="tabpanel" aria-labelledby="nav-reparaciones-concal-tab">
-                                <h:panelGroup rendered="#{not empty reparacionClienteControlador.reparacionesCalificadas}">
-                                    <h:dataTable value="#{reparacionClienteControlador.reparacionesCalificadas}" var="r" class="table table-striped table-responsive">
-                                        <h:column>
-                                            <f:facet name="header">Fecha y hora</f:facet>
-                                            <h:outputText value="#{r.fecha}">
-                                                <f:convertDateTime pattern="yyyy/MM/dd " />
-                                            </h:outputText>
-                                            <h:outputText value="#{r.hora}">
-                                                <f:convertDateTime pattern="HH:mm" />
-                                            </h:outputText>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Placa de la moto</f:facet>
-                                            <h:outputText value="#{r.moto.placa}"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Nombre del mecánico</f:facet>
-                                            <h:outputText value="#{r.mecanico.persona.nombre} #{r.mecanico.persona.apellido}" />
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Tipo(s) de servicio reparación</f:facet>
-                                            <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
-                                                #{tsr.servicio}<br/>
-                                            </ui:repeat>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Descripción</f:facet>
-                                            <h:outputText value="#{r.descripcion}"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Calificación</f:facet>
-                                            <h:outputText value="#{reparacionControlador.getCalificacionReparacion(r)}" escape="false"/>
-                                        </h:column>
-                                    </h:dataTable>
-                                </h:panelGroup>
-
-                                <h:panelGroup rendered="#{empty reparacionClienteControlador.reparacionesCalificadas}">
-                                    <div class="row mt-5">
-                                        <p class="text-center"><i>No hay reparaciones calificadas</i></p>
-                                    </div>
-                                </h:panelGroup>
+                                <div>3</div>
                             </div>
                         </div>
                     </div>
@@ -244,9 +153,9 @@
     <ui:define name="modales">
         <h:panelGroup rendered="#{not empty sesionControlador.persona}">
             <ui:include src="/WEB-INF/templates/cliente/modales/reparacion/agendar.xhtml"/>
-            <ui:include src="/WEB-INF/templates/cliente/modales/reparacion/historial.xhtml"/>
-            <ui:include src="/WEB-INF/templates/cliente/modales/reparacion/calificar.xhtml"/>
-            <ui:include src="/WEB-INF/templates/cliente/modales/reparacion/motonueva.xhtml"/>
+            <!--<ui:include src="/WEB-INF/templates/cliente/modales/reparacion/historial.xhtml"/>-->
+            <!--<ui:include src="/WEB-INF/templates/cliente/modales/reparacion/calificar.xhtml"/>-->
+            <!--<ui:include src="/WEB-INF/templates/cliente/modales/reparacion/motonueva.xhtml"/>-->
         </h:panelGroup>
     </ui:define>
 </ui:composition>
