@@ -60,8 +60,13 @@ public class MotoControlador implements Serializable {
     private Producto producto = new Producto();
 
     private MarcaProducto marcaProducto = new MarcaProducto();
+    private List<MarcaProducto> marcasMoto;
 
     public MotoControlador() {
+    }
+
+    public List<MarcaProducto> getMarcasMoto() {
+        return marcaProductofl.listarMarcaMoto();
     }
 
     public Producto getProducto() {
