@@ -14,12 +14,20 @@
     transition: .3s;
 }
 
-.items-nav-activo, .items-nav-activo:hover {
+.items-nav-activo {
     border-bottom: 1.5px solid #fff !important;
 }
 
 .items-nav:hover, .dropdown-item:hover {
     border-bottom: 1.5px solid orange;
+}
+
+.items-nav {
+    border-bottom: none !important;
+}
+
+link-navbar:hover {
+    border-bottom: 0;
 }
 
 .logo-simu-negativo {
