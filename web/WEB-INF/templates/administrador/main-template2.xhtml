@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <!--Bootstrap-->
+        <link href="#{request.contextPath}/resources/framework/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <!--Font Awesome-->
+        <link href="#{request.contextPath}/resources/framework/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+        <!--estilos-->
+        <link href="#{request.contextPath}/resources/css/estilosEjemplo.css" rel="stylesheet"/>
+    </h:head>
+
+    <h:body>
+
+        <div class="sidebar">
+            <!--ASIDE-MENU-->
+            <h2>SIMU</h2>
+
+            <article class="card mt-5  foto">
+
+                <img class="card-img-top" src="https://cdn.pixabay.com/photo/2017/03/29/21/27/motorcycle-2186589__340.jpg"></img>
+
+                <div class="card-block">
+                    <h4 class="card-title mt-3 d-flex text-center"><strong>#{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}</strong></h4>
+
+                    <div class="meta d-flex justify-content-center">
+                        <h5 class="mb-3">#{sesionControlador.persona.rol.rol}</h5>
+                    </div>
+
+                </div>
+
+            </article>
+            <ul>
+                <c:forEach items="#{sesionControlador.persona.rol.permisoList}" var="p">
+                    <li><a href="#{p.url}"><i class="#{p.icono} fa-2x mr-2"></i>#{p.permiso}</a></li>
+                </c:forEach>
+            </ul>
+        </div>
+
+        <!--CONTENIDO PRINCIPAL-->
+        <div class="contenido">
+            <!--TOP-->
+            <div class="row top p-2">
+
+                <section class="col-3">
+                    
+                    <button class="btn btn-outline-dark menu-bar">
+                        <li class="fa fa-bars"></li>
+                    </button>  
+                    
+                    <button class="btn btn-outline-dark">
+                        <li class="fa fa-sign-out"></li>
+                    </button>
+                    
+                    <button class="btn btn-outline-dark">
+                        <li class="fa fa-edit"></li>
+                    </button>
+                </section>
+                
+               
+            </div>  	    
+            
+             <section>
+                    <div class="">
+                        <ui:insert name="contenido1">
+                            default
+                        </ui:insert>
+                    </div>
+                </section>
+        </div>
+
+        <ui:include src="/WEB-INF/templates/scripts.xhtml"/>
+    </h:body>
+</ui:composition>
+
