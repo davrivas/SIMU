@@ -39,19 +39,18 @@ public class ReparacionClienteControlador implements Serializable {
     private MotoFacadeLocal mfl;
     @EJB
     private EstadoMotoFacadeLocal efl;
-    
+
     @Inject
     private SesionControlador sc;
-    
+
     private Moto motoSeleccionada = new Moto();
     private Moto motoNueva = new Moto();
     private List<Moto> motosEnReparacion;
-    
+
     private Reparacion reparacionSeleccionada = new Reparacion();
-    private List<Reparacion> reparacionesSinCalificar;
-    private List<Reparacion> reparacionesCalificadas;
+    private List<Reparacion> reparacionesDelCliente;
     private Reparacion reparacionAgendada = new Reparacion();
-    
+
     private final DateFormat hoyFormato = new SimpleDateFormat("yyyy-MM-dd");
     private String hoyString = hoyFormato.format(new Date());
 
@@ -61,12 +60,8 @@ public class ReparacionClienteControlador implements Serializable {
     public ReparacionClienteControlador() {
     }
 
-    public List<Reparacion> getReparacionesSinCalificar() {
-        return rfl.reparacionesSinCalificar(sc.getPersona().getCliente());
-    }
-
-    public List<Reparacion> getReparacionesCalificadas() {
-        return rfl.reparacionesCalificadas(sc.getPersona().getCliente());
+    public List<Reparacion> getReparacionesDelCliente() {
+        return rfl.reparacionesDelCliente(sc.getPersona().getCliente());
     }
 
     public Moto getMotoSeleccionada() {
@@ -112,7 +107,7 @@ public class ReparacionClienteControlador implements Serializable {
     public void seleccionarMoto(Moto m) {
         motoSeleccionada = m;
     }
-    
+
     public String getCalificacionReparacion(Reparacion r) {
         if (r.getCalificacion() == null) {
             return "<em>No has calificado la reparación</em>";
@@ -124,11 +119,9 @@ public class ReparacionClienteControlador implements Serializable {
 
         return rta;
     }
-    
+
     public void seleccionarReparacion(Reparacion r) {
         reparacionSeleccionada = r;
-        System.out.println("id " + reparacionSeleccionada.getIdReparacion());
-        System.out.println("id " + reparacionSeleccionada.getMoto().getPlaca());
     }
 
     public String agendarCita() throws ParseException {
@@ -136,47 +129,40 @@ public class ReparacionClienteControlador implements Serializable {
         String fecha = formatoFecha.format(reparacionAgendada.getFecha());
         SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
         String hora = formatoHora.format(reparacionAgendada.getHora());
-        Date horaMinima = formatoHora.parse("07:00");
-        Date horaMaxima = formatoHora.parse("19:00");
-        Calendar ayer = Calendar.getInstance();
-        ayer.add(Calendar.DAY_OF_YEAR, -1);
-
         List<TipoServicioReparacion> servicios = reparacionAgendada.getTipoServicioReparacionList();
 
-//        if (servicios != null && reparacionAgendada.getFecha().after(ayer.getTime()) && (reparacionAgendada.getHora().after(horaMinima) && reparacionAgendada.getHora().before(horaMaxima))) {
-            rfl.create(reparacionAgendada);
+        rfl.create(reparacionAgendada);
 
-            // Enviar mail
-            String nombreCliente = sc.getPersona().getNombre() + " " + sc.getPersona().getApellido();
-            String placaMoto = reparacionAgendada.getMoto().getPlaca();
-            String nombreMecanico = reparacionAgendada.getMecanico().getPersona().getNombre() + " " + reparacionAgendada.getMecanico().getPersona().getApellido();
-            String tiposDeServicio = "Los tipos de servicio son<br>";
-            for (TipoServicioReparacion s : servicios) {
-                tiposDeServicio += "<li>" + s.getServicio() + "</li>";
-            }
-            String cuerpoHTML;
+        // Enviar mail
+        String nombreCliente = sc.getPersona().getNombre() + " " + sc.getPersona().getApellido();
+        String placaMoto = reparacionAgendada.getMoto().getPlaca();
+        String nombreMecanico = reparacionAgendada.getMecanico().getPersona().getNombre() + " " + reparacionAgendada.getMecanico().getPersona().getApellido();
+        String tiposDeServicio = "Los tipos de servicio son<br>";
+        for (TipoServicioReparacion s : servicios) {
+            tiposDeServicio += "<li>" + s.getServicio() + "</li>";
+        }
+        String cuerpoHTML;
 
-            // Para el cliente
-            String destinatario = sc.getPersona().getEmail();
-            String asunto = "Reparación programada";
-            cuerpoHTML = "<h1>Hola " + nombreCliente + "</h1>"
-                    + "Has programado una reparacion para tu moto con placa " + placaMoto + "<br>"
-                    + "Para el día " + fecha + " a las " + hora + "<br>"
-                    + "<br>" + tiposDeServicio + "<br>"
-                    + "Te atenderá " + nombreMecanico;
-            Mail.sendMail(destinatario, asunto, cuerpoHTML);
+        // Para el cliente
+        String destinatario = sc.getPersona().getEmail();
+        String asunto = "Reparación programada";
+        cuerpoHTML = "<h1>Hola " + nombreCliente + "</h1>"
+                + "Has programado una reparacion para tu moto con placa " + placaMoto + "<br>"
+                + "Para el día " + fecha + " a las " + hora + "<br>"
+                + "<br>" + tiposDeServicio + "<br>"
+                + "Te atenderá " + nombreMecanico;
+        Mail.sendMail(destinatario, asunto, cuerpoHTML);
 
-            // Para el mecánico
-            destinatario = reparacionAgendada.getMecanico().getPersona().getEmail();
-            cuerpoHTML = "<h1>Hola " + nombreMecanico + "</h1>"
-                    + "El cliente " + nombreCliente + " ha programado una reparacion "
-                    + "para la moto con placa " + placaMoto + "<br>"
-                    + "Para el día " + fecha + " a las " + hora + "<br>"
-                    + "<br>" + tiposDeServicio;
-            Mail.sendMail(destinatario, asunto, cuerpoHTML);
+        // Para el mecánico
+        destinatario = reparacionAgendada.getMecanico().getPersona().getEmail();
+        cuerpoHTML = "<h1>Hola " + nombreMecanico + "</h1>"
+                + "El cliente " + nombreCliente + " ha programado una reparacion "
+                + "para la moto con placa " + placaMoto + "<br>"
+                + "Para el día " + fecha + " a las " + hora + "<br>"
+                + "<br>" + tiposDeServicio;
+        Mail.sendMail(destinatario, asunto, cuerpoHTML);
 
-            reparacionAgendada = new Reparacion();
-//        }
+        reparacionAgendada = new Reparacion();
 
         return "";
     }
@@ -199,7 +185,7 @@ public class ReparacionClienteControlador implements Serializable {
 
         return "";
     }
-    
+
     public String motoNueva() {
         motoNueva.setCliente(sc.getPersona().getCliente());
         motoNueva.setEstadoMoto(efl.find(1));
