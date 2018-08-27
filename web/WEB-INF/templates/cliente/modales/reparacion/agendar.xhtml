@@ -25,50 +25,32 @@
                         </div>
                         <div class="row mt-1 mb-3">
                             <h:outputLabel for="tipo-servicio" class="mr-3" value="Tipo de servicio"/>
-                            <h:selectManyCheckbox value="#{reparacionClienteControlador.reparacionAgendada.tipoServicioReparacionList}" a:name="tipo-servicio" id="tipo-servicio" class="select-simu">
+                            <h:selectManyCheckbox value="#{reparacionClienteControlador.reparacionAgendada.tipoServicioReparacionList}" a:name="tipo-servicio" id="tipo-servicio">
                                 <f:selectItems value="#{serviciosControlador.servicios}" var="ts" itemLabel="#{ts.servicio}"/>
                             </h:selectManyCheckbox>
                         </div>
                         <div class="row mt-1 mb-3">
-                            <h:outputLabel for="fecha"  value="Fecha" class="mr-3"/>
-                            <h:inputText id="fecha-agenda" value="#{reparacionClienteControlador.reparacionAgendada.fecha}" a:name="fecha-agenda" a:type="date" class="input-simu" a:required="" a:min="#{reparacionClienteControlador.hoyString}">
-                                <f:convertDateTime pattern="yyyy-MM-dd"/>
-                            </h:inputText>
-                            <h:outputLabel for="fecha" class="ml-3 mr-3" value="Hora"/>
-                            <h:inputText id="hora-agenda" a:name="hora-agenda" a:type="time" value="#{reparacionClienteControlador.reparacionAgendada.hora}" class="input-simu" a:required="" a:min="7:00" a:max="19:00">
-                                <f:convertDateTime  pattern="HH:mm"/>
-                            </h:inputText>
+                            <div class="col-12 col-md-6">
+                                <h:outputLabel for="fecha"  value="Fecha" class="mr-3"/>
+                                <h:inputText id="fecha-agenda" value="#{reparacionClienteControlador.reparacionAgendada.fecha}" a:name="fecha-agenda" a:type="date" class="input-simu" a:required="" a:min="#{reparacionClienteControlador.hoyString}">
+                                    <f:convertDateTime pattern="yyyy-MM-dd"/>
+                                </h:inputText>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <h:outputLabel for="hora-agenda" class="ml-3 mr-3" value="Hora"/>
+                                <h:inputText id="hora-agenda" a:name="hora-agenda" a:type="time" value="#{reparacionClienteControlador.reparacionAgendada.hora}" class="input-simu" a:required="" a:min="07:00" a:max="19:00">
+                                    <f:convertDateTime  pattern="HH:mm"/>
+                                </h:inputText>
+                            </div>
                         </div>
                         <div class="row mt-1 mb-3">
                             <h:outputLabel for="mecanico"  value="Mecánico" class="mr-3"/>
-                            <h:selectOneMenu value="#{reparacionClienteControlador.reparacionAgendada.mecanico}" class="select-simu" a:name="mecanico" id="mecanico" a:required="">
-                                <f:selectItem itemLabel="Seleccione" itemValue=""/>
-                                <f:selectItems value="#{mecanicoControlador.mecanicos}" var="m" itemLabel="#{m.persona.nombre} #{m.persona.apellido}"/>
-                            </h:selectOneMenu>
+                            <h:panelGrid id="mecanicos" columns="1">
+                                <h:selectOneRadio value="#{reparacionClienteControlador.reparacionAgendada.mecanico}" a:name="mecanico" id="mecanico" a:required="" class="col">
+                                    <f:selectItems value="#{mecanicoControlador.mecanicos}" var="m" itemLabel="#{m.persona.nombre} #{m.persona.apellido}"/>
+                                </h:selectOneRadio>
+                            </h:panelGrid>
                         </div>
-
-                        <!--                            <table class="table table-responsive table-striped table-bordered">
-                                                        <thead class="thead-inverse">
-                                                            <tr>
-                                                                <th>Nombre mecánico</th>
-                                                                <th>Disponible</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Mose Schearer</td>
-                                                                <td><span class="fa fa-check"></span></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Ida Schepp</td>
-                                                                <td><span class="fa fa-times"></span></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Lory Stransky</td>
-                                                                <td><span class="fa fa-check"></span></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>-->
                     </div>
                     <div class="modal-footer">
                         <h:commandButton class="btn-simu-naranja m-2" id="agendar-dos" action="#{reparacionClienteControlador.agendarCita()}" value="Agendar"/>

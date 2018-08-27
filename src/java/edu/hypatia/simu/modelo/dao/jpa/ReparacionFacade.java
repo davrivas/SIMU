@@ -62,27 +62,12 @@ public class ReparacionFacade extends AbstractFacade<Reparacion> implements Repa
     }
 
     @Override
-    public List<Reparacion> reparacionesSinCalificar(Cliente cliente) {
+    public List<Reparacion> reparacionesDelCliente(Cliente cliente) {
         try {
             TypedQuery<Reparacion> q = getEntityManager().createQuery("SELECT r FROM Reparacion r "
-                    + "INNER JOIN r.moto m WHERE m.cliente = :cliente AND "
-                    + "r.descripcion IS NOT NULL AND r.calificacion IS NULL", Reparacion.class);
+                    + "INNER JOIN r.moto m "
+                    + "WHERE m.cliente = :cliente", Reparacion.class);
             q.setParameter("cliente", cliente);
-
-            return q.getResultList();
-        } catch (NoResultException e) {
-            return null;
-        }
-    }
-
-    @Override
-    public List<Reparacion> reparacionesCalificadas(Cliente cliente) {
-        try {
-            TypedQuery<Reparacion> q = getEntityManager().createQuery("SELECT r FROM Reparacion r "
-                    + "INNER JOIN r.moto m WHERE m.cliente = :cliente AND "
-                    + "r.descripcion IS NOT NULL AND r.calificacion IS NOT NULL", Reparacion.class);
-            q.setParameter("cliente", cliente);
-
             return q.getResultList();
         } catch (NoResultException e) {
             return null;
