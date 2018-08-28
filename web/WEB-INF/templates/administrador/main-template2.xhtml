@@ -46,30 +46,36 @@
             <div class="row top p-2">
 
                 <section class="col-3">
-                    
+
                     <button class="btn btn-outline-dark menu-bar">
                         <li class="fa fa-bars"></li>
                     </button>  
-                    
+
                     <button class="btn btn-outline-dark">
                         <li class="fa fa-sign-out"></li>
                     </button>
-                    
+
                     <button class="btn btn-outline-dark">
                         <li class="fa fa-edit"></li>
                     </button>
                 </section>
-                
-               
+
+
             </div>  	    
-            
-             <section>
-                    <div class="">
-                        <ui:insert name="contenido1">
-                            default
-                        </ui:insert>
-                    </div>
-                </section>
+
+            <section>
+                <div class="">
+                    <ui:insert name="contenido1">
+                        default
+                    </ui:insert>
+                </div>
+
+                <div class="row text-center ml-1 mr-1 mt-5 ">
+                    <ui:insert name="contenido2">
+                        default
+                    </ui:insert>
+                </div>
+            </section>
         </div>
 
         <ui:include src="/WEB-INF/templates/scripts.xhtml"/>

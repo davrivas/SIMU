@@ -3,40 +3,49 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/WEB-INF/templates/administrador/main-template.xhtml"
+                template="/WEB-INF/templates/administrador/main-template2.xhtml"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-    
-    
+
+
     <ui:define name="contenido1">
         <h:form>
-            
+
             <ui:include src="/WEB-INF/templates/administrador/modal/registrarMoto.xhtml"></ui:include>
 
         </h:form>
+        
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Data</li>
+            </ol>
+        </nav>
 
         <section class="p-3 justify-content-around">
             <div class="col-12 principal mt-3 p-3 mt-2">
                 <nav class="navbar navbar-dark">
                     <h:form prependId="false">
-                        <h:commandLink class="btn btn-outline-danger" a:data-toggle="modal" a:data-target="#myModal2" value="Registrar">
+                        <h:commandLink class="btn btn-primary" a:data-toggle="modal" a:data-target="#myModal2" value="Registrar">
                             <i class="fa fa-plus"></i>
                             <f:ajax render=":contentModalRegistrar"/>
                         </h:commandLink>
 
 
-                        <h:commandLink action="#{exportControlador.motosPDF()}" class="btn btn-outline-info ml-3" value="PDF">
+                        <h:commandLink action="#{exportControlador.motosPDF()}" class="btn btn-success ml-3" value="PDF">
                             <i class="fa fa-file-pdf-o"></i>
                         </h:commandLink>
                     </h:form>
                     <form class="form-inline">
                         <input class=" form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
-                        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fa fa-search"></i> Search </button>
+                        <button class="btn btn-dark my-2 my-sm-0" type="submit"><i class="fa fa-search"></i> Search </button>
                     </form>
                 </nav>
             </div>
         </section>
+
 
     </ui:define>
 
@@ -155,7 +164,8 @@
 
         <h1 class="text-left mb-4 p-3"><i class="fa fa-th-list mr-2"></i>Lista de motos</h1>
 
-        <table class="table table-fixed p-5">
+        <table id="cliente" class="table table-fixed table-responsive-xl p-5">
+
             <caption>Lista de motos</caption>
             <thead>
                 <tr>
@@ -177,12 +187,12 @@
                     <tr>
                         <td>
                             <h:form>
-                                <h:commandLink actionListener="#{motoControlador.seleccionarMoto(m)}" class="btn btn-outline-danger mr-1" a:data-toggle="modal" a:data-target="#myModal">
+                                <h:commandLink actionListener="#{motoControlador.seleccionarMoto(m)}" class="btn btn-danger mr-1" a:data-toggle="modal" a:data-target="#myModal">
                                     <i class="fa fa-trash"></i>
                                     <f:ajax render=":contentModalEliminar"/>
                                 </h:commandLink>
 
-                                <h:commandLink action="#{motoControlador.seleccionarMoto(m)}" class="btn-simu-naranja" a:data-toggle="modal" a:data-target="#modalEditar">
+                                <h:commandLink action="#{motoControlador.seleccionarMoto(m)}" class="btn btn-info" a:data-toggle="modal" a:data-target="#modalEditar">
                                     <i class="fa fa-edit"></i>
                                     <f:ajax render=":contentModalEditar"/>
                                 </h:commandLink>
@@ -203,8 +213,8 @@
             </tbody>
 
         </table>
-        
-        
+
+
     </ui:define>
 
 </ui:composition>
