@@ -20,7 +20,7 @@
                 <div class="row d-flex justify-content-center">
                     <h1 id="unete-titulo">
                         <h:panelGroup rendered="#{empty sesionControlador.persona}">
-                            Únete a una nueva aventura
+                            #{txtSimu.unete}
                         </h:panelGroup>
                         <h:panelGroup rendered="#{not empty sesionControlador.persona}">
                             Hola #{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}
