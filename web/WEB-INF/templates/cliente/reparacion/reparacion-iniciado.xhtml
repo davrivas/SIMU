@@ -10,7 +10,7 @@
             <p class="mt-lg-1">&nbsp;</p>
             <div class="row mt-3 mb-3 mt-lg-5">
                 <div class="col-lg-10 col-md-9 col-8">
-                    <h1 class="text-center">Reparaciones</h1>
+                    <h1 class="text-center">#{txtSimu.reparaciones}</h1>
                 </div>
                 <div class="col-lg-2 col-md-3 col-4">
                     <button class="btn-simu-naranja" type="button" data-toggle="modal" data-target="#agendar-cita">
@@ -22,31 +22,31 @@
         <ul class="nav nav-tabs" id="nav-reparacion-simu" role="tablist">
             <li class="nav-item">
                 <a class="nav-item nav-link active" id="nav-motos-tab" data-toggle="tab" href="#nav-motos" role="tab" aria-controls="nav-motos" aria-selected="true">
-                    Mis motos (#{sesionControlador.persona.cliente.motoList.size()})
+                    #{txtSimu.misMotos} (#{sesionControlador.persona.cliente.motoList.size()})
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-item nav-link" id="nav-reparaciones-tab" data-toggle="tab" href="#nav-reparaciones" role="tab" aria-controls="nav-reparaciones" aria-selected="false">
-                    Historial de reparaciones
+                    #{txtSimu.historialReparaciones}
                 </a>
             </li>
         </ul>
         <div class="tab-content col-12" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-motos" role="tabpanel" aria-labelledby="nav-motos-tab">
                 <div class="row mb-2">
-                    <h2>Mis motos</h2>
+                    <h2>#{txtSimu.misMotos}</h2>
                 </div>
                 <h:dataTable value="#{sesionControlador.persona.cliente.motoList}" class="table table-striped table-responsive" var="m">
                     <h:column>
-                        <f:facet name="header">Marca y referencia</f:facet>
+                        <f:facet name="header">#{txtSimu.marcaReferencia}</f:facet>
                         <h:outputText value="#{m.producto.marcaProducto.marcaProducto} #{m.producto.referencia}"/>
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Placa</f:facet>
+                        <f:facet name="header">#{txtSimu.placa}</f:facet>
                         <h:outputText value="#{m.placa}"/>
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Cilindraje</f:facet>
+                        <f:facet name="header">#{txtSimu.cilindraje}</f:facet>
                         <h:outputText value="#{m.cilindraje} cc"/>
                     </h:column>
                     <h:column>
@@ -54,15 +54,15 @@
                         <h:outputText value="#{m.color}"/>
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Modelo</f:facet>
+                        <f:facet name="header">#{txtSimu.modelo}</f:facet>
                         <h:outputText value="#{m.modelo}"/>
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Kilometraje</f:facet>
+                        <f:facet name="header">#{txtSimu.kilometraje}</f:facet>
                         <h:outputText value="#{m.kilometraje} km"/>
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Revisar historial</f:facet> 
+                        <f:facet name="header">#{txtSimu.revisarHistorial}</f:facet> 
                         <h:panelGroup rendered="#{not empty m.reparacionList}">
                             <h:commandLink class="btn-simu-naranja btn-block mt-3 d-flex justify-content-center align-items-center" actionListener="#{reparacionClienteControlador.seleccionarMoto(m)}" a:data-toggle="modal" a:data-target="#historial">
                                 <f:ajax render=":contenidoModalHistorial"/>
@@ -83,7 +83,7 @@
                     <h:form prependId="false">
                         <h:dataTable value="#{reparacionClienteControlador.reparacionesDelCliente}" var="r" class="table table-striped table-responsive">
                             <h:column>
-                                <f:facet name="header">Fecha y hora</f:facet>
+                                <f:facet name="header">#{txtSimu.fechaHora}</f:facet>
                                 <h:outputText value="#{r.fecha}">
                                     <f:convertDateTime pattern="yyyy/MM/dd "/>
                                 </h:outputText>
@@ -92,37 +92,37 @@
                                 </h:outputText>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Placa de la moto</f:facet>
+                                <f:facet name="header">#{txtSimu.placaMoto}</f:facet>
                                 <h:outputText value="#{r.moto.placa}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Nombre del mecánico</f:facet>
+                                <f:facet name="header">#{txtSimu.nombreMecanico}</f:facet>
                                 <h:outputText value="#{r.mecanico.persona.nombre} #{r.mecanico.persona.apellido}" />
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Tipo(s) de servicio reparación</f:facet>
+                                <f:facet name="header">#{txtSimu.serviciosRep}</f:facet>
                                 <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
                                     <li style="padding: 0; margin: 0;">#{tsr.servicio}</li>
                                 </ui:repeat>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Descripción</f:facet>
+                                <f:facet name="header">#{txtSimu.descripcion}</f:facet>
                                 <h:panelGroup rendered="#{empty r.descripcion}">
-                                    <em>No se ha revisado la reparación</em>
+                                    <em>#{txtSimu.noRevisada}</em>
                                 </h:panelGroup>
                                 <h:panelGroup rendered="#{not empty r.descripcion}">
                                     <h:outputText value="#{r.descripcion}"/>
                                 </h:panelGroup>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Calificación</f:facet>
+                                <f:facet name="header">#{txtSimu.calificacion}</f:facet>
                                 <h:panelGroup rendered="#{empty r.calificacion and empty r.descripcion}">
-                                    <em>La reparación no se puede calificar</em>
+                                    <em>#{txtSimu.noCalificar}</em>
                                 </h:panelGroup>
                                 <h:panelGroup rendered="#{empty r.calificacion and not empty r.descripcion}">
                                     <h:commandLink actionListener="#{reparacionClienteControlador.seleccionarReparacion(r)}" a:data-toggle="modal" a:data-target="#calificar-modal" class="btn-simu-naranja">
                                         <f:ajax render=":modalCalificarContenido"/>
-                                        <span class="fa fa-star"></span> Calificar
+                                        <span class="fa fa-star"></span> #{txtSimu.calificar}
                                     </h:commandLink>
                                 </h:panelGroup>
                                 <h:panelGroup rendered="#{not empty r.calificacion and not empty r.descripcion}">

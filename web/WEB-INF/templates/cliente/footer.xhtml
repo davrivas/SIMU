@@ -32,15 +32,18 @@
         </div>
 
         <div class="col-12 col-md-2">
-            Idioma
+            
 
-            <h:form class="row" prependId="false">
-                <h:commandLink action="#{sesionControlador.changeLanguage('es')}" class="mr-2" a:title="Español">
-                    <img src="#{request.contextPath}/resources/img/espanol.png" alt="Español" width="50px" height="auto"/>
-                </h:commandLink>
-                <h:commandLink action="#{sesionControlador.changeLanguage('en')}" a:title="English">
-                    <img src="#{request.contextPath}/resources/img/english.jpg" alt="English" width="50px" height="auto"/>
-                </h:commandLink>
+            <h:form prependId="false">
+                <div class="row">
+                    <div class="col-12">Idioma</div>
+                    <h:commandLink action="#{sesionControlador.changeLanguage('es')}" class="mr-2" a:title="Español">
+                        <img src="#{request.contextPath}/resources/img/espanol.png" alt="Español" width="50px" height="auto"/>
+                    </h:commandLink>
+                    <h:commandLink action="#{sesionControlador.changeLanguage('en')}" a:title="English">
+                        <img src="#{request.contextPath}/resources/img/english.jpg" alt="English" width="50px" height="auto"/>
+                    </h:commandLink>
+                </div>
             </h:form>
         </div>              
     </footer>
