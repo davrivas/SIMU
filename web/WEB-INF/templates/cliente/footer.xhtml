@@ -12,28 +12,26 @@
         </div>
 
         <div class="row col-4">
-            <ul class="row">
-                <li class="icon-red d-flex justify-content-center align-items-center" id="facebook">
-                    <a href="https://www.facebook.com/motoaventurajr" target="_blank">
-                        <span class="fa fa-facebook"></span>
-                    </a>
-                </li>
-                <li class="icon-red d-flex justify-content-center align-items-center" id="twitter">
-                    <a href="https://twitter.com/JDMOTOSTORE" target="_blank">
-                        <span class="fa fa-twitter"></span>
-                    </a>
-                </li>
-                <li class="icon-red d-flex justify-content-center align-items-center" id="whatsapp">
-                    <a href="tel:+573204900056" target="_blank" >
-                        <span class="fa fa-whatsapp"></span>
-                    </a>
-                </li>
-            </ul>
+            <div id="facebook" class="d-flex align-content-center justify-content-center icon-red">
+                <a href="https://www.facebook.com/motoaventurajr" target="_blank">
+                    <span class="fa fa-facebook"></span>
+                </a>
+            </div>
+            <div id="twitter" class="d-flex align-content-center justify-content-center icon-red">
+                <a href="https://twitter.com/JDMOTOSTORE" target="_blank">
+                    <span class="fa fa-twitter"></span>
+                </a>
+            </div>
+            <div id="whatsapp" class="d-flex align-content-center justify-content-center icon-red">
+                <a href="tel:+573204900056" target="_blank" >
+                    <span class="fa fa-whatsapp"></span>
+                </a>
+            </div>
         </div>
 
         <div class="col-2">
             Idioma
-            
+
             <h:form class="row" prependId="false">
                 <h:commandLink action="#{sesionControlador.changeLanguage('es')}" class="mr-2" a:title="Español">
                     <img src="#{request.contextPath}/resources/img/espanol.png" alt="Español" width="50px" height="auto"/>
