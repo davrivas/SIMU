@@ -8,21 +8,21 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-
     <ui:define name="contenido1">
         <h:form>
 
             <ui:include src="/WEB-INF/templates/administrador/modal/registrarMoto.xhtml"></ui:include>
 
         </h:form>
-        
+
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Library</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Data</li>
+                <li class="breadcrumb-item"><a href="index.xhtml">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Motos</li>
             </ol>
         </nav>
+
+        <hr/>
 
         <section class="p-3 justify-content-around">
             <div class="col-12 principal mt-3 p-3 mt-2">
@@ -37,15 +37,16 @@
                         <h:commandLink action="#{exportControlador.motosPDF()}" class="btn btn-success ml-3" value="PDF">
                             <i class="fa fa-file-pdf-o"></i>
                         </h:commandLink>
+
+                        <h:commandLink  class="btn btn-info ml-3" value="Subir Datos">
+                            <i class="fa fa-upload"></i>
+                        </h:commandLink>
                     </h:form>
-                    <form class="form-inline">
-                        <input class=" form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
-                        <button class="btn btn-dark my-2 my-sm-0" type="submit"><i class="fa fa-search"></i> Search </button>
-                    </form>
+
                 </nav>
             </div>
         </section>
-
+        <hr/>
 
     </ui:define>
 
@@ -151,9 +152,9 @@
                             <div class="ln_solid"></div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                             <h:commandButton action="#{motoControlador.editar()}"
-                                             class="btn-simu-naranja ml-2" value="Editar"></h:commandButton>
+                                             class="btn btn-success ml-2" value="Editar"></h:commandButton>
                         </div>
                     </h:form>
                 </h:panelGroup>
@@ -161,13 +162,10 @@
             </div>
         </div>
 
+        <h1 class="text-left mb-4 p-3"><i class="fa fa-th-list mr-2"></i>Lista de accesorios</h1>
+        <table id="motos" class="table table-hover">
 
-        <h1 class="text-left mb-4 p-3"><i class="fa fa-th-list mr-2"></i>Lista de motos</h1>
-
-        <table id="cliente" class="table table-fixed table-responsive-xl p-5">
-
-            <caption>Lista de motos</caption>
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th><strong>OPCIONES</strong></th>
                     <th><strong>PLACA</strong></th>
@@ -192,7 +190,7 @@
                                     <f:ajax render=":contentModalEliminar"/>
                                 </h:commandLink>
 
-                                <h:commandLink action="#{motoControlador.seleccionarMoto(m)}" class="btn btn-info" a:data-toggle="modal" a:data-target="#modalEditar">
+                                <h:commandLink action="#{motoControlador.seleccionarMoto(m)}" class="btn btn-dark" a:data-toggle="modal" a:data-target="#modalEditar">
                                     <i class="fa fa-edit"></i>
                                     <f:ajax render=":contentModalEditar"/>
                                 </h:commandLink>
@@ -213,7 +211,6 @@
             </tbody>
 
         </table>
-
 
     </ui:define>
 

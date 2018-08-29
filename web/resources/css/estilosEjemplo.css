@@ -8,7 +8,7 @@
     position: absolute;
     width: 250px;
     border: 1px solid #000;
-    height: 100%;
+    height: 1100px;
     background-color: #1a1a1a;
     color: #fff;
 }
@@ -46,11 +46,16 @@
     text-decoration: none;
 }
 
+.lista{
+    font-family: oswald;
+    font-size: 3em;
+    margin-left: 20px;
+}
 .contenido{
     width: 100%;
-    height:100%;
+    height:1100px;
     position: absolute;
-    background-color: #eee;
+    background-color: #f7f7f7;
     transition: all 0.5s;
 }
 
@@ -166,4 +171,69 @@
 
 .btn-simu-naranja:focus {
     outline-color: orange !important;
+}
+
+/*INDICADORES ICONOS*/
+
+.card{
+    border-bottom: 4px solid #1a1a1a;
+}
+
+.usuarios{
+    font-size: 3em;
+}
+
+.transacciones{
+    font-size: 3em;
+}
+
+.productos{
+    font-size: 3em;
+}
+
+/*CARTAS DEL MEDIO*/
+
+.contenedor{
+    height: 400px;
+    width: 300px;
+    -webkit-perspective:700;
+
+
+
+
+}
+.carta{
+    width: 85%;  
+    height: 70%;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: 2s;
+    margin-top: 15px;
+
+
+}
+
+.carta:hover{
+    transform: rotateY(180deg);
+
+}
+
+.lado{
+    width:100%;
+    height: 100%;
+    backface-visibility: hidden;
+    position: absolute;
+    border-radius: 1%;
+
+}
+.frente{
+    background-color:#000; 
+    opacity: 0.8;
+
+
+}
+.atras{
+    background:#000;
+    transform: rotateY(180deg);
 }
