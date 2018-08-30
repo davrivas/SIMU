@@ -6,7 +6,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-    <ui:define name="title">Reparación y mantenimiento</ui:define>
+    <ui:define name="title">#{txtSimu.reparacionMantenimiento}</ui:define>
     <ui:define name="contenido">
         <div class="row">
             <div class="col-md-12 medio">
@@ -15,7 +15,7 @@
                     <!--FRASE-->
                     <article class="mt-5 col-md-12  frace">
                         <blockquote class="blockquote text-center">
-                            <p class="mt-3"><strong>“La amistad no pide nada a cambio, salvo un mantenimiento.”</strong></p>
+                            <p class="mt-3"><strong>“#{txtSimu.cita}.”</strong></p>
                             <footer class="blockquote-footer">Georges Brassens</footer>
                         </blockquote>
                     </article>
@@ -25,37 +25,37 @@
                     <div class="row justify-content-around  mb-5">
                         <!--SERVICIO 1-->
                         <section class="col-sm-10 col-md-3 mt-3 hola hola1">
-                            <h5>Recibe nuestro respaldo en servicios y repuestos</h5>
+                            <h5>#{txtSimu.respaldo}</h5>
 
-                            <li class="list-inline-item mt-4">* Revisiones Periodicas</li>
-                            <li class="list-inline-item">* Mantenimientos generales</li>
-                            <li class="list-inline-item">* Cambio de Partes</li>
-                            <li class="list-inline-item">* Latoneria y Pintura</li>
-                            <li class="list-inline-item">* Reparaciones al motor</li>
+                            <li class="list-inline-item mt-4">* #{txtSimu.revisionesPeriodicas}</li>
+                            <li class="list-inline-item">* #{txtSimu.mantenimientosGenerales}</li>
+                            <li class="list-inline-item">* #{txtSimu.cambioPartes}</li>
+                            <li class="list-inline-item">* #{txtSimu.latoneriaPintura}</li>
+                            <li class="list-inline-item">* #{txtSimu.reparacionesAlMotor}</li>
                         </section>
 
                         <section class="col-sm-10 col-md-3 mt-3  hola hola2">
-                            <h5>Historial de tu motocicleta</h5>
+                            <h5>#{txtSimu.historialDeTuMoto}</h5>
 
-                            <p>Puedes revisar el historial de tu motocicleta</p>
+                            <p>#{txtSimu.puedesHistorialMoto}</p>
 
-                            <h5 class="mt-5">Agendar cita</h5>
+                            <h5 class="mt-5">#{txtSimu.agendarCita}</h5>
 
-                            <li class="list-inline-item mt-1">Puedes agendar una cita en nuestro taller segun lo disponga nuestros mecánicos</li>
+                            <li class="list-inline-item mt-1">#{txtSimu.puedesAgendarCita}</li>
 
                             <div class="row d-flex justify-content-center">
                                 <button class="btn btn-simu-naranja m-1" type="button" data-toggle="modal" data-target="#registrarse">
-                                    <span class="fa fa-user-plus"></span> Regístrate
+                                    <span class="fa fa-user-plus"></span> #{txtSimu.registrate}
                                 </button>
                                 <button class="btn btn-simu-naranja m-1" type="button" data-toggle="modal" data-target="#inicia-sesion">
-                                    <span class="fa fa-sign-in"></span> Inicia sesión
+                                    <span class="fa fa-sign-in"></span> #{txtSimu.iniciaSesion}
                                 </button>
                             </div>
                         </section>
 
                         <section class="col-sm-10 col-md-3 mt-3 hola hola3">
-                            <h5>Valores Agregados</h5>
-                            <p class="mt-4">En nuestro taller trabajamos para la satisfacción de nuestros clientes, implementando procesos que mejoren la experiencia del servicio</p>
+                            <h5>#{txtSimu.valoresAgregados}</h5>
+                            <p class="mt-4">#{txtSimu.tallerTrabajamos}</p>
                         </section>
                     </div>
                 </h:panelGroup>

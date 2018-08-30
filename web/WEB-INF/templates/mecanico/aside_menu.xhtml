@@ -12,7 +12,7 @@
             <div class="card-block">
                 <h4 class="card-title mt-3 d-flex justify-content-center" style="color:#fff;"><strong>#{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}</strong></h4>
                 <div class="meta d-flex justify-content-center">
-                    <h5 class="mb-3">Mecánico</h5>
+                    <h5 class="mb-3">#{txtSimu.mecanico}</h5>
                 </div>
             </div>
             <div class="row mt-5">
@@ -23,7 +23,7 @@
                         </c:forEach>
                         <li>
                             <a data-toggle="modal" data-target="#cerrar-sesion">
-                                <span class="fa fa-sign-out fa-2x mb-5 mr-2"></span>Salir
+                                <span class="fa fa-sign-out fa-2x mb-5 mr-2"></span#{txtSimu.cerrarSesion}
                             </a>
                         </li>
                     </ul>
