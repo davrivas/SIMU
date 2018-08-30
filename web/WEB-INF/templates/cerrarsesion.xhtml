@@ -8,18 +8,18 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content contenido-modal">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="cerrarSesion" style="color: #fff;">Cerrar sesión</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h3 class="modal-title" id="cerrarSesion" style="color: #fff;">#{txtSimu.cerrarSesion}</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="#{txtSimu.cerrarSesion}">
                         <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
                     </button>
                 </div>
                 <h:form prependId="false" id="form-cerrar">
                     <div class="modal-body" style="color: #fff;">
-                        ¿Desea cerrar sesión?
+                        #{txtSimu.deseaCerrarSesion}
                     </div>
                     <div class="modal-footer">
-                        <h:commandButton action="#{sesionControlador.cerrarSesion()}" value="Cerrar sesión" class="btn-simu-naranja" id="btn-cerrar-sesion" />
-                        <button type="button" class="btn-simu-naranja" data-dismiss="modal">Cancelar</button>
+                        <h:commandButton action="#{sesionControlador.cerrarSesion()}" value="#{txtSimu.cerrarSesion}" class="btn-simu-naranja" id="btn-cerrar-sesion" />
+                        <button type="button" class="btn-simu-naranja" data-dismiss="modal">#{txtSimu.cancelar}</button>
                     </div>
                 </h:form>
             </div>

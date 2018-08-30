@@ -59,9 +59,6 @@ public class ReparacionControlador implements Serializable {
     }
 
     public String revisarReparacion() {
-        System.out.println(reparacionSeleccionada.getDescripcion());
-        rfl.edit(reparacionSeleccionada);
-        
         String nombreCliente = reparacionSeleccionada.getMoto().getCliente().getPersona().getNombre() + " " + reparacionSeleccionada.getMoto().getCliente().getPersona().getApellido();
         String placaMoto = reparacionSeleccionada.getMoto().getPlaca();
         String nombreMecanico = reparacionSeleccionada.getMecanico().getPersona().getNombre() + " " + reparacionSeleccionada.getMecanico().getPersona().getApellido();
@@ -73,6 +70,7 @@ public class ReparacionControlador implements Serializable {
                 + "Este fue el comentario: <q>" + reparacionSeleccionada.getDescripcion() +"</q>";
         Mail.sendMail(destinatario, asunto, cuerpoHTML);
         
+        rfl.edit(reparacionSeleccionada);
         reparacionSeleccionada = new Reparacion();
         return "index.xhtml?faces-redirect=true";
     }

@@ -9,52 +9,53 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content contenido-modal">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLabel">Agendar cita</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h3 class="modal-title" id="exampleModalLabel">#{txtSimu.agendarCita}</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="#{txtSimu.cerrar}">
                         <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
                     </button>
                 </div>
                 <h:form prependId="false">
                     <div class="modal-body">
                         <div class="row mt-1 mb-3">
-                            <h:outputLabel for="moto-agenda" class="mr-3" value="Moto"/>
+                            <h:outputLabel for="moto-agenda" class="mr-3" value="#{txtSimu.moto}"/>
                             <h:selectOneMenu value="#{reparacionClienteControlador.reparacionAgendada.moto}" id="moto-agenda" class="col-md-12 mt-1 input-simu" a:required="">
-                                <f:selectItem itemValue="" itemLabel="Seleccione su moto"/>
-                                <f:selectItems value="#{sesionControlador.persona.cliente.motoList}" var="m" itemLabel="#{m.placa} #{m.cilindraje}cc"/>
+                                <f:selectItem itemValue="" itemLabel="#{txtSimu.seleccioneSuMoto}"/>
+                                <f:selectItems value="#{sesionControlador.persona.cliente.motoList}" var="m" itemLabel="#{m.placa} - #{m.producto.marcaProducto.marcaProducto} #{m.producto.referencia} - #{m.cilindraje}cc - #{m.kilometraje}km"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="row mt-1 mb-3">
-                            <h:outputLabel for="tipo-servicio" class="mr-3" value="Tipo de servicio"/>
+                            <h:outputLabel for="tipo-servicio" class="mr-3" value="#{txtSimu.serviciosRep}"/>
                             <h:selectManyCheckbox value="#{reparacionClienteControlador.reparacionAgendada.tipoServicioReparacionList}" a:name="tipo-servicio" id="tipo-servicio">
                                 <f:selectItems value="#{serviciosControlador.servicios}" var="ts" itemLabel="#{ts.servicio}"/>
                             </h:selectManyCheckbox>
                         </div>
                         <div class="row mt-1 mb-3">
                             <div class="col-12 col-md-6">
-                                <h:outputLabel for="fecha"  value="Fecha" class="mr-3"/>
+                                <h:outputLabel for="fecha"  value="#{txtSimu.fecha}" class="mr-3"/>
                                 <h:inputText id="fecha-agenda" value="#{reparacionClienteControlador.reparacionAgendada.fecha}" a:name="fecha-agenda" a:type="date" class="input-simu" a:required="" a:min="#{reparacionClienteControlador.hoyString}">
                                     <f:convertDateTime pattern="yyyy-MM-dd"/>
                                 </h:inputText>
                             </div>
                             <div class="col-12 col-md-6">
-                                <h:outputLabel for="hora-agenda" class="ml-3 mr-3" value="Hora"/>
+                                <h:outputLabel for="hora-agenda" class="ml-3 mr-3" value="#{txtSimu.hora}"/>
                                 <h:inputText id="hora-agenda" a:name="hora-agenda" a:type="time" value="#{reparacionClienteControlador.reparacionAgendada.hora}" class="input-simu" a:required="" a:min="07:00" a:max="19:00">
                                     <f:convertDateTime  pattern="HH:mm"/>
                                 </h:inputText>
                             </div>
                         </div>
                         <div class="row mt-1 mb-3">
-                            <h:outputLabel for="mecanico"  value="Mecánico" class="mr-3"/>
+                            <h:outputLabel for="mecanico"  value="#{txtSimu.mecanico}" class="mr-3"/>
                             <h:panelGrid id="mecanicos" columns="1">
-                                <h:selectOneRadio value="#{reparacionClienteControlador.reparacionAgendada.mecanico}" a:name="mecanico" id="mecanico" a:required="" class="col">
+                                <h:selectOneMenu value="#{reparacionClienteControlador.reparacionAgendada.mecanico}" a:name="mecanico" id="mecanico" a:required="" class="select-simu">
+                                    <f:selectItem itemValue="" itemLabel="#{txtSimu.seleccioneSuMoto}"/>
                                     <f:selectItems value="#{mecanicoControlador.mecanicos}" var="m" itemLabel="#{m.persona.nombre} #{m.persona.apellido}"/>
-                                </h:selectOneRadio>
+                                </h:selectOneMenu>
                             </h:panelGrid>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <h:commandButton class="btn-simu-naranja m-2" id="agendar-dos" action="#{reparacionClienteControlador.agendarCita()}" value="Agendar"/>
-                        <button class="btn-simu-naranja m-2" data-dismiss="modal">Cancelar</button>
+                        <h:commandButton class="btn-simu-naranja m-2" id="agendar-dos" action="#{reparacionClienteControlador.agendarCita()}" value="#{txtSimu.agendarCita}"/>
+                        <button class="btn-simu-naranja m-2" data-dismiss="modal">#{txtSimu.cancelar}</button>
                     </div>
                 </h:form>
             </div>

@@ -52,7 +52,8 @@ public class ReparacionFacade extends AbstractFacade<Reparacion> implements Repa
     public List<Reparacion> reparacionesRevisadas(Mecanico mecanico) {
         try {
             TypedQuery<Reparacion> q = getEntityManager().createQuery("SELECT r FROM Reparacion r "
-                    + "WHERE r.mecanico = :mecanico AND r.descripcion IS NOT NULL", Reparacion.class);
+                    + "WHERE r.mecanico = :mecanico AND r.descripcion IS NOT NULL "
+                    + "ORDER BY r.fecha DESC", Reparacion.class);
             q.setParameter("mecanico", mecanico);
 
             return q.getResultList();
