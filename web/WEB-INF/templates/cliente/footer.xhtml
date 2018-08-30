@@ -37,10 +37,10 @@
             <h:form prependId="false">
                 <div class="row">
                     <div class="col-12">#{txtSimu.idioma}</div>
-                    <h:commandLink action="#{sesionControlador.changeLanguage('es')}" class="mr-2" a:title="#{txtSimu.espanol}">
+                    <h:commandLink action="#{sesionControlador.changeLanguage('es')}" class="mr-1" a:title="#{txtSimu.espanol}" style="cursor: pointer;">
                         <img src="#{request.contextPath}/resources/img/espanol.png" alt="#{txtSimu.espanol}" width="50px" height="auto"/>
                     </h:commandLink>
-                    <h:commandLink action="#{sesionControlador.changeLanguage('en')}" a:title="#{txtSimu.ingles}">
+                    <h:commandLink action="#{sesionControlador.changeLanguage('en')}" class="ml-1" a:title="#{txtSimu.ingles}" style="cursor: pointer;">
                         <img src="#{request.contextPath}/resources/img/english.jpg" alt="#{txtSimu.ingles}" width="50px" height="auto"/>
                     </h:commandLink>
                 </div>
