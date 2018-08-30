@@ -5,7 +5,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <ui:define name="title">Inicio</ui:define>
+    <ui:define name="title">#{txtSimu.inicio}</ui:define>
     <ui:define name="contenido">
         <header class="titulo contenedor container-fluid d-flex justify-content-md-end justify-content-center">
 
@@ -20,29 +20,29 @@
                 <div class="row d-flex justify-content-center">
                     <h1 id="unete-titulo">
                         <h:panelGroup rendered="#{empty sesionControlador.persona}">
-                            Únete a una nueva aventura
+                            #{txtSimu.unete}
                         </h:panelGroup>
                         <h:panelGroup rendered="#{not empty sesionControlador.persona}">
-                            Hola #{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}
+                            #{txtSimu.hola} #{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}
                         </h:panelGroup>
                     </h1>
                 </div>
                 <div class="botones row d-flex justify-content-center">
                     <h:panelGroup rendered="#{empty sesionControlador.persona}">
                         <button class="btn btn-simu-naranja m-1" type="button" data-toggle="modal" data-target="#registrarse">
-                            <span class="fa fa-user-plus"></span> Regístrate
+                            <span class="fa fa-user-plus"></span> #{txtSimu.registrate}
                         </button>
                         <button class="btn btn-simu-naranja m-1" type="button" data-toggle="modal" data-target="#inicia-sesion">
-                            <span class="fa fa-sign-in"></span> Inicia sesión
+                            <span class="fa fa-sign-in"></span> #{txtSimu.iniciaSesion}
                         </button>
                     </h:panelGroup>
                     <h:panelGroup rendered="#{not empty sesionControlador.persona}">
                         <!--o button-->
                         <a href="editar-perfil.xhtml" class="btn btn-simu-naranja mt-1">
-                            <span class="fa fa-user-circle"></span> Editar perfil
+                            <span class="fa fa-user-circle"></span> #{txtSimu.editarPerfil}
                         </a>
                         <button class="btn btn-simu-naranja m-1" type="button" data-toggle="modal" data-target="#cerrar-sesion">
-                            <span class="fa fa-sign-out"></span> Cerrar sesión
+                            <span class="fa fa-sign-out"></span> #{txtSimu.cerrarSesion}
                         </button>
                     </h:panelGroup>
                 </div>
@@ -51,19 +51,27 @@
 
         <div id="simu-ofrece" class="col d-flex align-items-center justify-content-center">
             <h1 class="d-flex align-self-center">
-                <span class="fa fa-motorcycle"></span>&nbsp;SIMU OFRECE
+                <span class="fa fa-motorcycle"></span>&nbsp;#{txtSimu.simuOfrece}
             </h1>
         </div>
 
         <div id="ofrece2" class="simu-ofrece contenedor container-fluid d-flex row">
             <section class="descripcion col-12 col-lg-6 d-flex justify-content-center align-items-center flex-column">
-                <h2>Motos usadas</h2>
+                <h2>#{txtSimu.motosUsadas}</h2>
 
-                <p>Las motos usadas ofrecidas en SIMU pasan por un estricto control de documentación legal para que puedan ser ofrecidas. Tu mismo puedes vender tu moto</p>
+                <p>#{txtSimu.motosUsadasDesc}</p>
 
                 <div class="d-flex flex-row">
-                    <a href="#{request.contextPath}/productos/motos/index.html"><button class="btn-simu-naranja m-1">Comprar</button></a>
-                    <a href="#{request.contextPath}/vender.html"><button class="btn-simu-naranja m-1">Vender</button></a>
+                    <a href="#{request.contextPath}/productos/motos/index.html">
+                        <button class="btn-simu-naranja m-1">
+                            #{txtSimu.comprar}
+                        </button>
+                    </a>
+                    <a href="#{request.contextPath}/vender.html">
+                        <button class="btn-simu-naranja m-1">
+                            #{txtSimu.vender}
+                        </button>
+                    </a>
                 </div>
 
             </section>
@@ -71,45 +79,56 @@
 
         <div id="ofrece3" class="simu-ofrece contenedor container-fluid d-flex row">
             <section class="descripcion col-12 col-lg-6 d-flex justify-content-center align-items-center flex-column">
-                <h2>Cascos</h2>
+                <h2>#{txtSimu.cascos}</h2>
 
-                <p>Los cascos son excenciales para la seguridad del motociclista, previene muchas fatalidades</p>
-                <a href="#{request.contextPath}/accesorios/index.html"><button class="btn-simu-naranja">Ver más</button></a>
+                <p>#{txtSimu.cascosDesc}</p>
+                <a href="#{request.contextPath}/accesorios/index.html">
+                    <button class="btn-simu-naranja">
+                        #{txtSimu.verMas}
+                    </button>
+                </a>
             </section>
         </div>
 
         <div id="ofrece4" class="simu-ofrece contenedor container-fluid d-flex row">
             <section class="descripcion col-12 col-lg-6 d-flex justify-content-center align-items-center flex-column">
-                <h2>Guantes</h2>
+                <h2>#{txtSimu.guantes}</h2>
 
-                <p>Los guantes son un elemento clave para la protección de las manos motociclista.</p>
-                <a href="#{request.contextPath}/accesorios/index.html"><button class="btn-simu-naranja">Ver más</button></a>
+                <p>#{txtSimu.guantesDesc}</p>
+                <a href="#{request.contextPath}/accesorios/index.html">
+                    <button class="btn-simu-naranja">
+                        #{txtSimu.verMas}
+                    </button>
+                </a>
             </section>
         </div>
 
         <div id="ofrece5" class="simu-ofrece contenedor container-fluid d-flex row">
             <section class="descripcion col-12 col-lg-6 d-flex justify-content-center align-items-center flex-column">
-                <h2>Reparación y mantenimiento</h2>
+                <h2>#{txtSimu.reparacionMantenimiento}</h2>
 
-                <p>SIMU ofrece el servicio de seguimiento del mantenimiento y/o reparación de la moto.</p>
+                <p>#{txtSimu.reparacionMantenimientoDesc}</p>
 
-                <button class="btn-simu-naranja">Ver más</button>
+                <a href="#{request.contextPath}/reparacion.xhtml">
+                    <button class="btn-simu-naranja">
+                        #{txtSimu.verMas}
+                    </button>
+                </a>
             </section>
         </div>
 
         <div id="nosotros" class="col d-flex align-items-center justify-content-center">
-            <h1 class="d-flex align-self-center">NOSOTROS</h1>
+            <h1 class="d-flex align-self-center">#{txtSimu.nosotros}</h1>
         </div>
 
         <div id="nosotros-div" class="simu-ofrece contenedor container-fluid d-flex row">
             <section class="descripcion col-12 col-lg-6 d-flex justify-content-center align-items-center flex-column">
                 <img src="#{request.contextPath}/resources/img/moto-aventura.jpg" alt="Moto Aventura logo" class="moto-aventura img-fluid mb-2" />
 
-                <p>Moto Aventura lleva 5 años ofreciendo el servicio de compraventa de motos usadas, venta de accesorios y reparación de motos.</p>
+                <p>#{txtSimu.motoAventuraLleva}</p>
 
-                <p>Comprometida en seguir creciendo cada día más ofreciendo un mejor servicio para tí.</p>
+                <p>#{txtSimu.comprometidaSeguir}</p>
             </section>
         </div>
     </ui:define>
 </ui:composition>
-

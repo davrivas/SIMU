@@ -2,44 +2,48 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <footer class="pie-pagina row contenedor container-fluid mt-0 d-flex justify-content-between">
-        <div id="contacto" class="col-6">
-            <div class="col-12"><strong>Dirección:</strong> Carrera 80 No. 42 C 62, Bogotá D.C.</div>
-            <div class="col-12"><strong>Teléfono:</strong> 3456545</div>
-            <div class="col-12"><strong>Celular:</strong> 3204900056</div>
+        <div id="contacto" class="col-12 col-md-6">
+            <div class="col-12"><strong>#{txtSimu.direccion}:</strong> Carrera 80 No. 42 C 62, Bogotá D.C.</div>
+            <div class="col-12"><strong>#{txtSimu.telefono}:</strong> 3456545</div>
+            <div class="col-12"><strong>#{txtSimu.celular}:</strong> 3204900056</div>
         </div>
 
-        <div class="row col-4">
-            <ul class="row">
-                <li class="icon-red d-flex justify-content-center align-items-center" id="facebook">
+        <div class="col-12 col-md-4">
+            <div class="row">
+                <div id="facebook" class="d-flex align-content-center justify-content-center icon-red">
                     <a href="https://www.facebook.com/motoaventurajr" target="_blank">
                         <span class="fa fa-facebook"></span>
                     </a>
-                </li>
-                <li class="icon-red d-flex justify-content-center align-items-center" id="twitter">
+                </div>
+                <div id="twitter" class="d-flex align-content-center justify-content-center icon-red">
                     <a href="https://twitter.com/JDMOTOSTORE" target="_blank">
                         <span class="fa fa-twitter"></span>
                     </a>
-                </li>
-                <li class="icon-red d-flex justify-content-center align-items-center" id="whatsapp">
+                </div>
+                <div id="whatsapp" class="d-flex align-content-center justify-content-center icon-red">
                     <a href="tel:+573204900056" target="_blank" >
                         <span class="fa fa-whatsapp"></span>
                     </a>
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
 
-        <div class="col-2">
-            Idioma
+        <div class="col-12 col-md-2">
             
-            <h:form class="row" prependId="false">
-                <h:commandLink action="#{sesionControlador.changeLanguage('es')}" class="mr-2">
-                    <img src="#{request.contextPath}/resources/img/espanol.png" alt="Español" width="50px" height="auto"/>
-                </h:commandLink>
-                <h:commandLink action="#{sesionControlador.changeLanguage('en')}">
-                    <img src="#{request.contextPath}/resources/img/english.jpg" alt="English" width="50px" height="auto"/>
-                </h:commandLink>
+
+            <h:form prependId="false">
+                <div class="row">
+                    <div class="col-12">#{txtSimu.idioma}</div>
+                    <h:commandLink action="#{sesionControlador.changeLanguage('es')}" class="mr-1" a:title="#{txtSimu.espanol}" style="cursor: pointer;">
+                        <img src="#{request.contextPath}/resources/img/espanol.png" alt="#{txtSimu.espanol}" width="50px" height="auto"/>
+                    </h:commandLink>
+                    <h:commandLink action="#{sesionControlador.changeLanguage('en')}" class="ml-1" a:title="#{txtSimu.ingles}" style="cursor: pointer;">
+                        <img src="#{request.contextPath}/resources/img/english.jpg" alt="#{txtSimu.ingles}" width="50px" height="auto"/>
+                    </h:commandLink>
+                </div>
             </h:form>
         </div>              
     </footer>

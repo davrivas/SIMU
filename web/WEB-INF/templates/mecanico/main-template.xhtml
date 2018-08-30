@@ -1,45 +1,96 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <ui:include src="/WEB-INF/templates/head.xhtml"></ui:include>
-    </h:head>
+    <f:view locale="#{sesionControlador.idioma}">
+        <h:head>
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+            <link rel="shortcut icon" href="#{request.contextPath}/resources/img/favicon.png"/>
+            <!--Bootstrap-->
+            <link href="#{request.contextPath}/resources/framework/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+            <!--Font Awesome-->
+            <link href="#{request.contextPath}/resources/framework/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+            <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet"/>   
+            <!--DataTable-->
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css"></link>
+            <!--estilos-->
+            <link href="#{request.contextPath}/resources/css/estilosEjemplo.css" rel="stylesheet"/>
+            <title><ui:insert name="titulo-html">SIMU</ui:insert> - SIMU</title>
+        </h:head>
 
-    <h:body>
-        <div class="container-fluid">
+        <h:body>
 
-            <ui:include src="/WEB-INF/templates/mecanico/top-line.xhtml"></ui:include>
-            <section class="row medio">
-                <ui:include src="/WEB-INF/templates/mecanico/aside_menu.xhtml"></ui:include>
+            <div class="sidebar">
+                <!--ASIDE-MENU-->
+                <h2>SIMU</h2>
 
-                <div class="col-10 medio2">
+                <article class="card mt-5  foto">
 
-                    <section class="col-12 mt-3 titu">
-                        <h2 class="text-center"><ui:insert name="title">default</ui:insert></h2>
-                    </section>
+                    <img class="card-img-top" src="#{request.contextPath}/resources/img/mante-pequeno.jpg"></img>
 
-                    <div class="">
+                    <div class="card-block">
+                        <h4 class="card-title mt-3 d-flex text-center"><strong>#{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}</strong></h4>
+
+                        <div class="meta d-flex justify-content-center">
+                            <h5 class="mb-3">#{txtSimu.mecanico}</h5>
+                        </div>
+
+                    </div>
+
+                </article>
+                <ul>
+                    <c:forEach items="#{sesionControlador.persona.rol.permisoList}" var="p">
+                        <li><a href="#{p.url}"><i class="#{p.icono} fa-2x mr-2"></i>#{p.permiso}</a></li>
+                    </c:forEach>
+                </ul>
+            </div>
+
+            <!--CONTENIDO PRINCIPAL-->
+            <div class="contenido">
+                <!--TOP-->
+                <div class="row top p-2">
+                    <button class="btn btn-outline-dark menu-bar">
+                        <span class="fa fa-bars"></span>
+                    </button>  
+
+                    <button class="btn btn-outline-dark" data-toggle="modal" data-target="#cerrar-sesion">
+                        <span class="fa fa-sign-out"></span>
+                    </button>
+
+                    <h:form prependId="false">
+                        <h:commandLink action="#{sesionControlador.changeLanguage('es')}" class="btn btn-outline-dark" a:title="#{txtSimu.espanol}" style="cursor: pointer;">
+                            <img src="#{request.contextPath}/resources/img/espanol.png" alt="#{txtSimu.espanol}" width="25px" height="auto"/>
+                        </h:commandLink>
+
+                        <h:commandLink action="#{sesionControlador.changeLanguage('en')}" class="btn btn-outline-dark" a:title="#{txtSimu.ingles}" style="cursor: pointer;">
+                            <img src="#{request.contextPath}/resources/img/english.jpg" alt="#{txtSimu.ingles}" width="25px" height="auto"/>
+                        </h:commandLink>
+                    </h:form>
+                </div>  	    
+
+                <section>
+                    <section class="container">
                         <ui:insert name="contenido1">
                             default
                         </ui:insert>
-                    </div>
+                    </section>
 
-                    <div class="row text-center ml-3 mt-5 ">
+                    <section class="container mt-5">
                         <ui:insert name="contenido2">
                             default
                         </ui:insert>
-                    </div>
-                </div>
-            </section>
-        </div>
-        
-        <ui:include src="/WEB-INF/templates/cerrarsesion.xhtml"/>
-        
-        <ui:include src="/WEB-INF/templates/scripts.xhtml"/>
+                    </section>
+                </section>
+            </div>
 
-    </h:body>
-
+            <ui:include src="/WEB-INF/templates/cerrarsesion.xhtml"/>
+            <ui:include src="/WEB-INF/templates/scripts.xhtml"/>
+        </h:body>
+    </f:view>
 </ui:composition>
+

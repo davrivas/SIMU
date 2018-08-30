@@ -36,7 +36,5 @@ public interface ReparacionFacadeLocal {
     
     List<Reparacion> reparacionesRevisadas(Mecanico mecanico);
     
-    List<Reparacion> reparacionesSinCalificar(Cliente cliente);
-    
-    List<Reparacion> reparacionesCalificadas(Cliente cliente);
+    List<Reparacion> reparacionesDelCliente(Cliente cliente);
 }
