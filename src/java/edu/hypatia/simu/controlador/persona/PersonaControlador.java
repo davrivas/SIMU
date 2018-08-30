@@ -12,12 +12,16 @@ import edu.hypatia.simu.modelo.dao.PersonaFacadeLocal;
 import edu.hypatia.simu.modelo.dao.RolFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Mecanico;
 import edu.hypatia.simu.modelo.entidades.Persona;
+import edu.hypatia.simu.util.FilesUtil;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Inject;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -38,6 +42,8 @@ public class PersonaControlador implements Serializable {
     
     private Persona persona = new Persona();
     
+    private Part partFile;
+    
     public Persona getPersona() {
         return persona;
     }
@@ -45,6 +51,15 @@ public class PersonaControlador implements Serializable {
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
+
+    public Part getPartFile() {
+        return partFile;
+    }
+
+    public void setPartFile(Part partFile) {
+        this.partFile = partFile;
+    }
+    
 
     public PersonaControlador() {
     }
@@ -60,10 +75,11 @@ public class PersonaControlador implements Serializable {
         Mail.sendMail(persona.getEmail(), "Administrador registrado", sc.getPersona().getNombre() + 
                        "<h1>Registro de Administrador</h1>" + 
                        "<h3>Hola " + persona.getNombre() + " " + persona.getApellido() + "</h3>" +
-                       "Usted ha sido registrado como un administrador de SIMU." + 
+                       "Usted ha sido registrado por " + sc.getPersona().getNombre() + sc.getPersona().getApellido() + "como un nuevo administrador de SIMU." + 
                        "<hr>" +
                        "<p><strong>Su correo electronico es : " + persona.getEmail() + "</strong></p>" +
-                       "<p><strong>Su contraseña es: " + persona.getContrasena() + ", ingresa y actualiza tu contraseña.</strong></p>");
+                       "<p><strong>Su contraseña es: " + persona.getContrasena() + "</strong></p>" +
+                       "<p><strong>Porfavor, Ingresa a SIMU y actualiza tu contraseña.</strong></p>");
 
         persona = null;
         return "index.xhtml?faces-redirect=true";
@@ -78,6 +94,18 @@ public class PersonaControlador implements Serializable {
         pfl.create(persona);
        
         return "index.xhtml?faces-redirect=true";
+    }
+    
+    public void loadPersonas(){
+        try {
+            String path = FilesUtil.saveFileTemp(partFile, "loadPersona.csv");
+            int rows = pfl.loadUsers(path);
+            System.out.println("####################################");
+            System.out.println("Se agregaron " + rows + "personas.");
+        } catch (Exception ex) {
+            ex.printStackTrace(System.out);
+            
+        }
     }
 
 }

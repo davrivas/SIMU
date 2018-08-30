@@ -162,55 +162,59 @@
             </div>
         </div>
 
-        <h1 class="text-left mb-4 p-3"><i class="fa fa-th-list mr-2"></i>Lista de accesorios</h1>
-        <table id="motos" class="table table-hover">
+         <h1 class="text-left mb-4 p-3"><i class="fa fa-th-list mr-2"></i>Lista de accesorios</h1>
+        <section class="col-12">
+            
+            <table id="motos" class="table table-hover" style="width:100%">
 
-            <thead class="thead-dark">
-                <tr>
-                    <th><strong>OPCIONES</strong></th>
-                    <th><strong>PLACA</strong></th>
-                    <th><strong>CILINDRAJE</strong></th>
-                    <th><strong>COLOR</strong></th>
-                    <th><strong>MODELO</strong></th>
-                    <th><strong>KILOMETRAJE</strong></th>
-                    <th><strong>ESTADO</strong></th>
-                    <th><strong>MARCA</strong></th>
-                    <th><strong>PRECIO</strong></th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <c:forEach items="#{motoControlador.motos}" var="m">
-
+                <thead class="thead-dark">
                     <tr>
-                        <td>
-                            <h:form>
-                                <h:commandLink actionListener="#{motoControlador.seleccionarMoto(m)}" class="btn btn-danger mr-1" a:data-toggle="modal" a:data-target="#myModal">
-                                    <i class="fa fa-trash"></i>
-                                    <f:ajax render=":contentModalEliminar"/>
-                                </h:commandLink>
-
-                                <h:commandLink action="#{motoControlador.seleccionarMoto(m)}" class="btn btn-dark" a:data-toggle="modal" a:data-target="#modalEditar">
-                                    <i class="fa fa-edit"></i>
-                                    <f:ajax render=":contentModalEditar"/>
-                                </h:commandLink>
-
-                            </h:form>
-                        </td>
-                        <td>#{m.placa}</td>
-                        <td>#{m.cilindraje}</td>
-                        <td>#{m.color}</td>
-                        <td>#{m.modelo}</td>
-                        <td>#{m.kilometraje}</td>
-                        <td>#{m.estadoMoto.nombreEstado}</td>
-                        <td>#{m.producto.marcaProducto.marcaProducto}  #{m.producto.referencia}</td>
-                        <td>#{m.producto.precio}</td>
+                        <th><strong>OPCIONES</strong></th>
+                        <th><strong>PLACA</strong></th>
+                        <th><strong>CILINDRAJE</strong></th>
+                        <th><strong>COLOR</strong></th>
+                        <th><strong>MODELO</strong></th>
+                        <th><strong>KILOMETRAJE</strong></th>
+                        <th><strong>ESTADO</strong></th>
+                        <th><strong>MARCA</strong></th>
+                        <th><strong>PRECIO</strong></th>
                     </tr>
-                </c:forEach>
+                </thead>
+                <tbody>
 
-            </tbody>
+                    <c:forEach items="#{motoControlador.motos}" var="m">
 
-        </table>
+                        <tr>
+                            <td>
+                                <h:form>
+                                    <h:commandLink actionListener="#{motoControlador.seleccionarMoto(m)}" class="btn btn-danger mr-1" a:data-toggle="modal" a:data-target="#myModal">
+                                        <i class="fa fa-trash"></i>
+                                        <f:ajax render=":contentModalEliminar"/>
+                                    </h:commandLink>
+
+                                    <h:commandLink action="#{motoControlador.seleccionarMoto(m)}" class="btn btn-dark" a:data-toggle="modal" a:data-target="#modalEditar">
+                                        <i class="fa fa-edit"></i>
+                                        <f:ajax render=":contentModalEditar"/>
+                                    </h:commandLink>
+
+                                </h:form>
+                            </td>
+                            <td>#{m.placa}</td>
+                            <td>#{m.cilindraje}</td>
+                            <td>#{m.color}</td>
+                            <td>#{m.modelo}</td>
+                            <td>#{m.kilometraje}</td>
+                            <td>#{m.estadoMoto.nombreEstado}</td>
+                            <td>#{m.producto.marcaProducto.marcaProducto}  #{m.producto.referencia}</td>
+                            <td>#{m.producto.precio}</td>
+                        </tr>
+                    </c:forEach>
+
+                </tbody>
+
+            </table>
+
+        </section>
 
     </ui:define>
 

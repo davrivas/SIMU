@@ -32,4 +32,6 @@ public interface PersonaFacadeLocal {
     
     Persona findByEmailContrasena(String email, String contrasena);
     
+    int loadUsers(String pathFile);
+    
 }

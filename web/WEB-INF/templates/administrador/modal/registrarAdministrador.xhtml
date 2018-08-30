@@ -41,12 +41,11 @@
                             <h:inputText value="#{personaControlador.persona.telefono}" class="form-control"></h:inputText>
                         </div>
                     </section>
-
                 </div>
                 <div class="modal-footer">
                     <h:form prependId="false">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <h:commandButton action="#{personaControlador.registrarAdministrador()}" value="Registrar" class="btn-simu-naranja"></h:commandButton>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                        <h:commandButton action="#{personaControlador.registrarAdministrador()}" value="Registrar" class="btn btn-primary"></h:commandButton>
                     </h:form>
                 </div>
             </h:panelGroup>

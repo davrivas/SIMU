@@ -1,7 +1,7 @@
 
 .principal{
-   background-color: #e5e5e5; 
-   box-shadow: 0px 1px 5px 1px;
+    background-color: #e5e5e5; 
+    box-shadow: 0px 1px 5px 1px;
 }
 
 .sidebar{
@@ -44,6 +44,13 @@
     padding: 10px;
     color: #fff;
     text-decoration: none;
+}
+
+.r-personal{
+    font-family: oswald;   
+    margin-left: 85px;
+    padding: 10px; 
+   box-shadow: 0px 1px 5px 1px;
 }
 
 .lista{
@@ -173,24 +180,56 @@
     outline-color: orange !important;
 }
 
+.mensaje-bienvenida{
+    font-size: 1.2em;
+}
+
 /*INDICADORES ICONOS*/
 
-.card{
-    border-bottom: 4px solid #1a1a1a;
+.card-u{
+    border-left: 100px solid #004085;    
 }
 
 .usuarios{
-    font-size: 3em;
+    border-radius: 50%;
+    color: #fff;
+    height: 30px;
+    font-size: 1.3em;
+    margin-left: 120px;
+    background-color: #004085;
+}
+
+.u-indi, .t-indi, .p-indi{
+    font-family: oswald;
+    font-size: 1em;
+}
+
+.card-t{
+    border-left: 100px solid #155724;    
 }
 
 .transacciones{
-    font-size: 3em;
+    border-radius: 50%;
+    color: #fff;
+    height: 30px;
+    font-size: 1.3em;
+    margin-left: 120px;
+    background-color: #155724;
+}
+
+.card-p{
+    border-left: 100px solid #f2a409;    
 }
 
 .productos{
-    font-size: 3em;
+   
+    border-radius: 50%;
+    color: #fff;
+    height: 30px;
+    font-size: 1.3em;
+    margin-left: 120px;
+    background-color: #f2a409;
 }
-
 /*CARTAS DEL MEDIO*/
 
 .contenedor{
@@ -210,7 +249,6 @@
     transform-style: preserve-3d;
     transition: 2s;
     margin-top: 15px;
-
 
 }
 

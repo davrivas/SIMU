@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -41,6 +42,18 @@ public class PersonaFacade extends AbstractFacade<Persona> implements PersonaFac
             return tq.getSingleResult();
         } catch (NoResultException e) {
             return null;
+        }
+    }
+
+    @Override
+    public int loadUsers(String pathFile) {
+        try {
+            Query q = getEntityManager().createNativeQuery("LOAD DATA LOCAL INFILE ?1 INTO TABLE tbl_personas FIELDS TERMINATED BY','LINES TERMINATED BY '\\n' IGNORE 1 LINES;");
+            q.setParameter(1, pathFile);
+            return q.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+            return 0;
         }
     }
 
