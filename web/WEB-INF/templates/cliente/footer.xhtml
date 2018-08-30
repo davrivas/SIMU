@@ -6,9 +6,9 @@
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <footer class="pie-pagina row contenedor container-fluid mt-0 d-flex justify-content-between">
         <div id="contacto" class="col-12 col-md-6">
-            <div class="col-12"><strong>Dirección:</strong> Carrera 80 No. 42 C 62, Bogotá D.C.</div>
-            <div class="col-12"><strong>Teléfono:</strong> 3456545</div>
-            <div class="col-12"><strong>Celular:</strong> 3204900056</div>
+            <div class="col-12"><strong>#{txtSimu.direccion}:</strong> Carrera 80 No. 42 C 62, Bogotá D.C.</div>
+            <div class="col-12"><strong>#{txtSimu.telefono}:</strong> 3456545</div>
+            <div class="col-12"><strong>#{txtSimu.celular}:</strong> 3204900056</div>
         </div>
 
         <div class="col-12 col-md-4">
@@ -36,12 +36,12 @@
 
             <h:form prependId="false">
                 <div class="row">
-                    <div class="col-12">Idioma</div>
-                    <h:commandLink action="#{sesionControlador.changeLanguage('es')}" class="mr-2" a:title="Español">
-                        <img src="#{request.contextPath}/resources/img/espanol.png" alt="Español" width="50px" height="auto"/>
+                    <div class="col-12">#{txtSimu.idioma}</div>
+                    <h:commandLink action="#{sesionControlador.changeLanguage('es')}" class="mr-2" a:title="#{txtSimu.espanol}">
+                        <img src="#{request.contextPath}/resources/img/espanol.png" alt="#{txtSimu.espanol}" width="50px" height="auto"/>
                     </h:commandLink>
-                    <h:commandLink action="#{sesionControlador.changeLanguage('en')}" a:title="English">
-                        <img src="#{request.contextPath}/resources/img/english.jpg" alt="English" width="50px" height="auto"/>
+                    <h:commandLink action="#{sesionControlador.changeLanguage('en')}" a:title="#{txtSimu.ingles}">
+                        <img src="#{request.contextPath}/resources/img/english.jpg" alt="#{txtSimu.ingles}" width="50px" height="auto"/>
                     </h:commandLink>
                 </div>
             </h:form>

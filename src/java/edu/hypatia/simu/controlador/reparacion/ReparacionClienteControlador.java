@@ -10,6 +10,7 @@ import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
 import edu.hypatia.simu.modelo.dao.EstadoMotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.MotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ReparacionFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Mecanico;
 import edu.hypatia.simu.modelo.entidades.Moto;
 import edu.hypatia.simu.modelo.entidades.Reparacion;
 import edu.hypatia.simu.modelo.entidades.TipoServicioReparacion;
@@ -19,9 +20,11 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 
@@ -110,7 +113,11 @@ public class ReparacionClienteControlador implements Serializable {
 
     public String getCalificacionReparacion(Reparacion r) {
         if (r.getCalificacion() == null) {
-            return "<em>No has calificado la reparación</em>";
+            if (sc.getIdioma().equals(new Locale("es"))) {
+                return "<em>No has calificado la reparación</em>";
+            } else if (sc.getIdioma().equals(new Locale("en"))) {
+                return "<em>You haven't rated the repair</em>";
+            }
         }
         String rta = "";
         for (int i = 0; i < r.getCalificacion(); i++) {
@@ -191,5 +198,34 @@ public class ReparacionClienteControlador implements Serializable {
         motoNueva.setEstadoMoto(efl.find(1));
         mfl.create(motoNueva);
         return "";
+    }
+    
+    public String getPromedioMecanico(Mecanico m) {
+        if (m.getReparacionList() == null || m.getReparacionList().isEmpty()) {
+            return "";
+        }
+        
+        List<Integer> acumuladoList = new ArrayList<>();
+        
+        for (Reparacion r : m.getReparacionList()) {
+            if (r.getCalificacion() != null) {
+                acumuladoList.add(r.getCalificacion());
+            }
+        }
+        
+        if (acumuladoList == null || acumuladoList.isEmpty()) {
+            return "";
+        }
+        
+        double promedio = 0;
+        int acumulado = 0;
+        
+        for (Integer a : acumuladoList) {
+            acumulado += a;
+        }
+        
+        promedio = acumulado / acumuladoList.size();
+        
+        return "(" +promedio + " / 5)";
     }
 }

@@ -70,14 +70,14 @@
                             </h:commandLink>
                         </h:panelGroup>
                         <h:panelGroup rendered="#{empty m.reparacionList}">
-                            <em>No hay historial</em>
+                            <em>#{txtSimu.noHistorial}</em>
                         </h:panelGroup>
                     </h:column>
                 </h:dataTable>
             </div>
             <div class="tab-pane fade" id="nav-reparaciones" role="tabpanel" aria-labelledby="nav-reparaciones-tab">
                 <h:panelGroup rendered="#{empty reparacionClienteControlador.reparacionesDelCliente}">
-                    <p class="text-center"><em>No hay historial de reparaciones</em></p>
+                    <p class="text-center"><em>#{txtSimu.noHayReparaciones}</em></p>
                 </h:panelGroup>
                 <h:panelGroup rendered="#{not empty reparacionClienteControlador.reparacionesDelCliente}">
                     <h:form prependId="false">
@@ -102,7 +102,7 @@
                             <h:column>
                                 <f:facet name="header">#{txtSimu.serviciosRep}</f:facet>
                                 <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
-                                    <li style="padding: 0; margin: 0;">#{tsr.servicio}</li>
+                                    #{tsr.servicio}<br/>
                                 </ui:repeat>
                             </h:column>
                             <h:column>

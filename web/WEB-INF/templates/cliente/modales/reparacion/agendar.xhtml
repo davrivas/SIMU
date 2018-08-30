@@ -47,8 +47,8 @@
                             <h:outputLabel for="mecanico"  value="#{txtSimu.mecanico}" class="mr-3"/>
                             <h:panelGrid id="mecanicos" columns="1">
                                 <h:selectOneMenu value="#{reparacionClienteControlador.reparacionAgendada.mecanico}" a:name="mecanico" id="mecanico" a:required="" class="select-simu">
-                                    <f:selectItem itemValue="" itemLabel="#{txtSimu.seleccioneSuMoto}"/>
-                                    <f:selectItems value="#{mecanicoControlador.mecanicos}" var="m" itemLabel="#{m.persona.nombre} #{m.persona.apellido}"/>
+                                    <f:selectItem itemValue="" itemLabel="#{txtSimu.seleccioneElMecanico}"/>
+                                    <f:selectItems value="#{mecanicoControlador.mecanicos}" var="m" itemLabel="#{m.persona.nombre} #{m.persona.apellido} #{reparacionClienteControlador.getPromedioMecanico(m)}"/>
                                 </h:selectOneMenu>
                             </h:panelGrid>
                         </div>

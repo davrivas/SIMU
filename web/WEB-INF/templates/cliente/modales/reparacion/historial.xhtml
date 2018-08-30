@@ -21,8 +21,9 @@
                             <strong>#{txtSimu.kilometraje}:</strong> #{reparacionClienteControlador.motoSeleccionada.kilometraje}
                         </div>
                         <div class="col-12 col-md-6">
-                            <strong>Color:</strong> #{reparacionClienteControlador.motoSeleccionada.color}<br/>
+                            <strong>#{txtSimu.marcaReferencia}</strong> #{m.producto.marcaProducto.marcaProducto} #{m.producto.referencia}<br/>
                             <strong>#{txtSimu.modelo}:</strong> #{reparacionClienteControlador.motoSeleccionada.modelo}
+                            <strong>Color:</strong> #{reparacionClienteControlador.motoSeleccionada.color}<br/>
                         </div>
                     </div>
 
@@ -45,7 +46,7 @@
                             <h:outputText value="#{reparacionClienteControlador.getCalificacionReparacion(r)}" escape="false"/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header">#{txtSimu.descripción}</f:facet>
+                            <f:facet name="header">#{txtSimu.descripcion}</f:facet>
                             <h:panelGroup rendered="#{empty r.descripcion}">
                                 <em>#{txtSimu.pendientePorRevisar}</em>
                             </h:panelGroup>
