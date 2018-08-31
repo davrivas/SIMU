@@ -5,6 +5,7 @@
  */
 package edu.hypatia.simu.controlador.transaccion;
 
+import edu.hypatia.simu.controlador.mail.Mail;
 import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
 import edu.hypatia.simu.modelo.entidades.Moto;
 import edu.hypatia.simu.modelo.entidades.Producto;
@@ -21,6 +22,7 @@ import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Cliente;
 import edu.hypatia.simu.modelo.entidades.EstadoMoto;
 import edu.hypatia.simu.modelo.entidades.MarcaProducto;
+import edu.hypatia.simu.modelo.entidades.Persona;
 import javax.inject.Inject;
 
 /**
@@ -154,6 +156,7 @@ public class MotoControlador implements Serializable {
         return marcaProductofl.findAll();
     }
 
+
     public String registrar() {
 
         productofl.create(producto);
@@ -173,6 +176,16 @@ public class MotoControlador implements Serializable {
         moto.setEstadoMoto(emfl.find(2));
         moto.setCliente(sc.getPersona().getCliente());
         mfl.create(moto);
+
+         Mail.sendMail("simucolombia@gmail.com", "Moto ofrecida", sc.getPersona().getNombre() + " " + sc.getPersona().getApellido()
+                + "<h1>Compra de Moto</h1>"
+                + "<p>Hola administradores de SIMU, el cliente " + sc.getPersona().getNombre() + " " + sc.getPersona().getApellido()+ " ha ofertado una moto </p>"
+                + "Moto: " + producto.getMarcaProducto().getMarcaProducto() + producto.getReferencia() + "<br/>"
+                + "Cilindraje: " + moto.getCilindraje() + "<br/>"
+                + "Kilometraje: " + moto.getKilometraje() + "<br/>"
+                + "Color: " + moto.getColor()
+                 + "<hr>");
+        moto = null;
     }
 
 }

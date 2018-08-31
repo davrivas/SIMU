@@ -15,10 +15,9 @@
 
         <hr/>
         <div class="row">
-            <section class="col-2 principal p-3 ml-4">
+            <section class="col-2 principal p-3 ml-4" id="principal">
 
-                <nav class="navbar navbar-dark">
-                    <h:form prependId="false" id="form-file" enctype="multipart/form-data">
+                    <h:form id="form-file" prependId="false"  enctype="multipart/form-data">
                         <h:commandLink class="btn btn-danger" value="Registrar" a:data-toggle="modal" a:data-target="#myModal6">
                             <i class="fa fa-plus"></i>
                             <f:ajax render=":contentModalRegistrarCliente"/>
@@ -29,7 +28,6 @@
                             <i class="fa fa-file-pdf-o"></i>
                         </h:commandLink>
                     </h:form>
-                </nav>
             </section> 
 
             <section class="col-3 principal text-center ml-3 p-3">
@@ -37,11 +35,11 @@
                 <label>Elija el archivo</label>
                 <h:inputFile id="file" value="#{personaControlador.partFile}" ></h:inputFile>
 
-                <h:commandLink action="#{personaControlador.loadPersonas()}" class="btn btn-info ml-3" value="Subir">
-                    <i class="fa fa-upload"></i>
-                    <f:ajax execute="file" />
+                <h:commandLink action="#{personaControlador.loadPersonas()}" class="btn btn-info ml-3">
+                    <i class="fa fa-upload"></i> Subir
+                    <f:ajax execute="file"></f:ajax>
                 </h:commandLink>
-
+               
             </section>
         </div>
         <hr/>

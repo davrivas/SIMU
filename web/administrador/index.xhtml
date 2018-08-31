@@ -5,26 +5,16 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/WEB-INF/templates/administrador/main-template2.xhtml"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-
-    <h:head>
-        <title>Administrador</title>
-    </h:head>
-
-    <ui:define name="title" >
-        <h2>¡ Visualice las actualizaciones de el control respectivo a su inventario !</h2>        
-    </ui:define>
-
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:b="http://bootsfaces.net/ui">
 
     <ui:define name="contenido1">
 
         <section class="col-12 mt-2"> 
             <div class="alert alert-success" role="alert">
-                <p class="mensaje-bienvenida">Hola!! Bienvenid@ : #{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}, verifique respectivamente el inventario</p>
+                <p class="mensaje-bienvenida">Hola!! Bienvenid@  #{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}, verifique respectivamente el inventario</p>
             </div>
         </section>
-
-
         <section class="row col-12 justify-content-around mt-4">
 
             <div class="card col-3  card-u">
@@ -68,89 +58,52 @@
         </ui:define>-->
 
     <ui:define name="contenido2">
-        
+
         <h:form>
             <ui:include src="/WEB-INF/templates/administrador/modal/registrarAdministrador.xhtml"></ui:include>
             <ui:include src="/WEB-INF/templates/administrador/modal/registrarMecanico.xhtml"></ui:include>
+            <ui:include src="/WEB-INF/templates/administrador/modal/listarAdministradores.xhtml"></ui:include> 
+            <ui:include src="/WEB-INF/templates/administrador/modal/listarMecanicos.xhtml"></ui:include>
         </h:form>
 
         <div class="r-personal">
             <p>Registra el personal correspondiente a las funcionalidades de SIMU.</p>
             <h:form prependId="false">   
-                <div>
-                    <h:commandLink class="btn btn-success btn-block" value="Administrador" a:data-toggle="modal" a:data-target="#myModal4">
-                        <f:ajax rendered=":contentModalRegistrarAdministrador"></f:ajax>
-                    </h:commandLink>
+                <div class="row">
+                    <div class="col-10">
+                        <h:commandLink class="btn btn-success btn-block" value="Administrador" a:data-toggle="modal" a:data-target="#myModal4">
+                            <f:ajax rendered=":contentModalRegistrarAdministrador"></f:ajax>
+                        </h:commandLink>
+                    </div>
+
+                    <div class="col-2">
+                        <h:commandLink class="btn btn-success btn-block" a:data-toggle="modal" a:data-target="#administrador">
+                            <i class="fa fa-eye"></i>
+                            <f:ajax rendered=":contentModalListarAdmin"></f:ajax>
+                        </h:commandLink>
+                    </div>
+
                 </div>
-                <div>
-                    <h:commandLink class="btn btn-primary btn-block mt-2 " value="Mecanico" a:data-toggle="modal" a:data-target="#myModal5">
-                        <f:ajax rendered=":contentModalRegistrarMecanico"></f:ajax>
-                    </h:commandLink>
+
+                <div class="row">
+                    <div class="col-10">
+                        <h:commandLink class="btn btn-primary btn-block mt-2 " value="Mecanico" a:data-toggle="modal" a:data-target="#myModal5">
+                            <f:ajax rendered=":contentModalRegistrarMecanico"></f:ajax>
+                        </h:commandLink>
+                    </div>
+                    <div class="col-2">
+                        <h:commandLink class="btn btn-primary btn-block mt-2"  a:data-toggle="modal" a:data-target="#mecanico">
+                            <i class="fa fa-eye"></i>
+                            <f:ajax rendered=":contentModalListarMecan"></f:ajax>
+                        </h:commandLink>
+                    </div>
                 </div>
             </h:form>
         </div>
 
-        <!--        carta 1
-                <section class="col-sm-12 col-md-4">
-                    <div class="contenedor ">
-                        <div class="carta">
-                            <div class="lado frente">
-                                <strong class="subtitulo">Estadisticas </strong>
-                            </div>
-                            <div class="lado p-4 atras">
-                                <p>Avances comerciales y mejoras en las transacciones en graficas estadisticas.</p>
-        
-                            </div>
-                        </div>
-                    </div>
-                </section>
-        
-                carta 2
-        
-                <section class="col-sm-12 col-md-4 ">
-                    <div class="contenedor ">
-                        <div class="carta">
-                            <div class="lado frente">
-                                <strong class="subtitulo">Reportes</strong>
-                            </div>
-                            <div class="lado p-4 atras ">
-                                <p class="p-3">Información de los productos en formato PDF y/o excel</p>
-                                <button class="btn btn-outline-warning" type="button" data-toggle="modal" data-target="#generar-reporte">Click aqui</button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-        
-                carta 3
-        
-                <section class="col-sm-12 col-md-4 ">
-                    <div class="contenedor ">
-                        <div class="carta">
-                            <div class="lado frente">
-                                <strong class="subtitulo">Registro Personal</strong>
-        
-        
-                            </div>
-                            <div class="lado p-4 atras">
-                                <p>Registra el personal correspondiente a las funcionalidades de SIMU.</p>
-                                <h:form prependId="false">   
-                                    <div>
-                                        <h:commandLink class="btn-simu-naranja btn-block" value="Administrador" a:data-toggle="modal" a:data-target="#myModal4">
-                                            <f:ajax rendered=":contentModalRegistrarAdministrador"></f:ajax>
-                                        </h:commandLink>
-                                    </div>
-                                    <div>
-                                        <h:commandLink class="btn-simu-naranja btn-block mt-2 " value="Mecanico" a:data-toggle="modal" a:data-target="#myModal5">
-                                            <f:ajax rendered=":contentModalRegistrarMecanico"></f:ajax>
-                                        </h:commandLink>
-                                    </div>
-                                </h:form>
-                            </div>
-                        </div>
-                    </div>
-                </section>-->
+        <!--GRAFICOS-->
 
-
+        <!--FIN GRAFICOS-->
     </ui:define>
 
 

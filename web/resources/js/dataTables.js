@@ -5,3 +5,11 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('#clientes').DataTable();
 });
+
+$(document).ready(function () {
+    $('#mecanicos').DataTable();
+});
+
+$(document).ready(function () {
+    $('#administradores').DataTable();
+});
