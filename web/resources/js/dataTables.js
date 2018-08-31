@@ -11,5 +11,13 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    $('#reparaciones-sin-revisar').DataTable();
+});
+
+$(document).ready(function () {
+    $('#reparaciones-revisadas').DataTable();
+});
+
+$(document).ready(function () {
     $('#administradores').DataTable();
 });
