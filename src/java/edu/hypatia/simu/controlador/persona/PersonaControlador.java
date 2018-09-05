@@ -7,11 +7,9 @@ package edu.hypatia.simu.controlador.persona;
 
 import edu.hypatia.simu.controlador.mail.Mail;
 import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
-import edu.hypatia.simu.modelo.dao.MecanicoFacadeLocal;
-import edu.hypatia.simu.modelo.dao.PersonaFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpa.RolFacadeLocal;
-import edu.hypatia.simu.modelo.entidades.Mecanico;
-import edu.hypatia.simu.modelo.entidades.Persona;
+import edu.hypatia.simu.modelo.dao.jpal.RolFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpal.UsuarioFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Usuario;
 import edu.hypatia.simu.util.FilesUtil;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -36,26 +34,26 @@ public class PersonaControlador implements Serializable {
     private SesionControlador sc;
 
     @EJB
-    private PersonaFacadeLocal pfl;
+    private UsuarioFacadeLocal ufl;
     
     @EJB
     private RolFacadeLocal rfl;
 
-    private Persona persona = new Persona();
+    private Usuario usuario = new Usuario();
     
     
-    private List<Persona> personasAd;
+    private List<Usuario> personasAd;
 
     private Part partFile;
     
 
-    public Persona getPersona() {
-        return persona;
+    public Usuario getUsuario() {
+        return usuario;
     }
     
 
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setPersona(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Part getPartFile() {
@@ -70,45 +68,45 @@ public class PersonaControlador implements Serializable {
     }
     
         
-    public List<Persona> listarAdmin(){
-        return pfl.findAllAdmin();
+    public List<Usuario> listarAdmin(){
+        return ufl.findAllAdmin();
     }
 
     public String registrarAdministrador() {
 
         Date fecha = new Date();
 
-        persona.setRol(rfl.find(3));
-        persona.setContrasena("administrador");
-        persona.setFechaRegistro(fecha);
-        pfl.create(persona);
-        Mail.sendMail(persona.getEmail(), "Administrador registrado", sc.getPersona().getNombre()
+        usuario.setRol(rfl.find(3));
+        usuario.setContrasena("administrador");
+        usuario.setFechaRegistro(fecha);
+        ufl.create(usuario);
+        Mail.sendMail(usuario.getEmail(), "Administrador registrado", sc.getUsuario().getNombre()
                 + "<h1>Registro de Administrador</h1>"
-                + "<h3>Hola " + persona.getNombre() + " " + persona.getApellido() + "</h3>"
-                + "Usted ha sido registrado por " + sc.getPersona().getNombre() + sc.getPersona().getApellido() + "como un nuevo administrador de SIMU."
+                + "<h3>Hola " + usuario.getNombre() + " " + usuario.getApellido() + "</h3>"
+                + "Usted ha sido registrado por " + sc.getUsuario().getNombre() + sc.getUsuario().getApellido() + "como un nuevo administrador de SIMU."
                 + "<hr>"
-                + "<p><strong>Su correo electronico es : " + persona.getEmail() + "</strong></p>"
-                + "<p><strong>Su contraseña es: " + persona.getContrasena() + "</strong></p>"
+                + "<p><strong>Su correo electronico es : " + usuario.getEmail() + "</strong></p>"
+                + "<p><strong>Su contraseña es: " + usuario.getContrasena() + "</strong></p>"
                 + "<p><strong>Porfavor, Ingresa a SIMU y actualiza tu contraseña.</strong></p>");
 
-        persona = null;
+        usuario = null;
         return "index.xhtml?faces-redirect=true";
     }
 
     public String registrarMecanico() {
 
         Date fecha = new Date();
-        persona.setContrasena("mecanico");
-        persona.setFechaRegistro(fecha);
-        persona.setRol(rfl.find(2));
-        pfl.create(persona);
+        usuario.setContrasena("mecanico");
+        usuario.setFechaRegistro(fecha);
+        usuario.setRol(rfl.find(2));
+        ufl.create(usuario);
         return "index.xhtml?faces-redirect=true";
     }
 
     public void loadPersonas() {
         try {
             String path = FilesUtil.saveFileTemp(partFile, "datosPersona.csv");
-            int rows = pfl.loadUsers(path);
+            int rows = ufl.loadUsers(path);
             System.out.println("####################################");
             System.out.println("Se agregaron " + rows + " personas.");
         } catch (Exception ex) {

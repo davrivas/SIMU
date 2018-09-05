@@ -5,8 +5,8 @@
  */
 package edu.hypatia.simu.controlador.persona.sesion;
 
-import edu.hypatia.simu.modelo.dao.PersonaFacadeLocal;
-import edu.hypatia.simu.modelo.entidades.Persona;
+import edu.hypatia.simu.modelo.dao.jpal.UsuarioFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Usuario;
 import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -26,13 +26,13 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class SesionControlador implements Serializable {
 
-    private Persona persona;
+    private Usuario usuario;
     private Locale idioma;
     private String email;
     private String contrasena;
 
     @EJB
-    private PersonaFacadeLocal pfl;
+    private UsuarioFacadeLocal ufl;
 
     /**
      * Creates a new instance of SesionControlador
@@ -45,12 +45,12 @@ public class SesionControlador implements Serializable {
         idioma = FacesContext.getCurrentInstance().getApplication().getDefaultLocale();
     }
 
-    public Persona getPersona() {
-        return persona;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public String getEmail() {
@@ -83,10 +83,10 @@ public class SesionControlador implements Serializable {
         String cp = ec.getRequestContextPath();
 
         try {
-            persona = pfl.findByEmailContrasena(email, contrasena);
-            System.out.println(persona);
+            usuario = ufl.findByEmailContrasena(email, contrasena);
+            System.out.println(usuario);
 
-            switch (persona.getRol().getIdRol()) { // Evalúo el rol seleccionado
+            switch (usuario.getRol().getIdRol()) { // Evalúo el rol seleccionado
                 case 1:
                     return ""; // me redirige a la pagina en la que haya iniciado sesión
                 case 2:
@@ -108,7 +108,7 @@ public class SesionControlador implements Serializable {
     public void validarSesion() throws IOException {
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
-        if (persona == null) {
+        if (usuario == null) {
             String path = ec.getRequestContextPath()
                     + "/index.xhtml";
             ec.redirect(path);
@@ -118,7 +118,7 @@ public class SesionControlador implements Serializable {
     public void cerrarSesion() throws IOException {
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
-        persona = null;
+        usuario = null;
         email = null;
         contrasena = null;
         ec.invalidateSession();
@@ -128,8 +128,8 @@ public class SesionControlador implements Serializable {
     }
 
     public void validarRol(Integer idRol) throws IOException {
-        if (persona != null) {
-            if (persona.getRol().getIdRol() != idRol.intValue()) {
+        if (usuario != null) {
+            if (usuario.getRol().getIdRol() != idRol.intValue()) {
                 FacesContext fc = FacesContext.getCurrentInstance();
                 ExternalContext ec = fc.getExternalContext();
                 String path = ec.getRequestContextPath()
@@ -147,7 +147,7 @@ public class SesionControlador implements Serializable {
     }
     
     public String editar() {
-        pfl.edit(persona);
+        ufl.edit(usuario);
         
         return "index.xhtml?faces-redirect=true";
     }

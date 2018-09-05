@@ -5,7 +5,7 @@
  */
 package edu.hypatia.simu.controlador.transaccion;
 
-import edu.hypatia.simu.modelo.dao.jpa.TipoAccesorioFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpal.TipoAccesorioFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.TipoAccesorio;
 import java.util.List;
 import javax.ejb.EJB;

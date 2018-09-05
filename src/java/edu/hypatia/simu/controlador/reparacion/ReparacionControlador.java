@@ -7,7 +7,7 @@ package edu.hypatia.simu.controlador.reparacion;
 
 import edu.hypatia.simu.controlador.mail.Mail;
 import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
-import edu.hypatia.simu.modelo.dao.jpa.ReparacionFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpal.ReparacionFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Reparacion;
 import java.io.Serializable;
 import java.util.List;
@@ -39,11 +39,11 @@ public class ReparacionControlador implements Serializable {
     }
 
     public List<Reparacion> getReparacionesSinRevisar() {        
-        return rfl.reparacionesSinRevisar(sc.getPersona().getMecanico());
+        return rfl.reparacionesSinRevisar(sc.getUsuario());
     }
 
     public List<Reparacion> getReparacionesRevisadas() {
-        return rfl.reparacionesRevisadas(sc.getPersona().getMecanico());
+        return rfl.reparacionesRevisadas(sc.getUsuario());
     }
 
     public Reparacion getReparacionSeleccionada() {
@@ -59,11 +59,11 @@ public class ReparacionControlador implements Serializable {
     }
 
     public String revisarReparacion() {
-        String nombreCliente = reparacionSeleccionada.getMoto().getCliente().getPersona().getNombre() + " " + reparacionSeleccionada.getMoto().getCliente().getPersona().getApellido();
+        String nombreCliente = reparacionSeleccionada.getMoto().getCliente().getNombre() + " " + reparacionSeleccionada.getMoto().getCliente().getApellido();
         String placaMoto = reparacionSeleccionada.getMoto().getPlaca();
-        String nombreMecanico = reparacionSeleccionada.getMecanico().getPersona().getNombre() + " " + reparacionSeleccionada.getMecanico().getPersona().getApellido();
+        String nombreMecanico = reparacionSeleccionada.getMecanico().getNombre() + " " + reparacionSeleccionada.getMecanico().getApellido();
         
-        String destinatario = reparacionSeleccionada.getMoto().getCliente().getPersona().getEmail();
+        String destinatario = reparacionSeleccionada.getMoto().getCliente().getEmail();
         String asunto = "Reparación revisada";
         String cuerpoHTML = "<h1>Hola " + nombreCliente + "</h1>"
                 + "El mecánico " + nombreMecanico + " ha revisado la reparacion para tu moto con placa " + placaMoto + "<br>"

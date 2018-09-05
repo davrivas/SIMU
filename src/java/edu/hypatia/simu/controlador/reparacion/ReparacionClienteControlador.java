@@ -7,13 +7,13 @@ package edu.hypatia.simu.controlador.reparacion;
 
 import edu.hypatia.simu.controlador.mail.Mail;
 import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
-import edu.hypatia.simu.modelo.dao.jpa.EstadoMotoFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpa.MotoFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpa.ReparacionFacadeLocal;
-import edu.hypatia.simu.modelo.entidades.Mecanico;
+import edu.hypatia.simu.modelo.dao.jpal.EstadoMotoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpal.MotoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpal.ReparacionFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Moto;
 import edu.hypatia.simu.modelo.entidades.Reparacion;
-import edu.hypatia.simu.modelo.entidades.TipoServicioReparacion;
+import edu.hypatia.simu.modelo.entidades.TipoReparacion;
+import edu.hypatia.simu.modelo.entidades.Usuario;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -64,7 +64,7 @@ public class ReparacionClienteControlador implements Serializable {
     }
 
     public List<Reparacion> getReparacionesDelCliente() {
-        return rfl.reparacionesDelCliente(sc.getPersona().getCliente());
+        return rfl.reparacionesDelCliente(sc.getUsuario());
     }
 
     public Moto getMotoSeleccionada() {
@@ -83,9 +83,9 @@ public class ReparacionClienteControlador implements Serializable {
         this.motoNueva = motoNueva;
     }
 
-    public List<Moto> getMotosEnReparacion() {
-        return mfl.motosEnReparacion(sc.getPersona().getCliente());
-    }
+//    public List<Moto> getMotosEnReparacion() {
+//        return mfl.motosEnReparacion(sc.getUsuario());
+//    }
 
     public Reparacion getReparacionSeleccionada() {
         return reparacionSeleccionada;
@@ -136,22 +136,22 @@ public class ReparacionClienteControlador implements Serializable {
         String fecha = formatoFecha.format(reparacionAgendada.getFecha());
         SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
         String hora = formatoHora.format(reparacionAgendada.getHora());
-        List<TipoServicioReparacion> servicios = reparacionAgendada.getTipoServicioReparacionList();
+        List<TipoReparacion> servicios = reparacionAgendada.getTipoReparacionList();
 
         rfl.create(reparacionAgendada);
 
         // Enviar mail
-        String nombreCliente = sc.getPersona().getNombre() + " " + sc.getPersona().getApellido();
+        String nombreCliente = sc.getUsuario() + " " + sc.getUsuario();
         String placaMoto = reparacionAgendada.getMoto().getPlaca();
-        String nombreMecanico = reparacionAgendada.getMecanico().getPersona().getNombre() + " " + reparacionAgendada.getMecanico().getPersona().getApellido();
+        String nombreMecanico = reparacionAgendada.getMecanico().getNombre() + " " + reparacionAgendada.getMecanico().getApellido();
         String tiposDeServicio = "Los tipos de servicio son<br>";
-        for (TipoServicioReparacion s : servicios) {
+        for (TipoReparacion s : servicios) {
             tiposDeServicio += "<li>" + s.getServicio() + "</li>";
         }
         String cuerpoHTML;
 
         // Para el cliente
-        String destinatario = sc.getPersona().getEmail();
+        String destinatario = sc.getUsuario().getEmail();
         String asunto = "Reparación programada";
         cuerpoHTML = "<h1>Hola " + nombreCliente + "</h1>"
                 + "Has programado una reparacion para tu moto con placa " + placaMoto + "<br>"
@@ -161,7 +161,7 @@ public class ReparacionClienteControlador implements Serializable {
         Mail.sendMail(destinatario, asunto, cuerpoHTML);
 
         // Para el mecánico
-        destinatario = reparacionAgendada.getMecanico().getPersona().getEmail();
+        destinatario = reparacionAgendada.getMecanico().getEmail();
         cuerpoHTML = "<h1>Hola " + nombreMecanico + "</h1>"
                 + "El cliente " + nombreCliente + " ha programado una reparacion "
                 + "para la moto con placa " + placaMoto + "<br>"
@@ -176,11 +176,11 @@ public class ReparacionClienteControlador implements Serializable {
 
     public String calificar() {
         // Enviar mail
-        String nombreCliente = sc.getPersona().getNombre() + " " + sc.getPersona().getApellido();
-        String nombreMecanico = reparacionSeleccionada.getMecanico().getPersona().getNombre() + " " + reparacionSeleccionada.getMecanico().getPersona().getApellido();
+        String nombreCliente = sc.getUsuario().getNombre() + " " + sc.getUsuario().getApellido();
+        String nombreMecanico = reparacionSeleccionada.getMecanico().getNombre() + " " + reparacionSeleccionada.getMecanico().getApellido();
 
         String asunto = "Reparación calificada";
-        String destinatario = reparacionSeleccionada.getMecanico().getPersona().getEmail();
+        String destinatario = reparacionSeleccionada.getMecanico().getEmail();
         String cuerpoHTML = "<h1>Hola " + nombreMecanico + "</h1>"
                 + "El cliente " + nombreCliente + " ha calificado una reparación "
                 + "con " + reparacionSeleccionada.getCalificacion() + " de 5.<br>"
@@ -194,13 +194,13 @@ public class ReparacionClienteControlador implements Serializable {
     }
 
     public String motoNueva() {
-        motoNueva.setCliente(sc.getPersona().getCliente());
+        motoNueva.setCliente(sc.getUsuario());
         motoNueva.setEstadoMoto(efl.find(1));
         mfl.create(motoNueva);
         return "";
     }
     
-    public String getPromedioMecanico(Mecanico m) {
+    public String getPromedioMecanico(Usuario m) {
         if (m.getReparacionList() == null || m.getReparacionList().isEmpty()) {
             return "";
         }

@@ -5,16 +5,14 @@
  */
 package edu.hypatia.simu.controlador.persona;
 
-import edu.hypatia.simu.modelo.dao.jpa.CiudadFacadeLocal;
-import edu.hypatia.simu.modelo.dao.ClienteFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpa.DepartamentoFacadeLocal;
-import edu.hypatia.simu.modelo.dao.PersonaFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpa.RolFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpa.TipoDocumentoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpal.CiudadFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpal.DepartamentoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpal.RolFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpal.TipoDocumentoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpal.UsuarioFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Ciudad;
-import edu.hypatia.simu.modelo.entidades.Cliente;
 import edu.hypatia.simu.modelo.entidades.Departamento;
-import edu.hypatia.simu.modelo.entidades.Persona;
+import edu.hypatia.simu.modelo.entidades.Usuario;
 import edu.hypatia.simu.modelo.entidades.Rol;
 import edu.hypatia.simu.modelo.entidades.TipoDocumento;
 import javax.inject.Named;
@@ -33,10 +31,7 @@ import javax.ejb.EJB;
 public class ClienteControlador implements Serializable {
 
     @EJB
-    private ClienteFacadeLocal cfl;
-
-    @EJB
-    private PersonaFacadeLocal pfl;
+    private UsuarioFacadeLocal ufl;
 
     @EJB
     private TipoDocumentoFacadeLocal tdfl;
@@ -50,32 +45,23 @@ public class ClienteControlador implements Serializable {
     @EJB
     private RolFacadeLocal rfl;
 
-    private Cliente clienteSeleccionado;
-    private List<Cliente> clientes;
+    private Usuario usuarioSeleccionado;
+    private List<Usuario> clientes;
 
-    private Persona persona = new Persona();
-    private Cliente cliente = new Cliente();
+    private Usuario usuario = new Usuario();
     private Departamento departamento = new Departamento();
 
     /*LISTAR*/
-    public List<Cliente> getClientes() {
-        return cfl.findAll();
+    public List<Usuario> getUsuarios() {
+        return ufl.findAll();
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Departamento getDepartamento() {
@@ -86,8 +72,8 @@ public class ClienteControlador implements Serializable {
         this.departamento = departamento;
     }
 
-    public Cliente getClienteSeleccionado() {
-        return clienteSeleccionado;
+    public Usuario getUsuarioSeleccionado() {
+        return usuarioSeleccionado;
     }
 
     public ClienteControlador() {
@@ -106,47 +92,44 @@ public class ClienteControlador implements Serializable {
     }
 
     /*ELIMINAR*/
-    public void seleccionarCliente(Cliente c) {
-        System.out.println("Id:" + c.getIdCliente());
-        cliente = c;
-        clienteSeleccionado = c;
+    public void seleccionarUsuario(Usuario u) {
+        System.out.println("Id:" + u.getIdUsuario());
+        usuario = u;
+        usuarioSeleccionado = u;
     }
 
     public String eliminar() {
         try {
             System.out.println("Vamos a eliminar el cliente");
-            System.out.println("Id:" + clienteSeleccionado.getIdCliente());
-            cfl.remove(clienteSeleccionado);
+            System.out.println("Id:" + usuarioSeleccionado.getIdUsuario());
+            ufl.remove(usuarioSeleccionado);
             clientes = null;
         } catch (Exception e) {
         }
-        clienteSeleccionado = null;
-        return "listarClientes.xhtml?faces-redirect=true";
+        usuarioSeleccionado = null;
+        return "listarUsuarios.xhtml?faces-redirect=true";
     }
 
     /*ACTUALIZAR*/
     public String editar() {
         try {
             System.out.println("Vamos a editar el cliente:");
-            System.out.println("Id:" + clienteSeleccionado.getIdCliente());
-            cfl.edit(clienteSeleccionado);
+            System.out.println("Id:" + usuarioSeleccionado.getIdUsuario());
+            ufl.edit(usuarioSeleccionado);
             clientes = null;
         } catch (Exception e) {
         }
-        return "listarClientes.xhtml?faces-redirect=true";
+        return "listarUsuarios.xhtml?faces-redirect=true";
     }
 
     /*REGISTRAR*/
-    public String registrarCliente() {
+    public String registrarUsuario() {
 
         Date fecha = new Date();
         Rol rol = rfl.find(1);
-        persona.setFechaRegistro(fecha);
-        persona.setRol(rol);
-        pfl.create(persona);
-
-        cliente.setIdCliente(getPersona().getIdPersona());
-        cfl.create(cliente);
+        usuario.setFechaRegistro(fecha);
+        usuario.setRol(rol);
+        ufl.create(usuario);
 
         return "index.xhtml?faces-redirect=true";
     }

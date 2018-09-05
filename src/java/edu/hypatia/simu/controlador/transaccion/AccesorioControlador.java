@@ -7,18 +7,16 @@ package edu.hypatia.simu.controlador.transaccion;
 
 import edu.hypatia.simu.modelo.entidades.Accesorio;
 import edu.hypatia.simu.modelo.entidades.Producto;
-import edu.hypatia.simu.modelo.entidades.Proveedor;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import edu.hypatia.simu.modelo.dao.jpa.AccesorioFacadeLocal;
-import edu.hypatia.simu.modelo.dao.MarcaProductoFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpa.ProductoFacadeLocal;
-import edu.hypatia.simu.modelo.dao.ProveedorFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpa.TipoAccesorioFacadeLocal;
-import edu.hypatia.simu.modelo.entidades.MarcaProducto;
+import edu.hypatia.simu.modelo.dao.jpal.AccesorioFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpal.MarcaFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpal.ProductoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpal.TipoAccesorioFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Marca;
 import edu.hypatia.simu.modelo.entidades.TipoAccesorio;
 
 /**
@@ -34,19 +32,12 @@ public class AccesorioControlador implements Serializable {
     
     @EJB
     private AccesorioFacadeLocal afl;
-    
-    @EJB
-    private ProveedorFacadeLocal proveedorfl;
-    
-    
-    @EJB
-    private ProveedorFacadeLocal prfl;
-    
+        
     @EJB
     private ProductoFacadeLocal pfl;
     
     @EJB
-    private MarcaProductoFacadeLocal mpfl;
+    private MarcaFacadeLocal mpfl;
     
     @EJB
     private TipoAccesorioFacadeLocal tafl;
@@ -55,7 +46,7 @@ public class AccesorioControlador implements Serializable {
     
     private Accesorio accesorio = new Accesorio();
     private Producto producto = new Producto();
-    private MarcaProducto MarcaProducto = new MarcaProducto();
+    private Marca MarcaProducto = new Marca();
     
     private Accesorio accesorioSeleccionado;
     
@@ -85,11 +76,11 @@ public class AccesorioControlador implements Serializable {
         this.producto = producto;
     }
     
-    public MarcaProducto getMarcaProducto() {
+    public Marca getMarcaProducto() {
         return MarcaProducto;
     }
     
-    public void setMarcaProducto(MarcaProducto MarcaProducto) {
+    public void setMarcaProducto(Marca MarcaProducto) {
         this.MarcaProducto = MarcaProducto;
     }
 
@@ -132,23 +123,17 @@ public class AccesorioControlador implements Serializable {
         return pfl.findAll();
     }
     
-    public List<Proveedor> listarProveedor() {
-        return prfl.findAll();
-    }
-    
     public List<TipoAccesorio> listarTipoAccesorio() {
         return tafl.findAll();
     }
     
-    public List<MarcaProducto> listarMarcaAccesorio() {
+    public List<Marca> listarMarcaAccesorio() {
         return mpfl.findAll();
     }
     
     public String registrar() {
         
         pfl.create(producto);
-
-        accesorio.setProveedor(proveedorfl.find(4));
         accesorio.setProducto(producto);
         afl.create(accesorio);
         

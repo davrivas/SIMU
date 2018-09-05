@@ -11,7 +11,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import edu.hypatia.simu.modelo.dao.jpa.ProductoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpal.ProductoFacadeLocal;
 
 /**
  *
