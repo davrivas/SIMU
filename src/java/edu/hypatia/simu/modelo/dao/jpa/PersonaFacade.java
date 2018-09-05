@@ -7,6 +7,7 @@ package edu.hypatia.simu.modelo.dao.jpa;
 
 import edu.hypatia.simu.modelo.dao.PersonaFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Persona;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -56,5 +57,17 @@ public class PersonaFacade extends AbstractFacade<Persona> implements PersonaFac
             return 0;
         }
     }
+
+    @Override
+    public List<Persona> findAllAdmin() {
+        try {
+            TypedQuery q = getEntityManager().createNamedQuery("SELECT P FROM Persona p WHERE p.rol = 3 ", Persona.class);
+            return q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+    }
+
 
 }

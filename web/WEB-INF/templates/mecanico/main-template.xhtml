@@ -47,6 +47,11 @@
                     <c:forEach items="#{sesionControlador.persona.rol.permisoList}" var="p">
                         <li><a href="#{p.url}"><i class="#{p.icono} fa-2x mr-2"></i>#{p.permiso}</a></li>
                     </c:forEach>
+                    <li>
+                        <a class="btn btn-outline-dark" data-toggle="modal" data-target="#cerrar-sesion" style="cursor: pointer;">
+                            <i class="fa fa-sign-out fa-2x mr-2"></i> #{txtSimu.cerrarSesion}
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -57,10 +62,6 @@
                     <button class="btn btn-outline-dark menu-bar">
                         <span class="fa fa-bars"></span>
                     </button>  
-
-                    <button class="btn btn-outline-dark" data-toggle="modal" data-target="#cerrar-sesion">
-                        <span class="fa fa-sign-out"></span>
-                    </button>
 
                     <h:form prependId="false">
                         <h:commandLink action="#{sesionControlador.changeLanguage('es')}" class="btn btn-outline-dark" a:title="#{txtSimu.espanol}" style="cursor: pointer;">
@@ -88,7 +89,28 @@
                 </section>
             </div>
 
-            <ui:include src="/WEB-INF/templates/cerrarsesion.xhtml"/>
+            <div class="modal fade" id="cerrar-sesion" tabindex="-1" role="dialog" aria-labelledby="cerrarSesion" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="cerrarSesion">#{txtSimu.cerrarSesion}</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="#{txtSimu.cerrarSesion}">
+                                <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <h:form prependId="false" id="form-cerrar">
+                            <div class="modal-body">
+                                #{txtSimu.deseaCerrarSesion}
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton action="#{sesionControlador.cerrarSesion()}" value="#{txtSimu.cerrarSesion}" class="btn btn-primary" id="btn-cerrar-sesion" />
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">#{txtSimu.cancelar}</button>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+
             <ui:include src="/WEB-INF/templates/scripts.xhtml"/>
         </h:body>
     </f:view>

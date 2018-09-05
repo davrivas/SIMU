@@ -29,9 +29,10 @@ public interface PersonaFacadeLocal {
     List<Persona> findRange(int[] range);
 
     int count();
-    
+
     Persona findByEmailContrasena(String email, String contrasena);
-    
+
     int loadUsers(String pathFile);
-    
+
+    List<Persona> findAllAdmin();
 }
