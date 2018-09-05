@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <ui:include src="WEB-INF/templates/head.xhtml"></ui:include>
+    <ui:include src="WEB-INF/templates/scripts.xhtml"></ui:include>
+    <h:body>
+        <h:form class="needs-validation" a:novalidate="" >
+          
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationTooltip01">First name</label>
+      <h:inputText class="form-control" id="validationTooltip01" a:pattern="[A-Za-z]{3,10}" a:placeholder="First name"  maxlength="10" a:required=""/>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+        <div class="invalid-feedback">
+        Looks bad!
+      </div>
+
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationTooltip02">Last name</label>
+   <h:inputText class="form-control" id="validationTooltip02" a:placeholder="Last name" value="Otto" a:required=""/>
+   <div class="valid-tooltip">
+        Looks good!
+      </div>
+    <div class="invalid-tooltip">
+        Looks good!
+      </div>
+    </div>
+   
+      <h:commandButton class="btn btn-primary mt-4" value="Enviar"/>
+  </div>
+            
+            
+            
+                
+        </h:form>
+        
+        
+        
+        
+        <h:dataTable value="#{accesorioControlador.listarAccesorios()}" id="clientes" class="display table" var="a">
+            <h:column>
+                <h:outputText value="#{a.nombre}"></h:outputText>
+            </h:column>
+            <h:column>
+                  <h:outputText value="#{a.idAccesorio}"></h:outputText>
+            </h:column>
+            
+        </h:dataTable>
+        <script src="#{request.contextPath }/resources/js/validationForm/validation.js"></script>
+    </h:body>
+</html>
+

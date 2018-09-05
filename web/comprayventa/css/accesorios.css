@@ -1,0 +1,37 @@
+
+.container-fluid information{
+     background-image: url(../../resources/img/productos/motos/FondosMotos/fondo11.jpg);
+    background-size: 100% 100%;
+    height: 350px;
+    padding:0px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.jumbotron{
+    margin-bottom: 0px;
+}
+.card {
+    border-color: #efa12b;
+}
+.btn {
+   
+    border-color: #fff;
+}
+.btn:hover{
+    background-color: rgba(0,0,0,.3);
+    
+}
+.filtros{
+    background-color: #e9ecef;
+}
+.btn-results{
+     background-color:#efa12b;
+    cursor: pointer;
+    text-decoration: none;
+    
+    
+}
+a.btn.btn-results{
+    color: #fff;
+}
+
