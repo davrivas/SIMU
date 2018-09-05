@@ -6,7 +6,7 @@
 package edu.hypatia.simu.controlador.persona;
 
 import edu.hypatia.simu.modelo.dao.MecanicoFacadeLocal;
-import edu.hypatia.simu.modelo.dao.RolFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpa.RolFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Mecanico;
 import edu.hypatia.simu.modelo.entidades.Persona;
 import edu.hypatia.simu.modelo.entidades.Rol;

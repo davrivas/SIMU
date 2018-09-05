@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Entity
 @Table(name = "tbl_transacciones")
@@ -51,12 +51,12 @@ public class Transaccion implements Serializable {
     private Date fecha;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "transaccion")
     private List<DetalleTransaccion> detalleTransaccionList;
-    @JoinColumn(name = "cliente", referencedColumnName = "id_cliente")
-    @ManyToOne(optional = false)
-    private Cliente cliente;
     @JoinColumn(name = "tipo_transaccion", referencedColumnName = "id_tipo_transaccion")
     @ManyToOne(optional = false)
     private TipoTransaccion tipoTransaccion;
+    @JoinColumn(name = "cliente", referencedColumnName = "id_usuario")
+    @ManyToOne(optional = false)
+    private Usuario cliente;
 
     public Transaccion() {
     }
@@ -95,20 +95,20 @@ public class Transaccion implements Serializable {
         this.detalleTransaccionList = detalleTransaccionList;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
     public TipoTransaccion getTipoTransaccion() {
         return tipoTransaccion;
     }
 
     public void setTipoTransaccion(TipoTransaccion tipoTransaccion) {
         this.tipoTransaccion = tipoTransaccion;
+    }
+
+    public Usuario getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
     }
 
     @Override

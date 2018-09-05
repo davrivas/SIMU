@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -28,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Entity
 @Table(name = "tbl_reparaciones")
@@ -37,7 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Reparacion.findAll", query = "SELECT r FROM Reparacion r")
     , @NamedQuery(name = "Reparacion.findByIdReparacion", query = "SELECT r FROM Reparacion r WHERE r.idReparacion = :idReparacion")
     , @NamedQuery(name = "Reparacion.findByFecha", query = "SELECT r FROM Reparacion r WHERE r.fecha = :fecha")
-    , @NamedQuery(name = "Reparacion.findByDescripcion", query = "SELECT r FROM Reparacion r WHERE r.descripcion = :descripcion")
+    , @NamedQuery(name = "Reparacion.findByHora", query = "SELECT r FROM Reparacion r WHERE r.hora = :hora")
     , @NamedQuery(name = "Reparacion.findByCalificacion", query = "SELECT r FROM Reparacion r WHERE r.calificacion = :calificacion")})
 public class Reparacion implements Serializable {
 
@@ -51,24 +52,26 @@ public class Reparacion implements Serializable {
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
+    @Basic(optional = false)
     @Column(name = "hora")
     @Temporal(TemporalType.TIME)
     private Date hora;
+    @Lob
     @Column(name = "descripcion")
     private String descripcion;
     @Column(name = "calificacion")
     private Integer calificacion;
-    @JoinTable(name = "tbl_reparaciones_has_tbl_tipos_servicio_reparacion", joinColumns = {
+    @JoinTable(name = "tbl_reparaciones_has_tbl_tipos_reparacion", joinColumns = {
         @JoinColumn(name = "reparacion", referencedColumnName = "id_reparacion")}, inverseJoinColumns = {
-        @JoinColumn(name = "tipo_servicio_reparacion", referencedColumnName = "id_tipo_servicio_reparacion")})
+        @JoinColumn(name = "tipo_reparacion", referencedColumnName = "id_tipo_reparacion")})
     @ManyToMany
-    private List<TipoServicioReparacion> tipoServicioReparacionList;
-    @JoinColumn(name = "mecanico", referencedColumnName = "id_mecanico")
-    @ManyToOne(optional = false)
-    private Mecanico mecanico;
+    private List<TipoReparacion> tipoReparacionList;
     @JoinColumn(name = "moto", referencedColumnName = "id_moto")
     @ManyToOne(optional = false)
     private Moto moto;
+    @JoinColumn(name = "mecanico", referencedColumnName = "id_usuario")
+    @ManyToOne(optional = false)
+    private Usuario mecanico;
 
     public Reparacion() {
     }
@@ -77,9 +80,10 @@ public class Reparacion implements Serializable {
         this.idReparacion = idReparacion;
     }
 
-    public Reparacion(Integer idReparacion, Date fecha) {
+    public Reparacion(Integer idReparacion, Date fecha, Date hora) {
         this.idReparacion = idReparacion;
         this.fecha = fecha;
+        this.hora = hora;
     }
 
     public Integer getIdReparacion() {
@@ -123,20 +127,12 @@ public class Reparacion implements Serializable {
     }
 
     @XmlTransient
-    public List<TipoServicioReparacion> getTipoServicioReparacionList() {
-        return tipoServicioReparacionList;
+    public List<TipoReparacion> getTipoReparacionList() {
+        return tipoReparacionList;
     }
 
-    public void setTipoServicioReparacionList(List<TipoServicioReparacion> tipoServicioReparacionList) {
-        this.tipoServicioReparacionList = tipoServicioReparacionList;
-    }
-
-    public Mecanico getMecanico() {
-        return mecanico;
-    }
-
-    public void setMecanico(Mecanico mecanico) {
-        this.mecanico = mecanico;
+    public void setTipoReparacionList(List<TipoReparacion> tipoReparacionList) {
+        this.tipoReparacionList = tipoReparacionList;
     }
 
     public Moto getMoto() {
@@ -145,6 +141,14 @@ public class Reparacion implements Serializable {
 
     public void setMoto(Moto moto) {
         this.moto = moto;
+    }
+
+    public Usuario getMecanico() {
+        return mecanico;
+    }
+
+    public void setMecanico(Usuario mecanico) {
+        this.mecanico = mecanico;
     }
 
     @Override
@@ -171,5 +175,5 @@ public class Reparacion implements Serializable {
     public String toString() {
         return "edu.hypatia.simu.modelo.entidades.Reparacion[ idReparacion=" + idReparacion + " ]";
     }
-
+    
 }

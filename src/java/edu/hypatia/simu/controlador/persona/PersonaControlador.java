@@ -9,7 +9,7 @@ import edu.hypatia.simu.controlador.mail.Mail;
 import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
 import edu.hypatia.simu.modelo.dao.MecanicoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.PersonaFacadeLocal;
-import edu.hypatia.simu.modelo.dao.RolFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpa.RolFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Mecanico;
 import edu.hypatia.simu.modelo.entidades.Persona;
 import edu.hypatia.simu.util.FilesUtil;

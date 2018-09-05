@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Entity
 @Table(name = "tbl_detalles_transaccion")
@@ -30,8 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DetalleTransaccion.findAll", query = "SELECT d FROM DetalleTransaccion d")
     , @NamedQuery(name = "DetalleTransaccion.findByIdDetalleTransaccion", query = "SELECT d FROM DetalleTransaccion d WHERE d.idDetalleTransaccion = :idDetalleTransaccion")
     , @NamedQuery(name = "DetalleTransaccion.findByCantidad", query = "SELECT d FROM DetalleTransaccion d WHERE d.cantidad = :cantidad")
-    , @NamedQuery(name = "DetalleTransaccion.findByPrecio", query = "SELECT d FROM DetalleTransaccion d WHERE d.precio = :precio")
-    , @NamedQuery(name = "DetalleTransaccion.findByPorcentaje", query = "SELECT d FROM DetalleTransaccion d WHERE d.porcentaje = :porcentaje")})
+    , @NamedQuery(name = "DetalleTransaccion.findByPrecioFinal", query = "SELECT d FROM DetalleTransaccion d WHERE d.precioFinal = :precioFinal")})
 public class DetalleTransaccion implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,12 +42,9 @@ public class DetalleTransaccion implements Serializable {
     @Basic(optional = false)
     @Column(name = "cantidad")
     private int cantidad;
-    @Basic(optional = false)
-    @Column(name = "precio")
-    private double precio;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "porcentaje")
-    private Double porcentaje;
+    @Column(name = "precio_final")
+    private Double precioFinal;
     @JoinColumn(name = "producto", referencedColumnName = "id_producto")
     @ManyToOne(optional = false)
     private Producto producto;
@@ -63,10 +59,9 @@ public class DetalleTransaccion implements Serializable {
         this.idDetalleTransaccion = idDetalleTransaccion;
     }
 
-    public DetalleTransaccion(Integer idDetalleTransaccion, int cantidad, double precio) {
+    public DetalleTransaccion(Integer idDetalleTransaccion, int cantidad) {
         this.idDetalleTransaccion = idDetalleTransaccion;
         this.cantidad = cantidad;
-        this.precio = precio;
     }
 
     public Integer getIdDetalleTransaccion() {
@@ -85,20 +80,12 @@ public class DetalleTransaccion implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public double getPrecio() {
-        return precio;
+    public Double getPrecioFinal() {
+        return precioFinal;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public Double getPorcentaje() {
-        return porcentaje;
-    }
-
-    public void setPorcentaje(Double porcentaje) {
-        this.porcentaje = porcentaje;
+    public void setPrecioFinal(Double precioFinal) {
+        this.precioFinal = precioFinal;
     }
 
     public Producto getProducto() {

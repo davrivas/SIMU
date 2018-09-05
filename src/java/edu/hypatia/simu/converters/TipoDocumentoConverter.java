@@ -6,7 +6,7 @@
 package edu.hypatia.simu.converters;
 
 import edu.hypatia.simu.modelo.dao.PersonaFacadeLocal;
-import edu.hypatia.simu.modelo.dao.TipoDocumentoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpa.TipoDocumentoFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Persona;
 import edu.hypatia.simu.modelo.entidades.TipoDocumento;
 import javax.enterprise.inject.spi.CDI;

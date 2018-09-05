@@ -92,6 +92,7 @@ public class SesionControlador implements Serializable {
                 case 2:
                     return "/mecanico/index.xhtml?faces-redirect=true"; // me redirige a la pagina del mecánico
                 case 3:
+                case 4:
                     return "/administrador/index.xhtml?faces-redirect=true"; // me redirige a la pagina del administrador
             }
         } catch (NullPointerException e) {

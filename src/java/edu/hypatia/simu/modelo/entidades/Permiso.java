@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Entity
 @Table(name = "tbl_permisos")
@@ -38,12 +38,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Permiso.findByPermiso", query = "SELECT p FROM Permiso p WHERE p.permiso = :permiso")
     , @NamedQuery(name = "Permiso.findByIcono", query = "SELECT p FROM Permiso p WHERE p.icono = :icono")})
 public class Permiso implements Serializable {
-
-    @OneToMany(mappedBy = "permisoPadre")
-    private List<Permiso> permisoList;
-    @JoinColumn(name = "permiso_padre", referencedColumnName = "id_permiso")
-    @ManyToOne
-    private Permiso permisoPadre;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -56,7 +50,6 @@ public class Permiso implements Serializable {
     private String permiso;
     @Column(name = "icono")
     private String icono;
-    @Basic(optional = false)
     @Lob
     @Column(name = "url")
     private String url;
@@ -65,6 +58,11 @@ public class Permiso implements Serializable {
         @JoinColumn(name = "rol", referencedColumnName = "id_rol")})
     @ManyToMany
     private List<Rol> rolList;
+    @OneToMany(mappedBy = "permisoPadre")
+    private List<Permiso> permisoList;
+    @JoinColumn(name = "permiso_padre", referencedColumnName = "id_permiso")
+    @ManyToOne
+    private Permiso permisoPadre;
 
     public Permiso() {
     }
@@ -73,10 +71,9 @@ public class Permiso implements Serializable {
         this.idPermiso = idPermiso;
     }
 
-    public Permiso(Integer idPermiso, String permiso, String url) {
+    public Permiso(Integer idPermiso, String permiso) {
         this.idPermiso = idPermiso;
         this.permiso = permiso;
-        this.url = url;
     }
 
     public Integer getIdPermiso() {
@@ -120,6 +117,23 @@ public class Permiso implements Serializable {
         this.rolList = rolList;
     }
 
+    @XmlTransient
+    public List<Permiso> getPermisoList() {
+        return permisoList;
+    }
+
+    public void setPermisoList(List<Permiso> permisoList) {
+        this.permisoList = permisoList;
+    }
+
+    public Permiso getPermisoPadre() {
+        return permisoPadre;
+    }
+
+    public void setPermisoPadre(Permiso permisoPadre) {
+        this.permisoPadre = permisoPadre;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -143,23 +157,6 @@ public class Permiso implements Serializable {
     @Override
     public String toString() {
         return "edu.hypatia.simu.modelo.entidades.Permiso[ idPermiso=" + idPermiso + " ]";
-    }
-
-    @XmlTransient
-    public List<Permiso> getPermisoList() {
-        return permisoList;
-    }
-
-    public void setPermisoList(List<Permiso> permisoList) {
-        this.permisoList = permisoList;
-    }
-
-    public Permiso getPermisoPadre() {
-        return permisoPadre;
-    }
-
-    public void setPermisoPadre(Permiso permisoPadre) {
-        this.permisoPadre = permisoPadre;
     }
     
 }

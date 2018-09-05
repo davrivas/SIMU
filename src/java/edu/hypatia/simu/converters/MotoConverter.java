@@ -5,7 +5,7 @@
  */
 package edu.hypatia.simu.converters;
 
-import edu.hypatia.simu.modelo.dao.MotoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpa.MotoFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Moto;
 import javax.enterprise.inject.spi.CDI;
 import javax.faces.component.UIComponent;

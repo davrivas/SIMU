@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Entity
 @Table(name = "tbl_fotos_producto")
@@ -34,11 +34,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "FotoProducto.findAll", query = "SELECT f FROM FotoProducto f")
     , @NamedQuery(name = "FotoProducto.findByIdFoto", query = "SELECT f FROM FotoProducto f WHERE f.idFoto = :idFoto")})
 public class FotoProducto implements Serializable {
-
-    @Basic(optional = false)
-    @Lob
-    @Column(name = "alt_foto")
-    private String altFoto;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -50,6 +45,10 @@ public class FotoProducto implements Serializable {
     @Lob
     @Column(name = "ruta_archivo_foto")
     private String rutaArchivoFoto;
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "alt_foto")
+    private String altFoto;
     @JoinTable(name = "tbl_productos_has_tbl_fotos_producto", joinColumns = {
         @JoinColumn(name = "foto", referencedColumnName = "id_foto")}, inverseJoinColumns = {
         @JoinColumn(name = "producto", referencedColumnName = "id_producto")})
@@ -63,9 +62,10 @@ public class FotoProducto implements Serializable {
         this.idFoto = idFoto;
     }
 
-    public FotoProducto(Integer idFoto, String rutaArchivoFoto) {
+    public FotoProducto(Integer idFoto, String rutaArchivoFoto, String altFoto) {
         this.idFoto = idFoto;
         this.rutaArchivoFoto = rutaArchivoFoto;
+        this.altFoto = altFoto;
     }
 
     public Integer getIdFoto() {
@@ -82,6 +82,14 @@ public class FotoProducto implements Serializable {
 
     public void setRutaArchivoFoto(String rutaArchivoFoto) {
         this.rutaArchivoFoto = rutaArchivoFoto;
+    }
+
+    public String getAltFoto() {
+        return altFoto;
+    }
+
+    public void setAltFoto(String altFoto) {
+        this.altFoto = altFoto;
     }
 
     @XmlTransient
@@ -116,14 +124,6 @@ public class FotoProducto implements Serializable {
     @Override
     public String toString() {
         return "edu.hypatia.simu.modelo.entidades.FotoProducto[ idFoto=" + idFoto + " ]";
-    }
-
-    public String getAltFoto() {
-        return altFoto;
-    }
-
-    public void setAltFoto(String altFoto) {
-        this.altFoto = altFoto;
     }
     
 }

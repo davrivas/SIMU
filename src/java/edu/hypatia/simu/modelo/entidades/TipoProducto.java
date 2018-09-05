@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Entity
 @Table(name = "tbl_tipos_producto")
@@ -44,7 +44,7 @@ public class TipoProducto implements Serializable {
     @Column(name = "tipo_producto")
     private String tipoProducto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoProducto")
-    private List<MarcaProducto> marcaProductoList;
+    private List<Marca> marcaList;
 
     public TipoProducto() {
     }
@@ -75,12 +75,12 @@ public class TipoProducto implements Serializable {
     }
 
     @XmlTransient
-    public List<MarcaProducto> getMarcaProductoList() {
-        return marcaProductoList;
+    public List<Marca> getMarcaList() {
+        return marcaList;
     }
 
-    public void setMarcaProductoList(List<MarcaProducto> marcaProductoList) {
-        this.marcaProductoList = marcaProductoList;
+    public void setMarcaList(List<Marca> marcaList) {
+        this.marcaList = marcaList;
     }
 
     @Override

@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Entity
 @Table(name = "tbl_motos")
@@ -61,15 +61,15 @@ public class Moto implements Serializable {
     @Basic(optional = false)
     @Column(name = "kilometraje")
     private String kilometraje;
-    @JoinColumn(name = "cliente", referencedColumnName = "id_cliente")
+    @JoinColumn(name = "producto", referencedColumnName = "id_producto")
+    @ManyToOne(optional = false)
+    private Producto producto;
+    @JoinColumn(name = "cliente", referencedColumnName = "id_usuario")
     @ManyToOne
-    private Cliente cliente;
+    private Usuario cliente;
     @JoinColumn(name = "estado_moto", referencedColumnName = "id_estado_moto")
     @ManyToOne(optional = false)
     private EstadoMoto estadoMoto;
-    @JoinColumn(name = "producto", referencedColumnName = "id_producto")
-    @ManyToOne
-    private Producto producto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "moto")
     private List<Reparacion> reparacionList;
 
@@ -137,11 +137,19 @@ public class Moto implements Serializable {
         this.kilometraje = kilometraje;
     }
 
-    public Cliente getCliente() {
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public Usuario getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Usuario cliente) {
         this.cliente = cliente;
     }
 
@@ -151,14 +159,6 @@ public class Moto implements Serializable {
 
     public void setEstadoMoto(EstadoMoto estadoMoto) {
         this.estadoMoto = estadoMoto;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
     }
 
     @XmlTransient

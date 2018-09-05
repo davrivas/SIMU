@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Entity
 @Table(name = "tbl_accesorios")
@@ -44,9 +44,6 @@ public class Accesorio implements Serializable {
     @JoinColumn(name = "producto", referencedColumnName = "id_producto")
     @ManyToOne(optional = false)
     private Producto producto;
-    @JoinColumn(name = "proveedor", referencedColumnName = "id_proveedor")
-    @ManyToOne(optional = false)
-    private Proveedor proveedor;
     @JoinColumn(name = "tipo_accesorio", referencedColumnName = "id_tipo_accesorio")
     @ManyToOne(optional = false)
     private TipoAccesorio tipoAccesorio;
@@ -85,14 +82,6 @@ public class Accesorio implements Serializable {
 
     public void setProducto(Producto producto) {
         this.producto = producto;
-    }
-
-    public Proveedor getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
     }
 
     public TipoAccesorio getTipoAccesorio() {
