@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hypatia.simu.modelo.dao.jpaa;
+package edu.hypatia.simu.modelo.dao.jpa;
 
-import edu.hypatia.simu.modelo.dao.jpal.FotoProductoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.FotoProductoFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.FotoProducto;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

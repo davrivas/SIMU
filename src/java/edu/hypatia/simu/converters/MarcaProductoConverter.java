@@ -5,7 +5,7 @@
  */
 package edu.hypatia.simu.converters;
 
-import edu.hypatia.simu.modelo.dao.jpal.MarcaFacadeLocal;
+import edu.hypatia.simu.modelo.dao.MarcaFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Marca;
 import javax.enterprise.inject.spi.CDI;
 import javax.faces.component.UIComponent;

@@ -39,7 +39,7 @@
                     <a class="nav-link link-navbar" href="#{request.contextPath}/index.xhtml#nosotros">#{txtSimu.nosotros}</a>
                 </li>
                 <li class="items-nav nav-item">
-                    <a class="nav-link link-navbar" href="#contacto">Contáctanos</a>
+                    <a class="nav-link link-navbar" href="#contacto">#{txtSimu.contactanos}</a>
                 </li>
             </ul>
 
@@ -48,31 +48,31 @@
             <ul class="navbar-nav my-2 my-lg-0">
                 <li class="items-nav nav-item d-flex justify-content-lg-center align-items-center">
                     <button class="boton-navbar nav-item" type="button" data-toggle="modal" data-target="#carrito">
-                        <span class="text-left fa fa-shopping-cart"></span><span class="text-navright">&nbsp;Carrito de compra</span>
+                        <span class="text-left fa fa-shopping-cart"></span><span class="text-navright">&nbsp;#{txtSimu.carritoCompra}</span>
                     </button>
                 </li>
 
-                <h:panelGroup rendered="#{empty sesionControlador.persona}">
+                <h:panelGroup rendered="#{empty sesionControlador.usuario}">
                     <li class="items-nav nav-item d-flex justify-content-lg-center align-items-center">
                         <button class="boton-navbar nav-item" type="button" data-toggle="modal" data-target="#registrarse">
-                            <span class="fa fa-user-plus"></span><span class="text-navright">&nbsp;Registrate</span>
+                            <span class="fa fa-user-plus"></span><span class="text-navright">&nbsp;#{txtSimu.registrate}</span>
                         </button>
                     </li>
                     <li class="items-nav nav-item d-flex justify-content-lg-center align-items-center">
                         <button class="boton-navbar nav-item" type="button" data-toggle="modal" data-target="#inicia-sesion">
-                            <span class="fa fa-sign-in"></span><span class="text-navright">&nbsp;Iniciar sesión</span>
+                            <span class="fa fa-sign-in"></span><span class="text-navright">&nbsp;#{txtSimu.iniciaSesion}</span>
                         </button>
                     </li>
                 </h:panelGroup>
-                <h:panelGroup rendered="#{not empty sesionControlador.persona}">
+                <h:panelGroup rendered="#{not empty sesionControlador.usuario}">
                     <li class="items-nav nav-item dropdown">
                         <a class="nav-link dropdown-toggle link-navbar" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="#{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}">
                             <span class="fa fa-user-circle"></span><span class="text-navright">&nbsp;#{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
-                            <a class="dropdown-item" href="#{request.contextPath}/editar-perfil.xhtml">Editar perfil</a>
+                            <a class="dropdown-item" href="#{request.contextPath}/editar-perfil.xhtml">#{txtSimu.editarPerfil}</a>
                             <a class="dropdown-item" data-toggle="modal" data-target="#cerrar-sesion" style="cursor: pointer;">
-                                <span class="fa fa-sign-out"></span> Cerrar sesión
+                                <span class="fa fa-sign-out"></span> #{txtSimu.cerrarSesion}
                             </a>
                         </div>
                     </li>

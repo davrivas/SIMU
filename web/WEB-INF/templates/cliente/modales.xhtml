@@ -5,12 +5,12 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:include src="/WEB-INF/templates/cliente/modales/carrito.xhtml"/>
 
-    <h:panelGroup rendered="#{empty sesionControlador.persona}">
+    <h:panelGroup rendered="#{empty sesionControlador.usuario}">
         <ui:include src="/WEB-INF/templates/iniciarsesion.xhtml"/>
         <ui:include src="/WEB-INF/templates/cliente/modales/registrarse.xhtml" />
     </h:panelGroup>
 
-    <h:panelGroup rendered="#{not empty sesionControlador.persona}">
+    <h:panelGroup rendered="#{not empty sesionControlador.usuario}">
         <ui:include src="/WEB-INF/templates/cerrarsesion.xhtml"/>
         <ui:insert name="modales"></ui:insert>
     </h:panelGroup>

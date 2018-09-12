@@ -5,8 +5,8 @@
  */
 package edu.hypatia.simu.controlador.persona;
 
-import edu.hypatia.simu.modelo.dao.jpal.RolFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpal.UsuarioFacadeLocal;
+import edu.hypatia.simu.modelo.dao.RolFacadeLocal;
+import edu.hypatia.simu.modelo.dao.UsuarioFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Rol;
 import edu.hypatia.simu.modelo.entidades.Usuario;
 import java.io.Serializable;

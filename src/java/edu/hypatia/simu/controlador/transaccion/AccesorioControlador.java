@@ -12,10 +12,10 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import edu.hypatia.simu.modelo.dao.jpal.AccesorioFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpal.MarcaFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpal.ProductoFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpal.TipoAccesorioFacadeLocal;
+import edu.hypatia.simu.modelo.dao.AccesorioFacadeLocal;
+import edu.hypatia.simu.modelo.dao.MarcaFacadeLocal;
+import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.TipoAccesorioFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Marca;
 import edu.hypatia.simu.modelo.entidades.TipoAccesorio;
 

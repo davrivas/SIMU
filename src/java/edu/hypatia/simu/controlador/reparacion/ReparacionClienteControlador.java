@@ -7,9 +7,9 @@ package edu.hypatia.simu.controlador.reparacion;
 
 import edu.hypatia.simu.controlador.mail.Mail;
 import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
-import edu.hypatia.simu.modelo.dao.jpal.EstadoMotoFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpal.MotoFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpal.ReparacionFacadeLocal;
+import edu.hypatia.simu.modelo.dao.EstadoMotoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.MotoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.ReparacionFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Moto;
 import edu.hypatia.simu.modelo.entidades.Reparacion;
 import edu.hypatia.simu.modelo.entidades.TipoReparacion;

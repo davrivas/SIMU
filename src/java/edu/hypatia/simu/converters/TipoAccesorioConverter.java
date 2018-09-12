@@ -5,7 +5,7 @@
  */
 package edu.hypatia.simu.converters;
 
-import edu.hypatia.simu.modelo.dao.jpal.TipoAccesorioFacadeLocal;
+import edu.hypatia.simu.modelo.dao.TipoAccesorioFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.TipoAccesorio;
 import javax.enterprise.inject.spi.CDI;
 import javax.faces.component.UIComponent;

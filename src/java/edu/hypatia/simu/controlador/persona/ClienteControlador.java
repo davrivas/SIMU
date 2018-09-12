@@ -5,11 +5,11 @@
  */
 package edu.hypatia.simu.controlador.persona;
 
-import edu.hypatia.simu.modelo.dao.jpal.CiudadFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpal.DepartamentoFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpal.RolFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpal.TipoDocumentoFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpal.UsuarioFacadeLocal;
+import edu.hypatia.simu.modelo.dao.CiudadFacadeLocal;
+import edu.hypatia.simu.modelo.dao.DepartamentoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.RolFacadeLocal;
+import edu.hypatia.simu.modelo.dao.TipoDocumentoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.UsuarioFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Ciudad;
 import edu.hypatia.simu.modelo.entidades.Departamento;
 import edu.hypatia.simu.modelo.entidades.Usuario;

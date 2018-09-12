@@ -5,7 +5,7 @@
  */
 package edu.hypatia.simu.converters;
 
-import edu.hypatia.simu.modelo.dao.jpal.CiudadFacadeLocal;
+import edu.hypatia.simu.modelo.dao.CiudadFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Ciudad;
 import javax.ejb.EJB;
 import javax.enterprise.inject.spi.CDI;

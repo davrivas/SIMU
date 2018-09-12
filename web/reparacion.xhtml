@@ -10,7 +10,7 @@
     <ui:define name="contenido">
         <div class="row">
             <div class="col-md-12 medio">
-                <h:panelGroup rendered="#{empty sesionControlador.persona}">
+                <h:panelGroup rendered="#{empty sesionControlador.usuario}">
                     <div class="mt-5"><p>&nbsp;</p></div>
                     <!--FRASE-->
                     <article class="mt-5 col-md-12  frace">
@@ -60,14 +60,14 @@
                     </div>
                 </h:panelGroup>
 
-                <h:panelGroup rendered="#{not empty sesionControlador.persona}">
+                <h:panelGroup rendered="#{not empty sesionControlador.usuario}">
                     <ui:include src="/WEB-INF/templates/cliente/reparacion/reparacion-iniciado.xhtml"/>
                 </h:panelGroup>
             </div>
         </div>
     </ui:define>
     <ui:define name="modales">
-        <h:panelGroup rendered="#{not empty sesionControlador.persona}">
+        <h:panelGroup rendered="#{not empty sesionControlador.usuario}">
             <ui:include src="/WEB-INF/templates/cliente/modales/reparacion/agendar.xhtml"/>
             <ui:include src="/WEB-INF/templates/cliente/modales/reparacion/historial.xhtml"/>
             <ui:include src="/WEB-INF/templates/cliente/modales/reparacion/calificar.xhtml"/>

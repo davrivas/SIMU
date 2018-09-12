@@ -5,7 +5,7 @@
  */
 package edu.hypatia.simu.controlador.persona.sesion;
 
-import edu.hypatia.simu.modelo.dao.jpal.UsuarioFacadeLocal;
+import edu.hypatia.simu.modelo.dao.UsuarioFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Usuario;
 import java.io.IOException;
 import javax.inject.Named;
@@ -92,7 +92,6 @@ public class SesionControlador implements Serializable {
                 case 2:
                     return "/mecanico/index.xhtml?faces-redirect=true"; // me redirige a la pagina del mecánico
                 case 3:
-                case 4:
                     return "/administrador/index.xhtml?faces-redirect=true"; // me redirige a la pagina del administrador
             }
         } catch (NullPointerException e) {

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hypatia.simu.modelo.dao.jpal;
+package edu.hypatia.simu.modelo.dao;
 
 import edu.hypatia.simu.modelo.entidades.Accesorio;
 import java.util.List;

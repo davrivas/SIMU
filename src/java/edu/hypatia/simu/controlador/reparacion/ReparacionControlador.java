@@ -7,7 +7,7 @@ package edu.hypatia.simu.controlador.reparacion;
 
 import edu.hypatia.simu.controlador.mail.Mail;
 import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
-import edu.hypatia.simu.modelo.dao.jpal.ReparacionFacadeLocal;
+import edu.hypatia.simu.modelo.dao.ReparacionFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Reparacion;
 import java.io.Serializable;
 import java.util.List;

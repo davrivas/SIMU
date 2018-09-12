@@ -7,8 +7,8 @@ package edu.hypatia.simu.controlador.persona;
 
 import edu.hypatia.simu.controlador.mail.Mail;
 import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
-import edu.hypatia.simu.modelo.dao.jpal.RolFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpal.UsuarioFacadeLocal;
+import edu.hypatia.simu.modelo.dao.RolFacadeLocal;
+import edu.hypatia.simu.modelo.dao.UsuarioFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Usuario;
 import edu.hypatia.simu.util.FilesUtil;
 import javax.inject.Named;

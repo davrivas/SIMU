@@ -5,7 +5,7 @@
  */
 package edu.hypatia.simu.controlador.persona;
 
-import edu.hypatia.simu.modelo.dao.jpal.DepartamentoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.DepartamentoFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Departamento;
 import java.io.Serializable;
 import java.util.List;

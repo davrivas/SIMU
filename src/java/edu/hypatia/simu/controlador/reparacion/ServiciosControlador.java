@@ -5,7 +5,7 @@
  */
 package edu.hypatia.simu.controlador.reparacion;
 
-import edu.hypatia.simu.modelo.dao.jpal.TipoReparacionFacadeLocal;
+import edu.hypatia.simu.modelo.dao.TipoReparacionFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.TipoReparacion;
 import java.util.List;
 import javax.annotation.PostConstruct;

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hypatia.simu.modelo.dao.jpaa;
+package edu.hypatia.simu.modelo.dao.jpa;
 
-import edu.hypatia.simu.modelo.dao.jpal.TipoReparacionFacadeLocal;
+import edu.hypatia.simu.modelo.dao.TipoReparacionFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.TipoReparacion;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

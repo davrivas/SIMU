@@ -5,13 +5,13 @@
  */
 package edu.hypatia.simu.converters;
 
+import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Producto;
 import javax.enterprise.inject.spi.CDI;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import edu.hypatia.simu.modelo.dao.jpal.ProductoFacadeLocal;
 
 /**
  *
