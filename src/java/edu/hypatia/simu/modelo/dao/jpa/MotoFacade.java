@@ -45,13 +45,4 @@ public class MotoFacade extends AbstractFacade<Moto> implements MotoFacadeLocal 
         }
     }
 
-    @Override
-    public List<Moto> motosPorPrecio(Double precioMinimo, Double precioMaximo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-    
- 
-    
 }
