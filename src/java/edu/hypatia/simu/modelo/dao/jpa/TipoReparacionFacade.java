@@ -5,18 +5,18 @@
  */
 package edu.hypatia.simu.modelo.dao.jpa;
 
-import edu.hypatia.simu.modelo.dao.TipoServicioReparacionFacadeLocal;
-import edu.hypatia.simu.modelo.entidades.TipoServicioReparacion;
+import edu.hypatia.simu.modelo.dao.TipoReparacionFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.TipoReparacion;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Stateless
-public class TipoServicioReparacionFacade extends AbstractFacade<TipoServicioReparacion> implements TipoServicioReparacionFacadeLocal {
+public class TipoReparacionFacade extends AbstractFacade<TipoReparacion> implements TipoReparacionFacadeLocal {
 
     @PersistenceContext(unitName = "simuPU")
     private EntityManager em;
@@ -26,8 +26,8 @@ public class TipoServicioReparacionFacade extends AbstractFacade<TipoServicioRep
         return em;
     }
 
-    public TipoServicioReparacionFacade() {
-        super(TipoServicioReparacion.class);
+    public TipoReparacionFacade() {
+        super(TipoReparacion.class);
     }
     
 }

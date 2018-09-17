@@ -5,18 +5,18 @@
  */
 package edu.hypatia.simu.modelo.dao.jpa;
 
-import edu.hypatia.simu.modelo.dao.MecanicoFacadeLocal;
-import edu.hypatia.simu.modelo.entidades.Mecanico;
+import edu.hypatia.simu.modelo.dao.MarcaFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Marca;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Stateless
-public class MecanicoFacade extends AbstractFacade<Mecanico> implements MecanicoFacadeLocal {
+public class MarcaFacade extends AbstractFacade<Marca> implements MarcaFacadeLocal {
 
     @PersistenceContext(unitName = "simuPU")
     private EntityManager em;
@@ -26,8 +26,8 @@ public class MecanicoFacade extends AbstractFacade<Mecanico> implements Mecanico
         return em;
     }
 
-    public MecanicoFacade() {
-        super(Mecanico.class);
+    public MarcaFacade() {
+        super(Marca.class);
     }
     
 }

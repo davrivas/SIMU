@@ -8,7 +8,6 @@ package edu.hypatia.simu.modelo.entidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Entity
 @Table(name = "tbl_ciudades")
@@ -48,8 +47,8 @@ public class Ciudad implements Serializable {
     @JoinColumn(name = "departamento", referencedColumnName = "id_departamento")
     @ManyToOne(optional = false)
     private Departamento departamento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
-    private List<Cliente> clienteList;
+    @OneToMany(mappedBy = "ciudad")
+    private List<Usuario> usuarioList;
 
     public Ciudad() {
     }
@@ -88,12 +87,12 @@ public class Ciudad implements Serializable {
     }
 
     @XmlTransient
-    public List<Cliente> getClienteList() {
-        return clienteList;
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
     }
 
-    public void setClienteList(List<Cliente> clienteList) {
-        this.clienteList = clienteList;
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
 
     @Override

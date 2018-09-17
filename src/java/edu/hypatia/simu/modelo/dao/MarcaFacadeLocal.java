@@ -5,28 +5,28 @@
  */
 package edu.hypatia.simu.modelo.dao;
 
-import edu.hypatia.simu.modelo.entidades.Mecanico;
+import edu.hypatia.simu.modelo.entidades.Marca;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Local
-public interface MecanicoFacadeLocal {
+public interface MarcaFacadeLocal {
 
-    void create(Mecanico mecanico);
+    void create(Marca marca);
 
-    void edit(Mecanico mecanico);
+    void edit(Marca marca);
 
-    void remove(Mecanico mecanico);
+    void remove(Marca marca);
 
-    Mecanico find(Object id);
+    Marca find(Object id);
 
-    List<Mecanico> findAll();
+    List<Marca> findAll();
 
-    List<Mecanico> findRange(int[] range);
+    List<Marca> findRange(int[] range);
 
     int count();
     

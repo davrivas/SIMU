@@ -8,6 +8,7 @@ package edu.hypatia.simu.modelo.entidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Entity
 @Table(name = "tbl_roles")
@@ -45,8 +46,8 @@ public class Rol implements Serializable {
     private String rol;
     @ManyToMany(mappedBy = "rolList")
     private List<Permiso> permisoList;
-    @OneToMany(mappedBy = "rol")
-    private List<Persona> personaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rol")
+    private List<Usuario> usuarioList;
 
     public Rol() {
     }
@@ -86,12 +87,12 @@ public class Rol implements Serializable {
     }
 
     @XmlTransient
-    public List<Persona> getPersonaList() {
-        return personaList;
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
     }
 
-    public void setPersonaList(List<Persona> personaList) {
-        this.personaList = personaList;
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
 
     @Override

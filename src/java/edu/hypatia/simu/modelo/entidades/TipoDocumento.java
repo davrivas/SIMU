@@ -8,7 +8,6 @@ package edu.hypatia.simu.modelo.entidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Entity
 @Table(name = "tbl_tipos_documento")
@@ -47,8 +46,8 @@ public class TipoDocumento implements Serializable {
     @Basic(optional = false)
     @Column(name = "tipo_documento")
     private String tipoDocumento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDocumento")
-    private List<Cliente> clienteList;
+    @OneToMany(mappedBy = "tipoDocumento")
+    private List<Usuario> usuarioList;
 
     public TipoDocumento() {
     }
@@ -88,12 +87,12 @@ public class TipoDocumento implements Serializable {
     }
 
     @XmlTransient
-    public List<Cliente> getClienteList() {
-        return clienteList;
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
     }
 
-    public void setClienteList(List<Cliente> clienteList) {
-        this.clienteList = clienteList;
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
 
     @Override

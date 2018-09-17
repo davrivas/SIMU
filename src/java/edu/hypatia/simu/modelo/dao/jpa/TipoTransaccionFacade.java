@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Stateless
 public class TipoTransaccionFacade extends AbstractFacade<TipoTransaccion> implements TipoTransaccionFacadeLocal {

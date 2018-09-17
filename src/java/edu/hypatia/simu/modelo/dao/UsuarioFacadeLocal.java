@@ -5,28 +5,28 @@
  */
 package edu.hypatia.simu.modelo.dao;
 
-import edu.hypatia.simu.modelo.entidades.Cliente;
+import edu.hypatia.simu.modelo.entidades.Usuario;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Local
-public interface ClienteFacadeLocal {
+public interface UsuarioFacadeLocal {
 
-    void create(Cliente cliente);
+    void create(Usuario usuario);
 
-    void edit(Cliente cliente);
+    void edit(Usuario usuario);
 
-    void remove(Cliente cliente);
+    void remove(Usuario usuario);
 
-    Cliente find(Object id);
+    Usuario find(Object id);
 
-    List<Cliente> findAll();
+    List<Usuario> findAll();
 
-    List<Cliente> findRange(int[] range);
+    List<Usuario> findRange(int[] range);
 
     int count();
     

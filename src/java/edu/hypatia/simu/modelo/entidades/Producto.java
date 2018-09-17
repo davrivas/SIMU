@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Entity
 @Table(name = "tbl_productos")
@@ -35,7 +35,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p")
     , @NamedQuery(name = "Producto.findByIdProducto", query = "SELECT p FROM Producto p WHERE p.idProducto = :idProducto")
     , @NamedQuery(name = "Producto.findByReferencia", query = "SELECT p FROM Producto p WHERE p.referencia = :referencia")
-    , @NamedQuery(name = "Producto.findByPrecio", query = "SELECT p FROM Producto p WHERE p.precio = :precio")})
+    , @NamedQuery(name = "Producto.findByPrecio", query = "SELECT p FROM Producto p WHERE p.precio = :precio")
+    , @NamedQuery(name = "Producto.findByPorcentajeDescuento", query = "SELECT p FROM Producto p WHERE p.porcentajeDescuento = :porcentajeDescuento")})
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,19 +51,20 @@ public class Producto implements Serializable {
     @Basic(optional = false)
     @Column(name = "precio")
     private double precio;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "porcentaje_descuento")
+    private Double porcentajeDescuento;
     @ManyToMany(mappedBy = "productoList")
     private List<FotoProducto> fotoProductoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
     private List<Accesorio> accesorioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
     private List<DetalleTransaccion> detalleTransaccionList;
-    @OneToMany(mappedBy = "producto")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
     private List<Moto> motoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
-    private List<Oferta> ofertaList;
-    @JoinColumn(name = "marca_producto", referencedColumnName = "id_marca_producto")
+    @JoinColumn(name = "marca", referencedColumnName = "id_marca")
     @ManyToOne(optional = false)
-    private MarcaProducto marcaProducto;
+    private Marca marca;
 
     public Producto() {
     }
@@ -101,6 +103,14 @@ public class Producto implements Serializable {
         this.precio = precio;
     }
 
+    public Double getPorcentajeDescuento() {
+        return porcentajeDescuento;
+    }
+
+    public void setPorcentajeDescuento(Double porcentajeDescuento) {
+        this.porcentajeDescuento = porcentajeDescuento;
+    }
+
     @XmlTransient
     public List<FotoProducto> getFotoProductoList() {
         return fotoProductoList;
@@ -137,21 +147,12 @@ public class Producto implements Serializable {
         this.motoList = motoList;
     }
 
-    @XmlTransient
-    public List<Oferta> getOfertaList() {
-        return ofertaList;
+    public Marca getMarca() {
+        return marca;
     }
 
-    public void setOfertaList(List<Oferta> ofertaList) {
-        this.ofertaList = ofertaList;
-    }
-
-    public MarcaProducto getMarcaProducto() {
-        return marcaProducto;
-    }
-
-    public void setMarcaProducto(MarcaProducto marcaProducto) {
-        this.marcaProducto = marcaProducto;
+    public void setMarca(Marca marca) {
+        this.marca = marca;
     }
 
     @Override

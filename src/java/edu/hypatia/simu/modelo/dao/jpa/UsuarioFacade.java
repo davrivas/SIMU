@@ -5,18 +5,18 @@
  */
 package edu.hypatia.simu.modelo.dao.jpa;
 
-import edu.hypatia.simu.modelo.dao.ProveedorFacadeLocal;
-import edu.hypatia.simu.modelo.entidades.Proveedor;
+import edu.hypatia.simu.modelo.dao.UsuarioFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Usuario;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Stateless
-public class ProveedorFacade extends AbstractFacade<Proveedor> implements ProveedorFacadeLocal {
+public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
 
     @PersistenceContext(unitName = "simuPU")
     private EntityManager em;
@@ -26,8 +26,8 @@ public class ProveedorFacade extends AbstractFacade<Proveedor> implements Provee
         return em;
     }
 
-    public ProveedorFacade() {
-        super(Proveedor.class);
+    public UsuarioFacade() {
+        super(Usuario.class);
     }
     
 }

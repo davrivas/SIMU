@@ -25,58 +25,58 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Entity
-@Table(name = "tbl_marcas_producto")
+@Table(name = "tbl_marcas")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "MarcaProducto.findAll", query = "SELECT m FROM MarcaProducto m")
-    , @NamedQuery(name = "MarcaProducto.findByIdMarcaProducto", query = "SELECT m FROM MarcaProducto m WHERE m.idMarcaProducto = :idMarcaProducto")
-    , @NamedQuery(name = "MarcaProducto.findByMarcaProducto", query = "SELECT m FROM MarcaProducto m WHERE m.marcaProducto = :marcaProducto")})
-public class MarcaProducto implements Serializable {
+    @NamedQuery(name = "Marca.findAll", query = "SELECT m FROM Marca m")
+    , @NamedQuery(name = "Marca.findByIdMarca", query = "SELECT m FROM Marca m WHERE m.idMarca = :idMarca")
+    , @NamedQuery(name = "Marca.findByMarca", query = "SELECT m FROM Marca m WHERE m.marca = :marca")})
+public class Marca implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_marca_producto")
-    private Integer idMarcaProducto;
+    @Column(name = "id_marca")
+    private Integer idMarca;
     @Basic(optional = false)
-    @Column(name = "marca_producto")
-    private String marcaProducto;
+    @Column(name = "marca")
+    private String marca;
     @JoinColumn(name = "tipo_producto", referencedColumnName = "id_tipo_producto")
     @ManyToOne(optional = false)
     private TipoProducto tipoProducto;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "marcaProducto")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "marca")
     private List<Producto> productoList;
 
-    public MarcaProducto() {
+    public Marca() {
     }
 
-    public MarcaProducto(Integer idMarcaProducto) {
-        this.idMarcaProducto = idMarcaProducto;
+    public Marca(Integer idMarca) {
+        this.idMarca = idMarca;
     }
 
-    public MarcaProducto(Integer idMarcaProducto, String marcaProducto) {
-        this.idMarcaProducto = idMarcaProducto;
-        this.marcaProducto = marcaProducto;
+    public Marca(Integer idMarca, String marca) {
+        this.idMarca = idMarca;
+        this.marca = marca;
     }
 
-    public Integer getIdMarcaProducto() {
-        return idMarcaProducto;
+    public Integer getIdMarca() {
+        return idMarca;
     }
 
-    public void setIdMarcaProducto(Integer idMarcaProducto) {
-        this.idMarcaProducto = idMarcaProducto;
+    public void setIdMarca(Integer idMarca) {
+        this.idMarca = idMarca;
     }
 
-    public String getMarcaProducto() {
-        return marcaProducto;
+    public String getMarca() {
+        return marca;
     }
 
-    public void setMarcaProducto(String marcaProducto) {
-        this.marcaProducto = marcaProducto;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     public TipoProducto getTipoProducto() {
@@ -99,18 +99,18 @@ public class MarcaProducto implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idMarcaProducto != null ? idMarcaProducto.hashCode() : 0);
+        hash += (idMarca != null ? idMarca.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof MarcaProducto)) {
+        if (!(object instanceof Marca)) {
             return false;
         }
-        MarcaProducto other = (MarcaProducto) object;
-        if ((this.idMarcaProducto == null && other.idMarcaProducto != null) || (this.idMarcaProducto != null && !this.idMarcaProducto.equals(other.idMarcaProducto))) {
+        Marca other = (Marca) object;
+        if ((this.idMarca == null && other.idMarca != null) || (this.idMarca != null && !this.idMarca.equals(other.idMarca))) {
             return false;
         }
         return true;
@@ -118,7 +118,7 @@ public class MarcaProducto implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.hypatia.simu.modelo.entidades.MarcaProducto[ idMarcaProducto=" + idMarcaProducto + " ]";
+        return "edu.hypatia.simu.modelo.entidades.Marca[ idMarca=" + idMarca + " ]";
     }
     
 }

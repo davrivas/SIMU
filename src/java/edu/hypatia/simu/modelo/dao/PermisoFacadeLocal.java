@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author davrivas
+ * @author davr
  */
 @Local
 public interface PermisoFacadeLocal {
