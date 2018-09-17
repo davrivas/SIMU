@@ -30,4 +30,6 @@ public interface MarcaFacadeLocal {
 
     int count();
     
+    List<Marca> listarMarcaMoto();
+    
 }

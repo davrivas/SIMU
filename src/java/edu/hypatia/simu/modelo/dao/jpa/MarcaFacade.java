@@ -7,9 +7,12 @@ package edu.hypatia.simu.modelo.dao.jpa;
 
 import edu.hypatia.simu.modelo.dao.MarcaFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Marca;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,6 +31,16 @@ public class MarcaFacade extends AbstractFacade<Marca> implements MarcaFacadeLoc
 
     public MarcaFacade() {
         super(Marca.class);
+    }
+
+    @Override
+    public List<Marca> listarMarcaMoto() {
+        try {
+            Query q = getEntityManager().createNativeQuery("SELECT * FROM tbl_marcas WHERE tipo_producto=1", Marca.class);
+            return q.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
     
 }

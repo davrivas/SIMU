@@ -30,4 +30,14 @@ public interface UsuarioFacadeLocal {
 
     int count();
     
+    Usuario findByEmailContrasena(String email, String contrasena);
+    
+    int loadUsers(String pathFile);
+    
+    List<Usuario> todosLosAdmins();
+
+    List<Usuario> todosLosMecanicos();
+
+    List<Usuario> todosLosClientes();
+    
 }
