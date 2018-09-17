@@ -49,7 +49,7 @@ public class FilterMecanico implements Filter {
             throws IOException, ServletException {
         HttpServletRequest hsrequest = (HttpServletRequest) request;
         HttpServletResponse hsresponse = (HttpServletResponse) response;
-        if (sc.getPersona() != null && sc.getPersona().getRol().getIdRol() == 2) {
+        if (sc.getUsuario()!= null && sc.getUsuario().getRol().getIdRol() == 2) {
             chain.doFilter(request, response);
         } else {
             hsresponse.sendRedirect(hsrequest.getContextPath() + "/index.xhtml");
