@@ -5,8 +5,8 @@
  */
 package edu.hypatia.simu.controlador.reparacion;
 
-import edu.hypatia.simu.modelo.dao.TipoServicioReparacionFacadeLocal;
-import edu.hypatia.simu.modelo.entidades.TipoServicioReparacion;
+import edu.hypatia.simu.modelo.dao.TipoReparacionFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.TipoReparacion;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -19,16 +19,16 @@ import javax.enterprise.context.RequestScoped;
  */
 @Named(value = "serviciosControlador")
 @RequestScoped
-public class ServiciosControlador {
+public class TipoReparacionControlador {
     
     @EJB
-    private TipoServicioReparacionFacadeLocal sfl;
-    private List<TipoServicioReparacion> servicios;
+    private TipoReparacionFacadeLocal sfl;
+    private List<TipoReparacion> servicios;
 
     /**
      * Creates a new instance of ServiciosControlador
      */
-    public ServiciosControlador() {
+    public TipoReparacionControlador() {
     }
     
     @PostConstruct
@@ -36,7 +36,7 @@ public class ServiciosControlador {
         servicios = sfl.findAll();
     }
 
-    public List<TipoServicioReparacion> getServicios() {
+    public List<TipoReparacion> getServicios() {
         return servicios;
     }
     
