@@ -14,15 +14,14 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import edu.hypatia.simu.modelo.dao.ClienteFacadeLocal;
+import edu.hypatia.simu.modelo.dao.UsuarioFacadeLocal;
 import edu.hypatia.simu.modelo.dao.EstadoMotoFacadeLocal;
-import edu.hypatia.simu.modelo.dao.MarcaProductoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.MarcaFacadeLocal;
 import edu.hypatia.simu.modelo.dao.MotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
-import edu.hypatia.simu.modelo.entidades.Cliente;
+import edu.hypatia.simu.modelo.entidades.Usuario;
 import edu.hypatia.simu.modelo.entidades.EstadoMoto;
-import edu.hypatia.simu.modelo.entidades.MarcaProducto;
-import edu.hypatia.simu.modelo.entidades.Persona;
+import edu.hypatia.simu.modelo.entidades.Marca;
 import javax.inject.Inject;
 
 /**
@@ -37,19 +36,19 @@ public class MotoControlador implements Serializable {
     private SesionControlador sc;
 
     @EJB
-    private MarcaProductoFacadeLocal mpl;
+    private MarcaFacadeLocal mpl;
 
     @EJB
     private MotoFacadeLocal mfl;
 
     @EJB
-    private ClienteFacadeLocal clf;
+    private UsuarioFacadeLocal clf;
 
     @EJB
     private ProductoFacadeLocal productofl;
 
     @EJB
-    private MarcaProductoFacadeLocal marcaProductofl;
+    private MarcaFacadeLocal marcaProductofl;
 
     @EJB
     private EstadoMotoFacadeLocal emfl;
@@ -61,13 +60,13 @@ public class MotoControlador implements Serializable {
     private Moto moto = new Moto();
     private Producto producto = new Producto();
 
-    private MarcaProducto marcaProducto = new MarcaProducto();
-    private List<MarcaProducto> marcasMoto;
+    private Marca marcaProducto = new Marca();
+    private List<Marca> marcasMoto;
 
     public MotoControlador() {
     }
 
-    public List<MarcaProducto> getMarcasMoto() {
+    public List<Marca> getMarcasMoto() {
         return marcaProductofl.listarMarcaMoto();
     }
 
@@ -79,11 +78,11 @@ public class MotoControlador implements Serializable {
         this.producto = producto;
     }
 
-    public MarcaProducto getMarcaProducto() {
+    public Marca getMarcaProducto() {
         return marcaProducto;
     }
 
-    public void setMarcaProducto(MarcaProducto marcaProducto) {
+    public void setMarcaProducto(Marca marcaProducto) {
         this.marcaProducto = marcaProducto;
     }
 
@@ -144,7 +143,7 @@ public class MotoControlador implements Serializable {
         return productofl.findAll();
     }
 
-    public List<Cliente> listarCliente() {
+    public List<Usuario> listarCliente() {
         return clf.findAll();
     }
 
@@ -152,7 +151,7 @@ public class MotoControlador implements Serializable {
         return emfl.findAll();
     }
 
-    public List<MarcaProducto> listarMarcaProducto() {
+    public List<Marca> listarMarcaProducto() {
         return marcaProductofl.findAll();
     }
 
@@ -163,24 +162,24 @@ public class MotoControlador implements Serializable {
 
         moto.setEstadoMoto(emfl.find(5));
         moto.setProducto(producto);
-        moto.setCliente(sc.getPersona().getCliente());
+        moto.setCliente(sc.getUsuario());
         mfl.create(moto);
 
         return "listarMoto.xhtml?faces-redirect=true";
     }
 
     public void registrarMotoOfrecida() {
-        producto.setMarcaProducto(marcaProducto);
+        producto.setMarca(marcaProducto);
         productofl.create(producto);
         moto.setProducto(producto);
         moto.setEstadoMoto(emfl.find(2));
-        moto.setCliente(sc.getPersona().getCliente());
+        moto.setCliente(sc.getUsuario());
         mfl.create(moto);
 
-         Mail.sendMail("simucolombia@gmail.com", "Moto ofrecida", sc.getPersona().getNombre() + " " + sc.getPersona().getApellido()
+         Mail.sendMail("simucolombia@gmail.com", "Moto ofrecida", sc.getUsuario().getNombre() + " " + sc.getUsuario().getApellido()
                 + "<h1>Compra de Moto</h1>"
-                + "<p>Hola administradores de SIMU, el cliente " + sc.getPersona().getNombre() + " " + sc.getPersona().getApellido()+ " ha ofertado una moto </p>"
-                + "Moto: " + producto.getMarcaProducto().getMarcaProducto() + producto.getReferencia() + "<br/>"
+                + "<p>Hola administradores de SIMU, el cliente " + sc.getUsuario().getNombre() + " " + sc.getUsuario().getApellido()+ " ha ofertado una moto </p>"
+                + "Moto: " + producto.getMarca().getMarca() + producto.getReferencia() + "<br/>"
                 + "Cilindraje: " + moto.getCilindraje() + "<br/>"
                 + "Kilometraje: " + moto.getKilometraje() + "<br/>"
                 + "Color: " + moto.getColor()

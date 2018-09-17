@@ -5,11 +5,10 @@
  */
 package edu.hypatia.simu.controlador.persona;
 
-import edu.hypatia.simu.modelo.dao.MecanicoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.RolFacadeLocal;
-import edu.hypatia.simu.modelo.entidades.Mecanico;
-import edu.hypatia.simu.modelo.entidades.Persona;
+import edu.hypatia.simu.modelo.dao.UsuarioFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Rol;
+import edu.hypatia.simu.modelo.entidades.Usuario;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -27,12 +26,12 @@ import javax.enterprise.context.SessionScoped;
 public class MecanicoControlador implements Serializable {
 
     @EJB
-    private MecanicoFacadeLocal mfl;
-    private List<Mecanico> mecanicos;
+    private UsuarioFacadeLocal mfl;
+    private List<Usuario> mecanicos;
     @EJB
     private RolFacadeLocal rfl;
 
-    private Mecanico mecanico;
+    private Usuario mecanico;
 
     /**
      * Creates a new instance of MecanicoControlador
@@ -43,26 +42,26 @@ public class MecanicoControlador implements Serializable {
     @PostConstruct
     public void init() {
         mecanicos = mfl.findAll();
-        mecanico = new Mecanico();
+        mecanico = new Usuario();
     }
 
-    public List<Mecanico> getMecanicos() {
+    public List<Usuario> getMecanicos() {
         return mecanicos;
     }
 
-    public Mecanico getMecanico() {
+    public Usuario getMecanico() {
         return mecanico;
     }
 
-    public void setMecanico(Mecanico mecanico) {
+    public void setMecanico(Usuario mecanico) {
         this.mecanico = mecanico;
     }
 
     public String insertar() {
         Date fecha = new Date();
         Rol rol = rfl.find(2);
-        mecanico.getPersona().setFechaRegistro(fecha);
-        mecanico.getPersona().setRol(rol);
+        mecanico.setFechaRegistro(fecha);
+        mecanico.setRol(rol);
         mfl.create(mecanico);
         return "index";
     }
