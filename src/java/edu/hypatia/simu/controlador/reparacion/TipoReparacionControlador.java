@@ -17,7 +17,7 @@ import javax.enterprise.context.RequestScoped;
  *
  * @author davrivas
  */
-@Named(value = "serviciosControlador")
+@Named(value = "tipoReparacionControlador")
 @RequestScoped
 public class TipoReparacionControlador {
     
