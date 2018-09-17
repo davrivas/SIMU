@@ -5,8 +5,8 @@
  */
 package edu.hypatia.simu.converters;
 
-import edu.hypatia.simu.modelo.dao.MecanicoFacadeLocal;
-import edu.hypatia.simu.modelo.entidades.Mecanico;
+import edu.hypatia.simu.modelo.dao.TipoReparacionFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.TipoReparacion;
 import javax.enterprise.inject.spi.CDI;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -17,30 +17,30 @@ import javax.faces.convert.FacesConverter;
  *
  * @author davrivas
  */
-@FacesConverter(forClass = Mecanico.class)
-public class MecanicoConverter implements Converter<Mecanico> {
+@FacesConverter(forClass = TipoReparacion.class)
+public class TipoReparacionConverter implements Converter<TipoReparacion> {
     
-    private MecanicoFacadeLocal mfl;
+    private TipoReparacionFacadeLocal tsrfl;
 
-    public MecanicoConverter() {
-        mfl = CDI.current().select(MecanicoFacadeLocal.class).get();
+    public TipoReparacionConverter() {
+        tsrfl = CDI.current().select(TipoReparacionFacadeLocal.class).get();
     }
     
 
     @Override
-    public Mecanico getAsObject(FacesContext fc, UIComponent uic, String value) {
+    public TipoReparacion getAsObject(FacesContext fc, UIComponent uic, String value) {
         try {
             Integer id = Integer.valueOf(value);
-            return mfl.find(id);
+            return tsrfl.find(id);
         } catch (NumberFormatException numberFormatException) {
             return null;
         }
     }
 
     @Override
-    public String getAsString(FacesContext fc, UIComponent uic, Mecanico obj) {
+    public String getAsString(FacesContext fc, UIComponent uic, TipoReparacion obj) {
          if(obj != null){
-            return obj.getIdMecanico().toString();
+            return obj.getIdTipoReparacion().toString();
         }
         return "";
     }

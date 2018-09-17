@@ -5,8 +5,8 @@
  */
 package edu.hypatia.simu.converters;
 
-import edu.hypatia.simu.modelo.dao.MarcaProductoFacadeLocal;
-import edu.hypatia.simu.modelo.entidades.MarcaProducto;
+import edu.hypatia.simu.modelo.dao.MarcaFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Marca;
 import javax.enterprise.inject.spi.CDI;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -17,17 +17,17 @@ import javax.faces.convert.FacesConverter;
  *
  * @author NICOLAS
  */
-@FacesConverter(forClass = MarcaProducto.class)
-public class MarcaProductoConverter implements Converter<MarcaProducto>{
+@FacesConverter(forClass = Marca.class)
+public class MarcaConverter implements Converter<Marca>{
 
-    private MarcaProductoFacadeLocal mpfl;
+    private MarcaFacadeLocal mpfl;
 
-    public MarcaProductoConverter() {
-        mpfl = CDI.current().select(MarcaProductoFacadeLocal.class).get();
+    public MarcaConverter() {
+        mpfl = CDI.current().select(MarcaFacadeLocal.class).get();
     }
 
     @Override
-    public MarcaProducto getAsObject(FacesContext context, UIComponent component, String value) {
+    public Marca getAsObject(FacesContext context, UIComponent component, String value) {
         try {
             Integer id = Integer.valueOf(value);
             return mpfl.find(id);
@@ -37,9 +37,9 @@ public class MarcaProductoConverter implements Converter<MarcaProducto>{
     }
 
     @Override
-    public String getAsString(FacesContext arg0, UIComponent arg1, MarcaProducto obj) {
+    public String getAsString(FacesContext arg0, UIComponent arg1, Marca obj) {
         if(obj != null){
-            return obj.getIdMarcaProducto().toString();
+            return obj.getIdMarca().toString();
         }
         return "";
     }
