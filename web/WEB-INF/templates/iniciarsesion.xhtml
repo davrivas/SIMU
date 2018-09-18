@@ -9,7 +9,7 @@
             <div class="modal-content contenido-modal">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalLabel">#{txtSimu.iniciaSesion}</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="#{txtSimu.cerrar}">
                         <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
                     </button>
                 </div>
@@ -20,17 +20,17 @@
                                 <article class="col">
                                     <div class="form-group d-flex flex-column">
                                         <h:outputLabel for="email" value="Email" />
-                                        <h:inputText a:placeholder="Escribe tu email" id="email" a:required="" a:type="email" a:name="email" value="#{sesionControlador.email}" class="input-simu login-input" />
+                                        <h:inputText a:placeholder="#{txtSimu.escribeTuEmail}" id="email" a:required="" a:type="email" a:name="email" value="#{sesionControlador.email}" class="input-simu login-input" />
                                     </div>
                                     <div class="form-group d-flex flex-column">
-                                        <h:outputLabel for="contrasena" value="Contraseña" />
-                                        <h:inputSecret a:placeholder="Escribe tu contraseña" id="contrasena" a:required="" a:name="contrasena" value="#{sesionControlador.contrasena}" class="input-simu login-input" />
+                                        <h:outputLabel for="contrasena" value="#{txtSimu.contrasena}" />
+                                        <h:inputSecret a:placeholder="#{txtSimu.escribeTuContrasena}" id="contrasena" a:required="" a:name="contrasena" value="#{sesionControlador.contrasena}" class="input-simu login-input" />
                                     </div>
                                 </article>
                             </section>
                         </div>
                         <div class="modal-footer">
-                            <h:commandButton action="#{sesionControlador.iniciarSesion()}" a:type="submit" value="Iniciar sesión" class="btn-simu-naranja" id="btn-iniciar-sesion"/>
+                            <h:commandButton action="#{sesionControlador.iniciarSesion()}" a:type="submit" value="#{txtSimu.iniciaSesion}" class="btn-simu-naranja" id="btn-iniciar-sesion"/>
                             <button type="button" class="btn-simu-naranja" data-dismiss="modal">#{txtSimu.cancelar}</button>
                         </div>
                     </div>
