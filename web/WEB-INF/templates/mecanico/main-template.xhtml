@@ -34,7 +34,7 @@
                     <img class="card-img-top" src="#{request.contextPath}/resources/img/mante-pequeno.jpg"></img>
 
                     <div class="card-block">
-                        <h4 class="card-title mt-3 d-flex text-center"><strong>#{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}</strong></h4>
+                        <h4 class="card-title mt-3 d-flex text-center"><strong>#{sesionControlador.usuario.nombre} #{sesionControlador.usuario.apellido}</strong></h4>
 
                         <div class="meta d-flex justify-content-center">
                             <h5 class="mb-3">#{txtSimu.mecanico}</h5>
@@ -44,7 +44,7 @@
 
                 </article>
                 <ul>
-                    <c:forEach items="#{sesionControlador.persona.rol.permisoList}" var="p">
+                    <c:forEach items="#{sesionControlador.usuario.rol.permisoList}" var="p">
                         <li><a href="#{p.url}"><i class="#{p.icono} fa-2x mr-2"></i>#{p.permiso}</a></li>
                     </c:forEach>
                     <li>

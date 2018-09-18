@@ -19,16 +19,16 @@
             <section class="unete d-flex flex-column align-self-end align-self-md-center mr-md-4 col-md-5 col-lg-4 col-xl-3 col m-sm-2">
                 <div class="row d-flex justify-content-center">
                     <h1 id="unete-titulo">
-                        <h:panelGroup rendered="#{empty sesionControlador.persona}">
+                        <h:panelGroup rendered="#{empty sesionControlador.usuario}">
                             #{txtSimu.unete}
                         </h:panelGroup>
-                        <h:panelGroup rendered="#{not empty sesionControlador.persona}">
-                            #{txtSimu.hola} #{sesionControlador.persona.nombre} #{sesionControlador.persona.apellido}
+                        <h:panelGroup rendered="#{not empty sesionControlador.usuario}">
+                            #{txtSimu.hola} #{sesionControlador.usuario.nombre} #{sesionControlador.usuario.apellido}
                         </h:panelGroup>
                     </h1>
                 </div>
                 <div class="botones row d-flex justify-content-center">
-                    <h:panelGroup rendered="#{empty sesionControlador.persona}">
+                    <h:panelGroup rendered="#{empty sesionControlador.usuario}">
                         <button class="btn btn-simu-naranja m-1" type="button" data-toggle="modal" data-target="#registrarse">
                             <span class="fa fa-user-plus"></span> #{txtSimu.registrate}
                         </button>
@@ -36,7 +36,7 @@
                             <span class="fa fa-sign-in"></span> #{txtSimu.iniciaSesion}
                         </button>
                     </h:panelGroup>
-                    <h:panelGroup rendered="#{not empty sesionControlador.persona}">
+                    <h:panelGroup rendered="#{not empty sesionControlador.usuario}">
                         <!--o button-->
                         <a href="editar-perfil.xhtml" class="btn btn-simu-naranja mt-1">
                             <span class="fa fa-user-circle"></span> #{txtSimu.editarPerfil}
