@@ -24,9 +24,9 @@ import javax.servlet.http.Part;
  *
  * @author APRENDIZ
  */
-@Named(value = "personaControlador")
+@Named(value = "usuarioControlador")
 @SessionScoped
-public class PersonaControlador implements Serializable {
+public class UsuarioControlador implements Serializable {
 
     @Inject
     private SesionControlador sc;
@@ -63,7 +63,7 @@ public class PersonaControlador implements Serializable {
         this.partFile = partFile;
     }
 
-    public PersonaControlador() {
+    public UsuarioControlador() {
     }
     
         

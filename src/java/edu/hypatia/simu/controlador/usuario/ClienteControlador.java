@@ -48,7 +48,6 @@ public class ClienteControlador implements Serializable {
     private Usuario clienteSeleccionado;
     private List<Usuario> clientes;
 
-    private Usuario persona = new Usuario();
     private Usuario cliente = new Usuario();
     private Departamento departamento = new Departamento();
 
@@ -63,14 +62,6 @@ public class ClienteControlador implements Serializable {
 
     public void setCliente(Usuario cliente) {
         this.cliente = cliente;
-    }
-
-    public Usuario getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Usuario persona) {
-        this.persona = persona;
     }
 
     public Departamento getDepartamento() {
@@ -136,11 +127,8 @@ public class ClienteControlador implements Serializable {
 
         Date fecha = new Date();
         Rol rol = rfl.find(1);
-        persona.setFechaRegistro(fecha);
-        persona.setRol(rol);
-        ufl.create(persona);
-
-        cliente.setIdUsuario(getPersona().getIdUsuario());
+        cliente.setFechaRegistro(fecha);
+        cliente.setRol(rol);
         ufl.create(cliente);
 
         return "index.xhtml?faces-redirect=true";

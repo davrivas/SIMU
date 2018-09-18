@@ -23,9 +23,9 @@
                     <section class="row mb-5 mt-5 justify-content-around">
                         <div class="col-6">
                             <h:outputLabel class="mr-3">Marca</h:outputLabel>
-                            <h:selectOneMenu value="#{motoControlador.producto.marcaProducto}" class="form-control">
+                            <h:selectOneMenu value="#{motoControlador.producto.marca}" class="form-control">
                                 <f:selectItem itemLabel="Seleccione"></f:selectItem>
-                                <f:selectItems value="#{motoControlador.listarMarcaProducto()}" var="p" itemLabel="#{p.marcaProducto}" class="form-control"></f:selectItems>
+                                <f:selectItems value="#{motoControlador.listarMarcaProducto}" var="p" itemLabel="#{p.marca}" class="form-control"></f:selectItems>
                             </h:selectOneMenu>
                         </div>
                         <div class="col-6">

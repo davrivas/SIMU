@@ -21,7 +21,7 @@
                             <strong>#{txtSimu.kilometraje}:</strong> #{reparacionClienteControlador.motoSeleccionada.kilometraje}
                         </div>
                         <div class="col-12 col-md-6">
-                            <strong>#{txtSimu.marcaReferencia}</strong> #{m.producto.marcaProducto.marcaProducto} #{m.producto.referencia}<br/>
+                            <strong>#{txtSimu.marcaReferencia}</strong> #{m.producto.marca.marca} #{m.producto.referencia}<br/>
                             <strong>#{txtSimu.modelo}:</strong> #{reparacionClienteControlador.motoSeleccionada.modelo}
                             <strong>Color:</strong> #{reparacionClienteControlador.motoSeleccionada.color}<br/>
                         </div>
@@ -39,7 +39,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">#{txtSimu.nombreMecanico}</f:facet>
-                            <h:outputText value="#{r.mecanico.persona.nombre} #{r.mecanico.persona.apellido}"/>
+                            <h:outputText value="#{r.mecanico.nombre} #{r.mecanico.apellido}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">#{txtSimu.calificacion}</f:facet>
