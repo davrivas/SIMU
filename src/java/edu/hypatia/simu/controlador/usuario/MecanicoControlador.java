@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hypatia.simu.controlador.persona;
+package edu.hypatia.simu.controlador.usuario;
 
 import edu.hypatia.simu.modelo.dao.RolFacadeLocal;
 import edu.hypatia.simu.modelo.dao.UsuarioFacadeLocal;

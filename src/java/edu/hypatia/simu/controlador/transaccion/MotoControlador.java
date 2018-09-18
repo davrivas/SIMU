@@ -6,7 +6,7 @@
 package edu.hypatia.simu.controlador.transaccion;
 
 import edu.hypatia.simu.controlador.mail.Mail;
-import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
+import edu.hypatia.simu.controlador.usuario.sesion.SesionControlador;
 import edu.hypatia.simu.modelo.entidades.Moto;
 import edu.hypatia.simu.modelo.entidades.Producto;
 import java.io.Serializable;
