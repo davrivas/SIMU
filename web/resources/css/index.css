@@ -1,8 +1,8 @@
 .titulo {
     /* imagen */
-    /* background-image: url('../images/fotocamino.jpg');
+    background-image: url(../img/fotocamino.jpg);
     background-size: 100%;
-    background-attachment: fixed; */
+    background-attachment: fixed; 
     /* fin imagen */
     height: 300px;
 }

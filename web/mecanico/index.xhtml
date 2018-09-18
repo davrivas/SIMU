@@ -16,7 +16,7 @@
 
     <ui:define name="contenido1">
         <h2 class="mt-2">#{txtSimu.reparacionesARevisar}</h2>
-        
+
         <h:panelGroup rendered="#{empty reparacionControlador.reparacionesSinRevisar}">
             <p class="text-center"><i>#{txtSimu.noReparacionesRevisar}</i></p>
         </h:panelGroup>
@@ -59,13 +59,13 @@
     </ui:define>
 
     <ui:define name="contenido2">
+        <h2>#{txtSimu.reparacionesRevisadas}</h2>
+
         <h:panelGroup rendered="#{empty reparacionControlador.reparacionesRevisadas}">
             <p class="text-center"><i>#{txtSimu.noReparacionesRevisadas}</i></p>
         </h:panelGroup>
-        
-        <h:panelGroup rendered="#{not empty reparacionControlador.reparacionesRevisadas}">
-            <h2>#{txtSimu.reparacionesRevisadas}</h2>
 
+        <h:panelGroup rendered="#{not empty reparacionControlador.reparacionesRevisadas}">
             <h:dataTable id="reparaciones-revisadas" value="#{reparacionControlador.reparacionesRevisadas}" var="r" class="table table-striped table-responsive">
                 <h:column>
                     <f:facet name="header">#{txtSimu.fechaHora}</f:facet>
