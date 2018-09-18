@@ -30,10 +30,11 @@ public interface ReparacionFacadeLocal {
     List<Reparacion> findRange(int[] range);
 
     int count();
-
+    
     List<Reparacion> reparacionesSinRevisar(Usuario mecanico);
 
     List<Reparacion> reparacionesRevisadas(Usuario mecanico);
 
     List<Reparacion> reparacionesDelCliente(Usuario cliente);
+    
 }

@@ -22,11 +22,11 @@
                         <section class="row mb-5 mt-5 justify-content-around">
                             <div class="col-6">
                                 <h:outputLabel class="mr-3">Nombres</h:outputLabel>
-                                <h:inputText value="#{personaControlador.persona.nombre}" class="form-control"></h:inputText>
+                                <h:inputText value="#{usuarioControlador.usuario.nombre}" class="form-control"></h:inputText>
                             </div>
                             <div class="col-6">
                                 <h:outputLabel class="mr-3">Appellidos</h:outputLabel>
-                                <h:inputText value="#{personaControlador.persona.apellido}" class="form-control"></h:inputText>
+                                <h:inputText value="#{usuarioControlador.usuario.apellido}" class="form-control"></h:inputText>
                             </div>
                         </section>
 <!--
@@ -34,18 +34,18 @@
                         <section class="row mb-5 mt-5 justify-content-around">
                             <div class="col-6">
                                 <h:outputLabel class="mr-3">Correo electronico</h:outputLabel>
-                                <h:inputText value="#{personaControlador.persona.email}" class="form-control"></h:inputText>
+                                <h:inputText value="#{usuarioControlador.usuario.email}" class="form-control"></h:inputText>
                             </div>
                             <div class="col-6">
                                 <h:outputLabel class="mr-3">Telefono</h:outputLabel>
-                                <h:inputText value="#{personaControlador.persona.telefono}" class="form-control"></h:inputText>
+                                <h:inputText value="#{usuarioControlador.usuario.telefono}" class="form-control"></h:inputText>
                             </div>
                         </section>
                 </div>
                 <div class="modal-footer">
                     <h:form prependId="false">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                        <h:commandButton action="#{personaControlador.registrarAdministrador()}" value="Registrar" class="btn btn-primary"> </h:commandButton>
+                        <h:commandButton action="#{usuarioControlador.registrarAdministrador()}" value="Registrar" class="btn btn-primary"> </h:commandButton>
                     </h:form>
                 </div>
             </h:panelGroup>

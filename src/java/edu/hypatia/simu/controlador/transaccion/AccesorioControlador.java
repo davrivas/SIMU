@@ -32,7 +32,7 @@ public class AccesorioControlador implements Serializable {
     
     @EJB
     private AccesorioFacadeLocal afl;
-        
+            
     @EJB
     private ProductoFacadeLocal pfl;
     
@@ -46,7 +46,7 @@ public class AccesorioControlador implements Serializable {
     
     private Accesorio accesorio = new Accesorio();
     private Producto producto = new Producto();
-    private Marca MarcaProducto = new Marca();
+    private Marca marcaProducto = new Marca();
     
     private Accesorio accesorioSeleccionado;
     
@@ -77,11 +77,11 @@ public class AccesorioControlador implements Serializable {
     }
     
     public Marca getMarcaProducto() {
-        return MarcaProducto;
+        return marcaProducto;
     }
     
-    public void setMarcaProducto(Marca MarcaProducto) {
-        this.MarcaProducto = MarcaProducto;
+    public void setMarcaProducto(Marca marcaProducto) {
+        this.marcaProducto = marcaProducto;
     }
 
     /*ELIMINAR*/

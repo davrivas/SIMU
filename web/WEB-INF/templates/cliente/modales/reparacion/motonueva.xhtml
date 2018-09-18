@@ -20,12 +20,12 @@
                             <h:outputLabel for="moto-agenda" class="mr-3" value="Moto"/>
                             <h:selectOneMenu value="#{reparacionClienteControlador.reparacionAgendada.moto}" id="moto-agenda" class="col-md-12 mt-1 input-simu" a:required="">
                                 <f:selectItem itemValue="" itemLabel="Seleccione su moto"/>
-                                <f:selectItems value="#{sesionControlador.persona.cliente.motoList}" var="m" itemLabel="#{m.placa} #{m.cilindraje}cc"/>
+                                <f:selectItems value="#{sesionControlador.usuario.motoList}" var="m" itemLabel="#{m.placa} #{m.cilindraje}cc"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="row mt-1 mb-3">
                             <h:outputLabel for="tipo-servicio" class="mr-3" value="Tipo de servicio"/>
-                            <h:selectManyCheckbox value="#{reparacionClienteControlador.reparacionAgendada.tipoServicioReparacionList}" a:name="tipo-servicio" id="tipo-servicio" class="select-simu">
+                            <h:selectManyCheckbox value="#{reparacionClienteControlador.reparacionAgendada.tipoReparacionList}" a:name="tipo-servicio" id="tipo-servicio" class="select-simu">
                                 <f:selectItems value="#{serviciosControlador.servicios}" var="ts" itemLabel="#{ts.servicio}"/>
                             </h:selectManyCheckbox>
                         </div>

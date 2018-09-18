@@ -6,7 +6,7 @@
 package edu.hypatia.simu.controlador.transaccion;
 
 import edu.hypatia.simu.controlador.mail.Mail;
-import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
+import edu.hypatia.simu.controlador.usuario.sesion.SesionControlador;
 import edu.hypatia.simu.modelo.entidades.Moto;
 import edu.hypatia.simu.modelo.entidades.Producto;
 import java.io.Serializable;
@@ -14,14 +14,14 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import edu.hypatia.simu.modelo.dao.UsuarioFacadeLocal;
 import edu.hypatia.simu.modelo.dao.EstadoMotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.MarcaFacadeLocal;
 import edu.hypatia.simu.modelo.dao.MotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
-import edu.hypatia.simu.modelo.dao.UsuarioFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Usuario;
 import edu.hypatia.simu.modelo.entidades.EstadoMoto;
 import edu.hypatia.simu.modelo.entidades.Marca;
-import edu.hypatia.simu.modelo.entidades.Usuario;
 import javax.inject.Inject;
 
 /**
@@ -42,13 +42,13 @@ public class MotoControlador implements Serializable {
     private MotoFacadeLocal mfl;
 
     @EJB
-    private UsuarioFacadeLocal ufl;
+    private UsuarioFacadeLocal clf;
 
     @EJB
     private ProductoFacadeLocal productofl;
 
     @EJB
-    private MarcaFacadeLocal marcafl;
+    private MarcaFacadeLocal marcaProductofl;
 
     @EJB
     private EstadoMotoFacadeLocal emfl;
@@ -60,14 +60,14 @@ public class MotoControlador implements Serializable {
     private Moto moto = new Moto();
     private Producto producto = new Producto();
 
-    private Marca marca = new Marca();
+    private Marca marcaProducto = new Marca();
     private List<Marca> marcasMoto;
 
     public MotoControlador() {
     }
 
     public List<Marca> getMarcasMoto() {
-        return marcafl.listarMarcaMoto();
+        return marcaProductofl.listarMarcaMoto();
     }
 
     public Producto getProducto() {
@@ -79,11 +79,11 @@ public class MotoControlador implements Serializable {
     }
 
     public Marca getMarcaProducto() {
-        return marca;
+        return marcaProducto;
     }
 
-    public void setMarcaProducto(Marca marca) {
-        this.marca = marca;
+    public void setMarcaProducto(Marca marcaProducto) {
+        this.marcaProducto = marcaProducto;
     }
 
     public List<Moto> getMotos() {
@@ -144,7 +144,7 @@ public class MotoControlador implements Serializable {
     }
 
     public List<Usuario> listarCliente() {
-        return ufl.findAllCustomer();
+        return clf.findAll();
     }
 
     public List<EstadoMoto> listarEstadoMoto() {
@@ -152,7 +152,7 @@ public class MotoControlador implements Serializable {
     }
 
     public List<Marca> listarMarcaProducto() {
-        return marcafl.findAll();
+        return marcaProductofl.findAll();
     }
 
 
@@ -169,7 +169,7 @@ public class MotoControlador implements Serializable {
     }
 
     public void registrarMotoOfrecida() {
-        producto.setMarca(marca);
+        producto.setMarca(marcaProducto);
         productofl.create(producto);
         moto.setProducto(producto);
         moto.setEstadoMoto(emfl.find(2));

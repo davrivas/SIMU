@@ -23,11 +23,11 @@
                     <section class="row mb-5 mt-5 justify-content-around">
                         <div class="col-6">
                             <h:outputLabel class="mr-3">Nombre</h:outputLabel>
-                            <h:inputText value="#{clienteControlador.persona.nombre}" a:placeholder="Escribe tus nombres" class="col-12 form-control" required="true"></h:inputText>     
+                            <h:inputText value="#{clienteControlador.usuario.nombre}" a:placeholder="Escribe tus nombres" class="col-12 form-control" required="true"></h:inputText>     
                         </div>
                         <div class="col-6">
                             <h:outputLabel class="mr-3">Apellido</h:outputLabel>
-                            <h:inputText value="#{clienteControlador.persona.apellido}" a:placeholder="Escribe tus apellidos" class="col-12 form-control" required="true"></h:inputText>     
+                            <h:inputText value="#{clienteControlador.usuario.apellido}" a:placeholder="Escribe tus apellidos" class="col-12 form-control" required="true"></h:inputText>     
                         </div>
                     </section>
 
@@ -50,11 +50,11 @@
                     <section class="row mb-5 mt-5 justify-content-around">
                         <div class="col-6">
                             <h:outputLabel class="mr-3">Correo Electronico</h:outputLabel>
-                            <h:inputText value="#{clienteControlador.persona.email}" a:placeholder="Escribe tu correo electronico" class="col-12 form-control" required="true"></h:inputText>     
+                            <h:inputText value="#{clienteControlador.usuario.email}" a:placeholder="Escribe tu correo electronico" class="col-12 form-control" required="true"></h:inputText>     
                         </div>
                         <div class="col-6">
                             <h:outputLabel class="mr-3">Telefono</h:outputLabel>
-                            <h:inputText value="#{clienteControlador.persona.telefono}" a:placeholder="Escribe tu telefono" class="col-12 form-control" required="true"></h:inputText>     
+                            <h:inputText value="#{clienteControlador.usuario.telefono}" a:placeholder="Escribe tu telefono" class="col-12 form-control" required="true"></h:inputText>     
                         </div>
                     </section>
 
@@ -62,7 +62,7 @@
                     <section class="row mb-5 mt-5 justify-content-around">
                         <div class="col-6">
                             <h:outputLabel class="mr-3">Contraseña</h:outputLabel>
-                            <h:inputSecret value="#{clienteControlador.persona.contrasena}" a:placeholder="Escribe tu contraseña" class="col-12 form-control" required="true"></h:inputSecret>     
+                            <h:inputSecret value="#{clienteControlador.usuario.contrasena}" a:placeholder="Escribe tu contraseña" class="col-12 form-control" required="true"></h:inputSecret>     
                         </div>
 
                     </section>
@@ -70,11 +70,11 @@
                     <section class="row mb-5 mt-5 justify-content-around">
                         <div class="col-6">
                             <h:outputLabel class="mr-3">Direccion</h:outputLabel>
-                            <h:inputText value="#{clienteControlador.cliente.direccion}" a:placeholder="Escribe tu telefono" class="col-12 form-control" required=""></h:inputText>     
+                            <h:inputText value="#{clienteControlador.usuario.direccion}" a:placeholder="Escribe tu telefono" class="col-12 form-control" required=""></h:inputText>     
                         </div>
                         <div class="col-6">
                             <h:outputLabel class="mr-3">Ciudad</h:outputLabel>
-                            <h:selectOneMenu value="#{clienteControlador.cliente.ciudad}" class="col-12 custom-select">
+                            <h:selectOneMenu value="#{clienteControlador.usuario.ciudad}" class="col-12 custom-select">
                                 <f:selectItem itemLabel="Seleccione"></f:selectItem>
                                 <f:selectItems value="#{clienteControlador.listarCiudad()}" var="c" itemLabel="#{c.ciudad}"></f:selectItems>
                             </h:selectOneMenu>

@@ -59,7 +59,7 @@
                     </div>
                     <div class="modal-body">
                         <h4>Identificación:  #{clienteControlador.cliente.numeroDocumento}</h4>
-                        <h4>Nombre:  #{clienteControlador.cliente.persona.nombre} #{clienteControlador.cliente.persona.apellido}</h4>
+                        <h4>Nombre:  #{clienteControlador.cliente.nombre} #{clienteControlador.cliente.apellido}</h4>
 
                     </div>
                     <div class="modal-footer">
@@ -90,11 +90,11 @@
                             <section class="row mb-5 mt-5 justify-content-around">
                                 <div class="col-6">
                                     <h:outputLabel>Nombre</h:outputLabel>
-                                    <h:inputText value="#{clienteControlador.cliente.persona.nombre}" class="form-control"></h:inputText>
+                                    <h:inputText value="#{clienteControlador.cliente.nombre}" class="form-control"></h:inputText>
                                 </div>
                                 <div class="col-6">
                                     <h:outputLabel>Apellido</h:outputLabel>
-                                    <h:inputText value="#{clienteControlador.cliente.persona.apellido}" class="form-control"></h:inputText>
+                                    <h:inputText value="#{clienteControlador.cliente.apellido}" class="form-control"></h:inputText>
                                 </div>
                             </section>
                             <!--Fila 2-->
@@ -113,11 +113,11 @@
                             <section class="row mb-5 mt-5 justify-content-around">
                                 <div class="col-6">
                                     <h:outputLabel>Correo Electronico</h:outputLabel>
-                                    <h:inputText value="#{clienteControlador.cliente.persona.email}" class="form-control"></h:inputText>
+                                    <h:inputText value="#{clienteControlador.cliente.email}" class="form-control"></h:inputText>
                                 </div>
                                 <div class="col-6">
                                     <h:outputLabel>Telefono</h:outputLabel>                                   
-                                    <h:inputText value="#{clienteControlador.cliente.persona.telefono}" class="form-control"></h:inputText>
+                                    <h:inputText value="#{clienteControlador.cliente.telefono}" class="form-control"></h:inputText>
                                 </div>
                             </section>
 
@@ -182,12 +182,12 @@
 
                                 </h:form>
                             </td>
-                            <td>#{c.persona.nombre}</td>
-                            <td>#{c.persona.apellido}</td>
+                            <td>#{c.nombre}</td>
+                            <td>#{c.apellido}</td>
                             <td>#{c.tipoDocumento.sigla}</td>
                             <td>#{c.numeroDocumento}</td>
-                            <td>#{c.persona.email}</td>                        
-                            <td>#{c.persona.telefono}</td>
+                            <td>#{c.email}</td>                        
+                            <td>#{c.telefono}</td>
                             <td>#{c.ciudad.ciudad}</td>
 
                         </tr>

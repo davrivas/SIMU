@@ -6,6 +6,7 @@
 package edu.hypatia.simu.modelo.dao;
 
 import edu.hypatia.simu.modelo.entidades.Moto;
+import edu.hypatia.simu.modelo.entidades.Usuario;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,7 @@ public interface MotoFacadeLocal {
     List<Moto> findRange(int[] range);
 
     int count();
+    
+    List<Moto> motosEnReparacion(Usuario cliente);
     
 }

@@ -30,7 +30,7 @@
                             <b>#{txtSimu.placaMoto}:</b> #{reparacionControlador.reparacionSeleccionada.moto.placa}<br/>
                             <b>#{txtSimu.nombreMecanico}:</b> #{reparacionControlador.reparacionSeleccionada.moto.cliente.persona.nombre} #{reparacionControlador.reparacionSeleccionada.moto.cliente.persona.apellido}<br/>
                             <b>#{txtSimu.serviciosRep}:</b><br/>
-                            <ui:repeat value="#{reparacionControlador.reparacionSeleccionada.tipoServicioReparacionList}" var="tsr">
+                            <ui:repeat value="#{reparacionControlador.reparacionSeleccionada.tipoReparacionList}" var="tsr">
                                 <li style="color: #fff;">#{tsr.servicio}</li>
                             </ui:repeat>
                         </div>

@@ -22,7 +22,7 @@
                     <section class="row mb-5 mt-5 justify-content-around">
                         <div class="col-6">
                             <h:outputLabel class="mr-3">Marca</h:outputLabel>
-                            <h:selectOneMenu value="#{accesorioControlador.producto.marcaProducto}" class="form-control">
+                            <h:selectOneMenu value="#{accesorioControlador.producto.marca}" class="form-control">
                                 <f:selectItem itemLabel="Seleccione"></f:selectItem>
                                 <f:selectItems value="#{accesorioControlador.listarMarcaAccesorio()}" var="ma" itemLabel="#{ma.marcaProducto}" class="form-control"></f:selectItems>
                             </h:selectOneMenu>
@@ -45,13 +45,6 @@
                     </section>
                     <!--Fila 3-->
                     <section class="row mb-5 mt-5 justify-content-around">
-                        <div class="col-6">
-                            <h:outputLabel class="mr-3">Proveedor</h:outputLabel>
-                            <h:selectOneMenu value="#{accesorioControlador.accesorio.proveedor}" class="form-control">
-                              <f:selectItem itemLabel="Seleccione"></f:selectItem>
-                              <f:selectItems value="#{accesorioControlador.listarProveedor()}" var="pr" itemLabel="#{pr.idProveedor}" class="form-control"></f:selectItems>
-                            </h:selectOneMenu>
-                        </div>
                         <div class="col-6">
                             <h:outputLabel class="mr-3">Tipo Accesorio</h:outputLabel>
                             <h:selectOneMenu value="#{accesorioControlador.accesorio.tipoAccesorio}" class="form-control">

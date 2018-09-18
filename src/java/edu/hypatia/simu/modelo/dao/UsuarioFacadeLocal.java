@@ -29,14 +29,15 @@ public interface UsuarioFacadeLocal {
     List<Usuario> findRange(int[] range);
 
     int count();
-
+    
     Usuario findByEmailContrasena(String email, String contrasena);
-
+    
     int loadUsers(String pathFile);
+    
+    List<Usuario> todosLosAdmins();
 
-    List<Usuario> findAllAdmin();
+    List<Usuario> todosLosMecanicos();
 
-    List<Usuario> findAllMechanic();
-
-    List<Usuario> findAllCustomer();
+    List<Usuario> todosLosClientes();
+    
 }

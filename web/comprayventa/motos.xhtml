@@ -59,9 +59,9 @@
                         <h:inputText  a:placeholder="Buscar..." class="form-control  col-md-6 mr-2 ml-3"></h:inputText><h:commandButton value="Buscar" class="btn btn-primary col-4"></h:commandButton>
                         </div>  
                         <label class="mt-2">Marcas Moto</label>
-                          <h:selectOneMenu value="#{motoControlador.marcaProducto.idMarcaProducto}" class="form-control ">
+                          <h:selectOneMenu value="#{motoControlador.marcaProducto.idMarca}" class="form-control ">
                         
-                        <f:selectItems value="#{motoControlador.listarMarcasMoto()}" var="m" itemValue="#{m.idMarcaProducto}" itemLabel="#{m.marcaProducto}"></f:selectItems>
+                              <f:selectItems value="#{motoControlador.marcasMoto}" var="m" itemValue="#{m.idMarca}" itemLabel="#{m.marcaProducto}"></f:selectItems>
                     </h:selectOneMenu>
                             <label class="mt-2">Precio </label>
                             <div class="row">
@@ -93,13 +93,13 @@
                     <div class="row">
 
 
-                        <ui:repeat value="#{motoControlador.listarMotos()}"  var="m">
+                        <ui:repeat value="#{motoControlador.motos}"  var="m">
 
 
                             <div class="card border-dark ml-4 mt-2 " style="width: 18rem;">
                                 <img class="card-img-top" src=".../100px180/" alt="Card image cap"/>
                                 <div class="card-body">
-                                    <h5 class="card-title">#{m.producto.marcaProducto.marcaProducto}</h5>
+                                    <h5 class="card-title">#{m.producto.marca.marca}</h5>
                                     <p class="card-text">#{m.producto.precio}.</p>
                                     <p class="card-text">#{m.modelo} </p>
                                     <a href="#" class="btn btn-primary"><span class=""></span>Agregar</a>

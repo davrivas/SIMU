@@ -6,7 +6,7 @@
 package edu.hypatia.simu.controlador.reparacion;
 
 import edu.hypatia.simu.controlador.mail.Mail;
-import edu.hypatia.simu.controlador.persona.sesion.SesionControlador;
+import edu.hypatia.simu.controlador.usuario.sesion.SesionControlador;
 import edu.hypatia.simu.modelo.dao.EstadoMotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.MotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ReparacionFacadeLocal;
@@ -21,7 +21,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -55,7 +54,7 @@ public class ReparacionClienteControlador implements Serializable {
     private Reparacion reparacionAgendada = new Reparacion();
 
     private final DateFormat hoyFormato = new SimpleDateFormat("yyyy-MM-dd");
-    private String hoyString = hoyFormato.format(new Date());
+    private final String hoyString = hoyFormato.format(new Date());
 
     /**
      * Creates a new instance of ReparacionCliente
@@ -83,9 +82,9 @@ public class ReparacionClienteControlador implements Serializable {
         this.motoNueva = motoNueva;
     }
 
-//    public List<Moto> getMotosEnReparacion() {
-//        return mfl.motosEnReparacion(sc.getUsuario());
-//    }
+    public List<Moto> getMotosEnReparacion() {
+        return mfl.motosEnReparacion(sc.getUsuario());
+    }
 
     public Reparacion getReparacionSeleccionada() {
         return reparacionSeleccionada;
@@ -141,7 +140,7 @@ public class ReparacionClienteControlador implements Serializable {
         rfl.create(reparacionAgendada);
 
         // Enviar mail
-        String nombreCliente = sc.getUsuario() + " " + sc.getUsuario();
+        String nombreCliente = sc.getUsuario().getNombre() + " " + sc.getUsuario().getApellido();
         String placaMoto = reparacionAgendada.getMoto().getPlaca();
         String nombreMecanico = reparacionAgendada.getMecanico().getNombre() + " " + reparacionAgendada.getMecanico().getApellido();
         String tiposDeServicio = "Los tipos de servicio son<br>";
@@ -200,14 +199,14 @@ public class ReparacionClienteControlador implements Serializable {
         return "";
     }
     
-    public String getPromedioMecanico(Usuario m) {
-        if (m.getReparacionList() == null || m.getReparacionList().isEmpty()) {
+    public String getPromedioMecanico(Usuario mecanico) {
+        if (mecanico.getReparacionList() == null || mecanico.getReparacionList().isEmpty()) {
             return "";
         }
         
         List<Integer> acumuladoList = new ArrayList<>();
         
-        for (Reparacion r : m.getReparacionList()) {
+        for (Reparacion r : mecanico.getReparacionList()) {
             if (r.getCalificacion() != null) {
                 acumuladoList.add(r.getCalificacion());
             }
@@ -226,6 +225,6 @@ public class ReparacionClienteControlador implements Serializable {
         
         promedio = acumulado / acumuladoList.size();
         
-        return "(" +promedio + " / 5)";
+        return "(" + promedio + " / 5)";
     }
 }

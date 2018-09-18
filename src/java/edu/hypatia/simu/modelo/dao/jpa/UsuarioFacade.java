@@ -60,9 +60,9 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     }
 
     @Override
-    public List<Usuario> findAllAdmin() {
+    public List<Usuario> todosLosAdmins() {
         try {
-            TypedQuery q = getEntityManager().createNamedQuery("SELECT u FROM Usuario u WHERE p.rol = 3 ", Usuario.class);
+            TypedQuery q = getEntityManager().createNamedQuery("SELECT u FROM Usuario u WHERE p.rol.idRol = 3 ", Usuario.class);
             return q.getResultList();
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -71,9 +71,9 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     }
 
     @Override
-    public List<Usuario> findAllMechanic() {
+    public List<Usuario> todosLosMecanicos() {
         try {
-            TypedQuery q = getEntityManager().createNamedQuery("SELECT u FROM Usuario u WHERE p.rol = 2", Usuario.class);
+            TypedQuery q = getEntityManager().createNamedQuery("SELECT u FROM Usuario u WHERE p.rol.idRol = 2", Usuario.class);
             return q.getResultList();
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -82,9 +82,9 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     }
 
     @Override
-    public List<Usuario> findAllCustomer() {
+    public List<Usuario> todosLosClientes() {
         try {
-            TypedQuery q = getEntityManager().createNamedQuery("SELECT u FROM Usuario u WHERE p.rol = 1", Usuario.class);
+            TypedQuery q = getEntityManager().createNamedQuery("SELECT u FROM Usuario u WHERE p.rol.idRol = 1", Usuario.class);
             return q.getResultList();
         } catch (Exception e) {
             e.printStackTrace(System.out);
