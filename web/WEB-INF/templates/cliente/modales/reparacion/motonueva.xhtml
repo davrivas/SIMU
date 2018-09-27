@@ -29,26 +29,9 @@
                                 <f:selectItems value="#{serviciosControlador.servicios}" var="ts" itemLabel="#{ts.servicio}"/>
                             </h:selectManyCheckbox>
                         </div>
-                        <div class="row mt-1 mb-3">
-                            <h:outputLabel for="fecha"  value="Fecha" class="mr-3"/>
-                            <h:inputText id="fecha-agenda" value="#{reparacionClienteControlador.reparacionAgendada.fecha}" a:name="fecha-agenda" a:type="date" class="input-simu" a:required="" a:min="#{reparacionClienteControlador.hoyString}">
-                                <f:convertDateTime pattern="yyyy-MM-dd"/>
-                            </h:inputText>
-                            <h:outputLabel for="fecha" class="ml-3 mr-3" value="Hora"/>
-                            <h:inputText id="hora-agenda" a:name="hora-agenda" a:type="time" value="#{reparacionClienteControlador.reparacionAgendada.hora}" class="input-simu" a:required="" a:min="7:00" a:max="19:00">
-                                <f:convertDateTime  pattern="HH:mm"/>
-                            </h:inputText>
-                        </div>
-                        <div class="row mt-1 mb-3">
-                            <h:outputLabel for="mecanico"  value="Mecánico" class="mr-3"/>
-                            <h:selectOneMenu value="#{reparacionClienteControlador.reparacionAgendada.mecanico}" class="select-simu" a:name="mecanico" id="mecanico" a:required="">
-                                <f:selectItem itemLabel="Seleccione" itemValue=""/>
-                                <f:selectItems value="#{mecanicoControlador.mecanicos}" var="m" itemLabel="#{m.persona.nombre} #{m.persona.apellido}"/>
-                            </h:selectOneMenu>
-                        </div>
                     </div>
                     <div class="modal-footer">
-                        <h:commandButton class="btn-simu-naranja m-2" id="agendar-dos" action="#{reparacionClienteControlador.agendarCita()}" value="Agendar"/>
+                        <h:commandButton class="btn-simu-naranja m-2" id="agendar-dos" actionListener="#{reparacionClienteControlador.registrarNuevaMotoEnReparacion()}" value="Agendar"/>
                         <button class="btn-simu-naranja m-2" data-dismiss="modal">Cancelar</button>
                     </div>
                 </h:form>

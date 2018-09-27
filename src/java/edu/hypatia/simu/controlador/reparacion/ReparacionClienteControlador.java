@@ -9,8 +9,10 @@ import edu.hypatia.simu.controlador.mail.Mail;
 import edu.hypatia.simu.controlador.usuario.sesion.SesionControlador;
 import edu.hypatia.simu.modelo.dao.EstadoMotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.MotoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ReparacionFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Moto;
+import edu.hypatia.simu.modelo.entidades.Producto;
 import edu.hypatia.simu.modelo.entidades.Reparacion;
 import edu.hypatia.simu.modelo.entidades.TipoReparacion;
 import edu.hypatia.simu.modelo.entidades.Usuario;
@@ -40,12 +42,15 @@ public class ReparacionClienteControlador implements Serializable {
     @EJB
     private MotoFacadeLocal mfl;
     @EJB
+    private ProductoFacadeLocal pfl;
+    @EJB
     private EstadoMotoFacadeLocal efl;
 
     @Inject
     private SesionControlador sc;
 
     private Moto motoSeleccionada = new Moto();
+    private Producto productoNuevo = new Producto();
     private Moto motoNueva = new Moto();
     private List<Moto> motosEnReparacion;
 
@@ -72,6 +77,14 @@ public class ReparacionClienteControlador implements Serializable {
 
     public void setMotoSeleccionada(Moto motoSeleccionada) {
         this.motoSeleccionada = motoSeleccionada;
+    }
+
+    public Producto getProductoNuevo() {
+        return productoNuevo;
+    }
+
+    public void setProductoNuevo(Producto productoNuevo) {
+        this.productoNuevo = productoNuevo;
     }
 
     public Moto getMotoNueva() {
@@ -192,11 +205,11 @@ public class ReparacionClienteControlador implements Serializable {
         return "";
     }
 
-    public String motoNueva() {
+    public void registrarNuevaMotoEnReparacion() {
+        pfl.create(productoNuevo);
         motoNueva.setCliente(sc.getUsuario());
-        motoNueva.setEstadoMoto(efl.find(1));
+        motoNueva.setEstadoMoto(efl.find(5));
         mfl.create(motoNueva);
-        return "";
     }
     
     public String getPromedioMecanico(Usuario mecanico) {
@@ -212,7 +225,7 @@ public class ReparacionClienteControlador implements Serializable {
             }
         }
         
-        if (acumuladoList == null || acumuladoList.isEmpty()) {
+        if (acumuladoList.isEmpty()) {
             return "";
         }
         
