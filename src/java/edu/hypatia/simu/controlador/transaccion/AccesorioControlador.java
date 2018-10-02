@@ -13,11 +13,16 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import edu.hypatia.simu.modelo.dao.AccesorioFacadeLocal;
+import edu.hypatia.simu.modelo.dao.FotoProductoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.MarcaFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.TipoAccesorioFacadeLocal;
+import edu.hypatia.simu.modelo.dao.TipoProductoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.jpa.TipoProductoFacade;
+import edu.hypatia.simu.modelo.entidades.FotoProducto;
 import edu.hypatia.simu.modelo.entidades.Marca;
 import edu.hypatia.simu.modelo.entidades.TipoAccesorio;
+import edu.hypatia.simu.modelo.entidades.TipoProducto;
 
 /**
  *
@@ -26,6 +31,8 @@ import edu.hypatia.simu.modelo.entidades.TipoAccesorio;
 @Named(value = "accesorioControlador")
 @SessionScoped
 public class AccesorioControlador implements Serializable {
+
+    
     
     public AccesorioControlador() {
     }
@@ -37,20 +44,54 @@ public class AccesorioControlador implements Serializable {
     private ProductoFacadeLocal pfl;
     
     @EJB
+    private TipoProductoFacadeLocal tpfl;
+    
+    @EJB
     private MarcaFacadeLocal mpfl;
     
     @EJB
     private TipoAccesorioFacadeLocal tafl;
     
-    private List<Producto> productos;
+    @EJB
+    private FotoProductoFacadeLocal fpfl;
     
+    
+    private List<Producto> productos;
+    private List<Accesorio> accesorios;
+    
+    private TipoProducto tipoProducto = new TipoProducto();
+
+    public TipoProducto getTipoProducto() {
+        return tipoProducto;
+    }
+
+    public void setTipoProducto(TipoProducto tipoProducto) {
+        this.tipoProducto = tipoProducto;
+    }
     private Accesorio accesorio = new Accesorio();
     private Producto producto = new Producto();
     private Marca marcaProducto = new Marca();
+    private FotoProducto fotoProducto = new FotoProducto();
+
+    public FotoProducto getFotoProducto() {
+        return fotoProducto;
+    }
+
+    public void setFotoProducto(FotoProducto fotoProducto) {
+        this.fotoProducto = fotoProducto;
+    }
+    
+    private String marca;
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
     
     private Accesorio accesorioSeleccionado;
-    
-    private List<Accesorio> accesorios;
     
     public List<Accesorio> getAccesorios() {
         return afl.findAll();
@@ -59,7 +100,9 @@ public class AccesorioControlador implements Serializable {
     public Accesorio getAccesorio() {
         return accesorio;
     }
-    
+
+
+//    
     public void setAccesorio(Accesorio accesorio) {
         this.accesorio = accesorio;
     }
@@ -128,7 +171,7 @@ public class AccesorioControlador implements Serializable {
     }
     
     public List<Marca> listarMarcaAccesorio() {
-        return mpfl.findAll();
+        return mpfl.listarMarcaAccesorio();
     }
     
     public String registrar() {
@@ -142,4 +185,53 @@ public class AccesorioControlador implements Serializable {
         
         return "listarAccesorio.xhtml?faces-redirect=true";
     }
-}
+    
+    
+    
+    
+    private List<Marca> listaMarca;
+
+    public List<Marca> getListaMarca() {
+        return listaMarca;
+    }
+
+    public void setListaMarca(List<Marca> listaMarca) {
+        this.listaMarca = listaMarca;
+    }
+    
+    
+  
+    
+    public List<Accesorio> listarAccesorio(){
+    return afl.listarAccesorio();
+    }
+    
+    public List<Accesorio> filtrarPorMarca(){
+        System.out.println("Imprimiendo Lista" + accesorio.getNombre());
+    return afl.filtrarPorMarcaAccesorio(marca);
+    
+        
+    }
+    
+    private Double precioMin;
+    private Double precioMax;
+
+    public Double getPrecioMin() {
+        return precioMin;
+    }
+
+    public void setPrecioMin(Double precioMin) {
+        this.precioMin = precioMin;
+    }
+
+    public Double getPrecioMax() {
+        return precioMax;
+    }
+
+    public void setPrecioMax(Double precioMax) {
+        this.precioMax = precioMax;
+    }
+    public List<Accesorio> filtrarPorPrecio(){
+    return afl.filtrarPorPrecio(precioMin, precioMax);
+    }
+}   

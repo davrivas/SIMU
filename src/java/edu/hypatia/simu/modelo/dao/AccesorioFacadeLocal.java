@@ -29,5 +29,9 @@ public interface AccesorioFacadeLocal {
     List<Accesorio> findRange(int[] range);
 
     int count();
+    List<Accesorio> listarAccesorio();
+    List<Accesorio> filtrarPorMarcaAccesorio(String marca);
+    List<Accesorio> filtrarPorPrecio(Double precioMin, Double precioMax);
+   
     
 }

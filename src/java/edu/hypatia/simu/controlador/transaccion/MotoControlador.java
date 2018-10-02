@@ -186,5 +186,54 @@ public class MotoControlador implements Serializable {
                  + "<hr>");
         moto = null;
     }
+    
+    public List<Moto> listarMotos(){
+     return mfl.findAll();
+    }
+    
+    public List<Marca> listarMarcasMotos(){
+    return mpl.listarMarcaMoto();
+    }
 
+    public List<Moto> listarMotosOfrecidas(){
+    return mfl.findAll();
+    }
+    
+    private String marca;
+    private Double precioMin;
+    private Double precioMax;
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public Double getPrecioMin() {
+        return precioMin;
+    }
+
+    public void setPrecioMin(Double precioMin) {
+        this.precioMin = precioMin;
+    }
+
+    public Double getPrecioMax() {
+        return precioMax;
+    }
+
+    public void setPrecioMax(Double precioMax) {
+        this.precioMax = precioMax;
+    }
+    
+    
+    public List<Moto> filtrarPorPrecio(){
+    return mfl.filtrarPorPrecio(precioMin, precioMax);
+    }
+    
+    public List<Moto> filtrarPorMarca(){
+        System.out.println("Listado " + moto.getKilometraje());
+    return mfl.filtrarPorMarcaMoto(marca);
+    }
 }
