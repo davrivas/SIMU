@@ -94,10 +94,9 @@ public class SesionControlador implements Serializable {
                     return "/administrador/index.xhtml?faces-redirect=true"; // me redirige a la pagina del administrador
             }
         } catch (NullPointerException e) {
-            // Es recomendable quitar este tipo de mensajes y mostrar unos mas atractivos (alerta)
             fc.addMessage(null, new FacesMessage(
-                    FacesMessage.SEVERITY_INFO, "Datos incorrectos",
-                    "Email y/o contrasena no son validos."));
+                    FacesMessage.SEVERITY_INFO, "Datos incorrectos:",
+                    "email y/o contraseña no son validos."));
         }
 
         return "";

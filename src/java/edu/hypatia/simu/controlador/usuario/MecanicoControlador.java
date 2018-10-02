@@ -41,7 +41,7 @@ public class MecanicoControlador implements Serializable {
 
     @PostConstruct
     public void init() {
-        mecanicos = mfl.findAll();
+        mecanicos = mfl.todosLosMecanicos();
         mecanico = new Usuario();
     }
 
