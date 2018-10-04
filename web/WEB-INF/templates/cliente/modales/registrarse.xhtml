@@ -16,7 +16,7 @@
                     </button>
                 </div>
 
-                <h:form prependId="false">
+                <h:form prependId="false" id="form-register">
                     <div class="modal-body">
                         <div class="row mt-2 mb-2 justify-content-around">
                             <div class="col-11 col-md-5 ml-1 mr-1">
@@ -78,13 +78,13 @@
                             <div class="col-11 col-md-5 ml-1 mr-1">
                                 <div class="col"><label for="">#{txtSimu.confirmacionDeContrasena}</label></div>
                                 <div class="col">
-                                    <h:inputSecret style="font-size: .9em !important;" value="#{clienteControlador.cliente.contrasena}" a:placeholder="#{txtSimu.confirmaTuContrasena}" class="col-12 form-control" required="true"></h:inputSecret>
+                                    <h:inputSecret style="font-size: .9em !important;" value="#{clienteControlador.confirmacion}" a:placeholder="#{txtSimu.confirmaTuContrasena}" class="col-12 form-control" required="true"></h:inputSecret>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row mt-2 mb-2 justify-content-around">
-                            <div class="col-12 col-md ml-1 mr-1">
+<!--                            <div class="col-12 col-md ml-1 mr-1">
                                 <div class="col"><label for="">#{txtSimu.departamento}</label></div>
                                 <div class="col">
                                     <h:selectOneMenu style="font-size: .9em !important;" value="#{clienteControlador.cliente.ciudad.departamento}" class="col-12 custom-select">
@@ -92,7 +92,7 @@
                                         <f:selectItems value="#{clienteControlador.listarDepartamento()}" var="d" itemLabel="#{d.departamento}"></f:selectItems>
                                     </h:selectOneMenu>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="col-12 col-md ml-1 mr-1">
                                 <div class="col"><label for="">#{txtSimu.ciudad}</label></div>
                                 <div class="col">
@@ -109,7 +109,9 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="row">
+                            <h:messages for="form-register" showDetail="true" style="color: #fff; list-style: none; padding:  0; margin:  0; font-size: .9em !important;"/>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <h:commandLink action="#{clienteControlador.registrarCliente()}" value="#{txtSimu.registrate}" class="btn-simu-naranja"/>

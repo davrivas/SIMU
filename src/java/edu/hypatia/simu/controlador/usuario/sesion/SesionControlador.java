@@ -7,6 +7,7 @@ package edu.hypatia.simu.controlador.usuario.sesion;
 
 import edu.hypatia.simu.modelo.dao.UsuarioFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Usuario;
+import edu.hypatia.simu.util.PasswordUtil;
 import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -80,10 +81,12 @@ public class SesionControlador implements Serializable {
     public String iniciarSesion() {
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
+//        System.out.println("Contraseña sin MD5: " + contrasena);
+        contrasena = PasswordUtil.getMD5(contrasena);
+//        System.out.println("Contraseña con MD5: " + contrasena);
 
         try {
             usuario = ufl.findByEmailContrasena(email, contrasena);
-            System.out.println(usuario);
 
             switch (usuario.getRol().getIdRol()) { // Evalúo el rol seleccionado
                 case 1:
@@ -94,11 +97,12 @@ public class SesionControlador implements Serializable {
                     return "/administrador/index.xhtml?faces-redirect=true"; // me redirige a la pagina del administrador
             }
         } catch (NullPointerException e) {
-            fc.addMessage(null, new FacesMessage(
+            e.printStackTrace(System.err);
+            fc.addMessage("form-login", new FacesMessage(
                     FacesMessage.SEVERITY_INFO, "Datos incorrectos:",
                     "email y/o contraseña no son validos."));
         }
-
+        
         return "";
     }
 
@@ -142,10 +146,10 @@ public class SesionControlador implements Serializable {
     public void changeLanguage(String lang) {
         idioma = new Locale(lang);
     }
-    
+
     public String editar() {
         ufl.edit(usuario);
-        
+
         return "index.xhtml?faces-redirect=true";
     }
 }

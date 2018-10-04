@@ -5,6 +5,7 @@
  */
 package edu.hypatia.simu.controlador.usuario;
 
+import edu.hypatia.simu.controlador.usuario.sesion.SesionControlador;
 import edu.hypatia.simu.modelo.dao.CiudadFacadeLocal;
 import edu.hypatia.simu.modelo.dao.UsuarioFacadeLocal;
 import edu.hypatia.simu.modelo.dao.DepartamentoFacadeLocal;
@@ -13,14 +14,18 @@ import edu.hypatia.simu.modelo.dao.TipoDocumentoFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Ciudad;
 import edu.hypatia.simu.modelo.entidades.Usuario;
 import edu.hypatia.simu.modelo.entidades.Departamento;
-import edu.hypatia.simu.modelo.entidades.Rol;
 import edu.hypatia.simu.modelo.entidades.TipoDocumento;
+import edu.hypatia.simu.util.PasswordUtil;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
 /**
  *
@@ -30,6 +35,8 @@ import javax.ejb.EJB;
 @SessionScoped
 public class ClienteControlador implements Serializable {
 
+    @Inject
+    private SesionControlador sc;
     @EJB
     private UsuarioFacadeLocal ufl;
 
@@ -50,6 +57,7 @@ public class ClienteControlador implements Serializable {
 
     private Usuario cliente = new Usuario();
     private Departamento departamento = new Departamento();
+    private String confirmacion;
 
     /*LISTAR*/
     public List<Usuario> getClientes() {
@@ -74,6 +82,14 @@ public class ClienteControlador implements Serializable {
 
     public Usuario getClienteSeleccionado() {
         return clienteSeleccionado;
+    }
+
+    public String getConfirmacion() {
+        return confirmacion;
+    }
+
+    public void setConfirmacion(String confirmacion) {
+        this.confirmacion = confirmacion;
     }
 
     public ClienteControlador() {
@@ -124,14 +140,34 @@ public class ClienteControlador implements Serializable {
 
     /*REGISTRAR*/
     public String registrarCliente() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        try {
+            if (cliente.getContrasena().equals(confirmacion)) {
+                String contrasenaSinMD5 = cliente.getContrasena(),
+                        contrasenaConMD5 = PasswordUtil.getMD5(contrasenaSinMD5);
+//                System.out.println("Contraseña sin MD5: " + contrasenaSinMD5);
+                cliente.setContrasena(contrasenaConMD5);
+//                System.out.println("Contraseña con MD5: " + contrasenaConMD5);
+                cliente.setFechaRegistro(new Date());
+                cliente.setRol(rfl.find(1));
+                ufl.create(cliente);
+                sc.setEmail(cliente.getEmail());
+                sc.setContrasena(contrasenaSinMD5);
+                sc.iniciarSesion();
+            } else {
+                fc.addMessage("form-register", new FacesMessage(
+                        FacesMessage.SEVERITY_INFO, "Las contraseñas no coinciden:",
+                        "verifique que las contraseñas coincidan"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            fc.addMessage("form-register", new FacesMessage(
+                        FacesMessage.SEVERITY_INFO, "No se pudo realizar el registro de usuario:",
+                        "verifique que las contraseñas coincidan"));
+        }
 
-        Date fecha = new Date();
-        Rol rol = rfl.find(1);
-        cliente.setFechaRegistro(fecha);
-        cliente.setRol(rol);
-        ufl.create(cliente);
-
-        return "index.xhtml?faces-redirect=true";
+        return "";
     }
 
 }
