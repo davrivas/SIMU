@@ -10,15 +10,15 @@
             <h:panelGroup id="modalRevisarContenido" class="modal-content contenido-modal" layout="block">
                 <h:form prependId="false">
                     <div class="modal-header">
-                        <h3 class="modal-title" id="modalRevisarTitulo" style="color:#fff;">#{txtSimu.revisarReparacion}</h3>
+                        <h3 class="modal-title" id="modalRevisarTitulo">#{txtSimu.revisarReparacion}</h3>
                         <button type="button" class="cerrar-modal close" data-dismiss="modal" aria-label="#{txtSimu.cerrar}">
                             <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <h3 style="text-align:left;color:#fff;">#{txtSimu.informacion}</h3>
+                        <h3>#{txtSimu.informacion}</h3>
 
-                        <div style="color: #fff; text-align: left;">
+                        <div style="text-align: left;">
                             <b>#{txtSimu.fechaHora}: </b> 
                             <h:outputText value="#{reparacionControlador.reparacionSeleccionada.fecha}">
                                 <f:convertDateTime pattern="yyyy/MM/dd " />
@@ -28,22 +28,24 @@
                             </h:outputText>
                             <br/>
                             <b>#{txtSimu.placaMoto}:</b> #{reparacionControlador.reparacionSeleccionada.moto.placa}<br/>
-                            <b>#{txtSimu.nombreMecanico}:</b> #{reparacionControlador.reparacionSeleccionada.moto.cliente.persona.nombre} #{reparacionControlador.reparacionSeleccionada.moto.cliente.persona.apellido}<br/>
+                            <b>#{txtSimu.nombreMecanico}:</b> #{reparacionControlador.reparacionSeleccionada.moto.cliente.nombre} #{reparacionControlador.reparacionSeleccionada.moto.cliente.apellido}<br/>
                             <b>#{txtSimu.serviciosRep}:</b><br/>
                             <ui:repeat value="#{reparacionControlador.reparacionSeleccionada.tipoReparacionList}" var="tsr">
-                                <li style="color: #fff;">#{tsr.servicio}</li>
+                                <li>#{tsr.servicio}</li>
                             </ui:repeat>
-                        </div>
-                        <div class="row">   
-                            <div class="col mt-3">
-                                <h:outputLabel  for="descripcion" value="#{txtSimu.descripcion}" style="color:#fff;"/>
-                                <h:inputTextarea value="#{reparacionControlador.reparacionSeleccionada.descripcion}" class="input-simu" a:required=""/>
+                        </div>  
+                        <div class="col-12 mt-3">
+                            <div class="col">
+                                <h:outputLabel  for="descripcion" value="#{txtSimu.descripcion}" style="font-weight: bold;"/>
+                            </div>
+                            <div class="col">
+                                <h:inputTextarea value="#{reparacionControlador.reparacionSeleccionada.descripcion}" id="descripcion" class="col-12 form-control" a:required=""/>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <h:commandButton id="revisar" a:name="revisar" a:type="submit" value="#{txtSimu.revisarHistorial}" action="#{reparacionControlador.revisarReparacion()}" class="btn-simu-naranja mr-2"/>
-                        <button type="button" class="btn-simu-naranja" data-dismiss="modal">#{txtSimu.cancelar}</button>
+                        <h:commandButton id="revisar" a:name="revisar" a:type="submit" value="#{txtSimu.revisarHistorial}" action="#{reparacionControlador.revisarReparacion()}" class="btn btn-success mr-2"/>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">#{txtSimu.cancelar}</button>
                     </div>
                 </h:form>
             </h:panelGroup>

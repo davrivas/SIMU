@@ -41,12 +41,11 @@ public class MecanicoControlador implements Serializable {
 
     @PostConstruct
     public void init() {
-        mecanicos = mfl.todosLosMecanicos();
         mecanico = new Usuario();
     }
 
     public List<Usuario> getMecanicos() {
-        return mecanicos;
+        return mfl.todosLosMecanicos();
     }
 
     public Usuario getMecanico() {

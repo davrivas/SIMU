@@ -8,9 +8,11 @@ package edu.hypatia.simu.controlador.reparacion;
 import edu.hypatia.simu.controlador.mail.Mail;
 import edu.hypatia.simu.controlador.usuario.sesion.SesionControlador;
 import edu.hypatia.simu.modelo.dao.EstadoMotoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.MarcaFacadeLocal;
 import edu.hypatia.simu.modelo.dao.MotoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ReparacionFacadeLocal;
+import edu.hypatia.simu.modelo.entidades.Marca;
 import edu.hypatia.simu.modelo.entidades.Moto;
 import edu.hypatia.simu.modelo.entidades.Producto;
 import edu.hypatia.simu.modelo.entidades.Reparacion;
@@ -45,6 +47,8 @@ public class ReparacionClienteControlador implements Serializable {
     private ProductoFacadeLocal pfl;
     @EJB
     private EstadoMotoFacadeLocal efl;
+    @EJB
+    private MarcaFacadeLocal marcafl;
 
     @Inject
     private SesionControlador sc;
@@ -53,6 +57,7 @@ public class ReparacionClienteControlador implements Serializable {
     private Producto productoNuevo = new Producto();
     private Moto motoNueva = new Moto();
     private List<Moto> motosEnReparacion;
+    private List<Marca> marcasMoto;
 
     private Reparacion reparacionSeleccionada = new Reparacion();
     private List<Reparacion> reparacionesDelCliente;
@@ -69,6 +74,10 @@ public class ReparacionClienteControlador implements Serializable {
 
     public List<Reparacion> getReparacionesDelCliente() {
         return rfl.reparacionesDelCliente(sc.getUsuario());
+    }
+
+    public List<Marca> getMarcasMoto() {
+        return marcafl.listarMarcaMoto();
     }
 
     public Moto getMotoSeleccionada() {
@@ -206,7 +215,9 @@ public class ReparacionClienteControlador implements Serializable {
     }
 
     public void registrarNuevaMotoEnReparacion() {
+        productoNuevo.setPrecio(0);
         pfl.create(productoNuevo);
+        motoNueva.setProducto(productoNuevo);
         motoNueva.setCliente(sc.getUsuario());
         motoNueva.setEstadoMoto(efl.find(5));
         mfl.create(motoNueva);
@@ -229,14 +240,13 @@ public class ReparacionClienteControlador implements Serializable {
             return "";
         }
         
-        double promedio = 0;
         int acumulado = 0;
         
         for (Integer a : acumuladoList) {
             acumulado += a;
         }
         
-        promedio = acumulado / acumuladoList.size();
+        double promedio = acumulado / acumuladoList.size();
         
         return "(" + promedio + " / 5)";
     }

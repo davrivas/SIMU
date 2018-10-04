@@ -20,13 +20,13 @@
                             <h:outputLabel for="moto-agenda" class="mr-3" value="#{txtSimu.moto}"/>
                             <h:selectOneMenu value="#{reparacionClienteControlador.reparacionAgendada.moto}" id="moto-agenda" class="col-md-12 mt-1 input-simu" a:required="">
                                 <f:selectItem itemValue="" itemLabel="#{txtSimu.seleccioneSuMoto}"/>
-                                <f:selectItems value="#{sesionControlador.usuario.cliente.motoList}" var="m" itemLabel="#{m.placa} - #{m.producto.marcaProducto.marcaProducto} #{m.producto.referencia} - #{m.cilindraje}cc - #{m.kilometraje}km"/>
+                                <f:selectItems value="#{sesionControlador.usuario.motoList}" var="m" itemLabel="#{m.placa} - #{m.producto.marca.marca} #{m.producto.referencia} - #{m.cilindraje}cc - #{m.kilometraje}km"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="row mt-1 mb-3">
                             <h:outputLabel for="tipo-servicio" class="mr-3" value="#{txtSimu.serviciosRep}"/>
-                            <h:selectManyCheckbox value="#{reparacionClienteControlador.reparacionAgendada.tipoServicioReparacionList}" a:name="tipo-servicio" id="tipo-servicio">
-                                <f:selectItems value="#{serviciosControlador.servicios}" var="ts" itemLabel="#{ts.servicio}"/>
+                            <h:selectManyCheckbox value="#{reparacionClienteControlador.reparacionAgendada.tipoReparacionList}" a:name="tipo-servicio" id="tipo-servicio">
+                                <f:selectItems value="#{tipoReparacionControlador.servicios}" var="tr" itemLabel="#{tr.servicio}"/>
                             </h:selectManyCheckbox>
                         </div>
                         <div class="row mt-1 mb-3">
@@ -45,12 +45,10 @@
                         </div>
                         <div class="row mt-1 mb-3">
                             <h:outputLabel for="mecanico"  value="#{txtSimu.mecanico}" class="mr-3"/>
-                            <h:panelGrid id="mecanicos" columns="1">
-                                <h:selectOneMenu value="#{reparacionClienteControlador.reparacionAgendada.mecanico}" a:name="mecanico" id="mecanico" a:required="" class="select-simu">
-                                    <f:selectItem itemValue="" itemLabel="#{txtSimu.seleccioneSuMoto}"/>
-                                    <f:selectItems value="#{mecanicoControlador.mecanicos}" var="m" itemLabel="#{m.nombre} #{m.apellido}"/>
-                                </h:selectOneMenu>
-                            </h:panelGrid>
+                            <h:selectOneMenu value="#{reparacionClienteControlador.reparacionAgendada.mecanico}" a:name="mecanico" id="mecanico" a:required="" class="select-simu">
+                                <f:selectItem itemValue="" itemLabel="#{txtSimu.seleccioneElMecanico}"/>
+                                <f:selectItems value="#{mecanicoControlador.mecanicos}" var="m" itemLabel="#{m.nombre} #{m.apellido}"/>
+                            </h:selectOneMenu>
                         </div>
                     </div>
                     <div class="modal-footer">

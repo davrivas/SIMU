@@ -42,13 +42,13 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">#{txtSimu.serviciosRep}</f:facet>
-                    <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
+                    <ui:repeat value="#{r.tipoReparacionList}" var="tsr">
                         #{tsr.servicio}<br/>
                     </ui:repeat>
                 </h:column>
                 <h:column>
                     <f:facet name="header">#{txtSimu.acciones}</f:facet>
-                    <h:commandLink actionListener="#{reparacionControlador.seleccionarReparacion(r)}" class="btn btn-simu-naranja" a:data-toggle="modal" a:data-target="#modalRevisar">
+                    <h:commandLink actionListener="#{reparacionControlador.seleccionarReparacion(r)}" class="btn btn-success" a:data-toggle="modal" a:data-target="#modalRevisar">
                         <f:ajax render=":modalRevisarContenido"/>
                         <span class="fa fa-check"></span>
                     </h:commandLink>
@@ -86,7 +86,7 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">#{txtSimu.serviciosRep}</f:facet>
-                    <ui:repeat value="#{r.tipoServicioReparacionList}" var="tsr">
+                    <ui:repeat value="#{r.tipoReparacionList}" var="tsr">
                         #{tsr.servicio}<br/>
                     </ui:repeat>
                 </h:column>

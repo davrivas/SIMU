@@ -28,9 +28,9 @@
                                 </h:outputText>
                                 <br/>
                                 <b>#{txtSimu.placaMoto}</b> #{reparacionClienteControlador.reparacionSeleccionada.moto.placa}<br/>
-                                <b>#{txtSimu.nombreMecanico}:</b> #{reparacionClienteControlador.reparacionSeleccionada.mecanico.persona.nombre} #{reparacionControlador.reparacionSeleccionada.mecanico.persona.apellido}<br/>
+                                <b>#{txtSimu.nombreMecanico}:</b> #{reparacionClienteControlador.reparacionSeleccionada.mecanico.nombre} #{reparacionControlador.reparacionSeleccionada.mecanico.apellido}<br/>
                                 <b>#{txtSimu.serviciosRep}:</b><br/>
-                                <ui:repeat value="#{reparacionClienteControlador.reparacionSeleccionada.tipoServicioReparacionList}" var="tsr">
+                                <ui:repeat value="#{reparacionClienteControlador.reparacionSeleccionada.tipoReparacionList}" var="tsr">
                                     - #{tsr.servicio}<br/>
                                 </ui:repeat>
                                 <b>#{txtSimu.descripcion}:</b> #{reparacionClienteControlador.reparacionSeleccionada.descripcion}

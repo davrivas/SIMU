@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -42,7 +44,10 @@ public class TipoReparacion implements Serializable {
     @Basic(optional = false)
     @Column(name = "servicio")
     private String servicio;
-    @ManyToMany(mappedBy = "tipoReparacionList")
+    @JoinTable(name = "tbl_reparaciones_has_tbl_tipos_reparacion", joinColumns = {
+        @JoinColumn(name = "tipo_reparacion", referencedColumnName = "id_tipo_reparacion")}, inverseJoinColumns = {
+        @JoinColumn(name = "reparacion", referencedColumnName = "id_reparacion")})
+    @ManyToMany
     private List<Reparacion> reparacionList;
 
     public TipoReparacion() {
