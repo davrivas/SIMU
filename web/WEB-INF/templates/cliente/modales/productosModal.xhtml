@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <div class="modal fade" id="cantProductos" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content contenido-modal">
+                <h:form prependId="false" id="formCar">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Tu carrito</h3>
+                    <button type="button" class="cerrar-modal close" data-dismiss="modal" aria-label="Close">
+                        <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
+                    </button>
+                </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Codigo Producto</label>
+                            <span class="form-control">#{transaccionControlador.nuevoDetalleTransaccion.producto.idProducto}</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Marca</label>
+                            <span class="form-control">#{transaccionControlador.nuevoDetalleTransaccion.producto.marca.marca}</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Precio</label>
+                            <span class="form-control">$#{transaccionControlador.nuevoDetalleTransaccion.producto.precio}</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Cantidad</label>
+                            <h:inputText value="#{transaccionControlador.nuevoDetalleTransaccion.cantidad}" class="form-control"></h:inputText>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <h:commandButton value="Agregar" class="btn btn-primary" actionListener="#{transaccionControlador.addDetalleTransaccion()}" ></h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </div>
+</ui:composition>
+

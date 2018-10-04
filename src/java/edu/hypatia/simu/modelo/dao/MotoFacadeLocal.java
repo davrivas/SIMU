@@ -32,5 +32,8 @@ public interface MotoFacadeLocal {
     int count();
     
     List<Moto> motosEnReparacion(Usuario cliente);
+    List<Moto> listarMoto();
+    List<Moto> filtrarPorPrecio(Double precioMin, Double precioMax);
+    List<Moto> filtrarPorMarcaMoto(String marca);
     
 }

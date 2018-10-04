@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{sesionControlador.idioma}">
+        <h:head>
+            <link rel="shortcut icon" href="#{request.contextPath}/resources/img/favicon.png" />
+            <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+            <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet"/>
+
+            <!--Bootstrap-->
+            <link href="#{request.contextPath}/resources/framework/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+            <!--Font Awesome-->
+            <link href="#{request.contextPath}/resources/framework/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+            <ui:include src="/WEB-INF/templates/scripts.xhtml"/>
+            <ui:include src="modales/productosModal.xhtml"></ui:include>
+            <link rel="stylesheet" href="#{request.contextPath}/resources/css/nav-bar.css" />
+            <link rel="stylesheet" href="#{request.contextPath}/resources/css/footer.css" />
+            <link rel="stylesheet" href="#{request.contextPath}/comprayventa/css/accesorios.css"/>
+            <link rel="stylesheet" href="#{request.contextPath}/comprayventa/css/motos.css"/>
+            
+            
+            <!--<link rel="stylesheet" href="#{request.contextPath}/resources/css/normalizar.css"/>-->
+            <title><ui:insert name="title">SIMU</ui:insert> - SIMU</title>
+        </h:head>
+        <h:body>
+            <div class="contenedor container-fluid p-0">
+                <ui:include src="/WEB-INF/templates/cliente/navbar.xhtml"/>
+
+                <ui:insert name="contenido"></ui:insert>
+
+                <ui:include src="/WEB-INF/templates/cliente/footer.xhtml"/>
+            </div>
+
+            <ui:include src="/WEB-INF/templates/cliente/modales.xhtml"/>
+        </h:body>
+    </f:view>
+</ui:composition>
+

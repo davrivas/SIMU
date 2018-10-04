@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -36,11 +37,33 @@ public class MarcaFacade extends AbstractFacade<Marca> implements MarcaFacadeLoc
     @Override
     public List<Marca> listarMarcaMoto() {
         try {
-            Query q = getEntityManager().createNativeQuery("SELECT * FROM tbl_marcas WHERE tipo_producto=1", Marca.class);
+            TypedQuery<Marca> q = getEntityManager().createQuery("SELECT m FROM Marca m INNER JOIN m.tipoProducto tp WHERE tp.idTipoProducto = 1", Marca.class);
             return q.getResultList();
         } catch (NoResultException e) {
             return null;
         }
     }
+
+    @Override
+   public List<Marca> listarMarcaAccesorio(){
+        try {
+            TypedQuery<Marca> q = getEntityManager().createQuery("SELECT m FROM Marca m INNER JOIN m.tipoProducto tp WHERE tp.idTipoProducto = 2", Marca.class);
+            return q.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
+   }
+
+   
+   
     
+   
+    
+
+   
+   
+   
+   
+  
+
 }

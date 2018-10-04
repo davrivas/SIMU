@@ -46,7 +46,7 @@ public class Marca implements Serializable {
     @Column(name = "marca")
     private String marca;
     @JoinColumn(name = "tipo_producto", referencedColumnName = "id_tipo_producto")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private TipoProducto tipoProducto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "marca")
     private List<Producto> productoList;
