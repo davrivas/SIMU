@@ -11,6 +11,7 @@ import edu.hypatia.simu.modelo.dao.RolFacadeLocal;
 import edu.hypatia.simu.modelo.dao.UsuarioFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Usuario;
 import edu.hypatia.simu.util.FilesUtil;
+import edu.hypatia.simu.util.PasswordUtil;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -84,7 +85,7 @@ public class UsuarioControlador implements Serializable {
         Date fecha = new Date();
 
         usuario.setRol(rfl.find(3));
-        usuario.setContrasena("administrador");
+        usuario.setContrasena(PasswordUtil.getMD5("administrador"));
         usuario.setFechaRegistro(fecha);
         ufl.create(usuario);
         Mail.sendMail(usuario.getEmail(), "Administrador registrado", sc.getUsuario().getNombre()
@@ -103,7 +104,7 @@ public class UsuarioControlador implements Serializable {
     public String registrarMecanico() {
 
         Date fecha = new Date();
-        usuario.setContrasena("mecanico");
+        usuario.setContrasena(PasswordUtil.getMD5("mecanico"));
         usuario.setFechaRegistro(fecha);
         usuario.setRol(rfl.find(2));
         ufl.create(usuario);

@@ -20,10 +20,10 @@ import javax.faces.convert.FacesConverter;
 @FacesConverter(forClass = TipoReparacion.class)
 public class TipoReparacionConverter implements Converter<TipoReparacion> {
     
-    private TipoReparacionFacadeLocal tsrfl;
+    private TipoReparacionFacadeLocal trfl;
 
     public TipoReparacionConverter() {
-        tsrfl = CDI.current().select(TipoReparacionFacadeLocal.class).get();
+        trfl = CDI.current().select(TipoReparacionFacadeLocal.class).get();
     }
     
 
@@ -31,7 +31,7 @@ public class TipoReparacionConverter implements Converter<TipoReparacion> {
     public TipoReparacion getAsObject(FacesContext fc, UIComponent uic, String value) {
         try {
             Integer id = Integer.valueOf(value);
-            return tsrfl.find(id);
+            return trfl.find(id);
         } catch (NumberFormatException numberFormatException) {
             return null;
         }

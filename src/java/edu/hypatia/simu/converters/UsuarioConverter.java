@@ -22,17 +22,17 @@ import javax.faces.convert.FacesConverter;
 public class UsuarioConverter implements Converter<Usuario> {
 
     @EJB
-    private UsuarioFacadeLocal cfl;
+    private UsuarioFacadeLocal ufl;
 
     public UsuarioConverter() {
-        cfl = CDI.current().select(UsuarioFacadeLocal.class).get();
+        ufl = CDI.current().select(UsuarioFacadeLocal.class).get();
     }
 
     @Override
     public Usuario getAsObject(FacesContext context, UIComponent component, String value) {
         try {
             Integer id = Integer.valueOf(value);
-            return cfl.find(id);
+            return ufl.find(id);
         } catch (NumberFormatException numberFormatException) {
             return null;
         }

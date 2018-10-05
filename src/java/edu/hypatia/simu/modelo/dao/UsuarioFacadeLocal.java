@@ -30,6 +30,8 @@ public interface UsuarioFacadeLocal {
 
     int count();
     
+    Usuario findByEmail(String email);
+    
     Usuario findByEmailContrasena(String email, String contrasena);
     
     int loadUsers(String pathFile);

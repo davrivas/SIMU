@@ -11,7 +11,7 @@
             <div class="modal-content contenido-modal" style="font-size: .9em !important;">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalLabel">#{txtSimu.registrate}</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="#{txtSimu.cerrar}">
                         <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
                     </button>
                 </div>
@@ -20,102 +20,126 @@
                     <div class="modal-body">
                         <div class="row mt-2 mb-2 justify-content-around">
                             <div class="col-11 col-md-5 ml-1 mr-1">
-                                <div class="col"><label for="">#{txtSimu.nombres}</label></div>
                                 <div class="col">
-                                    <h:inputText style="font-size: .9em !important;" value="#{clienteControlador.cliente.nombre}" a:placeholder="#{txtSimu.escribeTusNombres}" class="col-12 form-control" required="true"></h:inputText>     
+                                    <h:outputLabel for="nombres">#{txtSimu.nombres}</h:outputLabel>
+                                </div>
+                                <div class="col">
+                                    <h:inputText id="nombres" style="font-size: .9em !important;" value="#{clienteControlador.cliente.nombre}" a:placeholder="#{txtSimu.escribeTusNombres}" class="col-12 form-control" a:required="" a:maxlength="45"/>
                                 </div>            
                             </div>
                             <div class="col-11 col-md-5 ml-1 mr-1">                                
-                                <div class="col"><label for="">#{txtSimu.apellido}</label></div>
                                 <div class="col">
-                                    <h:inputText style="font-size: .9em !important;" value="#{clienteControlador.cliente.apellido}" a:placeholder="#{txtSimu.escribeTusApellidos}" class="col-12 form-control" required="true"></h:inputText>     
+                                    <h:outputLabel for="apellido">#{txtSimu.apellido}</h:outputLabel>
+                                </div>
+                                <div class="col">
+                                    <h:inputText id="apellido" style="font-size: .9em !important;" value="#{clienteControlador.cliente.apellido}" a:placeholder="#{txtSimu.escribeTusApellidos}" class="col-12 form-control" a:required="" a:maxlength="45"/>
                                 </div> 
                             </div>
                         </div>
-
-
                         <div class="row  mt-2 mb-2 justify-content-around">
                             <div class="col-11 col-md-5 ml-1 mr-1">
-                                <div class="col"><label for="Tipodocumento">#{txtSimu.tipoDeDocumento}</label></div>
                                 <div class="col">
-                                    <h:selectOneMenu style="font-size: .9em !important;" value="#{clienteControlador.cliente.tipoDocumento}" class="col-12 custom-select" required="true">
-                                        <f:selectItem itemLabel="Seleccione"></f:selectItem>
-                                        <f:selectItems value="#{clienteControlador.listarTipoDocumento()}" var="td" itemLabel="#{td.tipoDocumento}"></f:selectItems>
+                                    <h:outputLabel for="tipo-documento">#{txtSimu.tipoDeDocumento}</h:outputLabel>
+                                </div>
+                                <div class="col">
+                                    <h:selectOneMenu style="font-size: .9em !important;" value="#{clienteControlador.cliente.tipoDocumento}" class="col-12 custom-select" a:required="">
+                                        <f:selectItem itemLabel="#{txtSimu.seleccioneTipoDocumento}"/>
+                                        <f:selectItems value="#{clienteControlador.listarTipoDocumento()}" var="td" itemLabel="#{td.tipoDocumento}"/>
                                     </h:selectOneMenu>
                                 </div>
                             </div>
                             <div class="col-11 col-md-5 ml-1 mr-1">
-                                <div class="col"><label for="">#{txtSimu.numeroDeDocumento}</label></div>
                                 <div class="col">
-                                    <h:inputText style="font-size: .9em !important;" value="#{clienteControlador.cliente.numeroDocumento}" a:placeholder="#{txtSimu.escribeTuDocumento}" class="col-12 form-control" required="true"></h:inputText>     
+                                    <h:outputLabel for="numero-documento">#{txtSimu.numeroDeDocumento}</h:outputLabel>
+                                </div>
+                                <div class="col">
+                                    <h:inputText id="numero-documento" style="font-size: .9em !important;" value="#{clienteControlador.cliente.numeroDocumento}" a:placeholder="#{txtSimu.escribeTuDocumento}" class="col-12 form-control" a:required="" a:type="number" a:max="999999999999999" a:min="0"/>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row  mt-2 mb-2 justify-content-around">
                             <div class="col-11 col-md-5 ml-1 mr-1">
-                                <div class="col"><label for="">Email</label></div>
                                 <div class="col">
-                                    <h:inputText style="font-size: .9em !important;" value="#{clienteControlador.cliente.email}" a:placeholder="#{txtSimu.escribeTuEmail}" class="col-12 form-control" required="true"></h:inputText>     
+                                    <h:outputLabel for="email-register">Email</h:outputLabel>
+                                </div>
+                                <div class="col">
+                                    <h:inputText id="email-register" style="font-size: .9em !important;" value="#{clienteControlador.cliente.email}" a:placeholder="#{txtSimu.escribeTuEmail}" a:type="email" class="col-12 form-control" a:required="" a:maxlength="45"/>
                                 </div>
                             </div>
                             <div class="col-11 col-md-5 ml-1">
-                                <div class="col"><label for="">#{txtSimu.telefono}</label></div>
                                 <div class="col">
-                                    <h:inputText style="font-size: .9em !important;" value="#{clienteControlador.cliente.telefono}" a:placeholder="#{txtSimu.escribeTuTelefono}" class="col-12 form-control" required="true"></h:inputText>     
+                                    <h:outputLabel for="telefono">#{txtSimu.telefono}</h:outputLabel>
+                                </div>
+                                <div class="col">
+                                    <h:inputText id="telefono" style="font-size: .9em !important;" value="#{clienteControlador.cliente.telefono}" a:placeholder="#{txtSimu.escribeTuTelefono}" class="col-12 form-control" a:type="number" a:required=""/>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="row mt-2 mb-2 justify-content-around">
                             <div class="col-11 col-md-5 ml-1 mr-1 ">
-                                <div class="col"><label for="">#{txtSimu.contrasena}</label></div>
                                 <div class="col">
-                                    <h:inputSecret style="font-size: .9em !important;" value="#{clienteControlador.cliente.contrasena}" a:placeholder="#{txtSimu.escribeTuContrasena}" class="col-12 form-control" required="true"></h:inputSecret>     
+                                    <h:outputLabel for="contrasena-register">#{txtSimu.contrasena}</h:outputLabel>
+                                </div>
+                                <div class="col">
+                                    <h:inputSecret id="contrasena-register" style="font-size: .9em !important;" value="#{clienteControlador.cliente.contrasena}" a:placeholder="#{txtSimu.escribeTuContrasena}" class="col-12 form-control" a:required="" a:maxlength="45"/>
                                 </div>
                             </div>
                             <div class="col-11 col-md-5 ml-1 mr-1">
-                                <div class="col"><label for="">#{txtSimu.confirmacionDeContrasena}</label></div>
                                 <div class="col">
-                                    <h:inputSecret style="font-size: .9em !important;" value="#{clienteControlador.confirmacion}" a:placeholder="#{txtSimu.confirmaTuContrasena}" class="col-12 form-control" required="true"></h:inputSecret>
+                                    <h:outputLabel for="confirmacion">#{txtSimu.confirmacionDeContrasena}</h:outputLabel>
+                                </div>
+                                <div class="col">
+                                    <h:inputSecret id="confirmacion" style="font-size: .9em !important;" value="#{clienteControlador.confirmacion}" a:placeholder="#{txtSimu.confirmaTuContrasena}" class="col-12 form-control" a:required="" a:maxlength="45"/>
                                 </div>
                             </div>
                         </div>
-
                         <div class="row mt-2 mb-2 justify-content-around">
 <!--                            <div class="col-12 col-md ml-1 mr-1">
-                                <div class="col"><label for="">#{txtSimu.departamento}</label></div>
                                 <div class="col">
-                                    <h:selectOneMenu style="font-size: .9em !important;" value="#{clienteControlador.cliente.ciudad.departamento}" class="col-12 custom-select">
+                                    <h:outputLabel for="departamento">#{txtSimu.departamento}</h:outputLabel>
+                                </div>
+                                <div class="col">
+                                    <h:selectOneMenu id="departamento" style="font-size: .9em !important;" value="#{clienteControlador.cliente.ciudad.departamento}" class="col-12 custom-select" a:required="">
                                         <f:selectItem itemLabel="#{txtSimu.seleccionaTuDepartamento}"></f:selectItem>
                                         <f:selectItems value="#{clienteControlador.listarDepartamento()}" var="d" itemLabel="#{d.departamento}"></f:selectItems>
                                     </h:selectOneMenu>
                                 </div>
                             </div>-->
                             <div class="col-12 col-md ml-1 mr-1">
-                                <div class="col"><label for="">#{txtSimu.ciudad}</label></div>
                                 <div class="col">
-                                    <h:selectOneMenu style="font-size: .9em !important;" value="#{clienteControlador.cliente.ciudad}" class="col-12 custom-select">
+                                    <h:outputLabel for="ciudad">#{txtSimu.ciudad}</h:outputLabel>
+                                </div>
+                                <div class="col">
+                                    <h:selectOneMenu id="ciudad" style="font-size: .9em !important;" value="#{clienteControlador.cliente.ciudad}" class="col-12 custom-select" a:required="">
                                         <f:selectItem itemLabel="#{txtSimu.seleccionaTuCiudad}"></f:selectItem>
                                         <f:selectItems value="#{clienteControlador.listarCiudad()}" var="c" itemLabel="#{c.ciudad}"></f:selectItems>
                                     </h:selectOneMenu>
                                 </div>
                             </div>
                             <div class="col-12 col-md ml-1 mr-1">
-                                <div class="col"><label for="">#{txtSimu.direccion}</label></div>
                                 <div class="col">
-                                    <h:inputText style="font-size: .9em !important;" value="#{clienteControlador.cliente.direccion}" a:placeholder="#{txtSimu.escribeTuDireccion}" class="col-12 form-control" required=""></h:inputText>     
+                                    <h:outputLabel for="direccion">#{txtSimu.direccion}</h:outputLabel>
+                                </div>
+                                <div class="col">
+                                    <h:inputText id="direccion" style="font-size: .9em !important;" value="#{clienteControlador.cliente.direccion}" a:placeholder="#{txtSimu.escribeTuDireccion}" class="col-12 form-control" a:required="" a:maxlength="50"/>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <h:messages for="form-register" showDetail="true" style="color: #fff; list-style: none; padding:  0; margin:  0; font-size: .9em !important;"/>
+                        <div class="row d-flex justify-content-center mt-3 mb-3">
+                            <h:messages for="form-register" showDetail="true" style="color: #fff; list-style: none; padding:  0; margin:  0;"/>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <h:selectManyCheckbox a:required="">
+                                <f:selectItem itemValue="si" itemLabel="&nbsp;Confirmo que la información aquí diligenciada es real y verificable"/>
+                            </h:selectManyCheckbox>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <h:commandLink action="#{clienteControlador.registrarCliente()}" value="#{txtSimu.registrate}" class="btn-simu-naranja"/>
-                        <input type="reset" class="btn-simu-naranja" value="#{txtSimu.limpiarCampos}" />
+                        <h:commandButton action="#{clienteControlador.registrarCliente()}" value="#{txtSimu.registrate}" class="btn-simu-naranja" a:type="submit"/>
+                        <input type="reset" class="btn-simu-naranja" value="#{txtSimu.limpiarCampos}"/>
+                        <button class="btn-simu-naranja" data-dismiss="modal">#{txtSimu.cancelar}</button>
                     </div>
                 </h:form>
             </div>

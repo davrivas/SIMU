@@ -91,5 +91,17 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
             return null;
         }
     }
+
+    @Override
+    public Usuario findByEmail(String email) {
+        try {
+            TypedQuery<Usuario> tq = getEntityManager().createQuery("SELECT u FROM Usuario u "
+                    + "WHERE u.email = :email", Usuario.class);
+            tq.setParameter("email", email);
+            return tq.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
     
 }

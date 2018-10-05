@@ -143,28 +143,33 @@ public class ClienteControlador implements Serializable {
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
         try {
-            if (cliente.getContrasena().equals(confirmacion)) {
-                String contrasenaSinMD5 = cliente.getContrasena(),
-                        contrasenaConMD5 = PasswordUtil.getMD5(contrasenaSinMD5);
+            if (ufl.findByEmail(cliente.getEmail()) == null) {
+                if (cliente.getContrasena().equals(confirmacion)) {
+                    String contrasenaSinMD5 = cliente.getContrasena(),
+                            contrasenaConMD5 = PasswordUtil.getMD5(contrasenaSinMD5);
 //                System.out.println("Contraseña sin MD5: " + contrasenaSinMD5);
-                cliente.setContrasena(contrasenaConMD5);
+                    cliente.setContrasena(contrasenaConMD5);
 //                System.out.println("Contraseña con MD5: " + contrasenaConMD5);
-                cliente.setFechaRegistro(new Date());
-                cliente.setRol(rfl.find(1));
-                ufl.create(cliente);
-                sc.setEmail(cliente.getEmail());
-                sc.setContrasena(contrasenaSinMD5);
-                sc.iniciarSesion();
+                    cliente.setFechaRegistro(new Date());
+                    cliente.setRol(rfl.find(1));
+                    ufl.create(cliente);
+                    sc.setEmail(cliente.getEmail());
+                    sc.setContrasena(contrasenaSinMD5);
+                    sc.iniciarSesion();
+                } else {
+                    fc.addMessage("form-register", new FacesMessage(
+                            FacesMessage.SEVERITY_INFO, "Las contraseñas no coinciden:",
+                            "verifique que las contraseñas coincidan"));
+                }
             } else {
                 fc.addMessage("form-register", new FacesMessage(
-                        FacesMessage.SEVERITY_INFO, "Las contraseñas no coinciden:",
-                        "verifique que las contraseñas coincidan"));
+                        FacesMessage.SEVERITY_INFO, "El correo electrónico " + cliente.getEmail()
+                        + " ya existe en nuestra base de datos", ""));
             }
         } catch (Exception e) {
-            e.printStackTrace(System.out);
+            e.printStackTrace(System.err);
             fc.addMessage("form-register", new FacesMessage(
-                        FacesMessage.SEVERITY_INFO, "No se pudo realizar el registro de usuario:",
-                        "verifique que las contraseñas coincidan"));
+                    FacesMessage.SEVERITY_INFO, "No se pudo realizar el registro de usuario", ""));
         }
 
         return "";

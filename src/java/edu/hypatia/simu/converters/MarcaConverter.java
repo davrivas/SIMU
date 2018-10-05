@@ -20,17 +20,17 @@ import javax.faces.convert.FacesConverter;
 @FacesConverter(forClass = Marca.class)
 public class MarcaConverter implements Converter<Marca>{
 
-    private MarcaFacadeLocal mpfl;
+    private MarcaFacadeLocal mfl;
 
     public MarcaConverter() {
-        mpfl = CDI.current().select(MarcaFacadeLocal.class).get();
+        mfl = CDI.current().select(MarcaFacadeLocal.class).get();
     }
 
     @Override
     public Marca getAsObject(FacesContext context, UIComponent component, String value) {
         try {
             Integer id = Integer.valueOf(value);
-            return mpfl.find(id);
+            return mfl.find(id);
         } catch (NumberFormatException numberFormatException) {
             return null;
         }
