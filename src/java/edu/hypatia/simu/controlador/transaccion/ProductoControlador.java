@@ -40,6 +40,16 @@ public class ProductoControlador implements Serializable {
     
     
     Accesorio accesorio = new Accesorio();
+    Producto producto = new Producto();
+    private Accesorio accesorioFiltro = new Accesorio();
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
     
     
 
@@ -77,6 +87,38 @@ public class ProductoControlador implements Serializable {
     public void setAccesorio(Accesorio accesorio) {
         this.accesorio = accesorio;
     }
+     private String marcaAccesorio;
+     private String marcaMoto; 
+    
+
+    
+    
+    public void filtrarPorMarcaAccesorio(){
+    accesorios = afl.filtrarMarcaAccesorio(marcaAccesorio);
+    }
+
+    public String getMarcaAccesorio() {
+        return marcaAccesorio;
+    }
+
+    public void setMarcaAccesorio(String marcaAccesorio) {
+        this.marcaAccesorio = marcaAccesorio;
+    }
+
+    public String getMarcaMoto() {
+        return marcaMoto;
+    }
+
+    public void setMarcaMoto(String marcaMoto) {
+        this.marcaMoto = marcaMoto;
+    }
+    
+    public void filtrarPorMarcaMoto(){
+    motos = mfl.filtrarPorMarcaMoto(marcaMoto);
+    }
+   
+    
+    
 }
     
 

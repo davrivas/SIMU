@@ -48,26 +48,15 @@ public class MotoFacade extends AbstractFacade<Moto> implements MotoFacadeLocal 
     }
     
     public List<Moto> listarMoto(){
-    TypedQuery<Moto>t=getEntityManager().createQuery("SELECT m FROM Moto m INNER JOIN m.producto p INNER JOIN p.marca m INNER JOIN m.tipoProducto t WHERE t.idTipoProducto = 1", Moto.class);
+    TypedQuery<Moto>t=getEntityManager().createQuery("SELECT m FROM Moto m INNER JOIN m.estadoMoto em INNER JOIN m.producto p INNER JOIN p.marca mp INNER JOIN mp.tipoProducto t WHERE t.idTipoProducto = 1 AND em.idEstadoMoto = 3", Moto.class);
     return t.getResultList();
     }
     
-     public List<Moto> filtrarPorPrecio(Double precioMin, Double precioMax){
-     TypedQuery<Moto>t= getEntityManager().createQuery("SELECT m FROM Moto m INNER JOIN m.producto p INNER JOIN p.marca mp INNER JOIN mp.tipoProducto t WHERE t.idTipoProducto = 1 AND p.precio BETWEEN :precioMin AND :precioMax",Moto.class);
-     t.setParameter("precioMin", precioMin);
-     t.setParameter("precioMax", precioMax);
-     return t.getResultList();
-     
-     }
-     
-      public List<Moto> filtrarPorMarcaMoto(String marca){
-        try {
-            Query q = getEntityManager().createQuery("SELECT m FROM Moto m INNER JOIN m.producto p INNER JOIN p.marca mp INNER JOIN mp.tipoProducto tp WHERE tp.idTipoProducto=1  AND mp.marca = :marca", Moto.class);
-            q.setParameter("marca", marca);
-            return q.getResultList();
-        } catch (NoResultException e) {
-            return null;
-        }
-   }
+     public List<Moto> filtrarPorMarcaMoto(String marcaMoto){
+    Query q= getEntityManager().createQuery("SELECT m FROM Moto m  INNER JOIN m.producto p INNER JOIN p.marca mp WHERE mp.marca = :marca");
+    q.setParameter("marca", marcaMoto);
+    return q.getResultList();
+    }
+    
     
 }

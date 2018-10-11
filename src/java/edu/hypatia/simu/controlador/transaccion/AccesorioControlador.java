@@ -199,39 +199,14 @@ public class AccesorioControlador implements Serializable {
         this.listaMarca = listaMarca;
     }
     
-    
-  
-    
+   
     public List<Accesorio> listarAccesorio(){
     return afl.listarAccesorio();
     }
+   
     
-    public List<Accesorio> filtrarPorMarca(){
-        System.out.println("Imprimiendo Lista" + accesorio.getNombre());
-    return afl.filtrarPorMarcaAccesorio(marca);
-    
-        
-    }
-    
-    private Double precioMin;
-    private Double precioMax;
+   
 
-    public Double getPrecioMin() {
-        return precioMin;
-    }
-
-    public void setPrecioMin(Double precioMin) {
-        this.precioMin = precioMin;
-    }
-
-    public Double getPrecioMax() {
-        return precioMax;
-    }
-
-    public void setPrecioMax(Double precioMax) {
-        this.precioMax = precioMax;
-    }
-    public List<Accesorio> filtrarPorPrecio(){
-    return afl.filtrarPorPrecio(precioMin, precioMax);
-    }
+   
+   
 }   
