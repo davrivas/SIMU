@@ -9,6 +9,7 @@ import edu.hypatia.simu.modelo.dao.RolFacadeLocal;
 import edu.hypatia.simu.modelo.dao.UsuarioFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Rol;
 import edu.hypatia.simu.modelo.entidades.Usuario;
+import edu.hypatia.simu.util.PasswordUtil;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -57,10 +58,9 @@ public class MecanicoControlador implements Serializable {
     }
 
     public String insertar() {
-        Date fecha = new Date();
-        Rol rol = rfl.find(2);
-        mecanico.setFechaRegistro(fecha);
-        mecanico.setRol(rol);
+        mecanico.setContrasena(PasswordUtil.getMD5("mecanico"));
+        mecanico.setFechaRegistro(new Date());
+        mecanico.setRol(rfl.find(2));
         mfl.create(mecanico);
         return "index";
     }

@@ -6,13 +6,9 @@
 package edu.hypatia.simu.controlador.transaccion;
 
 import edu.hypatia.simu.controlador.usuario.sesion.SesionControlador;
-import edu.hypatia.simu.modelo.dao.AccesorioFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.TransaccionFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpa.AccesorioFacade;
-import edu.hypatia.simu.modelo.entidades.Accesorio;
 import edu.hypatia.simu.modelo.entidades.DetalleTransaccion;
-import edu.hypatia.simu.modelo.entidades.Moto;
 import edu.hypatia.simu.modelo.entidades.Producto;
 import edu.hypatia.simu.modelo.entidades.Transaccion;
 import javax.inject.Named;
@@ -23,14 +19,13 @@ import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Inject;
-import net.sf.jasperreports.engine.util.MessageUtil;
 
 /**
  *
  * @author asus
  */
 @Named(value = "transaccionControlador")
-@SessionScoped
+@SessionScoped // DAVID: Que sea application mejor (pienso yo)
 public class TransaccionControlador implements Serializable {
 
     private Transaccion nuevaTransaccion;
