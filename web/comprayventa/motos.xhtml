@@ -42,62 +42,61 @@
         <div class="container-fluid ">
             <div class="row" >
                 <div class="col-md-3 filtros">
-                    <h:form id="filtros" a:data-parsley-validate="true" prependId="false">
+                    <h:form a:data-parsley-validate="true" prependId="false">
                         <h:panelGroup>
 
                             <h1 class="text-center mb-4">Filtros</h1>
 
-
-
-                            <h:inputText class="form-control " a:type="search" a:placeholder="Search" value="#{motoControlador.marca}" a:aria-label="Search" />
-                            <h:commandButton class="btn btn-outline-success btn-block mt-2"   value="Buscar" action="#{motoControlador.filtrarPorMarca()}">
-                                <f:ajax execute="@form" render="#listMotos" immediate="true"></f:ajax>
+                            <h:inputText class="form-control " a:type="search" a:placeholder="Search" value="#{productoControlador.marcaMoto}" a:aria-label="Search" />
+                            <h:commandButton class="btn btn-outline-success btn-block mt-2" actionListener="#{productoControlador.filtrarPorMarcaMoto()}" value="Buscar">
+                                <f:ajax execute="@form" render=":Motos" immediate="true"></f:ajax>
                             </h:commandButton>
+                            </h:panelGroup>
 
                             <label class="mt-4">Marca Moto</label>
-                            <h:selectOneMenu value="#{motoControlador.marcaProducto.marca}" class="form-control">
-                                <f:selectItem itemLabel="Seleccione" noSelectionOption="true" />
-                                <f:selectItems value="#{motoControlador.listarMarcasMotos()}" var="m" itemValue="#{m.idMarca}" itemLabel="#{m.marca}"/>
-
+                            <h:selectOneMenu  value="#{motoControlador.marcaProducto.idMarca}" class="form-control">
+                                <f:selectItem  itemLabel="Seleccione"></f:selectItem>
+                                <f:selectItems value="#{motoControlador.listarMarcasMotos()}" var="mm" itemValue="#{mm.idMarca}" itemLabel="#{mm.marca}"></f:selectItems>
                             </h:selectOneMenu>
+                         
 
                             <div class="row mt-4">
 
                                 <div class="col-md-6">
                                     <label>Precio Mínimo</label>
-                                    <h:inputText value="#{motoControlador.precioMin}" class="form-control"></h:inputText>
+                                    <h:inputText value="" class="form-control"></h:inputText>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Precio Máximo</label>
-                                    <h:inputText value="#{motoControlador.precioMax}" class="form-control"></h:inputText>
+                                    <h:inputText value="" class="form-control"></h:inputText>
                                 </div>
 
                             </div>
-                            <h:commandButton value="Filtrar" class="btn btn-primary btn-block mt-2" action="#{motoControlador.filtrarPorPrecio()}">
-                                <f:ajax execute="@form" render=":listMotos" immediate="true"></f:ajax>
+                            <h:commandButton value="Filtrar" class="btn btn-primary btn-block mt-2" >
+                                <f:ajax execute="@form" immediate="true"></f:ajax>
                             </h:commandButton>
-                        </h:panelGroup>
+                        
                     </h:form>
                 </div>
                 <div class="col-md-9">
                     <h1 class="d-flex justify-content-start mt-2">Resultados</h1>
                     <h:form>
-                        <h:panelGroup layout="block" id="listMotos">
+                        <h:panelGroup   id="Motos" layout="block">
                             <div class="row">
-                                <ui:repeat value="#{motoControlador.listarMotos()}" var="m" >
+                                <ui:repeat value="#{productoControlador.motos}" var="m" >
                                     <div class="col-md-4">
                                         <div class="card border-dark mt-2 mr-2 mb-4" style="width: 18rem;">
                                             <img class="card-img-top card-header" src="" alt="Card image cap"/>
                                             <div class="card-body text-dark">
                                                 <h5 class="card-title">#{m.producto.marca.marca}</h5>
-                                                <p class="card-text">#{m.producto.precio}</p>
                                                 <p class="card-text">#{m.modelo}</p>
+                                                <p class="card-text">#{m.producto.precio}</p>
 
-                                                <h:commandButton value="Añadir" a:data-toggle="modal" a:data-target="#cantProductos" class="btn btn-primary" 
-                                                                 actionListener="#{transaccionControlador.seleccionarProducto(m.producto)}">
+                                                <h:commandButton value="Añadir" a:data-toggle="modal" a:data-target="#cantProductos" class="btn btn-primary" actionListener="#{transaccionControlador.setP(m)}"> 
+
                                                     <f:ajax render=":formCar"></f:ajax>
                                                 </h:commandButton>
-                                             
+
                                             </div>
                                         </div>
                                     </div>

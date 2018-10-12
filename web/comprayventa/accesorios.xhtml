@@ -31,10 +31,12 @@
 
                             <h1 class="text-center mb-4">Filtros</h1>
 
-                            <h:inputText class="form-control " a:type="search" a:placeholder="Search" value="#{accesorioControlador.marca}" a:aria-label="Search" id="marca"/>
-                            <h:commandButton class="btn btn-outline-success btn-block mt-2" action="#{accesorioControlador.filtrarPorMarca()}"  value="Buscar" >
-                                <f:ajax execute="@form" render=":listAccesorios" immediate="true"></f:ajax>
+                            <h:inputText class="form-control " a:type="search" a:placeholder="Search" value="#{productoControlador.marcaAccesorio}" a:aria-label="Search" />
+                            <h:commandButton class="btn btn-outline-success btn-block mt-2" action="#{productoControlador.filtrarPorMarcaAccesorio()}"  value="Buscar" >
+                                <f:ajax execute="@form" render=":Accesorios" immediate="true"></f:ajax>
                             </h:commandButton>
+                             </h:panelGroup>
+                    
 
 
                             <label for="tipoAccesorio" class="mt-4">Tipo de Accesorio</label>
@@ -45,38 +47,37 @@
                                                itemLabel="#{tp.tipoAccesorio}"></f:selectItems>
                             </h:selectOneMenu>
                             <label for="marcaAccesorio">Marca Accesorio</label>
-                            <h:selectOneMenu class="form-control" value="#{accesorioControlador.marcaProducto.idMarca}" id="somMarca">
-                                <f:selectItem itemLabel="Seleccione" itemValue="0" noSelectionOption="true"/>
-                                <f:selectItems value="#{accesorioControlador.listarMarcaAccesorio()}" var="mp" itemValue="#{mp.idMarca}" itemLabel="#{mp.marca}"></f:selectItems>
+                            <h:selectOneMenu class="form-control" value="#{accesorioControlador.marcaProducto.idMarca}" onchange="submit()" >
+                                <f:selectItem itemLabel="Seleccione" itemValue="0" noSelectionOption="true" />
+                                <f:selectItems value="#{accesorioControlador.listarMarcaAccesorio()}" var="mp" itemValue="#{mp.idMarca}" itemLabel="#{mp.marca}" ></f:selectItems>
+                                <f:ajax render=":Accesorios" event="click" execute="@form" immediate="true"></f:ajax>
                             </h:selectOneMenu>
                             <div class="row mt-4">
 
                                 <div class="col-md-6">
                                     <label>Precio Mínimo</label>
-                                    <h:inputText class="form-control" value="#{accesorioControlador.precioMin}"></h:inputText>
+                                    <h:inputText class="form-control" ></h:inputText>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Precio Máximo</label>
-                                    <h:inputText  class="form-control" value="#{accesorioControlador.precioMax}"></h:inputText>
+                                    <h:inputText  class="form-control" ></h:inputText>
                                 </div>
 
                             </div>
                             <h:commandButton value="Filtrar"  class="btn btn-primary btn-block mt-2">
-                                <f:ajax execute="@form" render=":listAccesorios" immediate="true"></f:ajax>
+                           
                             </h:commandButton>
-                        </h:panelGroup>
+                       
                     </h:form>
                 </div>
                 <div class="col-md-9">
                     <h1 class="d-flex justify-content-start mt-2">Resultados</h1>
                     <h:form prependId="false">
-                        <h:panelGroup id="listAccesorios" layout="block">
+                        <h:panelGroup id="Accesorios" layout="block">
                             <div class="row">
-
-                                <ui:repeat value="#{accesorioControlador.listarAccesorio()}" var="a">
+                                <ui:repeat value="#{productoControlador.accesorios}" var="a">
                                     <div class="col-md-4">
                                         <div class="card border-dark mt-2 mr-2 mb-4" style="width: 18rem;">
-<!--                                            <img class="card-img-top card-header" src="#{request.contextPath}comprayventa/images/accesorios/#{accesorioControlador.fotoProducto.rutaArchivoFoto}" alt="Card image cap"/>-->
                                             <h:graphicImage class="card-img-top card-header " value="/comprayventa/images/accesorios/#{accesorioControlador.fotoProducto.rutaArchivoFoto}"></h:graphicImage>
                                             <div class="card-body text-dark">
                                                 <h5 class="card-title">#{a.nombre}</h5>

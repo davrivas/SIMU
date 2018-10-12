@@ -33,7 +33,7 @@ public interface MotoFacadeLocal {
     
     List<Moto> motosEnReparacion(Usuario cliente);
     List<Moto> listarMoto();
-    List<Moto> filtrarPorPrecio(Double precioMin, Double precioMax);
-    List<Moto> filtrarPorMarcaMoto(String marca);
+
+    List<Moto> filtrarPorMarcaMoto(String marcaMoto);
     
 }

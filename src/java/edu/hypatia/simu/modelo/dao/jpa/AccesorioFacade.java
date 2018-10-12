@@ -12,6 +12,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -38,23 +39,14 @@ public class AccesorioFacade extends AbstractFacade<Accesorio> implements Acceso
     return t.getResultList();
     }
     
+     public List<Accesorio> filtrarMarcaAccesorio(String marcaAccesorio){
+    Query q= getEntityManager().createQuery("SELECT a FROM Accesorio a INNER JOIN a.producto p INNER JOIN p.marca m  WHERE m.marca = :marca ");
+    q.setParameter("marca", marcaAccesorio);
+    return q.getResultList();
+    }
     
-     public List<Accesorio> filtrarPorMarcaAccesorio(String marca){
-        try {
-            TypedQuery<Accesorio> q = getEntityManager().createQuery("SELECT a FROM Accesorio a INNER JOIN a.producto p INNER JOIN p.marca m INNER JOIN m.tipoProducto t WHERE t.idTipoProducto = 2 and m.marca = :marca", Accesorio.class);
-            q.setParameter("marca", marca);
-            return q.getResultList();
-        } catch (NoResultException e) {
-            return null;
-        }
-   }
+    
      
-     public List<Accesorio> filtrarPorPrecio(Double precioMin, Double precioMax){
-     TypedQuery<Accesorio>t= getEntityManager().createQuery("SELECT a FROM Accesorio a INNER JOIN a.producto p INNER JOIN p.marca m INNER JOIN m.tipoProducto t WHERE t.idTipoProducto = 2 AND p.precio BETWEEN :precioMin AND :precioMax", Accesorio.class);
-     t.setParameter("precioMin", precioMin);
-     t.setParameter("precioMax", precioMax);
-     return t.getResultList();
-     
-     }
+    
  
 }
