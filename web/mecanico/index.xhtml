@@ -54,7 +54,6 @@
                     </h:commandLink>
                 </h:column>
             </h:dataTable>
-            <ui:include src="/WEB-INF/templates/mecanico/modales/revisar.xhtml"/>
         </h:panelGroup>
     </ui:define>
 
@@ -105,5 +104,8 @@
                 </h:column>
             </h:dataTable>
         </h:panelGroup>
+    </ui:define>
+    <ui:define name="modales">
+        <ui:include src="/WEB-INF/templates/mecanico/modales/revisar.xhtml"/>
     </ui:define>
 </ui:composition>
