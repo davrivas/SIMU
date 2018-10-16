@@ -162,7 +162,7 @@
             </div>
         </div>
 
-         <h1 class="text-left mb-4 p-3"><i class="fa fa-th-list mr-2"></i>Lista de accesorios</h1>
+         <h1 class="text-left mb-4 p-3"><i class="fa fa-th-list mr-2"></i>Lista de motos</h1>
         <section class="col-12">
             
             <table id="motos" class="table table-hover" style="width:100%">
@@ -205,7 +205,7 @@
                             <td>#{m.modelo}</td>
                             <td>#{m.kilometraje}</td>
                             <td>#{m.estadoMoto.nombreEstado}</td>
-                            <td>#{m.producto.marcaProducto.marcaProducto}  #{m.producto.referencia}</td>
+                            <td>#{m.producto.marca.marca}  #{m.producto.referencia}</td>
                             <td>#{m.producto.precio}</td>
                         </tr>
                     </c:forEach>

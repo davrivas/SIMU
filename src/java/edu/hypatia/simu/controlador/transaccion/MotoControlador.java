@@ -165,7 +165,7 @@ public class MotoControlador implements Serializable {
 
         productofl.create(producto);
 
-        moto.setEstadoMoto(emfl.find(5));
+        moto.setEstadoMoto(emfl.find(3));
         moto.setProducto(producto);
         moto.setCliente(sc.getUsuario());
         mfl.create(moto);

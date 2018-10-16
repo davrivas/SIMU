@@ -175,4 +175,20 @@ public class ClienteControlador implements Serializable {
         return "";
     }
 
+    public String registrarNuevoCliente() {
+        try {
+            String contrasenaSinMD5 = cliente.getContrasena(),
+                    contrasenaConMD5 = PasswordUtil.getMD5(contrasenaSinMD5);
+            cliente.setContrasena(contrasenaConMD5);
+            cliente.setFechaRegistro(new Date());
+            cliente.setRol(rfl.find(1));
+            ufl.create(cliente);
+            cliente = new Usuario();
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+        }
+
+        return "listarClientes.xhtml?faces-redirect=true";
+    }
+
 }

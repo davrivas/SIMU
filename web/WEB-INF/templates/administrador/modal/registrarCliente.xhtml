@@ -8,92 +8,84 @@
 
     <div id="myModal6" class="modal fade" role="dialog">
         <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <h:panelGroup id="contentModalRegistrarCliente" layout="block" class="modal-content contenido-modal">
+            <div id="contentModalRegistrarCliente" layout="block" class="modal-content contenido-modal">
                 <div class="modal-header">
-
                     <h1 class="modal-title"><strong>Registrar Cliente</strong></h1>
                 </div>
-                <div class="modal-body">
+                <h:form prependId="false">
+                    <div class="modal-body">
 
-                    <p class="text-center ml-3 mb-3">Registre la información del usuario</p>
+                        <p class="text-center ml-3 mb-3">Registre la información del usuario</p>
 
-                    <!--Fila 1-->
-                    <section class="row mb-5 mt-5 justify-content-around">
-                        <div class="col-6">
-                            <h:outputLabel class="mr-3">Nombre</h:outputLabel>
-                            <h:inputText value="#{clienteControlador.usuario.nombre}" a:placeholder="Escribe tus nombres" class="col-12 form-control" required="true"></h:inputText>     
-                        </div>
-                        <div class="col-6">
-                            <h:outputLabel class="mr-3">Apellido</h:outputLabel>
-                            <h:inputText value="#{clienteControlador.usuario.apellido}" a:placeholder="Escribe tus apellidos" class="col-12 form-control" required="true"></h:inputText>     
-                        </div>
-                    </section>
+                        <!--Fila 1-->
+                        <section class="row mb-5 mt-5 justify-content-around">
+                            <div class="col-6">
+                                <h:outputLabel class="mr-3">Nombre</h:outputLabel>
+                                <h:inputText value="#{clienteControlador.cliente.nombre}" a:placeholder="Escribe tus nombres" class="col-12 form-control" a:required=""/>
+                            </div>
+                            <div class="col-6">
+                                <h:outputLabel class="mr-3">Apellido</h:outputLabel>
+                                <h:inputText value="#{clienteControlador.cliente.apellido}" a:placeholder="Escribe tus apellidos" class="col-12 form-control" a:required=""/>
+                            </div>
+                        </section>
 
-                    <!--Fila 2-->
-                    <section class="row mb-5 mt-5 justify-content-around">
-                        <div class="col-6">
-                            <h:outputLabel class="mr-3">Tipo documento</h:outputLabel>
-                            <h:selectOneMenu value="#{clienteControlador.cliente.tipoDocumento}" class="col-12 custom-select" required="true">
-                                <f:selectItem itemLabel="Seleccione"></f:selectItem>
-                                <f:selectItems value="#{clienteControlador.listarTipoDocumento()}" var="td" itemLabel="#{td.tipoDocumento}"></f:selectItems>
-                            </h:selectOneMenu>
-                        </div>
-                        <div class="col-6">
-                            <h:outputLabel class="mr-3">Documento</h:outputLabel>
-                            <h:inputText value="#{clienteControlador.cliente.numeroDocumento}" a:placeholder="Escribe tus documento" class="col-12 form-control" required="true"></h:inputText>      
-                        </div>
-                    </section>
+                        <!--Fila 2-->
+                        <section class="row mb-5 mt-5 justify-content-around">
+                            <div class="col-6">
+                                <h:outputLabel class="mr-3">Tipo documento</h:outputLabel>
+                                <h:selectOneMenu value="#{clienteControlador.cliente.tipoDocumento}" class="col-12 custom-select" required="true">
+                                    <f:selectItem itemLabel="Seleccione"></f:selectItem>
+                                    <f:selectItems value="#{clienteControlador.listarTipoDocumento()}" var="td" itemLabel="#{td.tipoDocumento}"/>
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="col-6">
+                                <h:outputLabel class="mr-3">Documento</h:outputLabel>
+                                <h:inputText value="#{clienteControlador.cliente.numeroDocumento}" a:placeholder="Escribe tus documento" class="col-12 form-control" a:required=""/>
+                            </div>
+                        </section>
 
-                    <!--Fila 3-->
-                    <section class="row mb-5 mt-5 justify-content-around">
-                        <div class="col-6">
-                            <h:outputLabel class="mr-3">Correo Electronico</h:outputLabel>
-                            <h:inputText value="#{clienteControlador.usuario.email}" a:placeholder="Escribe tu correo electronico" class="col-12 form-control" required="true"></h:inputText>     
-                        </div>
-                        <div class="col-6">
-                            <h:outputLabel class="mr-3">Telefono</h:outputLabel>
-                            <h:inputText value="#{clienteControlador.usuario.telefono}" a:placeholder="Escribe tu telefono" class="col-12 form-control" required="true"></h:inputText>     
-                        </div>
-                    </section>
+                        <!--Fila 3-->
+                        <section class="row mb-5 mt-5 justify-content-around">
+                            <div class="col-6">
+                                <h:outputLabel class="mr-3">Correo Electronico</h:outputLabel>
+                                <h:inputText value="#{clienteControlador.cliente.email}" a:placeholder="Escribe tu correo electronico" class="col-12 form-control" a:required=""></h:inputText>     
+                            </div>
+                            <div class="col-6">
+                                <h:outputLabel class="mr-3">Telefono</h:outputLabel>
+                                <h:inputText value="#{clienteControlador.cliente.telefono}" a:placeholder="Escribe tu telefono" class="col-12 form-control" a:required=""/>
+                            </div>
+                        </section>
 
-                    <!--Fila 4-->
-                    <section class="row mb-5 mt-5 justify-content-around">
-                        <div class="col-6">
-                            <h:outputLabel class="mr-3">Contraseña</h:outputLabel>
-                            <h:inputSecret value="#{clienteControlador.usuario.contrasena}" a:placeholder="Escribe tu contraseña" class="col-12 form-control" required="true"></h:inputSecret>     
-                        </div>
+                        <!--Fila 4-->
+                        <section class="row mb-5 mt-5 justify-content-around">
+                            <div class="col-6">
+                                <h:outputLabel class="mr-3">Contraseña</h:outputLabel>
+                                <h:inputSecret value="#{clienteControlador.cliente.contrasena}" a:placeholder="Escribe tu contraseña" class="col-12 form-control" a:required=""/>
+                            </div>
 
-                    </section>
-                    <!--Fila 5-->
-                    <section class="row mb-5 mt-5 justify-content-around">
-                        <div class="col-6">
-                            <h:outputLabel class="mr-3">Direccion</h:outputLabel>
-                            <h:inputText value="#{clienteControlador.usuario.direccion}" a:placeholder="Escribe tu telefono" class="col-12 form-control" required=""></h:inputText>     
-                        </div>
-                        <div class="col-6">
-                            <h:outputLabel class="mr-3">Ciudad</h:outputLabel>
-                            <h:selectOneMenu value="#{clienteControlador.usuario.ciudad}" class="col-12 custom-select">
-                                <f:selectItem itemLabel="Seleccione"></f:selectItem>
-                                <f:selectItems value="#{clienteControlador.listarCiudad()}" var="c" itemLabel="#{c.ciudad}"></f:selectItems>
-                            </h:selectOneMenu>
-                        </div>
-                    </section>
-
-
-
-                </div>
-                <div class="modal-footer">
-                    <h:form prependId="false">
+                        </section>
+                        <!--Fila 5-->
+                        <section class="row mb-5 mt-5 justify-content-around">
+                            <div class="col-6">
+                                <h:outputLabel class="mr-3">Direccion</h:outputLabel>
+                                <h:inputText value="#{clienteControlador.cliente.direccion}" a:placeholder="Escribe tu telefono" class="col-12 form-control" a:required=""/>
+                            </div>
+                            <div class="col-6">
+                                <h:outputLabel class="mr-3">Ciudad</h:outputLabel>
+                                <h:selectOneMenu value="#{clienteControlador.cliente.ciudad}" class="col-12 custom-select">
+                                    <f:selectItem itemLabel="Seleccione"></f:selectItem>
+                                    <f:selectItems value="#{clienteControlador.listarCiudad()}" var="c" itemLabel="#{c.ciudad}"/>
+                                </h:selectOneMenu>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <h:commandButton action="#{clienteControlador.registrarCliente()}" value="Registrar" class="btn-simu-naranja"></h:commandButton>
-                    </h:form>
-                </div>
-            </h:panelGroup>
-
+                        <h:commandButton action="#{clienteControlador.registrarNuevoCliente()}" a:type="submit" value="Registrar" class="btn btn-primary"/>
+                    </div>
+                </h:form>
+            </div>
         </div>
     </div>
-
 </ui:composition>
 

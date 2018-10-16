@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -54,7 +55,10 @@ public class Producto implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "porcentaje_descuento")
     private Double porcentajeDescuento;
-    @ManyToMany(mappedBy = "productoList")
+    @JoinTable(name = "tbl_productos_has_tbl_fotos_producto", joinColumns = {
+        @JoinColumn(name = "producto", referencedColumnName = "id_producto")}, inverseJoinColumns = {
+        @JoinColumn(name = "foto", referencedColumnName = "id_foto")})
+    @ManyToMany
     private List<FotoProducto> fotoProductoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
     private List<Accesorio> accesorioList;

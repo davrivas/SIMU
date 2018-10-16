@@ -8,46 +8,45 @@
 
             <!-- Modal content-->
             <h:panelGroup id="contentModalRegistrarMecanico" layout="block" class="modal-content contenido-modal">
-                <div class="modal-header">
-                    <h1 class="modal-title"><strong>MECANICO</strong></h1>
-                </div>
-                <div class="modal-body">
+                <h:form prependId="false">
+                    <div class="modal-header">
+                        <h1 class="modal-title"><strong>MECANICO</strong></h1>
+                    </div>
+                    <div class="modal-body">
 
-                    <p class="text-center ml-3 mb-3">Registre la información del nuevo mecanico</p>
+                        <p class="text-center ml-3 mb-3">Registre la información del nuevo mecanico</p>
 
-                    <!--Fila 1-->
-                    <section class="row mb-5 mt-5 justify-content-around">
-                        <div class="col-6">
-                            <h:outputLabel class="mr-3">Nombres</h:outputLabel>
-                            <h:inputText value="#{usuarioControlador.usuario.nombre}" class="form-control"></h:inputText>
-                        </div>
-                        <div class="col-6">
-                            <h:outputLabel class="mr-3">Appellidos</h:outputLabel>
-                            <h:inputText value="#{usuarioControlador.usuario.apellido}" class="form-control"></h:inputText>
-                        </div>
-                    </section>
+                        <!--Fila 1-->
+                        <section class="row mb-5 mt-5 justify-content-around">
+                            <div class="col-6">
+                                <h:outputLabel class="mr-3">Nombres</h:outputLabel>
+                                <h:inputText value="#{usuarioControlador.usuario.nombre}" class="form-control"></h:inputText>
+                            </div>
+                            <div class="col-6">
+                                <h:outputLabel class="mr-3">Appellidos</h:outputLabel>
+                                <h:inputText value="#{usuarioControlador.usuario.apellido}" class="form-control"></h:inputText>
+                            </div>
+                        </section>
 
-                    <!--Fila 2-->
-                    <section class="row mb-5 mt-5 justify-content-around">
-                        <div class="col-6">
-                            <h:outputLabel class="mr-3">Correo electronico</h:outputLabel>
-                            <h:inputText value="#{usuarioControlador.usuario.email}" class="form-control"></h:inputText>
-                        </div>
-                        <div class="col-6">
-                            <h:outputLabel class="mr-3">Telefono</h:outputLabel>
-                            <h:inputText value="#{usuarioControlador.usuario.telefono}" class="form-control"></h:inputText>
-                        </div>
-                    </section>
+                        <!--Fila 2-->
+                        <section class="row mb-5 mt-5 justify-content-around">
+                            <div class="col-6">
+                                <h:outputLabel class="mr-3">Correo electronico</h:outputLabel>
+                                <h:inputText value="#{usuarioControlador.usuario.email}" class="form-control"></h:inputText>
+                            </div>
+                            <div class="col-6">
+                                <h:outputLabel class="mr-3">Telefono</h:outputLabel>
+                                <h:inputText value="#{usuarioControlador.usuario.telefono}" class="form-control"></h:inputText>
+                            </div>
+                        </section>
 
-                </div>
-                <div class="modal-footer">
-                    <h:form prependId="false">
+                    </div>
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-danger mr-2" data-dismiss="modal">Cerrar</button>
-                        <h:commandButton action="#{usuarioControlador.registrarMecanico()}" value="Registrar" class="btn btn-primary"></h:commandButton>
-                    </h:form>
-                </div>
+                        <h:commandButton action="#{usuarioControlador.registrarMecanico()}" value="Registrar" class="btn btn-primary"/>
+                    </div>
+                </h:form>
             </h:panelGroup>
-
         </div>
     </div>
 </ui:composition>

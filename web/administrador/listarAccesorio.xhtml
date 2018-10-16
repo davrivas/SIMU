@@ -91,16 +91,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Identificación del producto <span class="required"></span>
                                 </label>
                                 <div class="col-md-10 col-sm-6 col-xs-12 ml-4 ">
-                                    <h:inputText disabled="true" value="#{accesorioControlador.accesorio.producto.marcaProducto.marcaProducto}" class="form-control"></h:inputText>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Identificación del Proveedor <span class="required"></span>
-                                </label>
-                                <div class="col-md-10 col-sm-6 col-xs-12 ml-4">
-                                    <h:selectOneMenu disabled="true"  value="#{accesorioControlador.accesorio.proveedor}" class="form-control">
-                                        <f:selectItems  value="#{accesorioControlador.listarProveedor()}" var="p" itemLabel="#{p.nombreCompania}"/>
-                                    </h:selectOneMenu>
+                                    <h:inputText disabled="true" value="#{accesorioControlador.accesorio.producto.marca.marca}" class="form-control"></h:inputText>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -138,7 +129,6 @@
                     <th><strong>MARCA</strong></th>
                     <th><strong>REFERENCIA</strong></th>
                     <th><strong>TIPO ACCESORIO</strong></th>
-                    <th><strong>PROVEEDOR</strong></th>
                     <th><strong>PRECIO</strong></th>
 
                 </tr>
@@ -163,10 +153,9 @@
                         </td>
                         <td>#{a.idAccesorio}</td>
                         <td>#{a.nombre}</td>
-                        <td>#{a.producto.marcaProducto.marcaProducto}</td>
+                        <td>#{a.producto.marca.marca}</td>
                         <td>#{a.producto.referencia}</td>
                         <td>#{a.tipoAccesorio.tipoAccesorio}</td>
-                        <td>#{a.proveedor.nombreCompania}</td>
                         <td>#{a.producto.precio}</td>
                     </tr>
                 </c:forEach>

@@ -94,20 +94,37 @@ public class UsuarioControlador implements Serializable {
                 + "Usted ha sido registrado por " + sc.getUsuario().getNombre() + sc.getUsuario().getApellido() + "como un nuevo administrador de SIMU."
                 + "<hr>"
                 + "<p><strong>Su correo electronico es : " + usuario.getEmail() + "</strong></p>"
-                + "<p><strong>Su contraseña es: " + usuario.getContrasena() + "</strong></p>"
+                + "<p><strong>Su contraseña es: administrador</strong></p>"
                 + "<p><strong>Porfavor, Ingresa a SIMU y actualiza tu contraseña.</strong></p>");
 
-        usuario = null;
+        usuario = new Usuario();
         return "index.xhtml?faces-redirect=true";
     }
 
     public String registrarMecanico() {
-
+        System.out.println("vamos a ver si funciona");
+        System.out.println("nombre" + usuario.getNombre());
+        System.out.println("apellido: " + usuario.getApellido());
+        System.out.println("correo: " + usuario.getEmail());
+        System.out.println("telefono: " + usuario.getTelefono());
         Date fecha = new Date();
+        System.out.println("fecha:" + fecha.toString());
         usuario.setContrasena(PasswordUtil.getMD5("mecanico"));
+        System.out.println("contrsaeña: " + usuario.getContrasena());
         usuario.setFechaRegistro(fecha);
         usuario.setRol(rfl.find(2));
+        System.out.println("Rol: " + usuario.getRol().getRol());
         ufl.create(usuario);
+        System.out.println("Se regisgtró un nuevo mecánico");
+        Mail.sendMail(usuario.getEmail(), "Mecánico registrado", sc.getUsuario().getNombre()
+                + "<h1>Registro de Mecánico</h1>"
+                + "<h3>Hola " + usuario.getNombre() + " " + usuario.getApellido() + "</h3>"
+                + "Usted ha sido registrado por " + sc.getUsuario().getNombre() + sc.getUsuario().getApellido() + "como un nuevo administrador de SIMU."
+                + "<hr>"
+                + "<p><strong>Su correo electronico es : " + usuario.getEmail() + "</strong></p>"
+                + "<p><strong>Su contraseña es: mecanico</strong></p>"
+                + "<p><strong>Porfavor, Ingresa a SIMU y actualiza tu contraseña.</strong></p>");
+        usuario = new Usuario();
         return "index.xhtml?faces-redirect=true";
     }
 

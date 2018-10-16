@@ -41,10 +41,6 @@
 		<band height="79" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="127" height="79" backcolor="#000000" uuid="32aafcb8-a810-4a2f-8a95-fedbd8c1f1a4"/>
-				<image>
-					<reportElement x="0" y="0" width="127" height="79" uuid="2057d994-d585-40f2-9d0b-aabb9d3ea3d0"/>
-					<imageExpression><![CDATA["C:\\Users\\APRENDIZ\\Desktop\\simu\\web\\resources\\img\\logo-simu-negativo.jpg"]]></imageExpression>
-				</image>
 			</frame>
 			<frame>
 				<reportElement mode="Opaque" x="127" y="0" width="445" height="65" backcolor="#000000" uuid="d771521d-b2e3-40f5-8299-5c7f39d6bf88"/>

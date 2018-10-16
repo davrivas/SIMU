@@ -148,6 +148,8 @@ public class SesionControlador implements Serializable {
     }
 
     public String editar() {
+        String passMD5 = PasswordUtil.getMD5(usuario.getContrasena());
+        usuario.setContrasena(passMD5);
         ufl.edit(usuario);
 
         return "index.xhtml?faces-redirect=true";

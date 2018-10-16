@@ -25,7 +25,7 @@
                             <h:outputLabel class="mr-3">Marca</h:outputLabel>
                             <h:selectOneMenu value="#{motoControlador.producto.marca}" class="form-control">
                                 <f:selectItem itemLabel="Seleccione"></f:selectItem>
-                                <f:selectItems value="#{motoControlador.listarMarcaProducto}" var="p" itemLabel="#{p.marca}" class="form-control"></f:selectItems>
+                                <f:selectItems value="#{motoControlador.marcasMoto}" var="p" itemLabel="#{p.marca}" class="form-control"></f:selectItems>
                             </h:selectOneMenu>
                         </div>
                         <div class="col-6">
@@ -74,7 +74,7 @@
                 <div class="modal-footer">
                     <h:form prependId="false">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <h:commandButton action="#{motoControlador.registrar()}" value="Registrar" class="btn-simu-naranja"></h:commandButton>
+                        <h:commandButton action="#{motoControlador.registrar()}" value="Registrar" class="btn btn-primary"></h:commandButton>
                     </h:form>
                 </div>
             </h:panelGroup>
