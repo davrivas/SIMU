@@ -47,41 +47,43 @@
 
                             <h1 class="text-center mb-4">Filtros</h1>
 
-                            <h:inputText class="form-control " a:type="search" a:placeholder="Search" value="#{productoControlador.marcaMoto}" a:aria-label="Search" />
-                            <h:commandButton class="btn btn-outline-success btn-block mt-2" actionListener="#{productoControlador.filtrarPorMarcaMoto()}" value="Buscar">
+                            <h:inputText class="form-control " a:type="search" a:placeholder="Search" value="#{productoControlador.marca}" a:aria-label="Search" />
+                            <h:commandButton class="btn btn-outline-success btn-block mt-2" action="#{productoControlador.filtrarPorMarcaMoto()}" value="Buscar">
                                 <f:ajax execute="@form" render=":Motos" immediate="true"></f:ajax>
                             </h:commandButton>
-                            </h:panelGroup>
 
                             <label class="mt-4">Marca Moto</label>
-                            <h:selectOneMenu  value="#{motoControlador.marcaProducto.idMarca}" class="form-control">
+                            <h:selectOneMenu  valueChangeListener="#{motoControlador.marcaProducto.idMarca}" class="form-control">
                                 <f:selectItem  itemLabel="Seleccione"></f:selectItem>
-                                <f:selectItems value="#{motoControlador.listarMarcasMotos()}" var="mm" itemValue="#{mm.idMarca}" itemLabel="#{mm.marca}"></f:selectItems>
+                                <f:selectItems value="#{motoControlador.listarMarcasMotos()}" var="mm"  itemLabel="#{mm.marca}"></f:selectItems>
+                                <f:ajax execute="@form" render=":Motos" event="change" immediate="true"></f:ajax>
                             </h:selectOneMenu>
-                         
+
 
                             <div class="row mt-4">
 
                                 <div class="col-md-6">
                                     <label>Precio Mínimo</label>
-                                    <h:inputText value="" class="form-control"></h:inputText>
+                                    <h:inputText value="#{productoControlador.precioMin}" class="form-control"></h:inputText>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Precio Máximo</label>
-                                    <h:inputText value="" class="form-control"></h:inputText>
+                                    <h:inputText value="#{productoControlador.precioMax}" class="form-control"></h:inputText>
                                 </div>
 
                             </div>
-                            <h:commandButton value="Filtrar" class="btn btn-primary btn-block mt-2" >
-                                <f:ajax execute="@form" immediate="true"></f:ajax>
+                            <h:commandButton value="Filtrar" class="btn btn-primary btn-block mt-2" action="#{productoControlador.filtrarMotoPorPrecio()}" >
+                                <f:ajax execute="@form" render=":Motos" immediate="true"></f:ajax>
                             </h:commandButton>
-                        
+
+                        </h:panelGroup>
+
                     </h:form>
                 </div>
                 <div class="col-md-9">
                     <h1 class="d-flex justify-content-start mt-2">Resultados</h1>
-                    <h:form>
-                        <h:panelGroup   id="Motos" layout="block">
+                    <h:form prependId="false">
+                        <h:panelGroup id="Motos" layout="block">
                             <div class="row">
                                 <ui:repeat value="#{productoControlador.motos}" var="m" >
                                     <div class="col-md-4">
@@ -92,7 +94,7 @@
                                                 <p class="card-text">#{m.modelo}</p>
                                                 <p class="card-text">#{m.producto.precio}</p>
 
-                                                <h:commandButton value="Añadir" a:data-toggle="modal" a:data-target="#cantProductos" class="btn btn-primary" actionListener="#{transaccionControlador.setP(m)}"> 
+                                                <h:commandButton value="Añadir" a:data-toggle="modal" a:data-target="#cantProductos" class="btn btn-primary" actionListener="#{transaccionControlador.seleccionarProducto(m)}"> 
 
                                                     <f:ajax render=":formCar"></f:ajax>
                                                 </h:commandButton>

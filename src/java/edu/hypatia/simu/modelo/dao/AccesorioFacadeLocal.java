@@ -30,7 +30,8 @@ public interface AccesorioFacadeLocal {
 
     int count();
     List<Accesorio> listarAccesorio();
-    List<Accesorio> filtrarMarcaAccesorio(String marcaAccesorio);
+    List<Accesorio> filtrarMarcaAccesorio(String marca);
+     List<Accesorio> filtrarPorPrecio(Double precioMin, Double precioMax);
 
   
    

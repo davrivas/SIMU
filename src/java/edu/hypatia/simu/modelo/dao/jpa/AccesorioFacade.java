@@ -39,10 +39,18 @@ public class AccesorioFacade extends AbstractFacade<Accesorio> implements Acceso
     return t.getResultList();
     }
     
-     public List<Accesorio> filtrarMarcaAccesorio(String marcaAccesorio){
+     public List<Accesorio> filtrarMarcaAccesorio(String marca){
     Query q= getEntityManager().createQuery("SELECT a FROM Accesorio a INNER JOIN a.producto p INNER JOIN p.marca m  WHERE m.marca = :marca ");
-    q.setParameter("marca", marcaAccesorio);
+    q.setParameter("marca", marca);
     return q.getResultList();
+    }
+     
+      public List<Accesorio> filtrarPorPrecio(Double precioMin, Double precioMax){
+    Query q= getEntityManager().createQuery("SELECT a FROM Accesorio a INNER JOIN a.producto p WHERE p.precio BETWEEN :precioMin AND :precioMax");
+    q.setParameter("precioMin", precioMin);
+    q.setParameter("precioMax", precioMax);
+    return q.getResultList();
+    
     }
     
     

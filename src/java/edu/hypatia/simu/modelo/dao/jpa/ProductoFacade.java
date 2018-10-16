@@ -32,6 +32,13 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
         super(Producto.class);
     }
     
+    public List<Producto> filtrarPorPrecio(Double precioMin, Double precioMax){
+    Query q= getEntityManager().createQuery("SELECT p FROM Producto p  WHERE p.precio BETWEEN :precioMin and :precioMax");
+    q.setParameter("precioMin", precioMin);
+    q.setParameter("precioMax", precioMax);
+    return q.getResultList();
+    
+    }
    
     
     

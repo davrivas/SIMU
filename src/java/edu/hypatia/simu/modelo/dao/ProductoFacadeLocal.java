@@ -30,6 +30,7 @@ public interface ProductoFacadeLocal {
 
     int count();
     
+    List<Producto> filtrarPorPrecio(Double precioMin, Double precioMax);
    
     
 }

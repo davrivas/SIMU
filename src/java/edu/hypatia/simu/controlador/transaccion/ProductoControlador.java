@@ -87,35 +87,56 @@ public class ProductoControlador implements Serializable {
     public void setAccesorio(Accesorio accesorio) {
         this.accesorio = accesorio;
     }
-     private String marcaAccesorio;
-     private String marcaMoto; 
+     private String marca;
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
     
 
     
     
     public void filtrarPorMarcaAccesorio(){
-    accesorios = afl.filtrarMarcaAccesorio(marcaAccesorio);
+    accesorios = afl.filtrarMarcaAccesorio(marca);
     }
 
-    public String getMarcaAccesorio() {
-        return marcaAccesorio;
-    }
-
-    public void setMarcaAccesorio(String marcaAccesorio) {
-        this.marcaAccesorio = marcaAccesorio;
-    }
-
-    public String getMarcaMoto() {
-        return marcaMoto;
-    }
-
-    public void setMarcaMoto(String marcaMoto) {
-        this.marcaMoto = marcaMoto;
-    }
+   
     
     public void filtrarPorMarcaMoto(){
-    motos = mfl.filtrarPorMarcaMoto(marcaMoto);
+    motos = mfl.filtrarPorMarcaMoto(marca);
     }
+  
+   private Double precioMin;  
+   private Double precioMax;  
+
+    public Double getPrecioMin() {
+        return precioMin;
+    }
+
+    public void setPrecioMin(Double precioMin) {
+        this.precioMin = precioMin;
+    }
+
+    public Double getPrecioMax() {
+        return precioMax;
+    }
+
+    public void setPrecioMax(Double precioMax) {
+        this.precioMax = precioMax;
+    }
+    public void filtrarAccesorioPorPrecio(){
+    accesorios =afl.filtrarPorPrecio(precioMin, precioMax);
+        System.out.println("Esta pasando por el metodo del filtro");
+    }
+     public void filtrarMotoPorPrecio(){
+    motos =mfl.filtrarPorPrecio(precioMin, precioMax);
+        System.out.println("Esta pasando por el metodo del filtro");
+    }
+     
    
     
     

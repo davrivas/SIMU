@@ -22,7 +22,12 @@ import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Usuario;
 import edu.hypatia.simu.modelo.entidades.EstadoMoto;
 import edu.hypatia.simu.modelo.entidades.Marca;
+import edu.hypatia.simu.util.FilesUtil2;
+import java.io.File;
+import java.io.IOException;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -186,7 +191,7 @@ public class MotoControlador implements Serializable {
                  + "<hr>");
         moto = null;
     }
-    
+
     public List<Moto> listarMotos(){
      return mfl.findAll();
     }
@@ -199,8 +204,4 @@ public class MotoControlador implements Serializable {
     return mfl.findAll();
     }
     
- 
-    
-    
-   
 }

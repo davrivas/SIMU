@@ -52,10 +52,18 @@ public class MotoFacade extends AbstractFacade<Moto> implements MotoFacadeLocal 
     return t.getResultList();
     }
     
-     public List<Moto> filtrarPorMarcaMoto(String marcaMoto){
+     public List<Moto> filtrarPorMarcaMoto(String marca){
     Query q= getEntityManager().createQuery("SELECT m FROM Moto m  INNER JOIN m.producto p INNER JOIN p.marca mp WHERE mp.marca = :marca");
-    q.setParameter("marca", marcaMoto);
+    q.setParameter("marca", marca);
     return q.getResultList();
+    }
+     
+      public List<Moto> filtrarPorPrecio(Double precioMin, Double precioMax){
+    Query q= getEntityManager().createQuery("SELECT m FROM Moto m INNER JOIN m.producto p WHERE p.precio BETWEEN :precioMin AND :precioMax");
+    q.setParameter("precioMin", precioMin);
+    q.setParameter("precioMax", precioMax);
+    return q.getResultList();
+    
     }
     
     
