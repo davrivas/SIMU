@@ -77,8 +77,6 @@ public class ProductoControlador implements Serializable {
         }
         return motos;
     }
-    
-    
 
     public Accesorio getAccesorio() {
         return accesorio;

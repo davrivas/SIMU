@@ -88,11 +88,15 @@
                                 <ui:repeat value="#{productoControlador.motos}" var="m" >
                                     <div class="col-md-4">
                                         <div class="card border-dark mt-2 mr-2 mb-4" style="width: 18rem;">
-                                            <img class="card-img-top card-header" src="" alt="Card image cap"/>
+                                            <img class="card-img-top card-header" src="#{request.contextPath}/resources/img/motos/#{m.producto.urlFoto}" alt="#{m.producto.altFoto}"/>
                                             <div class="card-body text-dark">
                                                 <h5 class="card-title">#{m.producto.marca.marca}</h5>
                                                 <p class="card-text">#{m.modelo}</p>
-                                                <p class="card-text">#{m.producto.precio}</p>
+                                                <p class="card-text">$
+                                                    <h:outputText value="#{m.producto.precio}">
+                                                        <f:convertNumber type="currency"/>
+                                                    </h:outputText>
+                                                </p>
 
                                                 <h:commandButton value="Añadir" a:data-toggle="modal" a:data-target="#cantProductos" class="btn btn-primary" actionListener="#{transaccionControlador.seleccionarProducto(m)}"> 
 

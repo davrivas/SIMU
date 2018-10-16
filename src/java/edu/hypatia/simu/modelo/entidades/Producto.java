@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -40,6 +41,16 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Producto.findByPorcentajeDescuento", query = "SELECT p FROM Producto p WHERE p.porcentajeDescuento = :porcentajeDescuento")})
 public class Producto implements Serializable {
 
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "alt_foto")
+    private String altFoto;
+
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "url_foto")
+    private String urlFoto;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,11 +66,6 @@ public class Producto implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "porcentaje_descuento")
     private Double porcentajeDescuento;
-    @JoinTable(name = "tbl_productos_has_tbl_fotos_producto", joinColumns = {
-        @JoinColumn(name = "producto", referencedColumnName = "id_producto")}, inverseJoinColumns = {
-        @JoinColumn(name = "foto", referencedColumnName = "id_foto")})
-    @ManyToMany
-    private List<FotoProducto> fotoProductoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
     private List<Accesorio> accesorioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
@@ -113,15 +119,6 @@ public class Producto implements Serializable {
 
     public void setPorcentajeDescuento(Double porcentajeDescuento) {
         this.porcentajeDescuento = porcentajeDescuento;
-    }
-
-    @XmlTransient
-    public List<FotoProducto> getFotoProductoList() {
-        return fotoProductoList;
-    }
-
-    public void setFotoProductoList(List<FotoProducto> fotoProductoList) {
-        this.fotoProductoList = fotoProductoList;
     }
 
     @XmlTransient
@@ -182,6 +179,22 @@ public class Producto implements Serializable {
     @Override
     public String toString() {
         return "edu.hypatia.simu.modelo.entidades.Producto[ idProducto=" + idProducto + " ]";
+    }
+
+    public String getUrlFoto() {
+        return urlFoto;
+    }
+
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
+    }
+
+    public String getAltFoto() {
+        return altFoto;
+    }
+
+    public void setAltFoto(String altFoto) {
+        this.altFoto = altFoto;
     }
     
 }

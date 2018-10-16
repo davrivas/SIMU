@@ -13,13 +13,10 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import edu.hypatia.simu.modelo.dao.AccesorioFacadeLocal;
-import edu.hypatia.simu.modelo.dao.FotoProductoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.MarcaFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
 import edu.hypatia.simu.modelo.dao.TipoAccesorioFacadeLocal;
 import edu.hypatia.simu.modelo.dao.TipoProductoFacadeLocal;
-import edu.hypatia.simu.modelo.dao.jpa.TipoProductoFacade;
-import edu.hypatia.simu.modelo.entidades.FotoProducto;
 import edu.hypatia.simu.modelo.entidades.Marca;
 import edu.hypatia.simu.modelo.entidades.TipoAccesorio;
 import edu.hypatia.simu.modelo.entidades.TipoProducto;
@@ -52,9 +49,6 @@ public class AccesorioControlador implements Serializable {
     @EJB
     private TipoAccesorioFacadeLocal tafl;
     
-    @EJB
-    private FotoProductoFacadeLocal fpfl;
-    
     
     private List<Producto> productos;
     private List<Accesorio> accesorios;
@@ -71,15 +65,6 @@ public class AccesorioControlador implements Serializable {
     private Accesorio accesorio = new Accesorio();
     private Producto producto = new Producto();
     private Marca marcaProducto = new Marca();
-    private FotoProducto fotoProducto = new FotoProducto();
-
-    public FotoProducto getFotoProducto() {
-        return fotoProducto;
-    }
-
-    public void setFotoProducto(FotoProducto fotoProducto) {
-        this.fotoProducto = fotoProducto;
-    }
     
     private String marca;
 
