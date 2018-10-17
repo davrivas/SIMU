@@ -97,12 +97,11 @@ public class SesionControlador implements Serializable {
                     return "/administrador/index.xhtml?faces-redirect=true"; // me redirige a la pagina del administrador
             }
         } catch (NullPointerException e) {
-            e.printStackTrace(System.err);
             fc.addMessage("form-login", new FacesMessage(
                     FacesMessage.SEVERITY_INFO, "Datos incorrectos:",
                     "email y/o contraseña no son validos."));
         }
-        
+
         return "";
     }
 
@@ -141,6 +140,25 @@ public class SesionControlador implements Serializable {
             validarSesion();
         }
 
+    }
+
+    public void validarCliente() throws IOException {
+        if ((usuario == null) || (usuario != null && usuario.getRol().getIdRol() == 1)) {
+            System.out.println("Se validó bien la sesión");
+        } else {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            ExternalContext ec = fc.getExternalContext();
+            String path = ec.getRequestContextPath();
+            switch (usuario.getRol().getIdRol()) {
+                case 2:
+                    path += "/mecanico/index.xhtml";
+                    break;
+                case 3:
+                    path += "/administrador/index.xhtml";
+                    break;
+            }
+            ec.redirect(path);
+        }
     }
 
     public void changeLanguage(String lang) {
