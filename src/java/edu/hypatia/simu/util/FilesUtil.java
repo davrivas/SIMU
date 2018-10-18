@@ -53,5 +53,19 @@ public class FilesUtil {
             file.deleteOnExit();
         }
     }
+    
+    public static void subirFoto(Part part, String path, String nameFile) throws Exception {
+        File folder = new File(path);
+        if (!folder.exists()) {
+            folder.mkdirs();
+
+        }
+        try (InputStream is = part.getInputStream()) {
+            Files.copy(is, (new File(folder, nameFile)).toPath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("Error al subir el archivo" + part.getSubmittedFileName(), e);
+        }
+    }
 
 }

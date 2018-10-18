@@ -30,4 +30,6 @@ public interface DetalleTransaccionFacadeLocal {
 
     int count();
     
+    List<DetalleTransaccion> listarDetalleTransaccionCliente(Integer idCliente);
+    
 }

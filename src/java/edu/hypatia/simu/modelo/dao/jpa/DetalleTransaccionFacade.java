@@ -7,9 +7,11 @@ package edu.hypatia.simu.modelo.dao.jpa;
 
 import edu.hypatia.simu.modelo.dao.DetalleTransaccionFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.DetalleTransaccion;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,6 +30,13 @@ public class DetalleTransaccionFacade extends AbstractFacade<DetalleTransaccion>
 
     public DetalleTransaccionFacade() {
         super(DetalleTransaccion.class);
+    }
+
+    @Override
+    public List<DetalleTransaccion> listarDetalleTransaccionCliente(Integer idCliente) {
+        Query q = getEntityManager().createQuery("SELECT dt FROM DetalleTransaccion dt  INNER JOIN dt.transaccion t INNER JOIN t.cliente c WHERE c.idUsuario = :idCliente ");
+        q.setParameter("idCliente", idCliente);
+        return q.getResultList();
     }
     
 }
