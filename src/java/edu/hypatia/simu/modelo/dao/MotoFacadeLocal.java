@@ -30,11 +30,15 @@ public interface MotoFacadeLocal {
     List<Moto> findRange(int[] range);
 
     int count();
-    
+
     List<Moto> motosEnReparacion(Usuario cliente);
+
     List<Moto> listarMoto();
 
     List<Moto> filtrarPorMarcaMoto(String marca);
+
     List<Moto> filtrarPorPrecio(Double precioMin, Double precioMax);
-    
+
+    List<Moto> listarMotosOfrecidas();
+
 }

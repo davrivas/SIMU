@@ -40,31 +40,41 @@ public class MotoFacade extends AbstractFacade<Moto> implements MotoFacadeLocal 
         try {
             TypedQuery<Moto> q = getEntityManager().createQuery("SELECT m FROM Moto m WHERE m.cliente = :cliente", Moto.class);
             q.setParameter("cliente", cliente);
-            return null;
+            return q.getResultList();
         } catch (NoResultException e) {
-            System.out.println(e.getStackTrace());
             return null;
         }
     }
-    
-    public List<Moto> listarMoto(){
-    TypedQuery<Moto>t=getEntityManager().createQuery("SELECT m FROM Moto m INNER JOIN m.estadoMoto em INNER JOIN m.producto p INNER JOIN p.marca mp INNER JOIN mp.tipoProducto t WHERE t.idTipoProducto = 1 AND em.idEstadoMoto = 3", Moto.class);
-    return t.getResultList();
+
+    @Override
+    public List<Moto> listarMoto() {
+        TypedQuery<Moto> t = getEntityManager().createQuery("SELECT m FROM Moto m INNER JOIN m.estadoMoto em INNER JOIN m.producto p INNER JOIN p.marca mp INNER JOIN mp.tipoProducto t WHERE t.idTipoProducto = 1 AND em.idEstadoMoto = 3", Moto.class);
+        return t.getResultList();
     }
-    
-     public List<Moto> filtrarPorMarcaMoto(String marca){
-    Query q= getEntityManager().createQuery("SELECT m FROM Moto m  INNER JOIN m.producto p INNER JOIN p.marca mp WHERE mp.marca = :marca");
-    q.setParameter("marca", marca);
-    return q.getResultList();
+
+    @Override
+    public List<Moto> filtrarPorMarcaMoto(String marca) {
+        Query q = getEntityManager().createQuery("SELECT m FROM Moto m  INNER JOIN m.producto p INNER JOIN p.marca mp WHERE mp.marca = :marca");
+        q.setParameter("marca", marca);
+        return q.getResultList();
     }
-     
-      public List<Moto> filtrarPorPrecio(Double precioMin, Double precioMax){
-    Query q= getEntityManager().createQuery("SELECT m FROM Moto m INNER JOIN m.producto p WHERE p.precio BETWEEN :precioMin AND :precioMax");
-    q.setParameter("precioMin", precioMin);
-    q.setParameter("precioMax", precioMax);
-    return q.getResultList();
-    
+
+    @Override
+    public List<Moto> filtrarPorPrecio(Double precioMin, Double precioMax) {
+        Query q = getEntityManager().createQuery("SELECT m FROM Moto m INNER JOIN m.producto p WHERE p.precio BETWEEN :precioMin AND :precioMax");
+        q.setParameter("precioMin", precioMin);
+        q.setParameter("precioMax", precioMax);
+        return q.getResultList();
     }
-    
-    
+
+    @Override
+    public List<Moto> listarMotosOfrecidas() {
+        try {
+            TypedQuery<Moto> t = getEntityManager().createQuery("SELECT m FROM Moto m INNER JOIN m.estadoMoto em INNER JOIN m.producto p INNER JOIN p.marca mp INNER JOIN mp.tipoProducto t WHERE t.idTipoProducto = 1 AND em.idEstadoMoto = 1", Moto.class);
+            return t.getResultList();
+        } catch (NoResultException ex) {
+            return null;
+        }
+    }
+
 }
