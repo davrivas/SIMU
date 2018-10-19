@@ -9,27 +9,27 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content contenido-modal">
                 <h:form>
-                <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLabel">Tu carrito</h3>
-                    <button type="button" class="cerrar-modal close" data-dismiss="modal" aria-label="Close">
-                        <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
-                    </button>
-                </div>
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel">Tu carrito</h3>
+                        <button type="button" class="cerrar-modal close" data-dismiss="modal" aria-label="Close">
+                            <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
+                        </button>
+                    </div>
                     <div class="modal-body">
                         <h:dataTable value="#{transaccionControlador.nuevaTransaccion.detalleTransaccionList}" var="dt" class="table table-light">
                             <h:column>
                                 <f:facet name="header"></f:facet>
                                 <h:outputText value="#{dt.precioFinal}"></h:outputText>
                             </h:column>
-                             <h:column>
+                            <h:column>
                                 <f:facet name="header"></f:facet>
                                 <h:outputText value="#{dt.cantidad}"></h:outputText>
                             </h:column>
-                             <h:column>
+                            <h:column>
                                 <f:facet name="header"></f:facet>
                                 <h:outputText value="#{dt.producto.marca.marca}"></h:outputText>
                             </h:column>
-                        
+
                         </h:dataTable>
                         <h:commandButton value="Solicitar" class="btn btn-primary" action="#{transaccionControlador.realizarTransaccion()}"></h:commandButton>
                     </div>

@@ -44,7 +44,6 @@
                 <div class="col-md-3 filtros">
                     <h:form a:data-parsley-validate="true" prependId="false">
                         <h:panelGroup>
-
                             <h1 class="text-center mb-4">Filtros</h1>
 
                             <h:inputText class="form-control " a:type="search" a:placeholder="Search" value="#{productoControlador.marca}" a:aria-label="Search" />
@@ -52,12 +51,20 @@
                                 <f:ajax execute="@form" render=":Motos" immediate="true"></f:ajax>
                             </h:commandButton>
 
-                            <label class="mt-4">Marca Moto</label>
-                            <h:selectOneMenu  valueChangeListener="#{motoControlador.marcaProducto.idMarca}" class="form-control">
-                                <f:selectItem  itemLabel="Seleccione"></f:selectItem>
-                                <f:selectItems value="#{motoControlador.listarMarcasMotos()}" var="mm"  itemLabel="#{mm.marca}"></f:selectItems>
-                                <f:ajax execute="@form" render=":Motos" event="change" immediate="true"></f:ajax>
-                            </h:selectOneMenu>
+                            <!--                            <label class="mt-4">Marca Moto</label>
+                                                        
+                                                            <h:selectOneMenu  value="#{motoControlador.marcaProducto.idMarca}"   
+                                                                          class="form-control"  >
+                                                            <f:selectItem  itemLabel="Seleccione"></f:selectItem>
+                                                            <f:selectItems value="#{motoControlador.listarMarcasMotos()}" var="mm"  itemLabel="#{mm.marca}"></f:selectItems>
+                                                           
+                                                        </h:selectOneMenu>
+                                                        <h:commandButton action="#{productoControlador.filtrarPorMarcaMoto()}" class="btn btn-primary" value="Filtrar">
+                                                         <f:ajax execute="@form" render=":Motos" immediate="true"></f:ajax>
+                                                        </h:commandButton>-->
+
+
+
 
 
                             <div class="row mt-4">
@@ -77,12 +84,12 @@
                             </h:commandButton>
 
                         </h:panelGroup>
-
                     </h:form>
+
                 </div>
                 <div class="col-md-9">
                     <h1 class="d-flex justify-content-start mt-2">Resultados</h1>
-                    <h:form prependId="false">
+                    <h:form  a:data-parsley-validate="true" prependId="false">
                         <h:panelGroup id="Motos" layout="block">
                             <div class="row">
                                 <ui:repeat value="#{productoControlador.motos}" var="m" >
@@ -98,7 +105,7 @@
                                                     </h:outputText>
                                                 </p>
 
-                                                <h:commandButton value="Añadir" a:data-toggle="modal" a:data-target="#cantProductos" class="btn btn-primary" actionListener="#{transaccionControlador.seleccionarProducto(m)}"> 
+                                                <h:commandButton value="Añadir" a:data-toggle="modal" a:data-target="#cantProductos" class="btn btn-primary" actionListener="#{transaccionControlador.seleccionarProducto(m.producto)}"> 
 
                                                     <f:ajax render=":formCar"></f:ajax>
                                                 </h:commandButton>

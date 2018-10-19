@@ -5,7 +5,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-    <nav class="barra-navegacion navbar navbar-expand-lg fixed-top d-flex align-items-center">
+    <nav class="barra-navegacion navbar navbar-expand-lg sticky-top d-flex align-items-center">
         <a class="logo-simu-negativo navbar-brand" >
             <img src="#{request.contextPath}/resources/img/logo-simu-negativo.jpg" alt="Logo SIMU" href="index.html" />
         </a>
@@ -51,6 +51,13 @@
                         <span class="text-left fa fa-shopping-cart"></span><span class="text-navright">&nbsp;#{txtSimu.carritoCompra}</span>
                     </button>
                 </li>
+
+                <li class="items-nav nav-item d-flex justify-content-lg-center align-items-center">
+                    <button class="boton-navbar nav-item" type="button" data-toggle="modal" data-target="#Transaccion">
+                        <span class="text-left fa fa-apple"></span><span class="text-navright"></span>
+                    </button>
+                </li>
+
 
                 <h:panelGroup rendered="#{empty sesionControlador.usuario}">
                     <li class="items-nav nav-item d-flex justify-content-lg-center align-items-center">

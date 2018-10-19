@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <div class="modal fade" id="Transaccion" tabindex="-1" role="dialog" aria-labelledby="misTransacciones" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content contenido-modal">
+                <div class="modal-header">
+                    <h3 class="modal-title" >Tus transacciones</h3>
+                    <button type="button" class="cerrar-modal close" data-dismiss="modal" aria-label="Close">
+                        <span class="fa fa-close cerrar-modal" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <h:form prependId="false">
+                        <div class="row">
+                            <ui:repeat value="#{transaccionControlador.listarTransaccionesCliente()}" var="dtc">
+                                <div class="col-md-2">
+                                    <div class="card border-dark m-4" style="width: 15rem; height: 400px;">
+                                        <img src="#{request.contextPath}/resources/img/accesorios/#{dtc.producto.urlFoto}" alt="#{dtc.producto.altFoto}" style="height: 200px;"/>
+                                        <div class="card-body text-dark">
+                                            <h5 class="card-title">#{dtc.idDetalleTransaccion}</h5>
+                                            <p class="card-text">$
+                                                <h:outputText value="#{dtc.producto.precio}">
+                                                    <f:convertNumber type="currency"/>
+                                                </h:outputText>
+                                            </p>
+                                            <p class="card-text">#{dtc.producto.marca.marca}</p>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </ui:repeat>
+                        </div>
+                    </h:form>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</ui:composition>
+

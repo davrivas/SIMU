@@ -35,23 +35,23 @@
                             <h:commandButton class="btn btn-outline-success btn-block mt-2" action="#{productoControlador.filtrarPorMarcaAccesorio()}"  value="Buscar" >
                                 <f:ajax execute="@form" render=":Accesorios" immediate="true"></f:ajax>
                             </h:commandButton>
-                             
-                    
 
 
-                            <label for="tipoAccesorio" class="mt-4">Tipo de Accesorio</label>
-                            <h:selectOneMenu class="form-control" value="#{accesorioControlador.accesorio.tipoAccesorio}" id="tipoAccesorio">
-                                <f:selectItem itemValue="0" itemLabel="Seleccione" noSelectionOption="true" ></f:selectItem>
-                                <f:selectItems value="#{accesorioControlador.listarTipoAccesorio()}"
-                                               var="tp" itemValue="#{tp.idTipoAccesorio}"
-                                               itemLabel="#{tp.tipoAccesorio}"></f:selectItems>
-                            </h:selectOneMenu>
-                            <label for="marcaAccesorio">Marca Accesorio</label>
-                            <h:selectOneMenu class="form-control" value="#{accesorioControlador.marcaProducto.idMarca}" onchange="submit()" >
-                                <f:selectItem itemLabel="Seleccione" itemValue="0" noSelectionOption="true" />
-                                <f:selectItems value="#{accesorioControlador.listarMarcaAccesorio()}" var="mp" itemValue="#{mp.idMarca}" itemLabel="#{mp.marca}" ></f:selectItems>
-                                <f:ajax render=":Accesorios" event="click" execute="@form" immediate="true"></f:ajax>
-                            </h:selectOneMenu>
+
+
+                            <!--                            <label for="tipoAccesorio" class="mt-4">Tipo de Accesorio</label>
+                                                        <h:selectOneMenu class="form-control" value="#{accesorioControlador.accesorio.tipoAccesorio}" id="tipoAccesorio">
+                                                            <f:selectItem itemValue="0" itemLabel="Seleccione" noSelectionOption="true" ></f:selectItem>
+                                                            <f:selectItems value="#{accesorioControlador.listarTipoAccesorio()}"
+                                                                           var="tp" itemValue="#{tp.idTipoAccesorio}"
+                                                                           itemLabel="#{tp.tipoAccesorio}"></f:selectItems>
+                                                        </h:selectOneMenu>
+                                                        <label for="marcaAccesorio">Marca Accesorio</label>
+                                                        <h:selectOneMenu class="form-control" value="#{accesorioControlador.marcaProducto.idMarca}" onchange="submit()" >
+                                                            <f:selectItem itemLabel="Seleccione" itemValue="0" noSelectionOption="true" />
+                                                            <f:selectItems value="#{accesorioControlador.listarMarcaAccesorio()}" var="mp" itemValue="#{mp.idMarca}" itemLabel="#{mp.marca}" ></f:selectItems>
+                                                            <f:ajax render=":Accesorios" event="click" execute="@form" immediate="true"></f:ajax>
+                                                        </h:selectOneMenu>-->
                             <div class="row mt-4">
 
                                 <div class="col-md-6">
@@ -67,7 +67,7 @@
                             <h:commandButton value="Filtrar" action="#{productoControlador.filtrarAccesorioPorPrecio()}"  class="btn btn-primary btn-block mt-2">
                                 <f:ajax execute="@form" render=":Accesorios" immediate="true"></f:ajax>
                             </h:commandButton>
-                       </h:panelGroup>
+                        </h:panelGroup>
                     </h:form>
                 </div>
                 <div class="col-md-9">

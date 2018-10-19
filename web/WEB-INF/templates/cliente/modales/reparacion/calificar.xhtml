@@ -20,20 +20,20 @@
 
                         <div style="color: #fff; text-align: left;">
                             <b>#{txtSimu.fechaHora}: </b>
-                                <h:outputText value="#{reparacionClienteControlador.reparacionSeleccionada.fecha}">
-                                    <f:convertDateTime pattern="yyyy/MM/dd "/>
-                                </h:outputText>
-                                <h:outputText value="#{reparacionClienteControlador.reparacionSeleccionada.hora}">
-                                    <f:convertDateTime pattern="HH:mm"/>
-                                </h:outputText>
-                                <br/>
-                                <b>#{txtSimu.placaMoto}</b> #{reparacionClienteControlador.reparacionSeleccionada.moto.placa}<br/>
-                                <b>#{txtSimu.nombreMecanico}:</b> #{reparacionClienteControlador.reparacionSeleccionada.mecanico.nombre} #{reparacionControlador.reparacionSeleccionada.mecanico.apellido}<br/>
-                                <b>#{txtSimu.serviciosRep}:</b><br/>
-                                <ui:repeat value="#{reparacionClienteControlador.reparacionSeleccionada.tipoReparacionList}" var="tsr">
-                                    - #{tsr.servicio}<br/>
-                                </ui:repeat>
-                                <b>#{txtSimu.descripcion}:</b> #{reparacionClienteControlador.reparacionSeleccionada.descripcion}
+                            <h:outputText value="#{reparacionClienteControlador.reparacionSeleccionada.fecha}">
+                                <f:convertDateTime pattern="yyyy/MM/dd "/>
+                            </h:outputText>
+                            <h:outputText value="#{reparacionClienteControlador.reparacionSeleccionada.hora}">
+                                <f:convertDateTime pattern="HH:mm"/>
+                            </h:outputText>
+                            <br/>
+                            <b>#{txtSimu.placaMoto}</b> #{reparacionClienteControlador.reparacionSeleccionada.moto.placa}<br/>
+                            <b>#{txtSimu.nombreMecanico}:</b> #{reparacionClienteControlador.reparacionSeleccionada.mecanico.nombre} #{reparacionControlador.reparacionSeleccionada.mecanico.apellido}<br/>
+                            <b>#{txtSimu.serviciosRep}:</b><br/>
+                            <ui:repeat value="#{reparacionClienteControlador.reparacionSeleccionada.tipoReparacionList}" var="tsr">
+                                - #{tsr.servicio}<br/>
+                            </ui:repeat>
+                            <b>#{txtSimu.descripcion}:</b> #{reparacionClienteControlador.reparacionSeleccionada.descripcion}
                         </div>
                         <div class="row mt-2">
                             <div class="mr-2">

@@ -9,9 +9,9 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="contenido1">
-        
+
         <h:form>
-            
+
             <ui:include src="/WEB-INF/templates/administrador/modal/registrarAccesorio.xhtml"></ui:include>
 
         </h:form>
@@ -24,7 +24,7 @@
                             <i class="fa fa-plus"></i>
                             <f:ajax render=":contentModalRegistrarAccesorio"/>
                         </h:commandLink>
-                        
+
                         <h:commandLink action="#{exportControlador.accesoriosPDF()}" class="btn btn-outline-info ml-3" value="PDF">
                             <i class="fa fa-file-pdf-o"></i>
                         </h:commandLink>

@@ -3,66 +3,51 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    <!-- Button trigger modal -->
-
-
-<!-- Modal -->
-
-<div class="modal fade " id="motoso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-   
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Motos ofrecidas</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-            <table id="administradores" class="table table-fixed" style="width:100%; ">
-                          
-                            <thead class="thead-dark">
-                                <tr style="width: 130px;overflow: auto; ">
-                                    <th><strong>Marca</strong></th>
-                                    <th><strong>Modelo</strong></th>
-                                    <th><strong>Precio</strong></th>
-                                 
-                                    <th>Acciones</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <c:forEach items="#{motoControlador.listarMotosOfrecidas()}" var="mo">
-
-                                    <tr>
-
-                                        <td>#{mo.producto.marca.marca}</td>
-                                        <td>#{mo.modelo}</td>
-                                        <td>#{mo.producto.precio}</td>                        
-                                      
-                                        <td><h:commandButton value="0h my god" class="btn btn-success"></h:commandButton></td>
-                                        <td><h:commandButton value="Descartar" class="btn btn-danger"></h:commandButton></td>
-                                        
-
-                                    </tr>
-                                </c:forEach>
-
-                            </tbody>
-
-                        </table>
-  
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        
-      </div>
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <div class="modal fade " id="motoso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Motos ofrecidas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h:form prependId="false">
+                        <ui:repeat value="#{motoControlador.listarMotosOfrecidasAlAdmin()}" var="mo">
+                            <div class="card border-dark mt-2 mr-2 mb-4" style="width: 18rem;">
+                                <img src="#{request.contextPath}/resources/img/motos/#{mo.producto.urlFoto}" alt="#{mo.producto.altFoto}" style="height: 200px;"/>
+                                <div class="card-body text-dark">
+                                    <h5 class="card-title">#{mo.placa}</h5>
+                                    <p class="card-text">$
+                                        <h:outputText value="#{mo.producto.precio}">
+                                            <f:convertNumber type="currency"/>
+                                        </h:outputText>
+                                    </p>
+                                    <p class="card-text">#{mo.producto.marca.marca} #{mo.producto.referencia}</p>
+                                    <p class="card-text">
+                                        <h:commandLink action="#{motoControlador.aceptarMoto(mo)}" class="btn btn-success mr-1">
+                                            <span class="fa fa-check"></span>
+                                        </h:commandLink>
+                                        <h:commandLink action="#{motoControlador.rechazarMoto(mo)}" class="btn btn-danger ml-1">
+                                            <span class="fa fa-close"></span>
+                                        </h:commandLink>
+                                    </p>
+                                </div>
+                            </div>
+                        </ui:repeat>
+                    </h:form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-   
+
 </ui:composition>
 
