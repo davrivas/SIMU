@@ -22,9 +22,7 @@ import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.Usuario;
 import edu.hypatia.simu.modelo.entidades.EstadoMoto;
 import edu.hypatia.simu.modelo.entidades.Marca;
-import edu.hypatia.simu.util.FilesUtil2;
-import java.io.File;
-import java.io.IOException;
+import edu.hypatia.simu.util.FilesUtil;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
@@ -67,6 +65,16 @@ public class MotoControlador implements Serializable {
 
     private Marca marcaProducto = new Marca();
     private List<Marca> marcasMoto;
+
+    private Part foto;
+
+    public Part getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Part foto) {
+        this.foto = foto;
+    }
 
     public MotoControlador() {
     }
@@ -160,7 +168,6 @@ public class MotoControlador implements Serializable {
         return marcaProductofl.findAll();
     }
 
-
     public String registrar() {
 
         productofl.create(producto);
@@ -173,35 +180,78 @@ public class MotoControlador implements Serializable {
         return "listarMoto.xhtml?faces-redirect=true";
     }
 
-    public void registrarMotoOfrecida() {
+    public void registrarMotoOfrecida() throws Exception {
+        FilesUtil.subirFoto(foto,
+                FacesContext.getCurrentInstance().getExternalContext().getRealPath("") + "/resources/img/moto/",
+                foto.getSubmittedFileName());
+        producto.setUrlFoto(foto.getSubmittedFileName());
+        producto.setAltFoto(marcaProducto.getMarca() + " " + producto.getReferencia());
         producto.setMarca(marcaProducto);
         productofl.create(producto);
         moto.setProducto(producto);
-        moto.setEstadoMoto(emfl.find(2));
+        moto.setEstadoMoto(emfl.find(1));
         moto.setCliente(sc.getUsuario());
         mfl.create(moto);
 
-         Mail.sendMail("simucolombia@gmail.com", "Moto ofrecida", sc.getUsuario().getNombre() + " " + sc.getUsuario().getApellido()
+        Mail.sendMail("simucolombia@gmail.com", "Moto ofrecida", sc.getUsuario().getNombre() + " " + sc.getUsuario().getApellido()
                 + "<h1>Compra de Moto</h1>"
-                + "<p>Hola administradores de SIMU, el cliente " + sc.getUsuario().getNombre() + " " + sc.getUsuario().getApellido()+ " ha ofertado una moto </p>"
+                + "<p>Hola administradores de SIMU, el cliente " + sc.getUsuario().getNombre() + " " + sc.getUsuario().getApellido() + " ha ofertado una moto </p>"
                 + "Moto: " + producto.getMarca().getMarca() + producto.getReferencia() + "<br/>"
                 + "Cilindraje: " + moto.getCilindraje() + "<br/>"
                 + "Kilometraje: " + moto.getKilometraje() + "<br/>"
                 + "Color: " + moto.getColor()
-                 + "<hr>");
+                + "<hr>");
         moto = null;
     }
 
-    public List<Moto> listarMotos(){
-     return mfl.findAll();
-    }
-    
-    public List<Marca> listarMarcasMotos(){
-    return mpl.listarMarcaMoto();
+    public List<Moto> listarMotos() {
+        return mfl.findAll();
     }
 
-    public List<Moto> listarMotosOfrecidas(){
-    return mfl.findAll();
+    public List<Marca> listarMarcasMotos() {
+        return mpl.listarMarcaMoto();
     }
-    
+
+    public List<Moto> listarMotosOfrecidas() {
+        return mfl.findAll();
+    }
+
+    private String marcaSeleccionada;
+
+    public String getMarcaSeleccionada() {
+        return marcaSeleccionada;
+    }
+
+    public void setMarcaSeleccionada(String marcaSeleccionada) {
+        this.marcaSeleccionada = marcaSeleccionada;
+    }
+
+    public List<Moto> listarMotosOfrecidasAlAdmin() {
+        return mfl.listarMotosOfrecidas();
+    }
+
+    public String aceptarMoto(Moto mo) {
+        seleccionarMoto(mo);
+        moto.setEstadoMoto(emfl.find(3));
+        Mail.sendMail(moto.getCliente().getEmail(), "Moto aceptada",
+                "Su moto con placa " + moto.getPlaca() + " ha sido aceptada en SIMU<br>"
+                + "Pronto nos pondremos en contacto contigo.");
+        moto.setCliente(null);
+        mfl.edit(moto);
+        moto = new Moto();
+        return "index.xhtml?faces-redirect=true";
+    }
+
+    public String rechazarMoto(Moto mo) {
+        seleccionarMoto(mo);
+        moto.setEstadoMoto(emfl.find(2));
+        Mail.sendMail(moto.getCliente().getEmail(), "Moto descartada",
+                "Su moto con placa " + moto.getPlaca() + " ha sido descartada de SIMU<br>"
+                + "Muchas gracias por su oferta");
+        moto.setCliente(null);
+        mfl.edit(moto);
+        moto = new Moto();
+        return "index.xhtml?faces-redirect=true";
+    }
+
 }

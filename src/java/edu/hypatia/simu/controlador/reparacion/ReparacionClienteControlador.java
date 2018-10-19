@@ -216,6 +216,8 @@ public class ReparacionClienteControlador implements Serializable {
 
     public void registrarNuevaMotoEnReparacion() {
         productoNuevo.setPrecio(0);
+        productoNuevo.setUrlFoto("");
+        productoNuevo.setAltFoto("");
         pfl.create(productoNuevo);
         motoNueva.setProducto(productoNuevo);
         motoNueva.setCliente(sc.getUsuario());

@@ -5,17 +5,22 @@
  */
 package edu.hypatia.simu.controlador.transaccion;
 
+import edu.hypatia.simu.controlador.mail.Mail;
 import edu.hypatia.simu.controlador.usuario.sesion.SesionControlador;
+import edu.hypatia.simu.modelo.dao.DetalleTransaccionFacadeLocal;
 import edu.hypatia.simu.modelo.dao.ProductoFacadeLocal;
+import edu.hypatia.simu.modelo.dao.TipoTransaccionFacadeLocal;
 import edu.hypatia.simu.modelo.dao.TransaccionFacadeLocal;
 import edu.hypatia.simu.modelo.entidades.DetalleTransaccion;
 import edu.hypatia.simu.modelo.entidades.Producto;
+import edu.hypatia.simu.modelo.entidades.TipoTransaccion;
 import edu.hypatia.simu.modelo.entidades.Transaccion;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -32,10 +37,6 @@ public class TransaccionControlador implements Serializable {
 
     private DetalleTransaccion nuevoDetalleTransaccion;
 
-    public DetalleTransaccion getNuevoDetalleTransaccion() {
-        return nuevoDetalleTransaccion;
-    }
-
     @EJB
     private ProductoFacadeLocal pfl;
 
@@ -45,6 +46,30 @@ public class TransaccionControlador implements Serializable {
     @EJB
     private TransaccionFacadeLocal tfl;
 
+    @EJB
+    private TipoTransaccionFacadeLocal ttfl;
+
+    @EJB
+    private DetalleTransaccionFacadeLocal dtfl;
+
+    private Producto p;
+
+    TipoTransaccion tipoTransaccion = new TipoTransaccion();
+    DetalleTransaccion detalleTransaccion = new DetalleTransaccion();
+
+    public TransaccionControlador() {
+    }
+
+    @PostConstruct
+    public void init() {
+        nuevaTransaccion = new Transaccion();
+        nuevaTransaccion.setDetalleTransaccionList(new ArrayList<>());
+    }
+
+    public DetalleTransaccion getNuevoDetalleTransaccion() {
+        return nuevoDetalleTransaccion;
+    }
+
     public Producto getP() {
         return p;
     }
@@ -53,15 +78,20 @@ public class TransaccionControlador implements Serializable {
         this.p = p;
     }
 
-    private Producto p;
-
-    @PostConstruct
-    public void init() {
-        nuevaTransaccion = new Transaccion();
-        nuevaTransaccion.setDetalleTransaccionList(new ArrayList<>());
+    public DetalleTransaccion getDetalleTransaccion() {
+        return detalleTransaccion;
     }
 
-    public TransaccionControlador() {
+    public void setDetalleTransaccion(DetalleTransaccion detalleTransaccion) {
+        this.detalleTransaccion = detalleTransaccion;
+    }
+
+    public TipoTransaccion getTipoTransaccion() {
+        return tipoTransaccion;
+    }
+
+    public void setTipoTransaccion(TipoTransaccion tipoTransaccion) {
+        this.tipoTransaccion = tipoTransaccion;
     }
 
     public Transaccion getNuevaTransaccion() {
@@ -91,23 +121,30 @@ public class TransaccionControlador implements Serializable {
     }
 
     public void addDetalleTransaccion() {
-        if (nuevoDetalleTransaccion.getCantidad() > 0) {
-            DetalleTransaccion temp = getDetalleTransaccion(nuevoDetalleTransaccion.getProducto());
-            if (temp != null) {
-                temp.setCantidad(temp.getCantidad() + nuevoDetalleTransaccion.getCantidad());
-            } else {
-                nuevaTransaccion.getDetalleTransaccionList();
-            }
-            nuevaTransaccion.getDetalleTransaccionList().add(nuevoDetalleTransaccion);
 
+        DetalleTransaccion temp = getDetalleTransaccion(nuevoDetalleTransaccion.getProducto());
+        if (temp != null) {
+            temp.setCantidad(temp.getCantidad() + nuevoDetalleTransaccion.getCantidad());
+        } else {
+            nuevaTransaccion.getDetalleTransaccionList();
         }
+        nuevaTransaccion.getDetalleTransaccionList().add(nuevoDetalleTransaccion);
+
     }
 
-    public void solicitar() {
+    public void realizarTransaccion() {
         nuevaTransaccion.setFecha(new Date());
-//        nuevaTransaccion.setCliente(sc.getUsuario());
+        nuevaTransaccion.setCliente(sc.getUsuario());
+        nuevaTransaccion.setTipoTransaccion(ttfl.find(1));
         tfl.create(nuevaTransaccion);
         System.out.println("Pedido solicitado correctamente");
+
+        Mail.sendMail(sc.getEmail(), "Compra de Producto",
+                "<h1> Has comprado un producto en SIMU, espero te haya gustado, muy pronto te lo haremos llegar </h1>");
+    }
+
+    public List<DetalleTransaccion> listarTransaccionesCliente() {
+        return dtfl.listarDetalleTransaccionCliente(sc.getUsuario().getIdUsuario());
     }
 
 }
