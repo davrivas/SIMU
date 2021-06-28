@@ -1,5 +1,7 @@
 # SIMU
 
+![SIMU logo](logo.png "SIMU logo")
+
 Proyecto formativo del SENA hecho por
 * Nicolas Murillo
 * Daniel Ramírez
